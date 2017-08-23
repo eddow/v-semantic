@@ -13,6 +13,11 @@ git clone
 node fuse
 ```
 This will produce `dist/semantic-vue.js`
+
+Requiring the main library will export each components and a `default` that lets you `Vue.install(...)`.
+
+There is no plan to have one-source-file-per-component, it's not a huge library.
+
 # Components
 - [flag](docs/components/flag.md)
 - [icon](docs/components/icon.md)

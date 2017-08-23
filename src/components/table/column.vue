@@ -16,7 +16,7 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import rc from './raw-column.vue'
+import rc from './column-sep.vue'
 
 @Component({components:{rc}})
 export default class Column extends Vue {

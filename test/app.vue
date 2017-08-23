@@ -1,48 +1,57 @@
 <template>
 	<div>
 		<div>
-			<su-button>
-				<su-icon icon="save" slot="prepend" />
+			<s-button>
+				<s-icon icon="save" slot="prepend" />
 				button-l
-			</su-button>
-			<su-button icon="plus">
+			</s-button>
+			<s-button icon="plus">
 				button-i
-			</su-button>
-			<su-button>
-				<su-icon icon="minus" slot="append" />
+			</s-button>
+			<s-button>
+				<s-icon icon="minus" slot="append" />
 				button-r
-			</su-button>
-			<su-button>
-				<su-icon icon="add circle" />
-			</su-button>
-			<su-button icon="add square" />
+			</s-button>
+			<s-button>
+				<s-icon icon="add circle" />
+			</s-button>
+			<s-button icon="add square" />
 		</div>
 		<div>
-			<su-input>
-				<su-icon slot="prepend" circular link icon="search" @click="testme" />
-				<su-select action="nothing" class="label" slot="prepend" v-model="ddn" text="Gender" on="hover">
-					<su-option value="M">Male</su-option>
-					<su-option value="F">Female</su-option>
-				</su-select>
-			</su-input>
+			<s-input>
+				<s-icon slot="prepend" circular link icon="search" @click="testme" />
+				<s-select action="nothing" class="label" slot="prepend" v-model="ddn" text="Gender" on="hover">
+					<s-option value="M">Male</s-option>
+					<s-option value="F">Female</s-option>
+				</s-select>
+			</s-input>
 			--{{ddn}}--
 	</div>
 	<div>
-		<su-table :rows="rows">
+		<s-table :rows="rows">
 			<div slot="header">
 				qwe
 			</div>
-			<su-column header="A">
+			<s-column header="A">
 				<template slot="cell" scope="scope">
-					a{{a(scope.row)}}
+					a{{scope.row.a}}
 				</template>
-			</su-column>
-			<su-column property="a">
+			</s-column>
+			<s-column property="a">
 				<template slot="header">
 					B
 				</template>
-			</su-column>
-		</su-table>
+			</s-column>
+		</s-table>
+		<!--s-accordion>
+			<s-pane title="What is a dog?">
+    		<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+			</s-pane>
+
+			<s-pane title="What kinds of dogs are there?">
+		    <p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+			</s-pane>
+		</s-accordion-->
 	</div>
 </template>
 
@@ -54,9 +63,6 @@ import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
 export default class App extends Vue {
 	ddn = ''
 	rows = [{a:1},{a:3},{a:5}]
-	a(row) {
-		return row.a;
-	}
 	testme() {
 		console.log('test');
 	}

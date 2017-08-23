@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="row in rows" :key="getId(row)" :class="rowClass(row)">
+				<tr v-for="row in rows" :key="row[this.idProperty]" :class="rowClass(row)">
 					<!-- column.componentInstance._uid -->
 					<tcell v-for="column in columns" :column="column" :row="row" :key="ckey(column)" />
 				</tr>
@@ -49,26 +49,19 @@ const tcell = {
 	}
 };
 
-
 //TODO: cell(th/td) css classes
 @Component({components:{tcell, theader}})
 export default class Table extends Vue {
 	@Provide() table = this
-	@Prop()
-	rows: any[]
-	@Prop({default: null}) idOf: (any)=> string
-	@Prop({default: '_id'})
-	idProperty: string
+	@Prop() rows: any[]
+	@Prop({default: '_id'}) idProperty: string
 	@Prop({default: ()=> ''}) rowClass : (any)=> string
 	isMounted = false
 	mounted() { this.isMounted = true; }
-	getId(row) {
-		return this.idOf ? this.idOf(row) : row[this.idProperty];
-	}
+	private columnCtr: number = 0
 	ckey(column) {
 		return column._genUid || (column._genUid = ++this.columnCtr)
 	}
-	columnCtr: number = 0
 	get columns() {
 		var rv = this.$slots.default
 			.filter(x=>x.componentOptions)

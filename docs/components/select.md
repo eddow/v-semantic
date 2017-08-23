@@ -2,7 +2,7 @@
 
 ## Slots
 ### default
-The default slot is the menu. It can be filled with `<su-option>` that are basically short-cuts for `<div class="item">` with these two proprieties:
+The default slot is the menu. It can be filled with `<s-option>` that are basically short-cuts for `<div class="item">` with these two proprieties:
 - `value`
 - `text`
 

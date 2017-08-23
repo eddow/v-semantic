@@ -48,7 +48,6 @@ export default class Select extends Vue {
 	@Prop({default: 'both'}) match: 'both'|'text'|'value'
 
 	mounted() { this.init(); }
-	updated() { this.init(); }
 
 	onChange(value, text, element) { this.$emit('select', value, text, element); }
 	onAdd(value, text, element) { this.$emit('add', value, text, element); }
