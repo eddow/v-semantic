@@ -39,8 +39,11 @@ These properties forward directly to the jQuery initialisation :
 - `action`: 'activate'|'select'|'combo'|'nothing'|'hide'|'command'
 In the case of `command`, it will raise the `command` event and take no other action on selection.
 ## Events
-- `select`(`value`) is raised when the value changed
-- `command`(`value`) is raised when a value is clicked and `action` is `command`
+- `select(value)` is raised when the value changed
+- `command(value)` is raised when a value is clicked and `action` is `command`
+- `add(value, text, element)` when an element is added
+- `remove(value, text, element)` when an element is removed
+- `noResult(searchValue)` when a research returns an empty result
 ## Methods
 - `hide(): void`
 - `show(): void`

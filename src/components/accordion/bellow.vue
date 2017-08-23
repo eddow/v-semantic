@@ -16,6 +16,7 @@
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
 
+@Component
 export default class Bellow extends Vue {
 	@Prop({default: 'dropdown'}) icon: string
 	@Prop() title: string

@@ -11,19 +11,30 @@ import {$} from '../../shims'
 
 @Component
 export default class Accordion extends Vue {
+	onOpening() { this.$emit('opening'); }
+	onOpen() { this.$emit('open'); }
+	onClosing() { this.$emit('closing'); }
+	onClose() { this.$emit('close'); }
+	onChange() { this.$emit('change'); }
+
+	@Prop({default: true}) exclusive: boolean
+	@Prop({default: 'click'}) on: string
+	@Prop({default: true}) animateChildren: boolean
+	@Prop({default: true}) closeNested: boolean
+	@Prop({default: true}) collapsible: boolean
+	@Prop({default: 500}) duration: number
+
 	semantic(...args) {
-		$(this.$el).dropdown(...args);
+		$(this.$el).accordion(...args);
 	}
 	mounted() { this.init(); }
 	init() {
 		var config: any = {};
-		/*for(let props of [
-			'forceSelection', 'on', 'allowCategorySelection', 'direction', 'keepOnScreen', 'fullTextSearch',
-			'showOnFocus', 'allowTab', 'action',
-			'minCharacters', 'match',
-			'onChange', 'onAdd', 'onRemove', 'onNoResults', 'onShow', 'onHide'
+		for(let props of [
+			'exclusive', 'on', 'animateChildren', 'closeNested', 'collapsible', 'duration',
+			'onOpening', 'onOpen', 'onClosing', 'onClose', 'onChange'
 		])
-			config[props] = this[props];*/
+			config[props] = this[props];
 		this.semantic(config);
 	}
 }

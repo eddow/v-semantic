@@ -17,5 +17,5 @@ export {
 	Flag, Button, Icon, Label, Input,
 	Select, Option,
 	Table, Column,
-	//Accordion, Bellow
+	Accordion, Bellow
 }
