@@ -1,9 +1,9 @@
 <template>
 	<div :class="{ui:1, dropdown:1, iconOnly: false===text}">
-		<div v-if="placeholder" class="default text">{{placeholder}}</div>
 		<slot name="bar">
+			<div v-if="placeholder" class="default text">{{placeholder}}</div>
 			<span v-if="text" class="text">{{text}}</span>
-			<i :class="[icon, 'icon']"></i>
+			<i v-if="icon" :class="[icon, 'icon']"></i>
 		</slot>
 		<div class="menu">
 			<slot />
@@ -83,9 +83,9 @@ export default class Select extends Vue {
 		this.semantic('set value', value);
 	}
 
-	hide() { this.semantic('hide'); }
-	show() { this.semantic('show'); }
-	visible() { return this.semantic('is visible'); }
-	clear() { this.semantic('clear'); }
+	hide(): void { this.semantic('hide'); }
+	show(): void { this.semantic('show'); }
+	visible(): boolean { return this.semantic('is visible'); }
+	clear(): void { this.semantic('clear'); }
 }
 </script>

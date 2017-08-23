@@ -20,9 +20,6 @@ export default class Input extends Vue {
 	value: string
 	@Prop() placeholder: string
 
-	@Prop({default: false}) transparent: boolean
-	@Prop({default: false}) inverted: boolean
-
 	input($event) { this.$emit('input', $event.target.value); }
 	get cls() {
 		var rv = [];

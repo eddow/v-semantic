@@ -1,5 +1,5 @@
 <template>
-	<!--div>
+	<div>
 		<div>
 			<su-button>
 				<su-icon icon="save" slot="prepend" />
@@ -26,9 +26,12 @@
 				</su-select>
 			</su-input>
 			--{{ddn}}--
-	</div-->
+	</div>
 	<div>
 		<su-table :rows="rows">
+			<div slot="header">
+				qwe
+			</div>
 			<su-column header="A">
 				<template slot="cell" scope="scope">
 					a{{a(scope.row)}}
@@ -52,7 +55,6 @@ export default class App extends Vue {
 	ddn = ''
 	rows = [{a:1},{a:3},{a:5}]
 	a(row) {
-		debugger;
 		return row.a;
 	}
 	testme() {

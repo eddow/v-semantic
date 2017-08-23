@@ -1,6 +1,6 @@
 <template>
 	<div class="item" :data-value="value" :data-text="text">
-		<slot />
+		<slot>{{text}}</slot>
 	</div>
 </template>
 
