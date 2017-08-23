@@ -1,13 +1,26 @@
 {
   "name": "semantic-vue",
   "version": "1.0.0",
-  "description": "",
+  "description": "Semantic-ui2 + vue2",
   "main": "dist/semantic-vue.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "semantic",
+    "semantic-ui",
+    "vue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddow/semantic-vue.git"
+  },
+  "author": "fmdm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eddow/semantic-vue/issues"
+  },
+  "homepage": "https://github.com/eddow/semantic-vue#readme",
   "devDependencies": {
     "fuse-box": "file:.yalc/fuse-box",
     "typescript": "^2.4.2",
