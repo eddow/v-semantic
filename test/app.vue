@@ -20,7 +20,7 @@
 		<div>
 			<s-input>
 				<s-icon slot="prepend" circular link icon="search" @click="testme" />
-				<s-select action="nothing" class="label" slot="prepend" v-model="ddn" text="Gender" on="hover">
+				<s-select class="label" slot="append" v-model="ddn" text="Gender" on="hover">
 					<s-option value="M">Male</s-option>
 					<s-option value="F">Female</s-option>
 				</s-select>
@@ -43,7 +43,7 @@
 				</template>
 			</s-column>
 		</s-table>
-		<s-accordion>
+		<s-accordion class="styled">
 			<s-bellow title="What is a dog?">
     		<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
 			</s-bellow>

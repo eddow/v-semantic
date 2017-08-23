@@ -25,4 +25,5 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 - [button](docs/components/button.md)
 - [input](docs/components/input.md)
 - [select](docs/components/select.md)
+- [accordion](docs/components/accordion.md)
 - [table](docs/components/table.md)
