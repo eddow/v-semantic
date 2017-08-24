@@ -60,7 +60,7 @@ export default class Modal extends Vue {
 	onApprove() { this.invoke('ok'); }
 	onDeny() { this.invoke('cancel'); }
 
-	invoke(command: string | (string)=> void) {
+	invoke(command) {
 		if('string'!== typeof command) {
 			if(this.promise) throw new Error('Modal invoked while being opened already')
 
@@ -81,15 +81,5 @@ export default class Modal extends Vue {
 			this.semantic('hide');
 		}
 	}
-}
-export const Command = function(el, binding, vnode) {
-	var inst = vnode.componentInstance, originalClick = inst.click, modal = inst.$parent;
-	if(!originalClick) throw new Error('Modal directive applies only on component exposing events.');
-	while(modal && !(modal instanceof Modal))
-		modal = modal.$parent;
-	if(!modal) throw new Error('Modal directive applies only inside an s-modal.');
-	inst.$on('click', function() {
-		modal.invoke(binding.arg);
-	});
 }
 </script>

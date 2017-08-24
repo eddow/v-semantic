@@ -42,7 +42,6 @@ By order planified
 - embed (iframe)
 - progress
 - sidebar
-- transitions (cf modal)
 - search
 - shape
 - rating
@@ -65,6 +64,7 @@ Some of `semantic-ui` functionalities are just classes to add to some `div` that
 - grid
 - advertisement
 - card
+- transitions (Vue has it)
 
 ## Things that will perhaps be automated
 - breadcrumbs (integration with vue-router)

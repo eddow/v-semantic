@@ -1,4 +1,4 @@
-import {Command as Modal} from './components/modal.vue'
+import Command from './directives/modal.ts'
 
 export {
 	Modal
