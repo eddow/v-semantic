@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<slot name="title" />
+		<div style="display: none;">
+			<slot name="title" />
+		</div>
 		<slot />
 	</div>
 </template>

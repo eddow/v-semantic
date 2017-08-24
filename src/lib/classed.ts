@@ -1,10 +1,12 @@
 import {Component} from 'vue-property-decorator'
 import * as S from 'string'
-Array.prototype.css = function() {
-	return this.filter(x=>x).join(' ');
-}
+Object.defineProperty(Array.prototype, 'css', {
+	value: function() {
+		return this.filter(x=>x).join(' ');
+	}
+});
 //TODO? size, colored
-export function mixin(type: string, classes: {[prop: string]: ()=> void} = {}) {
+export function mixin(type: string, classes: any = {}) {
 	classes = {
 		inverted: Boolean,
 		//floating: Boolean,	//TODO: this should be specific to some components, not generic
@@ -28,7 +30,7 @@ export function mixin(type: string, classes: {[prop: string]: ()=> void} = {}) {
 		}
 	};
 }
-export default function classed(type: string, classes: {[prop: string]: ()=> void} = {}, options: ComponentOptions = {}) {
+export default function classed(type: string, classes: any = {}, options: ComponentOptions = {}) {
 	options = {mixins: [], ...options};
 	options.mixins.push(mixin(type, classes));
 	return Component(options);

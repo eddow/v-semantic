@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Component from 'lib/classed'
 
 @Component('icon', {
@@ -24,6 +24,8 @@ export default class Icon extends Vue {
 	get dynCls() {
 		return this.icon;
 	}
-	click() { this.$emit('click'); }
+	@Emit() click() {
+		debugger;
+	}
 }
 </script>

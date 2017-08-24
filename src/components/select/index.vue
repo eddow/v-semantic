@@ -20,8 +20,8 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import Component from 'lib/classed'
-import {$} from 'lib/shims'
+import Component from 'lib/module'
+
 //TODO: manage messages (ex errors, ...)
 @Component('dropdown', {
 	selection: Boolean,
@@ -36,37 +36,36 @@ import {$} from 'lib/shims'
 	fluid: Boolean,
 	compact: Boolean,
 	inline: Boolean
-})
+}, {
+	on: String,
+	forceSelection: Boolean,
+	allowCategorySelection: Boolean,
+	direction: String,	//'auto'|'upward'|'downward'
+	keepOnScreen: Boolean,
+	fullTextSearch: [Boolean, String],//boolean|'exact',
+	showOnFocus: Boolean,
+	allowTab: Boolean,
+	transition: String, //'auto'|'slide down'|'slide up'
+	duration: Number,
+	minCharacters: Number,
+	match: String,	//'both'|'text'|'value'
+	action: String,	//'activate'|'select'|'combo'|'nothing'|'hide'|'command'
+	preserveHTML: Boolean
+}, [
+	'change',
+	'add',
+	'remove',
+	'noResult',
+	'show',
+	'hide'
+])
 //TODO: finish and test `multiple`
 export default class Select extends Vue {
-	@Model('select')
-	@Prop()
-	value: string
+	@Model('change') @Prop() value: string
 	@Prop({default: 'dropdown'}) icon: string
 	@Prop() placeholder: string
 	@Prop({default: 'right'}) menu: 'right'|'left'
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
-	@Prop({default: 'click'}) on: string
-	@Prop({default: true}) forceSelection: boolean
-	@Prop({default: false}) allowCategorySelection: boolean
-	@Prop({default: 'auto'}) direction: 'auto'|'upward'|'downward'
-	@Prop({default: true}) keepOnScreen: boolean
-	@Prop({default: false, type: [Boolean, String]}) fullTextSearch: boolean|'exact'
-	
-	@Prop({default: true}) showOnFocus: boolean
-	@Prop({default: true}) allowTab: boolean
-
-	@Prop({default: 'auto'}) transition: 'auto'|'slide down'|'slide up'
-	@Prop({default: 200}) duration: number
-
-	@Prop({default: 'activate'}) action: 'activate'|'select'|'combo'|'nothing'|'hide'|'command'
-
-	//search
-	@Prop({default: 1}) minCharacters: number
-	@Prop({default: 'both'}) match: 'both'|'text'|'value'
-	@Prop({default: true}) preserveHTML: boolean
-
-	mounted() { this.init(); }
 
 	onChange(value, text, element) { this.$emit('select', value, text, element); }
 	onAdd(value, text, element) { this.$emit('add', value, text, element); }
@@ -77,28 +76,13 @@ export default class Select extends Vue {
 		this.$emit(event, rv);
 		return !rv.cancel;
 	}
-	onShow() { return this.cancelable('show'); }
-	onHide() { return this.cancelable('hide'); }
 
 	onCommand(text, value, element) { this.$emit('command', value, text, element); }
-	semantic(...args) {
-		return $(this.$el).dropdown(...args);
-	}
 	get dynCls() {
 		return false=== this.text?'iconOnly':'';
 	}
-//TODO: watch props
-	init() {
-		var config: any = {};
-		for(let props of [
-			'forceSelection', 'on', 'allowCategorySelection', 'direction', 'keepOnScreen', 'fullTextSearch',
-			'showOnFocus', 'allowTab', 'action', 'preserveHTML',
-			'minCharacters', 'match',
-			'onChange', 'onAdd', 'onRemove', 'onNoResults', 'onShow', 'onHide'
-		])
-			config[props] = this[props];
+	configure(config) {
 		if('command'=== config.action) config.action = this.onCommand;
-		this.semantic(config);
 	}
 	@Watch('value') setValue(value) {
 		this.semantic('set selected', value);

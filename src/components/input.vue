@@ -22,7 +22,6 @@ import button from './button.vue'
 })
 export default class Input extends Vue {
 	@Model('input')
-	@Prop()
 	value: string
 	@Prop() placeholder: string
 
