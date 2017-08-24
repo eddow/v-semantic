@@ -27,3 +27,67 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 - [select](docs/components/select.md)
 - [accordion](docs/components/accordion.md)
 - [table](docs/components/table.md)
+# Not implemented yet
+## Todos
+As this is intended for broad audience, a list of fiddle/examples could definitely help
+### Components
+By order planified
+- tabs
+- checkbox
+- modals (available through `v-model`)
+- embed (iframe)
+- progress
+- sidebar
+- transitions (cf modal)
+- search
+- shape
+- rating
+- reveal
+### Directives
+- loader
+- dimmer
+- popup
+- visibility
+
+## No plans to implement
+Some of `semantic-ui` functionalities are just classes to add to some `div` that I don't see the point of making a custom control out of.
+- container
+- divider
+- header
+- image
+- list
+- rail
+- segment
+- grid
+- advertisement
+- card
+
+## Things that will perhaps be automated
+- breadcrumbs (integration with vue-router)
+- forms (validation agains json-schema AND/OR semantic validation system)
+- menu (integration with vue-router)
+- message (toasters? ...?)
+- nag
+- sticky
+- lists
+  - labels
+  - buttons
+  - comments
+  - feeds
+  - items
+  - statistics
+  - steps
+## Support development
+I contribute for free with drive, passion and time.
+If you like what I do, you can promote me to do it more.
+
+These are the only *like* buttons that have a real effect.
+
+- [paypal.me/eeddow](https://www.paypal.me/eeddow)
+- ETH: 0xb79b61130bc5726ddab6c1d59c3e0479afe69540
+- BTC: 39ybn3KGNUvZrhifaLJcf4cJdzkGMdfAMT
+- BCH: 3K81iYWwLZuWXY1qHcBL559FYraUqKMkEp
+### Also,
+If you wanna help, please.
+
+If you are interested in the development of a component, please leave a comment

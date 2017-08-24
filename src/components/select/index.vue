@@ -20,7 +20,7 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import {$} from '../../shims'
+import {$} from 'lib/shims'
 
 @Component
 export default class Select extends Vue {

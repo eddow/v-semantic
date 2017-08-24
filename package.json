@@ -1,10 +1,10 @@
 {
   "name": "semantic-vue",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Semantic-ui2 + vue2",
   "main": "dist/semantic-vue.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node fuse test"
   },
   "keywords": [
     "semantic",

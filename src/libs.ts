@@ -1,4 +1,5 @@
 import 'vue-property-decorator'
-import './shims'
+import 'lib/classed'
+import 'lib/shims'
 import './components/table/column-sep.vue'
 //import './components/tab/tab-sep.vue'

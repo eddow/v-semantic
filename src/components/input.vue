@@ -45,7 +45,7 @@ export default class Input extends Vue {
 			rv.push('right labeled');
 		else if(searchLabel(this.$slots.prepend))
 			rv.push('labeled');
-		return rv.join(' ');
+		return rv.css();
 	}
 }
 </script>
