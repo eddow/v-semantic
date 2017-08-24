@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div>
-			<s-modal header="A modal" v-model="modal1" closable>
+			<s-modal v-model="modal1" closable header="">
 				Blah Blah
 				<s-button v-modal:cancel>Cancel</s-button>
 				<s-button v-modal:ok>Ok</s-button>

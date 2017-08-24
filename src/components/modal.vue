@@ -1,13 +1,14 @@
 <template>
 	<div :class="cls">
-  <div v-if="header || $slots.header" class="header">
-		<slot name="header">
-			{{header}}
-		</slot>
+		<div v-if="header || $slots.header" class="header">
+			<slot name="header">
+				{{header}}
+			</slot>
+		</div>
+		<div :class="{scrolling, image, content:1}">
+			<slot />
+		</div>
 	</div>
-  <div :class="{scrolling, image, content:1}">
-    <slot />
-  </div>
 </template>
 
 <script lang="ts">
@@ -31,7 +32,7 @@ import Semantic from 'lib/module'
 	duration: Number,
 	queue: Boolean
 }, [
-	'show', 'visible', 'hide'
+	'visible'
 ])
 export default class Modal extends Vue {
 	@Prop() header: string
@@ -59,14 +60,17 @@ export default class Modal extends Vue {
 	onApprove() { this.invoke('ok'); }
 	onDeny() { this.invoke('cancel'); }
 
-	invoke(command?: string) {
-		if(!command) {
+	invoke(command: string | (string)=> void) {
+		if('string'!== typeof command) {
 			if(this.promise) throw new Error('Modal invoked while being opened already')
 
 			this.semantic('show');
-			return new Promise((accept, reject)=> {
+			let rv = new Promise((accept, reject)=> {
 				this.promise = {accept, reject};
-			})
+			});
+			return 'function'=== typeof command?
+				rv.then(command) :
+				rv ;
 		} else {
 			if(!this.promise) throw new Error('Modal received a command while not being invoked')
 			if('cancel'=== command)

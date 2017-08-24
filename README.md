@@ -31,6 +31,7 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 - [select](docs/components/select.md)
 - [accordion](docs/components/accordion.md)
 - [table](docs/components/table.md)
+- [modal](docs/components/modal.md)
 # Not implemented yet
 ## Todos
 As this is intended for broad audience, a list of fiddle/examples could definitely help
@@ -38,7 +39,6 @@ As this is intended for broad audience, a list of fiddle/examples could definite
 By order planified
 - tabs
 - checkbox
-- modals (available through `v-model`)
 - embed (iframe)
 - progress
 - sidebar
