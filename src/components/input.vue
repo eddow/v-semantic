@@ -1,5 +1,5 @@
 <template>
-	<div :class="['ui', cls, 'input']">
+	<div :class="cls">
 		<slot name="prepend" />
 		<input type="text" :placeholder="placeholder" :value="value" @input="input" />
 		<slot name="append" />
@@ -8,12 +8,18 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import Component from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
-import select from './select.vue'
 
-@Component
+@Component('input', {
+	loading: Boolean,
+	disabled: Boolean,
+	error: Boolean,
+	transparent: Boolean,
+	fluid: Boolean
+})
 export default class Input extends Vue {
 	@Model('input')
 	@Prop()
@@ -21,7 +27,7 @@ export default class Input extends Vue {
 	@Prop() placeholder: string
 
 	input($event) { this.$emit('input', $event.target.value); }
-	get cls() {
+	get dynCls() {
 		var rv = [];
 		var searchType = function(slots, types) {
 			if(slots) for(let slot of slots)

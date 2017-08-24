@@ -1,11 +1,11 @@
 <template>
-	<div :class="{ui:1, dropdown:1, iconOnly: false===text}">
+	<div :class="cls" :multiple="multiple">
 		<slot name="bar">
 			<div v-if="placeholder" class="default text">{{placeholder}}</div>
 			<span v-if="text" class="text">{{text}}</span>
 			<i v-if="icon" :class="[icon, 'icon']"></i>
 		</slot>
-		<div class="menu">
+		<div :class="{menu:1, left: 'left'=== menu}">
 			<slot />
 		</div>
 	</div>
@@ -19,14 +19,29 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import Component from 'lib/classed'
 import {$} from 'lib/shims'
-
-@Component
+//TODO: manage messages (ex errors, ...)
+@Component('dropdown', {
+	selection: Boolean,
+	'search-selection': Boolean,
+	multiple: Boolean,
+	simple: Boolean,
+	pointing: String,
+	loading: Boolean,
+	error: Boolean,
+	disabled: Boolean,
+	scrolling: Boolean,
+	fluid: Boolean,
+	compact: Boolean
+})
+//TODO: finish and test `multiple`
 export default class Select extends Vue {
 	@Model('select') value
 	@Prop({default: 'dropdown'}) icon: string
 	@Prop() placeholder: string
+	@Prop({default: 'right'}) menu: 'right'|'left'
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
 	@Prop({default: 'click'}) on: string
 	@Prop({default: true}) forceSelection: boolean
@@ -63,7 +78,10 @@ export default class Select extends Vue {
 
 	onCommand(text, value, element) { this.$emit('command', value, text, element); }
 	semantic(...args) {
-		$(this.$el).dropdown(...args);
+		return $(this.$el).dropdown(...args);
+	}
+	get dynCls() {
+		return false=== this.text?'iconOnly':'';
 	}
 //TODO: watch props
 	init() {

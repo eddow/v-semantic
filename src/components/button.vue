@@ -1,7 +1,7 @@
 <template>
 	<button
 		type="button"
-		:class="css"
+		:class="cls"
 		@click="click"
 	>
 		<icon v-if="icon" :icon="icon" />
@@ -29,7 +29,7 @@ export default class Button extends Vue {
 			append: 'right'
 		}[pend];
 	}
-	get dynCss() {
+	get dynCls() {
 		this.labeled = false;
 		var slotTag = side=> {
 			return this.$slots[side][0].componentOptions.Ctor;

@@ -1,6 +1,10 @@
 <template>
 	<div class="item" :data-value="value" :data-text="text">
-		<slot>{{text}}</slot>
+		<template v-if="description">
+			<span class="description">{{description}}</span>
+			<span class="text"><slot>{{text}}</slot></span>
+		</template>
+		<slot v-else>{{text}}</slot>
 	</div>
 </template>
 
@@ -12,5 +16,6 @@ import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
 export default class Option extends Vue {
 	@Prop() value: string
 	@Prop() text: string
+	@Prop() description: string
 }
 </script>

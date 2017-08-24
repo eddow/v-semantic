@@ -1,15 +1,19 @@
 <template>
-	<div class="ui accordion">
+	<div class="cls">
 		<slot />
 	</div>
 </template>
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import Component from 'lib/classed'
 import {$} from 'lib/shims'
 
-@Component
+@Component('accordion', {
+	styled: Boolean,
+	fluid: Boolean
+})
 export default class Accordion extends Vue {
 	onOpening() { this.$emit('opening'); }
 	onOpen() { this.$emit('open'); }
@@ -25,7 +29,7 @@ export default class Accordion extends Vue {
 	@Prop({default: 500}) duration: number
 
 	semantic(...args) {
-		$(this.$el).accordion(...args);
+		return $(this.$el).accordion(...args);
 	}
 	mounted() { this.init(); }
 	init() {

@@ -1,14 +1,20 @@
 import {Component} from 'vue-property-decorator'
 Array.prototype.css = function() {
-	return this.filter(x=>x).join(' ');
+	return this.filter(x=>x).map(x=> x.replace(/\-/g, ' ')).join(' ');
 }
 //TODO? size, colored
 export function mixin(type: string, classes: {[prop: string]: ()=> void} = {}) {
+	classes = {
+		inverted: Boolean,
+		inline: Boolean,
+		floating: Boolean,	//TODO: floating right/left?
+		...classes
+	}
 	return {
 		props: classes,
 		computed: {
-			dynCss() { return ''; },
-			css() {
+			dynCls() { return ''; },
+			cls() {
 				var rv = ['ui']
 				if(classes) for(let cls in classes)
 					if(this[cls]) {
@@ -16,7 +22,7 @@ export function mixin(type: string, classes: {[prop: string]: ()=> void} = {}) {
 							rv.push(this[cls]);
 						rv.push(cls);
 					}
-				rv.push(type, ...this.dynCss);
+				rv.push(type, ...this.dynCls);
 				return rv.css();
 			}
 		}

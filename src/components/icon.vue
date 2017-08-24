@@ -1,5 +1,5 @@
 <template>
-	<i :class="css" @click="click"></i>
+	<i :class="cls" @click="click"></i>
 </template>
 
 <script lang="ts">
@@ -21,7 +21,7 @@ import Component from 'lib/classed'
 export default class Icon extends Vue {
 	@Prop({required: true}) icon: string
 
-	get dynCss() {
+	get dynCls() {
 		return this.icon;
 	}
 	click() { this.$emit('click'); }
