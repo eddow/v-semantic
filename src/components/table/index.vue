@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="row in rows" :key="row[this.idProperty]" :class="rowClass(row)">
+				<tr @click="rowClick" v-for="row in rows" :key="row[this.idProperty]" :class="rowClass(row)">
 					<!-- column.componentInstance._uid -->
 					<tcell v-for="column in columns" :column="column" :row="row" :key="ckey(column)" />
 				</tr>
@@ -87,6 +87,9 @@ export default class Table extends Vue {
 	}
 	updateColumn(column) {
 		//debugger;
+	}
+	rowClick(a, b, c) {
+		debugger;
 	}
 }
 </script>

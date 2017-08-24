@@ -40,7 +40,7 @@
 			</s-select>
 	</div>
 	<div>
-		<s-table :rows="rows" very-basic>
+		<s-table selectable :rows="rows" very-basic>
 			<div slot="header">
 				qwe
 			</div>

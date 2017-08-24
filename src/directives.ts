@@ -1,4 +1,4 @@
-import Command from './directives/modal.ts'
+import Modal from './directives/modal'
 
 export {
 	Modal
