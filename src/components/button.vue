@@ -33,9 +33,7 @@ import icon from './icon.vue'
 	fluid: Boolean,
 	circular: Boolean,
 	floated: String,
-	attached: String,
-	approve: Boolean,
-	deny: Boolean
+	attached: String
 }, {components: {icon}})
 export default class Button extends Vue {
 	rtled(pend) {

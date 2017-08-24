@@ -22,12 +22,20 @@ export function mixin(
 			}
 		};
 	}
-	//TODO: watch props -> $().modal('setting', 'closable', false)
+	function watcher(prop) {
+		//TODO: test property change
+		return function(value) {
+			this.semantic('setting', prop, value);
+		};
+	}
 	var rv: any = classed.mixin(type, classes);
 	for(let i in inits)
 		if('function'=== typeof inits[i] || inits[i] instanceof Array)
 			inits[i] = {type: inits[i], default: null}
 	rv.props = {...rv.props, ...inits};
+	if(!rv.watch) rv.watch = {};
+	for(let i in inits)
+		rv.watch[i] = watcher(i);
 	rv.methods = {
 		semantic(...args) { return $(this.$el)[type](...args); },
 		configure(config) {},

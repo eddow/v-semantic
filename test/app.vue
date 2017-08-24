@@ -3,8 +3,8 @@
 		<div>
 			<s-modal header="A modal" v-model="modal1" closable>
 				Blah Blah
-				<s-button class="cancel">Cancel</s-button>
-				<s-button positive>Ok</s-button>
+				<s-button v-modal:cancel>Cancel</s-button>
+				<s-button v-modal:ok>Ok</s-button>
 			</s-modal>
 			<s-button @click="modal1()">
 				modal
