@@ -15,7 +15,6 @@ export function mixin(type: string, classes: any = {}) {
 	return {
 		props: classes,
 		computed: {
-			dynCls() { return ''; },
 			cls() {
 				var rv = ['ui'];
 				if(classes) for(let cls in classes)
@@ -24,7 +23,7 @@ export function mixin(type: string, classes: any = {}) {
 							rv.push(this[cls]);
 						rv.push(S(cls).dasherize().s.replace(/\-/g, ' '));
 					}
-				rv.push(type, this.dynCls);
+				rv.push(type);
 				return rv.css();
 			}
 		}

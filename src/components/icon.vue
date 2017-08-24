@@ -1,5 +1,5 @@
 <template>
-	<i :class="cls" @click="click"></i>
+	<i :class="[icon, cls]" @click="click"></i>
 </template>
 
 <script lang="ts">
@@ -20,10 +20,6 @@ import Semantic from 'lib/classed'
 })
 export default class Icon extends Vue {
 	@Prop({required: true}) icon: string
-
-	get dynCls() {
-		return this.icon;
-	}
 	@Emit() click() {}
 }
 </script>

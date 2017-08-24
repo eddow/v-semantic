@@ -1,5 +1,5 @@
 <template>
-	<div :class="cls" :multiple="multiple">
+	<div :class="[cls, {iconOnly: false=== this.text}]" :multiple="multiple">
 		<slot name="bar">
 			<div v-if="placeholder" class="default text">{{placeholder}}</div>
 			<span v-if="text" class="text">{{text}}</span>
@@ -68,9 +68,6 @@ export default class Select extends Vue {
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
 
 	@Emit('command') onCommand(text, value, element) {}
-	get dynCls() {
-		return false=== this.text?'iconOnly':'';
-	}
 	configure(config) {
 		if('command'=== config.action) config.action = this.onCommand;
 	}

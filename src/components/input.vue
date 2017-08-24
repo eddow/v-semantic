@@ -1,5 +1,5 @@
 <template>
-	<div :class="cls">
+	<div :class="[cls, dynCls]">
 		<slot name="prepend" />
 		<input type="text" :placeholder="placeholder" :value="value" @input="input" />
 		<slot name="append" />

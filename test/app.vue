@@ -40,7 +40,14 @@
 			</s-select>
 	</div>
 	<div>
-		<s-table selectable :rows="rows" very-basic>
+		<s-table
+			celled
+			selectable
+			v-model="row"
+			:rows="rows"
+			very-basic
+			:body-height="180"
+		>
 			<div slot="header">
 				qwe
 			</div>
@@ -55,6 +62,7 @@
 				</template>
 			</s-column>
 		</s-table>
+			--{{row}}--
 		<s-accordion styled>
 			<s-bellow title="What is a dog?">
     		<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
@@ -74,6 +82,7 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 @Component
 export default class App extends Vue {
 	ddn = ''
+	row = null
 	rows = [{a:1},{a:3},{a:5}]
 	testme() {
 		console.log('test');

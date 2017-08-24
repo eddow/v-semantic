@@ -1,7 +1,7 @@
 <template>
 	<button
 		type="button"
-		:class="cls"
+		:class="[cls, dynCls]"
 		@click="click"
 	>
 		<icon v-if="icon" :icon="icon" />

@@ -3,7 +3,7 @@
 		<div ref="columns" style="display: none;">
 			<slot />
 		</div>
-		<table v-if="isMounted" :class="cls">
+		<table v-if="isMounted" :class="[cls, {'scroll-body': bodyHeight}]">
 			<thead v-if="$slots.header">
 				<tr>
 					<td colspan="{{columns.length}}">
@@ -16,9 +16,16 @@
 					<theader v-for="column in columns" :column="column" :key="ckey(column)" />
 				</tr>
 			</thead>
-			<tbody>
-				<tr @click="rowClick" v-for="row in rows" :key="row[this.idProperty]" :class="rowClass(row)">
-					<!-- column.componentInstance._uid -->
+			<tbody :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
+				<tr
+					v-for="(row, index) in rows"
+					:key="row[this.idProperty]"
+					:class="[
+						rowClass(row, index),
+						{current: current === row}
+					]"
+					@click="$emit('current-change', row)"
+				>
 					<tcell v-for="column in columns" :column="column" :row="row" :key="ckey(column)" />
 				</tr>
 			</tbody>
@@ -32,8 +39,28 @@
 		</table>
 	</div>
 </template>
-
+<style>
+table.scroll-body tbody {
+	display: block;
+	overflow-y: scroll;
+}
+table.scroll-body thead, table.scroll-body tbody tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+table.scroll-body thead {
+	width: calc( 100% - 1em )
+}
+table tr.current {
+	color: #111;
+	background-color: #E0E0E0;/*
+@activeColor: @textColor;
+@activeBackgroundColor: #E0E0E0;*/
+}
+</style>
 <script lang="ts">
+//TODO: automatic _table_row_id generation when no ID is given
 import * as Vue from 'vue'
 import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
@@ -66,16 +93,21 @@ const tcell = {
 	unstackable: Boolean,
 	selectable: Boolean,
 	sortable: Boolean,
-	compact: Boolean
-}, {components:{tcell, theader}})
+	compact: Boolean,
+}, {
+	components: {tcell, theader}
+})
 export default class Table extends Vue {
+	@Model('current-change') @Prop() current
 	@Provide() table = this
 	@Prop() rows: any[]
 	@Prop({default: '_id'}) idProperty: string
-	@Prop({default: ()=> ''}) rowClass : (any)=> string
+	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
 	isMounted = false
 	mounted() { this.isMounted = true; }
 	private columnCtr: number = 0
+	@Prop() bodyHeight: number
+
 	ckey(column) {
 		return column._genUid || (column._genUid = ++this.columnCtr)
 	}
@@ -86,10 +118,7 @@ export default class Table extends Vue {
 		return rv;
 	}
 	updateColumn(column) {
-		//debugger;
-	}
-	rowClick(a, b, c) {
-		debugger;
+		//called by column-sep
 	}
 }
 </script>
