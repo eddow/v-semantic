@@ -34,11 +34,14 @@ import {$} from 'lib/shims'
 	disabled: Boolean,
 	scrolling: Boolean,
 	fluid: Boolean,
-	compact: Boolean
+	compact: Boolean,
+	inline: Boolean
 })
 //TODO: finish and test `multiple`
 export default class Select extends Vue {
-	@Model('select') value
+	@Model('select')
+	@Prop()
+	value: string
 	@Prop({default: 'dropdown'}) icon: string
 	@Prop() placeholder: string
 	@Prop({default: 'right'}) menu: 'right'|'left'
@@ -61,6 +64,7 @@ export default class Select extends Vue {
 	//search
 	@Prop({default: 1}) minCharacters: number
 	@Prop({default: 'both'}) match: 'both'|'text'|'value'
+	@Prop({default: true}) preserveHTML: boolean
 
 	mounted() { this.init(); }
 
@@ -88,7 +92,7 @@ export default class Select extends Vue {
 		var config: any = {};
 		for(let props of [
 			'forceSelection', 'on', 'allowCategorySelection', 'direction', 'keepOnScreen', 'fullTextSearch',
-			'showOnFocus', 'allowTab', 'action',
+			'showOnFocus', 'allowTab', 'action', 'preserveHTML',
 			'minCharacters', 'match',
 			'onChange', 'onAdd', 'onRemove', 'onNoResults', 'onShow', 'onHide'
 		])
@@ -97,7 +101,7 @@ export default class Select extends Vue {
 		this.semantic(config);
 	}
 	@Watch('value') setValue(value) {
-		this.semantic('set value', value);
+		this.semantic('set selected', value);
 	}
 
 	hide(): void { this.semantic('hide'); }

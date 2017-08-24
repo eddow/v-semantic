@@ -7,8 +7,7 @@ Array.prototype.css = function() {
 export function mixin(type: string, classes: {[prop: string]: ()=> void} = {}) {
 	classes = {
 		inverted: Boolean,
-		inline: Boolean,
-		floating: Boolean,	//TODO: floating right/left?
+		//floating: Boolean,	//TODO: this should be specific to some components, not generic
 		...classes
 	}
 	return {

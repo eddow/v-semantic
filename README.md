@@ -4,7 +4,11 @@ Integration of [semantic-ui](https://semantic-ui.com) with [vue.js](https://vuej
 
 The purpose of the integration is to allow some logic-level approach - ex: the tables are defined by column and not by rows - and to integrate the `jQuery` for it to be invisible to the programer. `jQuery` of course still needs to be installed, but there is no need to use it.
 
-Most options in `semantic-ui` are done by specifying classes - these are not forwarded and the classes can be set manually. One will have to have the `semantic-ui` cheat-sheet opened while using `semantic-vue`.
+The classes specific to a component are set as boolean properties of the component. These two codes are equivalent :
+```html
+<button primary>Click me!</button>
+<button class="primary">Click me!</button>
+```
 
 ## Installation
 There is no npm deployment yet as the library is new.

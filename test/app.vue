@@ -1,6 +1,9 @@
 <template>
 	<div>
 		<div>
+			<s-button toggle>
+				Blah
+			</s-button>
 			<s-button>
 				<s-icon icon="save" slot="prepend" />
 				button-l
@@ -26,6 +29,10 @@
 				</s-select>
 			</s-input>
 			--{{ddn}}--
+			<s-select inline action="select" v-model="ddn" text="Gender" on="hover">
+				<s-option value="M">Male</s-option>
+				<s-option value="F">Female</s-option>
+			</s-select>
 	</div>
 	<div>
 		<s-table :rows="rows" very-basic>

@@ -18,8 +18,22 @@ import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
 import Component from 'lib/classed'
 import icon from './icon.vue'
 //TODO: command (+injection from modal per ex.)
+//TODO: animated (visible/hidden content)
+//TODO: toggle JS
 @Component('button', {
-
+	loading: Boolean,
+	disabled: Boolean,
+	basic: Boolean,
+	primary: Boolean,
+	secondary: Boolean,
+	compact: Boolean,
+	toggle: Boolean,
+	positive: Boolean,
+	negative: Boolean,
+	fluid: Boolean,
+	circular: Boolean,
+	floated: String,
+	attached: String
 }, {components: {icon}})
 export default class Button extends Vue {
 	labeled: boolean
@@ -32,7 +46,7 @@ export default class Button extends Vue {
 	get dynCls() {
 		this.labeled = false;
 		var slotTag = side=> {
-			return this.$slots[side][0].componentOptions.Ctor;
+			return this.$slots[side][0] && this.$slots[side][0].componentOptions && this.$slots[side][0].componentOptions.Ctor;
 		},
 		slotDec = side=> {
 			console.assert(
