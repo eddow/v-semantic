@@ -5,9 +5,9 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Component from 'lib/classed'
+import Semantic from 'lib/classed'
 
-@Component('icon', {
+@Semantic('icon', {
 	loading: Boolean,
 	disabled: Boolean,
 	fitted: Boolean,
@@ -24,8 +24,6 @@ export default class Icon extends Vue {
 	get dynCls() {
 		return this.icon;
 	}
-	@Emit() click() {
-		debugger;
-	}
+	@Emit() click() {}
 }
 </script>

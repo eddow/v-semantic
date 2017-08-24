@@ -19,11 +19,11 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import Component from 'lib/module'
+import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import Semantic from 'lib/module'
 
 //TODO: manage messages (ex errors, ...)
-@Component('dropdown', {
+@Semantic('dropdown', {
 	selection: Boolean,
 	searchSelection: Boolean,
 	multiple: Boolean,
@@ -67,17 +67,7 @@ export default class Select extends Vue {
 	@Prop({default: 'right'}) menu: 'right'|'left'
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
 
-	onChange(value, text, element) { this.$emit('select', value, text, element); }
-	onAdd(value, text, element) { this.$emit('add', value, text, element); }
-	onRemove(value, text, element) { this.$emit('remove', value, text, element); }
-	onNoResults(searchValue) { this.$emit('noResult', searchValue); }
-	cancelable(event) {
-		var rv = {cancel: false};
-		this.$emit(event, rv);
-		return !rv.cancel;
-	}
-
-	onCommand(text, value, element) { this.$emit('command', value, text, element); }
+	@Emit('command') onCommand(text, value, element) {}
 	get dynCls() {
 		return false=== this.text?'iconOnly':'';
 	}

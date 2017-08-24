@@ -22,10 +22,11 @@ export function mixin(
 			}
 		};
 	}
+	//TODO: watch props -> $().modal('setting', 'closable', false)
 	var rv: any = classed.mixin(type, classes);
 	for(let i in inits)
 		if('function'=== typeof inits[i] || inits[i] instanceof Array)
-			inits[i] = {typ: inits[i], default: null}
+			inits[i] = {type: inits[i], default: null}
 	rv.props = {...rv.props, ...inits};
 	rv.methods = {
 		semantic(...args) { return $(this.$el)[type](...args); },

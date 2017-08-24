@@ -8,12 +8,12 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import Component from 'lib/classed'
+import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import Semantic from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
 
-@Component('input', {
+@Semantic('input', {
 	loading: Boolean,
 	disabled: Boolean,
 	error: Boolean,
@@ -25,6 +25,9 @@ export default class Input extends Vue {
 	value: string
 	@Prop() placeholder: string
 
+	change(x) {
+		console.log
+	}
 	input($event) { this.$emit('input', $event.target.value); }
 	get dynCls() {
 		var rv = [];

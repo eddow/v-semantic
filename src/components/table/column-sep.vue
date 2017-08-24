@@ -8,7 +8,7 @@
 <script lang="ts">
 // For internal use only : to be sure that slots are fulfilled even if `column` defaulted them
 import * as Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import table from './index.vue'
 
 @Component

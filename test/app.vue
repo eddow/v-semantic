@@ -1,8 +1,13 @@
 <template>
 	<div>
 		<div>
-			<s-button toggle>
-				Blah
+			<s-modal header="A modal" v-model="modal1" closable>
+				Blah Blah
+				<s-button class="cancel">Cancel</s-button>
+				<s-button positive>Ok</s-button>
+			</s-modal>
+			<s-button @click="modal1()">
+				modal
 			</s-button>
 			<s-button>
 				<s-icon icon="save" slot="prepend" />
@@ -64,7 +69,7 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 
 @Component
 export default class App extends Vue {

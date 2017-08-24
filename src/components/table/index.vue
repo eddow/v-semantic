@@ -35,8 +35,8 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Provide, Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import Component from 'lib/classed'
+import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import Semantic from 'lib/classed'
 
 const tcell = {
 	props: ['column', 'row'],
@@ -51,7 +51,7 @@ const tcell = {
 };
 
 //TODO: cell(th/td) css classes + selecteable cell + top/bottom/left/right/center aligned
-@Component('table', {
+@Semantic('table', {
 	celled: Boolean,
 	padded: Boolean,
 	striped: Boolean,

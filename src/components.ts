@@ -3,6 +3,7 @@ import Button from './components/button.vue'
 import Icon from './components/icon.vue'
 import Label from './components/label.vue'
 import Input from './components/input.vue'
+import Modal from './components/modal.vue'
 
 import Select from './components/select/index.vue'
 import Option from './components/select/option.vue'
@@ -14,7 +15,7 @@ import Accordion from './components/accordion/index.vue'
 import Bellow from './components/accordion/bellow.vue'
 
 export {
-	Flag, Button, Icon, Label, Input,
+	Flag, Button, Icon, Label, Input, Modal,
 	Select, Option,
 	Table, Column,
 	Accordion, Bellow

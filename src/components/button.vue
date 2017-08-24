@@ -14,13 +14,13 @@
 <script lang="ts">
 //TODO: manage labels as we manage icons
 import * as Vue from 'vue'
-import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import Component from 'lib/classed'
+import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import Semantic from 'lib/classed'
 import icon from './icon.vue'
 //TODO: command (+injection from modal per ex.)
 //TODO: animated (visible/hidden content)
 //TODO: toggle JS
-@Component('button', {
+@Semantic('button', {
 	loading: Boolean,
 	disabled: Boolean,
 	basic: Boolean,
@@ -33,10 +33,11 @@ import icon from './icon.vue'
 	fluid: Boolean,
 	circular: Boolean,
 	floated: String,
-	attached: String
+	attached: String,
+	approve: Boolean,
+	deny: Boolean
 }, {components: {icon}})
 export default class Button extends Vue {
-	labeled: boolean
 	rtled(pend) {
 		return {
 			prepend: 'left',
@@ -44,7 +45,6 @@ export default class Button extends Vue {
 		}[pend];
 	}
 	get dynCls() {
-		this.labeled = false;
 		var slotTag = side=> {
 			return this.$slots[side][0] && this.$slots[side][0].componentOptions && this.$slots[side][0].componentOptions.Ctor;
 		},
@@ -77,6 +77,7 @@ export default class Button extends Vue {
 	 * @description Text of the button
 	 */
 	@Prop() text: string
-	click() { this.$emit('click'); }
+
+	@Emit() click() {}
 }
 </script>

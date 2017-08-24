@@ -6,11 +6,10 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Inject, Model, Prop, Watch} from 'vue-property-decorator'
-import Component from 'lib/module'
-import {$} from 'lib/shims'
+import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import Semantic from 'lib/module'
 
-@Component('accordion', {
+@Semantic('accordion', {
 	styled: Boolean,
 	fluid: Boolean
 }, {
