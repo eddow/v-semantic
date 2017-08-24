@@ -28,7 +28,7 @@
 			--{{ddn}}--
 	</div>
 	<div>
-		<s-table :rows="rows">
+		<s-table :rows="rows" very-basic>
 			<div slot="header">
 				qwe
 			</div>
@@ -43,7 +43,7 @@
 				</template>
 			</s-column>
 		</s-table>
-		<s-accordion class="styled">
+		<s-accordion styled>
 			<s-bellow title="What is a dog?">
     		<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
 			</s-bellow>

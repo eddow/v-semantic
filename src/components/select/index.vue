@@ -25,7 +25,7 @@ import {$} from 'lib/shims'
 //TODO: manage messages (ex errors, ...)
 @Component('dropdown', {
 	selection: Boolean,
-	'search-selection': Boolean,
+	searchSelection: Boolean,
 	multiple: Boolean,
 	simple: Boolean,
 	pointing: String,

@@ -3,7 +3,7 @@
 		<div ref="columns" style="display: none;">
 			<slot />
 		</div>
-		<table v-if="isMounted" class="ui celled table">
+		<table v-if="isMounted" :class="cls">
 			<thead v-if="$slots.header">
 				<tr>
 					<td colspan="{{columns.length}}">
@@ -35,7 +35,8 @@
 
 <script lang="ts">
 import * as Vue from 'vue'
-import {Component, Provide, Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import {Provide, Inject, Model, Prop, Watch} from 'vue-property-decorator'
+import Component from 'lib/classed'
 
 const tcell = {
 	props: ['column', 'row'],
@@ -49,8 +50,24 @@ const tcell = {
 	}
 };
 
-//TODO: cell(th/td) css classes
-@Component({components:{tcell, theader}})
+//TODO: cell(th/td) css classes + selecteable cell + top/bottom/left/right/center aligned
+@Component('table', {
+	celled: Boolean,
+	padded: Boolean,
+	striped: Boolean,
+	definition: Boolean,
+	structured: Boolean,
+	basic: Boolean,
+	veryBasic: Boolean,
+	collapsing: Boolean,
+	singleLine: Boolean,
+	fixed: Boolean,
+	stackable: Boolean,
+	unstackable: Boolean,
+	selectable: Boolean,
+	sortable: Boolean,
+	compact: Boolean
+}, {components:{tcell, theader}})
 export default class Table extends Vue {
 	@Provide() table = this
 	@Prop() rows: any[]

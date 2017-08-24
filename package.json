@@ -30,6 +30,7 @@
     "vue-template-es2015-compiler": "^1.5.3"
   },
   "dependencies": {
-    "semantic-ui": "^2.2.13"
+    "semantic-ui": "^2.2.13",
+    "string": "^3.3.3"
   }
 }

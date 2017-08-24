@@ -1,6 +1,7 @@
 import {Component} from 'vue-property-decorator'
+import * as S from 'string'
 Array.prototype.css = function() {
-	return this.filter(x=>x).map(x=> x.replace(/\-/g, ' ')).join(' ');
+	return this.filter(x=>x).join(' ');
 }
 //TODO? size, colored
 export function mixin(type: string, classes: {[prop: string]: ()=> void} = {}) {
@@ -15,14 +16,14 @@ export function mixin(type: string, classes: {[prop: string]: ()=> void} = {}) {
 		computed: {
 			dynCls() { return ''; },
 			cls() {
-				var rv = ['ui']
+				var rv = ['ui'];
 				if(classes) for(let cls in classes)
 					if(this[cls]) {
 						if('string'=== typeof this[cls])
 							rv.push(this[cls]);
-						rv.push(cls);
+						rv.push(S(cls).dasherize().s.replace(/\-/g, ' '));
 					}
-				rv.push(type, ...this.dynCls);
+				rv.push(type, this.dynCls);
 				return rv.css();
 			}
 		}
