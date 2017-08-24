@@ -9,7 +9,7 @@ Sparky.task("build", ()=> {
 	const fuse = FuseBox.init({
 		homeDir: "src",
 		output: "dist/$name.js",
-		package: 'semantic-vue',
+		package: 'v-semantic',
 		plugins: [
 			TypeScriptHelpers(),
 			EnvPlugin({NODE_ENV: production ? "production" : "development"}),
@@ -17,7 +17,7 @@ Sparky.task("build", ()=> {
 			VuePlugin(),
 			JSONPlugin(),
 			QuantumPlugin({
-				bakeApiIntoBundle : 'semantic-vue',
+				bakeApiIntoBundle : 'v-semantic',
 				containedAPI : true,
 				target: 'npm'
 			})
@@ -29,7 +29,7 @@ Sparky.task("build", ()=> {
 		cache: !production,
 		debug: !production, log: !production,
 		package: {
-			name: "semantic-vue",
+			name: "v-semantic",
 			main: 'index.ts'
 		},
 		alias: {
@@ -37,7 +37,7 @@ Sparky.task("build", ()=> {
 			'lib': '~/lib'
 		},
 		globals: {
-			'semantic-vue': '*'
+			'v-semantic': '*'
 		}/*,
 		shim: {
 			jquery: {
@@ -47,7 +47,7 @@ Sparky.task("build", ()=> {
 		}*/
 	});
 
-	const app = fuse.bundle("semantic-vue")
+	const app = fuse.bundle("v-semantic")
 		//.sourceMaps(true)
 		//.plugin(HotReloadPlugin({port: 4445}))
     .instructions('!> [index.ts] - *.d.ts');
@@ -71,7 +71,7 @@ Sparky.task("test", ()=> {
 		debug: true, log: true,
 		alias: {
 			vue: 'vue/dist/vue.common.js',
-			'semantic-vue': '~/src/index',
+			'v-semantic': '~/src/index',
 			'lib': '~/src/lib'
 		},
 		shim: {

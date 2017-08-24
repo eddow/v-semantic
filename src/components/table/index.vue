@@ -55,6 +55,7 @@ table.scroll-body thead {
 table tr.current {
 	color: #111;
 	background-color: #E0E0E0;/*
+TODO: use theming
 @activeColor: @textColor;
 @activeBackgroundColor: #E0E0E0;*/
 }

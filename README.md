@@ -1,6 +1,6 @@
-# semantic-vue
+# v-semantic
 
-Integration of [semantic-ui](https://semantic-ui.com) with [vue.js](https://vuejs.org/)
+Integration of [semantic-ui2](https://semantic-ui.com) with [vue.js2](https://vuejs.org/)
 
 The purpose of the integration is to allow some logic-level approach - ex: the tables are defined by column and not by rows - and to integrate the `jQuery` for it to be invisible to the programer. `jQuery` of course still needs to be installed, but there is no need to use it.
 
@@ -11,12 +11,21 @@ The classes specific to a component are set as boolean properties of the compone
 ```
 
 ## Installation
-There is no npm deployment yet as the library is new.
+For usage:
+
+*Beware this is under heavy development* The version will remain `0.x.y` until it sounds like finished. Thought, the documentation follows the implementation - what is documented ought to be usable.
+```
+npm install v-semantic --save
+```
+### For development
+
 ```
 git clone
 node fuse
 ```
-This will produce `dist/semantic-vue.js`
+Beware of [yalc](https://www.npmjs.com/package/yalc) : it happens that in order to develop `v-semantic`, some libraries `v-semantic` uses need to be PR-ed. Therefore, the new libraries are used as they are modified - localy. If you end up with a yalc reference in your `package.json` (this occurs only for deployment) ask for the correct version and PR to download to be up-to-date at that moment.
+
+This will produce `dist/v-semantic.js`
 
 Requiring the main library will export each components and a `default` that lets you `Vue.install(...)`.
 
