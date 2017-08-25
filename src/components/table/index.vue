@@ -23,14 +23,14 @@
 		<tbody v-if="isMounted" :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
 			<tr
 				v-for="(row, index) in rows"
-				:key="row[this.idProperty]"
+				:key="rowId(row)"
 				:class="[
 					rowClass(row, index),
 					{current: current === row}
 				]"
 				@click="$emit('current-change', row)"
 			>
-				<tcell v-for="column in columns" :column="column" :row="row" :key="ckey(column)" />
+				<tcell v-for="column in columns" :column="column" :row="row" :index="index" :key="ckey(column)" />
 			</tr>
 		</tbody>
 		<tfoot v-if="isMounted && $slots.footer">
@@ -64,7 +64,7 @@ TODO: use theming
 }
 </style>
 <script lang="ts">
-//TODO: automatic _table_row_id generation when no ID is given
+//TODO: automatic __table_row_id generation when no ID is given
 import * as Vue from 'vue'
 import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
@@ -72,14 +72,30 @@ import Semantic from 'lib/classed'
 const tcell = {
 	props: ['column', 'row'],
 	render(h) {
-		return h('td', this.column.componentInstance.$children[0].$scopedSlots.cell(this.row));
+		var clmn = this.column, data = clmn.data, style = data.staticStyle||{}, inst = clmn.componentInstance;
+		if(inst.width) style.width = inst.width+'px';
+		return h(
+			'td', {class: data.staticClass, style},
+			inst.$children[0].$scopedSlots.default({row: this.row, index: this.index})
+		);
 	}
 }, theader = {
 	props: ['column'],
 	render(h) {
-		return h('th', this.column.componentInstance.$children[0].$slots.header);
+		var clmn = this.column, data = clmn.data, style = data.staticStyle||{}, inst = clmn.componentInstance;
+		if(inst.width) style.width = inst.width+'px';
+		return h(
+			'th', {class: data.staticClass, style},
+			inst.$children[0].$slots.header
+		);
 	}
 };
+
+var rowCpt = 0;
+function generateRowId() {
+	rowCpt = (1+rowCpt) % (Number.MAX_SAFE_INTEGER-1);
+	return rowCpt.toString(36)+Math.random().toString(36).substr(1);
+}
 
 //TODO: cell(th/td) css classes + selecteable cell + top/bottom/left/right/center aligned
 @Semantic('table', {
@@ -105,7 +121,7 @@ export default class Table extends Vue {
 	@Model('current-change') @Prop() current
 	@Provide() table = this
 	@Prop() rows: any[]
-	@Prop({default: '_id'}) idProperty: string
+	@Prop() idProperty: string
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
 	isMounted = false
 	mounted() { this.isMounted = true; }
@@ -120,6 +136,20 @@ export default class Table extends Vue {
 			.filter(x=>x.componentOptions)
 			;	//filter columns only
 		return rv;
+	}
+	rowId(row) {
+		if(this.idProperty) {
+			console.assert(
+				row[this.idProperty],
+				'Rows have initialised IDs when `idProperty` is given'
+			)
+			return row[this.idProperty];
+		}
+		if(!row.__table_row_id)
+			Object.defineProperty(row, '__table_row_id', {
+				value: generateRowId()
+			});
+		return row.__table_row_id;
 	}
 }
 </script>

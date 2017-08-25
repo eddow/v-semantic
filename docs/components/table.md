@@ -13,11 +13,11 @@ Vue's magic is that : if `v-model` is not used, no row will be marked current. I
 
 # Columns
 ## Slots
- Each column has two slots : `header` and the scoped slot `cell` whose scope contains the `row` property.
+ Each column has two slots : `header` and the default scoped slot whose scope contains the `row` property.
 ```html
 <s-column>
 	<template slot="header">My property</template>
-	<template slot="cell" scope="scope">{{scope.row.myProp}}</template>
+	<template scope="scope">{{scope.row.myProp}}</template>
 </s-column>
 ```
 

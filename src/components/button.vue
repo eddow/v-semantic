@@ -1,13 +1,11 @@
 <template>
 	<button
-		type="button"
+		:type="nativeType"
 		:class="[cls, dynCls]"
 		@click="click"
 	>
 		<icon v-if="icon" :icon="icon" />
-		<slot name="prepend" />
-		<slot />
-		<slot name="append" />
+		<slot name="prepend" /><slot /><slot name="append" />
 	</button>
 </template>
 
@@ -75,6 +73,7 @@ export default class Button extends Vue {
 	 * @description Text of the button
 	 */
 	@Prop() text: string
+	@Prop({default: 'button'}) nativeType: string
 
 	@Emit() click() {}
 }

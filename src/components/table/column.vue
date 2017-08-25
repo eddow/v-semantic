@@ -5,9 +5,9 @@
 				{{header}}
 			</slot>
 		</template>
-		<template slot="cell" scope="row">
-			<slot name="cell" :row="row">
-				{{value(row, property)}}
+		<template scope="scope">
+			<slot :row="scope.row" :index="scope.index">
+				{{value(scope.row, property)}}
 			</slot>
 		</template>
 	</ripper>
@@ -22,8 +22,10 @@ export default class Column extends Vue {
 	@Prop() render: (value: any)=> string
 	@Prop() extract: (row: any)=> string
 	@Prop({type:[Number, String]}) width: number|string
+	@Prop({type:[Number, String]}) flex: number|string
 	@Prop() property: string
 	@Prop() header: string
+	computedWidth: number = 1
 	value(row, property) {
 		return this.extract ?
 			this.extract(row) :

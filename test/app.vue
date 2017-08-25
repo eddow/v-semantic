@@ -51,8 +51,8 @@
 			<div slot="header">
 				qwe
 			</div>
-			<s-column header="A">
-				<template slot="cell" scope="scope">
+			<s-column header="A" width="50">
+				<template scope="scope">
 					a{{scope.row.a}}
 				</template>
 			</s-column>
