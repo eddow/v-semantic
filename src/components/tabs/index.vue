@@ -9,7 +9,7 @@ import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
 
-@Semantic('accordion', {
+@Semantic('tabs', {
 	styled: Boolean,
 	fluid: Boolean
 }, {

@@ -1,5 +1,6 @@
 <template>
 	<div :class="[cls, {iconOnly: false=== this.text}]" :multiple="multiple">
+		<input type="hidden" :name="internalName">
 		<slot name="bar">
 			<div v-if="placeholder" class="default text">{{placeholder}}</div>
 			<span v-if="!placeholder && false!== text" class="text">{{text}}</span>
@@ -21,6 +22,9 @@
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
+import {idSpace} from 'lib/utils'
+
+const genInputName = idSpace('cbx');
 
 //TODO: manage messages (ex errors, ...)
 @Semantic('dropdown', {
@@ -67,6 +71,11 @@ export default class Select extends Vue {
 	@Prop({default: 'right'}) menu: 'right'|'left'
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
 
+	@Prop() name: string
+	gendName = null;
+	get internalName() {
+		return this.name || this.gendName || (this.gendName = genInputName())
+	}
 	@Emit('command') onCommand(text, value, element) {}
 	configure(config) {
 		if('command'=== config.action) config.action = this.onCommand;

@@ -1,7 +1,7 @@
 <template>
 	<span :class="[cls, dynCls]">
 		<slot name="prepend" />
-		<input type="text" :placeholder="placeholder" :value="value" @input="input" />
+		<input :name="internalName" type="text" :placeholder="placeholder" :value="value" @input="input" />
 		<slot name="append" />
 	</span>
 </template>
@@ -12,6 +12,9 @@ import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
+import {idSpace} from 'lib/utils'
+
+const genInputName = idSpace('cbx');
 
 @Semantic('input', {
 	loading: Boolean,
@@ -25,8 +28,10 @@ export default class Input extends Vue {
 	value: string
 	@Prop() placeholder: string
 
-	change(x) {
-		console.log
+	@Prop() name: string
+	gendName = null;
+	get internalName() {
+		return this.name || this.gendName || (this.gendName = genInputName())
 	}
 	input($event) { this.$emit('input', $event.target.value); }
 	get dynCls() {

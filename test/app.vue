@@ -38,6 +38,8 @@
 				<s-option value="M">Male</s-option>
 				<s-option value="F">Female</s-option>
 			</s-select>
+			<s-checkbox label="Yes!" v-model="tchk" />
+			--{{tchk}}--
 	</div>
 	<div>
 		<s-table
@@ -84,6 +86,7 @@ export default class App extends Vue {
 	ddn = ''
 	row = null
 	rows = [{a:1},{a:3},{a:5}]
+	tchk: boolean = true
 	testme() {
 		console.log('test');
 	}

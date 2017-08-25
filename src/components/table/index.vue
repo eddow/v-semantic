@@ -68,6 +68,7 @@ TODO: use theming
 import * as Vue from 'vue'
 import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
+import {idSpace} from 'lib/utils'
 
 const tcell = {
 	props: ['column', 'row'],
@@ -91,11 +92,7 @@ const tcell = {
 	}
 };
 
-var rowCpt = 0;
-function generateRowId() {
-	rowCpt = (1+rowCpt) % (Number.MAX_SAFE_INTEGER-1);
-	return rowCpt.toString(36)+Math.random().toString(36).substr(1);
-}
+const generateRowId = idSpace('rw');
 
 //TODO: cell(th/td) css classes + selecteable cell + top/bottom/left/right/center aligned
 @Semantic('table', {
@@ -125,11 +122,11 @@ export default class Table extends Vue {
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
 	isMounted = false
 	mounted() { this.isMounted = true; }
-	private columnCtr: number = 0
+	private generateColumnId = idSpace('cn')
 	@Prop({type: [Number, String]}) bodyHeight: number|string
 
 	ckey(column) {
-		return column._genUid || (column._genUid = ++this.columnCtr)
+		return column._genUid || (column._genUid = this.generateColumnId())
 	}
 	get columns() {
 		var rv = this.$slots.default
