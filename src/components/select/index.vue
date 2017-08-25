@@ -2,7 +2,7 @@
 	<div :class="[cls, {iconOnly: false=== this.text}]" :multiple="multiple">
 		<slot name="bar">
 			<div v-if="placeholder" class="default text">{{placeholder}}</div>
-			<span v-if="text" class="text">{{text}}</span>
+			<span v-if="!placeholder && false!== text" class="text">{{text}}</span>
 			<i v-if="icon" :class="[icon, 'icon']"></i>
 		</slot>
 		<div :class="{menu:1, left: 'left'=== menu}">

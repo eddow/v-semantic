@@ -1,5 +1,5 @@
 <template>
-	<ts>
+	<ripper>
 		<template slot="title">
 			<slot name="title" class="title">
 				<i v-if="icon" :class="[icon, 'icon']"></i>
@@ -7,15 +7,14 @@
 			</slot>
 		</template>
 		<slot />
-	</ts>
+	</ripper>
 </template>
 
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import ts from './tab-sep.vue'
 
-@Component({components:{ts}})
+@Component({components:{ripper: { render(h) { return h(); } }}})
 export default class Tab extends Vue {
 	@Prop() icon: string
 	@Prop() title: string

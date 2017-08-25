@@ -1,43 +1,46 @@
 <template>
-	<div>
-		<div ref="columns" style="display: none;">
+	<!--
+		[vue-language-server] The template root requires exactly one element.
+		This error is due to the fact some thead/tbody don't contain tr and some tr don't contain
+		td/th - the compiler thinks these elements will appear outside of the <table>
+	-->
+	<table :class="[cls, {'scroll-body': !!bodyHeight}]">
+		<thead ref="columns" style="display: none;">
 			<slot />
-		</div>
-		<table v-if="isMounted" :class="[cls, {'scroll-body': bodyHeight}]">
-			<thead v-if="$slots.header">
-				<tr>
-					<td colspan="{{columns.length}}">
-						<slot name="header"/>
-					</td>
-				</tr>
-			</thead>
-			<thead>
-				<tr>
-					<theader v-for="column in columns" :column="column" :key="ckey(column)" />
-				</tr>
-			</thead>
-			<tbody :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
-				<tr
-					v-for="(row, index) in rows"
-					:key="row[this.idProperty]"
-					:class="[
-						rowClass(row, index),
-						{current: current === row}
-					]"
-					@click="$emit('current-change', row)"
-				>
-					<tcell v-for="column in columns" :column="column" :row="row" :key="ckey(column)" />
-				</tr>
-			</tbody>
-			<tfoot v-if="$slots.footer">
-				<tr>
-					<td colspan="{{columns.length}}">
-						<slot name="foot"/>
-					</td>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
+		</thead>
+		<thead v-if="isMounted && $slots.header">
+			<tr>
+				<td colspan="{{columns.length}}">
+					<slot name="header"/>
+				</td>
+			</tr>
+		</thead>
+		<thead v-if="isMounted">
+			<tr>
+				<theader v-for="column in columns" :column="column" :key="ckey(column)" />
+			</tr>
+		</thead>
+		<tbody v-if="isMounted" :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
+			<tr
+				v-for="(row, index) in rows"
+				:key="row[this.idProperty]"
+				:class="[
+					rowClass(row, index),
+					{current: current === row}
+				]"
+				@click="$emit('current-change', row)"
+			>
+				<tcell v-for="column in columns" :column="column" :row="row" :key="ckey(column)" />
+			</tr>
+		</tbody>
+		<tfoot v-if="isMounted && $slots.footer">
+			<tr>
+				<td colspan="{{columns.length}}">
+					<slot name="foot"/>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
 </template>
 <style>
 table.scroll-body tbody {
@@ -107,7 +110,7 @@ export default class Table extends Vue {
 	isMounted = false
 	mounted() { this.isMounted = true; }
 	private columnCtr: number = 0
-	@Prop() bodyHeight: number
+	@Prop({type: [Number, String]}) bodyHeight: number|string
 
 	ckey(column) {
 		return column._genUid || (column._genUid = ++this.columnCtr)
@@ -117,9 +120,6 @@ export default class Table extends Vue {
 			.filter(x=>x.componentOptions)
 			;	//filter columns only
 		return rv;
-	}
-	updateColumn(column) {
-		//called by column-sep
 	}
 }
 </script>
