@@ -11,6 +11,7 @@ import Option from './components/select/option.vue'
 
 import Table from './components/table/index.vue'
 import Column from './components/table/column.vue'
+import CheckboxColumn from './components/table/checkbox-column.vue'
 
 import Accordion from './components/accordion/index.vue'
 import Bellow from './components/accordion/bellow.vue'
@@ -18,6 +19,6 @@ import Bellow from './components/accordion/bellow.vue'
 export {
 	Flag, Button, Icon, Label, Input, Modal, Checkbox,
 	Select, Option,
-	Table, Column,
+	Table, Column, CheckboxColumn,
 	Accordion, Bellow
 }

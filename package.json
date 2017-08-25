@@ -24,13 +24,13 @@
   "devDependencies": {
     "fuse-box": "file:.yalc/fuse-box",
     "typescript": "^2.4.2",
-    "vue": "^2.4.2",
     "vue-property-decorator": "file:.yalc/vue-property-decorator",
     "vue-template-compiler": "^2.4.2",
     "vue-template-es2015-compiler": "^1.5.3"
   },
   "dependencies": {
     "semantic-ui": "^2.2.13",
-    "string": "^3.3.3"
+    "string": "^3.3.3",
+    "vue": "^2.4.2"
   }
 }

@@ -17,7 +17,7 @@
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 
-@Component({components:{ripper: { render(h) { return h(); } }}})
+@Component({components:{ripper: { render(h) { return h('tr'); } }}})
 export default class Column extends Vue {
 	@Prop() render: (value: any)=> string
 	@Prop() extract: (row: any)=> string
@@ -25,7 +25,7 @@ export default class Column extends Vue {
 	@Prop({type:[Number, String]}) flex: number|string
 	@Prop() property: string
 	@Prop() header: string
-	computedWidth: number = 1
+	
 	value(row, property) {
 		return this.extract ?
 			this.extract(row) :

@@ -53,18 +53,19 @@
 			<div slot="header">
 				qwe
 			</div>
-			<s-column header="A" width="50">
+			<s-column header="A">
 				<template scope="scope">
-					a{{scope.row.a}}
+					a{{scope.row.a}} <s-button>Tyup</s-button>
 				</template>
 			</s-column>
-			<s-column property="a">
+			<s-checkbox-column :selection="selection" />
+			<s-column property="a" width="150">
 				<template slot="header">
 					B
 				</template>
 			</s-column>
 		</s-table>
-			--{{row}}--
+			--{{row}}::{{selection}}--
 		<s-accordion styled>
 			<s-bellow title="What is a dog?">
     		<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
@@ -86,6 +87,7 @@ export default class App extends Vue {
 	ddn = ''
 	row = null
 	rows = [{a:1},{a:3},{a:5}]
+	selection = []
 	tchk: boolean = true
 	testme() {
 		console.log('test');

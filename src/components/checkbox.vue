@@ -24,19 +24,17 @@ const genInputName = idSpace('cbx');
 }, {
 	uncheckable: Boolean
 }, [
-	'checked',
-	'indeterminate',
-	'determinate',
-	'unchecked',
 	'enable',
 	'disable'
 ])
 export default class Checkbox extends Vue {
 	@Prop() label: string
-	@Model('input') checked?: boolean
+	@Prop() state3: boolean
+	@Model('input') checked: boolean
 	@Prop() name: string
-	@Watch('checked', {immediate: true})
+	@Watch('checked')
 	apply(checked) {
+		if(!this.state3) checked = !!checked;
 		this.semantic(
 			checked?
 				'set checked':
@@ -50,18 +48,20 @@ export default class Checkbox extends Vue {
 	gendName = null;
 	configure(config) {
 		var cancelable = (name)=> {
-			config[name] = ()=> {
-				try {
-					this.$emit(name);
-				} catch(x) {
-					if('cancel'!== x) throw x;
-					return false;
-				}
-			};
+			config[name] = ()=> this.$cancelable(name);
 		};
-		config.onChecked = ()=> this.$emit('input', true);
-		config.onUnchecked = ()=> this.$emit('input', false);
-		config.indeterminate = ()=> this.$emit('input', null);
+		config.onChecked = ()=> {
+			this.$emit('input', true);
+			this.$emit('checked');
+		}
+		config.onUnchecked = ()=> {
+			this.$emit('input', false);
+			this.$emit('unchecked');
+		}
+		config.onIndeterminate = ()=> {
+			this.$emit('input', null);
+			this.$emit('indeterminate');
+		}
 		for(let cb of ['beforeChecked', 'beforeIndeterminate', 'beforeDeterminate', 'beforeUnchecked'])
 			cancelable(cb);
 	}

@@ -14,12 +14,7 @@ export function mixin(
 ) {
 	function forwarder(scope, evt) {
 		return function(...args) {
-			try {
-				scope.$emit(evt, ...args);
-			} catch(x) {
-				if(x!== 'cancel') throw x;
-				return false;
-			}
+			return scope.$cancelable(evt, ...args);
 		};
 	}
 	function watcher(prop) {

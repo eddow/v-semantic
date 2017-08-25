@@ -28,7 +28,7 @@
 					rowClass(row, index),
 					{current: current === row}
 				]"
-				@click="$emit('current-change', row)"
+				@click="rowClick(row)"
 			>
 				<tcell v-for="column in columns" :column="column" :row="row" :index="index" :key="ckey(column)" />
 			</tr>
@@ -115,7 +115,7 @@ const generateRowId = idSpace('rw');
 	components: {tcell, theader}
 })
 export default class Table extends Vue {
-	@Model('current-change') @Prop() current
+	@Model('row-click') @Prop() current
 	@Provide() table = this
 	@Prop() rows: any[]
 	@Prop() idProperty: string
@@ -148,5 +148,6 @@ export default class Table extends Vue {
 			});
 		return row.__table_row_id;
 	}
+	@Emit('row-click') rowClick(row) {}
 }
 </script>
