@@ -54,4 +54,4 @@ A `header` slot can be given. If not, a `header` property can be given.
 ## Events
 - `visible`
 - `hidden`
-- `setCallback`: sets the v-model
+- `set-callback`: sets the v-model

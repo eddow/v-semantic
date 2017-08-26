@@ -13,8 +13,9 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Ripper} from 'vue-ripper'
 
-@Component({components:{ripper: { render(h) { return h(); } }}})
+@Component({components:{Ripper}})
 export default class Tab extends Vue {
 	@Prop() icon: string
 	@Prop() title: string

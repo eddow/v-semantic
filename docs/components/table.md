@@ -25,3 +25,42 @@ Vue's magic is that : if `v-model` is not used, no row will be marked current. I
 - `property` gives the property of the row this column displays. For now, it is just given to retrieve the value when no cell template is provided.
 - `header` gives the text in the header if no template is provided
 ## Events
+
+## Custom columns
+In a custom column type, (a component that just contains a column), the injection `table` is available and refers to the table the column is in.
+
+A custom column must contain only a `ripper` and provide two slots (a `header` and a `default`)
+
+```typescript
+import {Ripper} from 'vue-ripper'
+@Component({components:{Ripper}})
+```
+
+### CheckboxColumn
+
+The checkbox-column can be used for boolean values as well as for selection. There is no "multi-select" in the table, it is achieved by placing a checkbox-column at the begining.
+
+If no header is specified (the same way than with regular columns), a "check-all" checkbox is placed in the header
+#### Slots
+The `header` slot allows to describe a complex header. It has in its scope:
+- `allSelected` a boolean value bound to the select-all situation (`true`/`false`/`null`)
+- `setSelection` is a callback that takes one argument (boolean/array) and behaves exactly like setting the `selection` does
+
+The default slot allows to replace the checkbox by another component. If used its scope is the following:
+- `row` is the row the cell applies to
+- `checked` is bound to the boolean value (checked or not) for this cell
+- `select` and `unselect` are two callbacks that take the row as an argument to (de)select the row.
+#### Properties
+- `header` can be specified if a `header` slot is not given
+- `property` is the boolean property in the row to access. Default to `selected`
+
+Note that a special care is taken to make the property non-enumerable if it didn't exist previously, and for it to be observed by Vue.
+
+With this, the selection can be found by `rows.filter(x=>x.selected)`. Though, the selection is also kept beside by the component.
+
+- `selection` is the model (emitting the event `selection-change`) and can be watched deeply : if the parent doesn't change it, it will remain the same `Array` that will be modified.
+
+The parent can also set the `selection` to a non-array value. In this case, the model will be immediately updated to the effective array of selection
+  - If set to a falsy value, the selection will become "none" `[]`
+	- If set to `true`, the selection will become "all"
+	- If set to the array `table.rows`, all will be selected and the selection object will be cloned (so that "select all" can be 	written `selection = rows;`)

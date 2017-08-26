@@ -5,22 +5,27 @@
 		td/th - the compiler thinks these elements will appear outside of the <table>
 	-->
 	<table :class="[cls, {'scroll-body': !!bodyHeight}]">
-		<thead ref="columns" style="display: none;">
+		<pimp tag="thead" v-model="columns">
 			<slot />
-		</thead>
-		<thead v-if="isMounted && $slots.header">
+		</pimp>
+		<thead v-if="$slots.header">
 			<tr>
 				<td colspan="{{columns.length}}">
 					<slot name="header"/>
 				</td>
 			</tr>
 		</thead>
-		<thead v-if="isMounted">
+		<thead>
 			<tr>
-				<theader v-for="column in columns" :column="column" :key="ckey(column)" />
+				<ripped v-for="(column, uid) in columns" :key="uid"
+					tag="th"
+					:style="{width: column.width?column.width+'px':undefined}"
+					template="header"
+					:ripper="column"
+				/>
 			</tr>
 		</thead>
-		<tbody v-if="isMounted" :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
+		<tbody :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
 			<tr
 				v-for="(row, index) in rows"
 				:key="rowId(row)"
@@ -30,10 +35,15 @@
 				]"
 				@click="rowClick(row)"
 			>
-				<tcell v-for="column in columns" :column="column" :row="row" :index="index" :key="ckey(column)" />
+				<ripped v-for="(column, uid) in columns" :key="uid"
+					tag="td"
+					:style="{width: column.width?column.width+'px':undefined}"
+					:ripper="column"
+					:scope="{row, index}"
+				/>
 			</tr>
 		</tbody>
-		<tfoot v-if="isMounted && $slots.footer">
+		<tfoot v-if="$slots.footer">
 			<tr>
 				<td colspan="{{columns.length}}">
 					<slot name="foot"/>
@@ -64,14 +74,14 @@ TODO: use theming
 }
 </style>
 <script lang="ts">
-//TODO: automatic __table_row_id generation when no ID is given
 import * as Vue from 'vue'
 import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import {idSpace} from 'lib/utils'
+import {Pimp, Ripped} from 'vue-ripper'
 
 const tcell = {
-	props: ['column', 'row'],
+	props: ['column', 'row', 'index'],
 	render(h) {
 		var clmn = this.column, data = clmn.data, style = data.staticStyle||{}, inst = clmn.componentInstance;
 		if(inst.width) style.width = inst.width+'px';
@@ -112,7 +122,7 @@ const generateRowId = idSpace('rw');
 	sortable: Boolean,
 	compact: Boolean,
 }, {
-	components: {tcell, theader}
+	components: {Pimp, Ripped}
 })
 export default class Table extends Vue {
 	@Model('row-click') @Prop() current
@@ -120,20 +130,9 @@ export default class Table extends Vue {
 	@Prop() rows: any[]
 	@Prop() idProperty: string
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
-	isMounted = false
-	mounted() { this.isMounted = true; }
-	private generateColumnId = idSpace('cn')
+	columns = []
 	@Prop({type: [Number, String]}) bodyHeight: number|string
 
-	ckey(column) {
-		return column._genUid || (column._genUid = this.generateColumnId())
-	}
-	get columns() {
-		var rv = this.$slots.default
-			.filter(x=>x.componentOptions)
-			;	//filter columns only
-		return rv;
-	}
 	rowId(row) {
 		if(this.idProperty) {
 			console.assert(

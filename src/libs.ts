@@ -1,4 +1,5 @@
 import 'vue-property-decorator'
+import 'vue-ripper'
 import 'lib/classed'
 import 'lib/module'
 import 'lib/utils'

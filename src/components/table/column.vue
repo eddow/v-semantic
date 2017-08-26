@@ -16,8 +16,9 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Ripper} from 'vue-ripper'
 
-@Component({components:{ripper: { render(h) { return h('tr'); } }}})
+@Component({components:{Ripper}})
 export default class Column extends Vue {
 	@Prop() render: (value: any)=> string
 	@Prop() extract: (row: any)=> string

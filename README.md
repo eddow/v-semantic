@@ -41,13 +41,17 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 - [accordion](docs/components/accordion.md)
 - [table](docs/components/table.md)
 - [modal](docs/components/modal.md)
+- [checkbox](docs/components/checkbos.md)
+
+[Global implementations](docs/globals.md) have been done too
 # Not implemented yet
 ## Todos
 As this is intended for broad audience, a list of fiddle/examples could definitely help
 ### Components
 By order planified
 - tabs
-- checkbox
+- menus
+- radios
 - embed (iframe)
 - progress
 - sidebar
@@ -60,6 +64,7 @@ By order planified
 - dimmer
 - popup
 - visibility
+- messages
 
 ## No plans to implement
 Some of `semantic-ui` functionalities are just classes to add to some `div` that I don't see the point of making a custom control out of.

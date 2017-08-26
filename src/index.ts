@@ -2,7 +2,8 @@ import './libs'
 import * as Vue from 'vue'
 import * as components from './components'
 import * as directives from './directives'
-export {components, directives}
+import * as utils from 'lib/utils'
+export {components, directives, utils}
 import 'semantic-ui/dist/semantic'
 export default {
 	install(Vue, options) {
@@ -12,20 +13,3 @@ export default {
 			Vue.directive(i, directives[i]);
 	}
 };
-var CancelError = new Error('Canceled event');
-Vue.mixin({
-	methods: {
-		$cancel() {
-			throw CancelError;
-		},
-		$cancelable(event, ...args) {
-			try {
-				this.$emit(event, ...args);
-				return true;
-			} catch(x) {
-				if(CancelError!== x) throw x;
-				return false;
-			}
-		}
-	}
-});

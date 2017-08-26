@@ -31,6 +31,7 @@
   "dependencies": {
     "semantic-ui": "^2.2.13",
     "string": "^3.3.3",
-    "vue": "^2.4.2"
+    "vue": "^2.4.2",
+    "vue-ripper": "^1.0.0"
   }
 }

@@ -1,3 +1,7 @@
+
+import * as S from 'string'
+import * as Vue from 'vue'
+
 var base63 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
 //Little-Endian Base63
 function nextLEB63(s) {
@@ -15,3 +19,21 @@ export function idSpace(pfx = '_') {
 		return pfx+(cpt = nextLEB63(cpt));
 	}
 }
+
+var CancelError = new Error('Canceled event');
+Vue.mixin({
+	methods: {
+		$cancelEvent() {
+			throw CancelError;
+		},
+		$cancelable(event, ...args) {
+			try {
+				this.$emit(S(event).dasherize().s, ...args);
+				return true;
+			} catch(x) {
+				if(CancelError!== x) throw x;
+				return false;
+			}
+		}
+	}
+});

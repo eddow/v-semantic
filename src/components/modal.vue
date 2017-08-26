@@ -39,10 +39,10 @@ export default class Modal extends Vue {
 	@Prop() scrolling: boolean
 	@Prop() image: boolean
 
-	@Model('setCallback') callback: ()=>void
+	@Model('set-callback') callback: ()=>void
 	@Watch('callback') forceCallback(v) {
 		if(this.invoke!= v)
-			this.$emit('setCallback', this.invoke)
+			this.$emit('set-callback', this.invoke)
 	}
 	promise = null
 	configure(config) {

@@ -4,7 +4,7 @@
 			:name="internalName"
 			type="checkbox"
 		>
-		<label :for="internalName">{{label}}</label>
+		<label :for="internalName"><slot>{{label}}</slot></label>
 	</div>
 </template>
 
@@ -15,14 +15,13 @@ import Semantic from 'lib/module'
 import {idSpace} from 'lib/utils'
 
 const genInputName = idSpace('cbx');
-
 @Semantic('checkbox', {
 	disabled: Boolean,
 	readOnly: Boolean,
 	toggle: Boolean,
 	slider: Boolean
 }, {
-	uncheckable: Boolean
+	//uncheckable: Boolean
 }, [
 	'enable',
 	'disable'
