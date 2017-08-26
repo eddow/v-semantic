@@ -4,14 +4,12 @@
 			<slot name="header" :allSelected="allSelected" :setSelection="setSelection">
 				<template v-if="header">{{header}}</template>
 				<checkbox v-else v-model="allSelected" @input="selectAll" state3 />
-				--{{allSelected}}-bluh-
 			</slot>
 		</template>
 		<template scope="scope">
 			<slot :row="scope.row" :checked="scope.row[property]" :select="select" :unselect="unselect">
 				<checkbox :checked="scope.row[property]" @checked="select(scope.row)" @unchecked="unselect(scope.row)" />
 			</slot>
-				--{{allSelected}}--
 		</template>
 	</ripper>
 </template>
@@ -45,6 +43,11 @@ export default class CheckboxColumn extends Vue {
 			});
 	}
 
+	@Watch('table.rows', {deep: true})
+	rowsChanged(rows) {
+		this.setSelection(rows.filter(x=> x[this.property]));
+	}
+
 	@Watch('selection') 
 	setSelection(selection) {
 		if(!selection || true=== selection)
@@ -53,7 +56,7 @@ export default class CheckboxColumn extends Vue {
 			if(selection === this.table.rows)
 				this.$emit('selection-change', [].concat(selection));
 			else if(selection !== this.selection)
-				//this case happens when `setSelection` is called from the header slot for instance
+				//this case happens when `setSelection` is called from the header slot or from `rowsChanged`
 				this.$emit('selection-change', selection);
 			for(let row of this.table.rows)
 				this.setRow(row, !!~selection.indexOf(row));
