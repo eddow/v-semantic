@@ -17,9 +17,13 @@ import Accordion from './components/accordion.vue'
 import Tabs from './components/tabs.vue'
 import Panel from './components/panel.vue'
 
+import Dimmer from './components/dimmer.vue'
+import Dimmable from './components/dimmable.vue'
+
 export {
 	Flag, Button, Icon, Label, Input, Modal, Checkbox,
 	Select, Option,
 	Table, Column, CheckboxColumn,
-	Accordion, Tabs, Panel
+	Accordion, Tabs, Panel,
+	Dimmer, Dimmable
 }

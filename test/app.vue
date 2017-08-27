@@ -9,9 +9,9 @@
 			<s-button @click="modal1()">
 				modal
 			</s-button>
-			<s-button>
+			<s-button @click="blurred = !blurred">
 				<s-icon icon="save" slot="prepend" />
-				button-l
+				blurr
 			</s-button>
 			<s-button icon="plus">
 				button-i
@@ -42,30 +42,32 @@
 			--{{tchk}}--
 		</div>
 		<div>
-			<s-table
-				celled
-				selectable
-				v-model="row"
-				:rows="rows"
-				very-basic
-				:body-height="180"
-			>
-				<div slot="header">
-					qwe
-				</div>
-				<s-column header="A">
-					<template scope="scope">
-						a{{scope.row.a}} <s-button>Tyup</s-button>
-					</template>
-				</s-column>
-				<s-checkbox-column :selection="selection" width="55" />
-				<s-column property="a" width="150">
-					<template slot="header">
-						B
-					</template>
-				</s-column>
-			</s-table>
-				--{{row}}::{{selection}}--
+			<s-dimmable blurring v-model="blurred" icon="heart" message="Dimmed Message!">
+				<s-table
+					celled
+					selectable
+					v-model="row"
+					:rows="rows"
+					very-basic
+					:body-height="180"
+				>
+					<div slot="header">
+						qwe
+					</div>
+					<s-column header="A">
+						<template scope="scope">
+							a{{scope.row.a}} <s-button>Tyup</s-button>
+						</template>
+					</s-column>
+					<s-checkbox-column :selection="selection" width="55" />
+					<s-column property="a" width="150">
+						<template slot="header">
+							B
+						</template>
+					</s-column>
+				</s-table>
+					--{{row}}::{{selection}}--
+			</s-dimmable>
 		</div>
 		<div>
 			<s-accordion styled>
@@ -137,6 +139,7 @@ export default class App extends Vue {
 	rows = [{a:1},{a:3},{a:5}]
 	selection = []
 	tchk: boolean = true
+	blurred: boolean = false
 	testme() {
 		console.log('test');
 	}
