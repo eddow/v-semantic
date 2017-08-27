@@ -31,9 +31,9 @@ import Semantic from 'lib/classed'
 	components: {Dimmer, Icon}
 })
 export default class Dimm extends Vue {
-	@Prop({default: ''}) variation: string
-	@Prop() closable: 'auto'|String
-	@Prop() on: String
+	@Prop({default: ''}) variation: 'simple'|'inverted'|''
+	@Prop() closable: 'auto'|boolean
+	@Prop() on: string
 	@Prop() duration: {show: number, hide:number}
 	@Prop() transition: string
 	@Prop() icon: string

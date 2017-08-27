@@ -13,12 +13,12 @@
 				<s-icon icon="save" slot="prepend" />
 				blurr
 			</s-button>
-			<s-button icon="plus">
-				button-i
+			<s-button icon="plus" @click="loading = !loading">
+				loading
 			</s-button>
-			<s-button>
+			<s-button @click="loading = '!loading'">
 				<s-icon icon="minus" slot="append" />
-				button-r
+				loading text
 			</s-button>
 			<s-button>
 				<s-icon icon="add circle" />
@@ -70,7 +70,7 @@
 			</s-dimmable>
 		</div>
 		<div>
-			<s-accordion styled>
+			<s-accordion styled v-loading.indeterminate="loading">
 				<s-panel title="What is a dog?">
 					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
 				</s-panel>
@@ -140,6 +140,7 @@ export default class App extends Vue {
 	selection = []
 	tchk: boolean = true
 	blurred: boolean = false
+	loading: boolean = false
 	testme() {
 		console.log('test');
 	}

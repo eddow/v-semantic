@@ -1,5 +1,5 @@
 <template>
-	<div :class="[cls, variation]">
+	<div :class="[cls]">
 		<slot />
 	</div>
 </template>
