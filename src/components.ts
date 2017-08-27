@@ -13,12 +13,13 @@ import Table from './components/table/index.vue'
 import Column from './components/table/column.vue'
 import CheckboxColumn from './components/table/checkbox-column.vue'
 
-import Accordion from './components/accordion/index.vue'
-import Bellow from './components/accordion/bellow.vue'
+import Accordion from './components/accordion.vue'
+import Tabs from './components/tabs.vue'
+import Panel from './components/panel.vue'
 
 export {
 	Flag, Button, Icon, Label, Input, Modal, Checkbox,
 	Select, Option,
 	Table, Column, CheckboxColumn,
-	Accordion, Bellow
+	Accordion, Tabs, Panel
 }

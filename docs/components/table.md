@@ -53,7 +53,7 @@ The `header` slot allows to describe a complex header. It has in its scope:
 The default slot allows to replace the checkbox by another component. If used its scope is the following:
 - `row` is the row the cell applies to
 - `checked` is bound to the boolean value (checked or not) for this cell
-- `select` and `unselect` are two callbacks that take the row as an argument to (de)select the row.
+- `select`, `unselect` and `toggle` are three callbacks that take the row as an argument to (de)select the row.
 #### Properties
 - `header` can be specified if a `header` slot is not given
 - `property` is the boolean property in the row to access. Default to `selected`

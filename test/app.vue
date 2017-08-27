@@ -40,41 +40,89 @@
 			</s-select>
 			<s-checkbox label="Yes!" v-model="tchk" />
 			--{{tchk}}--
-	</div>
-	<div>
-		<s-table
-			celled
-			selectable
-			v-model="row"
-			:rows="rows"
-			very-basic
-			:body-height="180"
-		>
-			<div slot="header">
-				qwe
-			</div>
-			<s-column header="A">
-				<template scope="scope">
-					a{{scope.row.a}} <s-button>Tyup</s-button>
-				</template>
-			</s-column>
-			<s-checkbox-column :selection="selection" width="55" />
-			<s-column property="a" width="150">
-				<template slot="header">
-					B
-				</template>
-			</s-column>
-		</s-table>
-			--{{row}}::{{selection}}--
-		<s-accordion styled>
-			<s-bellow title="What is a dog?">
-    		<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-			</s-bellow>
-
-			<s-bellow title="What kinds of dogs are there?">
-		    <p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-			</s-bellow>
-		</s-accordion>
+		</div>
+		<div>
+			<s-table
+				celled
+				selectable
+				v-model="row"
+				:rows="rows"
+				very-basic
+				:body-height="180"
+			>
+				<div slot="header">
+					qwe
+				</div>
+				<s-column header="A">
+					<template scope="scope">
+						a{{scope.row.a}} <s-button>Tyup</s-button>
+					</template>
+				</s-column>
+				<s-checkbox-column :selection="selection" width="55" />
+				<s-column property="a" width="150">
+					<template slot="header">
+						B
+					</template>
+				</s-column>
+			</s-table>
+				--{{row}}::{{selection}}--
+		</div>
+		<div>
+			<s-accordion styled>
+				<s-panel title="What is a dog?">
+					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+				</s-panel>
+				<s-panel title="What kinds of dogs are there?">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+			</s-accordion>
+		</div>
+		<div>
+			<s-tabs position="top">
+				<s-panel title="What is a dog?">
+					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+				</s-panel>
+				<s-panel title="What kinds of dogs are there?">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+				<s-panel title="And...">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+			</s-tabs>
+			<s-tabs position="bottom">
+				<s-panel title="What is a dog?">
+					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+				</s-panel>
+				<s-panel title="What kinds of dogs are there?">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+				<s-panel title="And...">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+			</s-tabs>
+			<s-tabs position="left">
+				<s-panel title="What is a dog?">
+					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+				</s-panel>
+				<s-panel title="What kinds of dogs are there?">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+				<s-panel title="And...">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+			</s-tabs>
+			<s-tabs position="right">
+				<s-panel title="What is a dog?">
+					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+				</s-panel>
+				<s-panel title="What kinds of dogs are there?">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+				<s-panel title="And...">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+			</s-tabs>
+		</div>
 	</div>
 </template>
 

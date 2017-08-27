@@ -7,7 +7,7 @@
 			</slot>
 		</template>
 		<template scope="scope">
-			<slot :row="scope.row" :checked="scope.row[property]" :select="select" :unselect="unselect">
+			<slot :row="scope.row" :checked="scope.row[property]" :select="select" :unselect="unselect" :toggle="toggle">
 				<checkbox :checked="scope.row[property]" @checked="select(scope.row)" @unchecked="unselect(scope.row)" />
 			</slot>
 		</template>
@@ -112,6 +112,9 @@ export default class CheckboxColumn extends Vue {
 			if(this.selection) this.selection.splice(index, 1);
 			this.computeAll();
 		}
+	}
+	toggle(row) {
+		return row[this.property] ? this.unselect(row) : this.select(row);
 	}
 	rowClick(row) {
 		console.log('click!');

@@ -4,7 +4,7 @@
 		This error is due to the fact some thead/tbody don't contain tr and some tr don't contain
 		td/th - the compiler thinks these elements will appear outside of the <table>
 	-->
-	<table :class="[cls, {'scroll-body': !!bodyHeight}]">
+	<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]">
 		<pimp tag="thead" v-model="columns">
 			<slot />
 		</pimp>
@@ -65,9 +65,13 @@ table.scroll-body thead, table.scroll-body tbody tr {
 table.scroll-body thead {
 	width: calc( 100% - 0.71em )	/*TODO: real width management engine*/
 }
-table tr.current {
-	color: #111;
-	background-color: #E0E0E0;/*
+
+table.ui.table.vued tbody tr {
+	border: 1px solid transparent;
+}
+table.ui.table.vued tbody tr.current {
+	border-color: #111;
+	/*background-color: #E0E0E0;/*
 TODO: use theming
 @activeColor: @textColor;
 @activeBackgroundColor: #E0E0E0;*/
@@ -79,28 +83,6 @@ import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import {idSpace} from 'lib/utils'
 import {Pimp, Ripped} from 'vue-ripper'
-
-const tcell = {
-	props: ['column', 'row', 'index'],
-	render(h) {
-		var clmn = this.column, data = clmn.data, style = data.staticStyle||{}, inst = clmn.componentInstance;
-		if(inst.width) style.width = inst.width+'px';
-		return h(
-			'td', {class: data.staticClass, style},
-			inst.$children[0].$scopedSlots.default({row: this.row, index: this.index})
-		);
-	}
-}, theader = {
-	props: ['column'],
-	render(h) {
-		var clmn = this.column, data = clmn.data, style = data.staticStyle||{}, inst = clmn.componentInstance;
-		if(inst.width) style.width = inst.width+'px';
-		return h(
-			'th', {class: data.staticClass, style},
-			inst.$children[0].$slots.header
-		);
-	}
-};
 
 const generateRowId = idSpace('rw');
 
@@ -120,7 +102,7 @@ const generateRowId = idSpace('rw');
 	unstackable: Boolean,
 	selectable: Boolean,
 	sortable: Boolean,
-	compact: Boolean,
+	compact: Boolean
 }, {
 	components: {Pimp, Ripped}
 })
@@ -130,7 +112,7 @@ export default class Table extends Vue {
 	@Prop() rows: any[]
 	@Prop() idProperty: string
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
-	columns = []
+	columns = null
 	@Prop({type: [Number, String]}) bodyHeight: number|string
 
 	rowId(row) {
@@ -148,6 +130,10 @@ export default class Table extends Vue {
 		return row.__table_row_id;
 	}
 	@Emit('row-click') rowClick(row) {}
+	@Watch('rows', {deep: true}) rowsUpdate(rows) {
+		if(!~rows.indexOf(this.current))
+			this.$emit('row-click', null);
+	}
 }
 Table.managedColumn = {
 	props: {
