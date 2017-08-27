@@ -8,7 +8,6 @@ The content is reported in the checkbox' label.
 
 ## Properties
 - `label`: Text to display beside the checkbox
-- `native-type`: `<button :type="nativeType" ...`
 ### Forwarded as classes
 - `disabled: Boolean`
 - `readOnly: Boolean`

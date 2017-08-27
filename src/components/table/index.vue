@@ -63,7 +63,7 @@ table.scroll-body thead, table.scroll-body tbody tr {
 	table-layout: fixed;
 }
 table.scroll-body thead {
-	width: calc( 100% - 1em )
+	width: calc( 100% - 0.71em )	/*TODO: real width management engine*/
 }
 table tr.current {
 	color: #111;
@@ -149,4 +149,10 @@ export default class Table extends Vue {
 	}
 	@Emit('row-click') rowClick(row) {}
 }
+Table.managedColumn = {
+	props: {
+		width: {type:[Number, String]},
+		flex: {type:[Number, String]}	//TODO: use flex and make a real column-width management engine
+	}
+};
 </script>

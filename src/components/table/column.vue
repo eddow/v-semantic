@@ -17,13 +17,15 @@
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {Ripper} from 'vue-ripper'
+import table from './index.vue'
 
-@Component({components:{Ripper}})
+@Component({
+	components: {Ripper},
+	mixins: [table.managedColumn]
+})
 export default class Column extends Vue {
 	@Prop() render: (value: any)=> string
 	@Prop() extract: (row: any)=> string
-	@Prop({type:[Number, String]}) width: number|string
-	@Prop({type:[Number, String]}) flex: number|string
 	@Prop() property: string
 	@Prop() header: string
 	

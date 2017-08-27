@@ -58,7 +58,7 @@
 					a{{scope.row.a}} <s-button>Tyup</s-button>
 				</template>
 			</s-column>
-			<s-checkbox-column :selection="selection" />
+			<s-checkbox-column :selection="selection" width="55" />
 			<s-column property="a" width="150">
 				<template slot="header">
 					B

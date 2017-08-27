@@ -20,15 +20,17 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 import column from './column.vue'
 import checkbox from '../checkbox.vue'
 import {Ripper} from 'vue-ripper'
+import table from './index.vue'
 
-/*TODO: BUG in bindings. 
-reproduction: setting `allSelected` does not change the select-all checkbox status
-*/
-@Component({components:{Ripper, checkbox}})
+@Component({
+	components: {Ripper, checkbox},
+	mixins: [table.managedColumn]
+})
 export default class CheckboxColumn extends Vue {
 	@Inject() table
 	@Prop({default: 'selected'}) property: string
 	@Prop() header: string
+	defaultv: boolean = null
 	
 	allSelected: boolean = false
 	@Model('selection-change',{type:[Boolean,Array]}) selection
@@ -43,18 +45,25 @@ export default class CheckboxColumn extends Vue {
 			});
 	}
 
-	@Watch('table.rows', {deep: true})
+	@Watch('table.rows', {deep: true/*, immediate: true*/})
+	//We don't use `immediate` because the `selection` will be initiated (by `:selection` or `v-model`)
 	rowsChanged(rows) {
-		this.setSelection(rows.filter(x=> x[this.property]));
+		this.setSelection(rows.filter(x=> {
+			if(null!== this.defaultv && !(this.property in x))
+				this.setRow(x, this.defaultv);
+			return x[this.property];
+		}));
 	}
 
-	@Watch('selection') 
+	@Watch('selection', {immediate: true}) 
 	setSelection(selection) {
-		if(!selection || true=== selection)
-			this.selectAll(this.allSelected = !!selection);
-		else if(selection instanceof Array) {
-			if(selection === this.table.rows)
+		if(!selection || true=== selection) {
+			this.selectAll(this.defaultv = this.allSelected = !!selection);
+		} else if(selection instanceof Array) {
+			if(selection === this.table.rows) {
+				this.defaultv = true;
 				this.$emit('selection-change', [].concat(selection));
+			}
 			else if(selection !== this.selection)
 				//this case happens when `setSelection` is called from the header slot or from `rowsChanged`
 				this.$emit('selection-change', selection);
@@ -68,15 +77,19 @@ export default class CheckboxColumn extends Vue {
 		if('boolean'=== typeof checked) {
 			for(let row of this.table.rows)
 				this.setRow(row, checked);
-			let selection = this.selection instanceof Array ? this.selection : [];
+			let selection = this.selection;
+			if(!(selection instanceof Array))
+				this.$emit('selection-change', selection = []);
 			selection.length = 0;
 			if(checked) selection.push(...this.table.rows);
-			this.$emit('selection-change', selection);
+			else if(selection.length) selection.push();	//emit a modified-event
 		}
 	}	
 	
 	computeAll() {
-		this.allSelected = 0=== this.selection.length ? false :
+		this.allSelected =
+			0=== this.table.rows.length ? this.defaultv :
+			0=== this.selection.length ? false :
 			this.table.rows.length === this.selection.length ?
 				true : null;
 		this.$emit('selection-change', this.selection);

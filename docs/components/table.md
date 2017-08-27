@@ -29,11 +29,15 @@ Vue's magic is that : if `v-model` is not used, no row will be marked current. I
 ## Custom columns
 In a custom column type, (a component that just contains a column), the injection `table` is available and refers to the table the column is in.
 
-A custom column must contain only a `ripper` and provide two slots (a `header` and a `default`)
+A custom column must contain only a `ripper` and provide two slots (an unscoped `header` and a scoped `default`). It should also use the `managedColumn` mixin from the `Table`
 
 ```typescript
 import {Ripper} from 'vue-ripper'
-@Component({components:{Ripper}})
+import {components} from 'v-semantic'
+@Component({
+	components: {Ripper},
+	mixins: [components.Table.managedColumn]
+})
 ```
 
 ### CheckboxColumn
@@ -60,7 +64,8 @@ With this, the selection can be found by `rows.filter(x=>x.selected)`. Though, t
 
 - `selection` is the model (emitting the event `selection-change`) and can be watched deeply : if the parent doesn't change it, it will remain the same `Array` that will be modified.
 
-The parent can also set the `selection` to a non-array value. In this case, the model will be immediately updated to the effective array of selection
+The parent can also set the `selection` to a non-array value. In this case, the model will be immediately updated to the effective array of selection. Also, in one of the following case, the column default value that will be used when the boolean is not specified in a row will be updated, so that each now row added has its selection value is set accordingly.
   - If set to a falsy value, the selection will become "none" `[]`
 	- If set to `true`, the selection will become "all"
 	- If set to the array `table.rows`, all will be selected and the selection object will be cloned (so that "select all" can be 	written `selection = rows;`)
+	
