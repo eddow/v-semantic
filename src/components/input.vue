@@ -1,7 +1,9 @@
 <template>
 	<span :class="[cls, dynCls]">
 		<slot name="prepend" />
-		<input :name="internalName" type="text" :placeholder="placeholder" :value="value" @input="input" />
+		<slot name="input" :inputName="internalName" :placeholder="placeholder" :value="value" :input="input">
+			<input :name="internalName" type="text" :placeholder="placeholder" :value="value" @input="nativeInput" />
+		</slot>
 		<slot name="append" />
 	</span>
 </template>
@@ -33,7 +35,8 @@ export default class Input extends Vue {
 	get internalName() {
 		return this.name || this.gendName || (this.gendName = genInputName())
 	}
-	input($event) { this.$emit('input', $event.target.value); }
+	nativeInput($event) { this.$emit('input', $event.target.value); }
+	@Emit() input() {}
 	get dynCls() {
 		var rv = [];
 		var searchType = function(slots, types) {

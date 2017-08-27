@@ -1,7 +1,7 @@
 # [Accordion](https://semantic-ui.com/modules/accordion.html)
 ## Exemple
 ```html
-		<s-accordion styled>
+		<s-accordion>
 			<s-panel title="What is a dog?">
     		<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
 			</s-panel>
@@ -12,12 +12,12 @@
 		</s-accordion>
 ```
 ## Slots
-### default
-The slot is quite just included in the dynamically-managed accordion-div. It is a container that contains [panels](./panel.md)
-Note: to remove the icon, specify `icon=""`.
+An `accordion` is a [panel](./panel.md) container, so panels are described in the main slot.
 ## Properties
-
-These properties forward directly to the jQuery initialisation :
+- `defaultIcon: string` The icon of the items. Defaulted to `'dropdown'`
+### Forwarded to classes
+- `styled: boolean` Here defaulted to `true`!
+### Forwarded to semantic configuration
 - `exclusive`: boolean
 - `on`: string
 - `animateChildren`: boolean

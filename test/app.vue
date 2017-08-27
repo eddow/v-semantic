@@ -16,7 +16,7 @@
 			<s-button icon="plus" @click="loading = !loading">
 				loading
 			</s-button>
-			<s-button @click="loading = '!loading'">
+			<s-button @click="loading = !loading && 'loading!'">
 				<s-icon icon="minus" slot="append" />
 				loading text
 			</s-button>

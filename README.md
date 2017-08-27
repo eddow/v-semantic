@@ -41,7 +41,8 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 - [accordion](docs/components/accordion.md)
 - [table](docs/components/table.md)
 - [modal](docs/components/modal.md)
-- [checkbox](docs/components/checkbos.md)
+- [checkbox](docs/components/checkbox.md)
+- [dimming](docs/components/dimm.md)
 
 [Global implementations](docs/globals.md) have been done too
 # Not implemented yet
@@ -58,10 +59,8 @@ By order planified
 - search
 - shape
 - rating
-- reveal
+- reveal?
 ### Directives
-- loader
-- dimmer
 - popup
 - visibility
 - messages
@@ -80,7 +79,7 @@ Some of `semantic-ui` functionalities are just classes to add to some `div` that
 - card
 - transitions (Vue has it)
 
-## Things that will perhaps be automated
+## Things that might perhaps be automated
 - breadcrumbs (integration with vue-router)
 - forms (validation agains json-schema AND/OR semantic validation system)
 - menu (integration with vue-router)
@@ -106,6 +105,6 @@ These are the only *like* buttons that have a real effect.
 - BTC: 39ybn3KGNUvZrhifaLJcf4cJdzkGMdfAMT
 - BCH: 3K81iYWwLZuWXY1qHcBL559FYraUqKMkEp
 ### Also,
-If you wanna help, please.
+If you wanna help, please do.
 
-If you are interested in the development of a component, please leave a comment
+If you are interested in the development of a component, please leave a comment.

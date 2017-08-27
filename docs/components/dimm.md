@@ -66,10 +66,15 @@ This data can take a falsy value to hide the loading-dimmer (for regular state) 
 - If it is a `string`, this will be the message displayed
 - If it is `true`, only the icon will be displayed
 
-An easy way to manage a boolean and use a string is
+Some easy way to manage a boolean and use a string are:
 ```html
-	<s-button @click="loading=!loading">Load !</button>
-	<div v-loading="loading && `Loading references...`">
+	<s-button @click="loading=!loading">Load ?</button>
+	<div v-loading="loading && 'Loading references...'">
+		...
+```
+```html
+	<s-button @click="loading=!loading  && 'Loading references...'">Load ?</button>
+	<div v-loading="loading">
 		...
 ```
 ### Modifiers

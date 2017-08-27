@@ -15,6 +15,7 @@
 </template>
 
 <script lang="ts">
+//TODO: Bug when "unselect all", the value displayed in the test app stays select-all
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import column from './column.vue'

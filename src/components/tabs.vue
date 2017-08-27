@@ -88,8 +88,8 @@ import {Pimp, Ripped} from 'vue-ripper'
 import {$} from 'lib/shims'
 
 @Semantic('menu', {
-	tabular: {type: Boolean, default: true},
-	pointing: Boolean,
+	//tabular, pointing
+	type: {type: String, default: 'tabular'},
 	primary: Boolean,
 	secondary: Boolean
 }, {

@@ -28,8 +28,7 @@ import Semantic from 'lib/module'
 import {Pimp, Ripped} from 'vue-ripper'
 
 @Semantic('accordion', {
-	styled: Boolean,
-	fluid: Boolean
+	styled: {type: Boolean, default: true}
 }, {
 	exclusive: Boolean,
 	on: String,
