@@ -1,4 +1,3 @@
-
 import * as S from 'string'
 import * as Vue from 'vue'
 
@@ -20,7 +19,7 @@ export function idSpace(pfx = '_') {
 	}
 }
 
-var CancelError = new Error('Canceled event');
+const CancelError = new Error('Canceled event');
 Vue.mixin({
 	methods: {
 		$cancelEvent() {
@@ -37,3 +36,7 @@ Vue.mixin({
 		}
 	}
 });
+
+export abstract class Commanded extends Vue {
+	abstract invoke(name: string, params: any);
+}

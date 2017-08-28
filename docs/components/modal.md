@@ -1,4 +1,4 @@
-# [Label](https://semantic-ui.com/modules/modal.html)
+# [Modal](https://semantic-ui.com/modules/modal.html)
 
 ## Usage
 ### The modal
@@ -23,7 +23,7 @@ Inside of the modal, a code just has to call the invoker with a string argument 
 ```
 The directive `modal` can be used as a shortcut to the simple case `@click="xxxModal(command)` is :
 ```html
-<s-button v-modal:send>Send!</s-button>
+<s-button v-command:send>Send!</s-button>
 ```
 ### Programatically
 Invoking the modal will return a promise that will fail if the given command is `'cancel'` and succeed for other values giving the command as a value
@@ -33,21 +33,21 @@ The specified call-back function will be called only in case of promise resoluti
 A `header` slot can be given. If not, a `header` property can be given.
 
 ## Properties
-- `header` to display if no `header` slot is given
+- `header: string` to display if no `header` slot is given
 ### Programmatic classes:
-- `inverted: Boolean`
-- `blurring: Boolean`
-- `detachable: Boolean`
-- `autofocus: Boolean`
-- `observeChanges: Boolean`
-- `allowMultiple: Boolean`
-- `keyboardShortcuts: Boolean`
-- `offset: Number`
-- `closable: Boolean`
+- `inverted: boolean`
+- `blurring: boolean`
+- `detachable: boolean`
+- `autofocus: boolean`
+- `observeChanges: boolean`
+- `allowMultiple: boolean`
+- `keyboardShortcuts: boolean`
+- `offset: number`
+- `closable: boolean`
 - //todo: dimmerSettings?
-- `transition: String`
-- `duration: Number`
-- `queue: Boolean`
+- `transition: string`
+- `duration: number`
+- `queue: boolean`
 ### Content classes :
 - `scrolling`
 - `image`

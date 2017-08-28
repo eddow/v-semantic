@@ -15,6 +15,7 @@
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
+import {Commanded} from 'lib/utils'
 
 @Semantic('modal',
 {}, {
@@ -34,7 +35,7 @@ import Semantic from 'lib/module'
 }, [
 	'visible'
 ])
-export default class Modal extends Vue {
+export default class Modal extends Commanded {
 	@Prop() header: string
 	@Prop() scrolling: boolean
 	@Prop() image: boolean
@@ -60,7 +61,11 @@ export default class Modal extends Vue {
 	onApprove() { this.invoke('ok'); }
 	onDeny() { this.invoke('cancel'); }
 
-	invoke(command) {
+	//invoke()
+	//invoke(command: string)
+	//invoke(command: string, params: any)
+	//invoke(resolve: function, reject: function)
+	invoke(command?: string|function, params?: any|function) {
 		if('string'!== typeof command) {
 			if(this.promise) throw new Error('Modal invoked while being opened already')
 
@@ -69,14 +74,15 @@ export default class Modal extends Vue {
 				this.promise = {accept, reject};
 			});
 			return 'function'=== typeof command?
-				rv.then(command) :
+				rv.then(command, params || (()=> {})) :
 				rv ;
 		} else {
 			if(!this.promise) throw new Error('Modal received a command while not being invoked')
-			if('cancel'=== command)
-				this.promise.reject();
+			if('cancel'!== command)
+				this.promise.accept(params?{command, params}:command);
 			else
-				this.promise.accept(command);
+				this.promise.reject();
+				
 			this.promise = null;
 			this.semantic('hide');
 		}

@@ -43,6 +43,7 @@ The model is `visible: boolean` (event: `change`) specifying whether the dimmer 
 ## Specificity of `dimmer`
 The property `page: boolean` allows the `dimmer` not to dimm its container but the whole page.
 
+Note that a dimmer dimms the *element* it is in, not the *component*.
 ## Specificity of `dimmable`
 The `dimmable`' dimmer content can be given in the `dimmer` slot. There is a predefined slot who displays these two properties:
 - `icon: string`

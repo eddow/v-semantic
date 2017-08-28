@@ -1,9 +1,10 @@
 import './libs'
 import * as Vue from 'vue'
 import * as components from './components'
+export * from './components'
 import * as directives from './directives'
-import * as utils from 'lib/utils'
-export {components, directives, utils}
+export * from './directives'
+export * from 'lib/utils'
 import 'semantic-ui/dist/semantic'
 export default {
 	install(Vue, options) {

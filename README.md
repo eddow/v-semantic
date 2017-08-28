@@ -11,12 +11,24 @@ The classes specific to a component are set as boolean properties of the compone
 ```
 
 ## Installation
-For usage:
+Beta stade: 
 
-*Beware this is under heavy development* The version will remain `0.x.y` until it sounds like finished. Thought, the documentation follows the implementation - what is documented ought to be usable.
+For usage:
 ```
 npm install v-semantic --save
 ```
+```typescript
+import vs from 'v-semantic'
+Vue.install(vs);
+//- or -
+import {Modal, Command, Button} from 'v-semantic'
+
+@Component({
+	components: {Modal, Button},
+	directives: {Command}
+})
+```
+Requiring the main library will export each components and a `default` that lets you `Vue.install(...)`.
 ### For development
 
 ```
@@ -27,30 +39,30 @@ Beware of [yalc](https://www.npmjs.com/package/yalc) : it happens that in order 
 
 This will produce `dist/v-semantic.js`
 
-Requiring the main library will export each components and a `default` that lets you `Vue.install(...)`.
-
 There is no plan to have one-source-file-per-component, it's not a huge library.
 
 # Components
+
+#### beta
+These should work and implement their intended final behaviour, even if details can still change
 - [flag](docs/components/flag.md)
 - [icon](docs/components/icon.md)
-- [label](docs/components/label.md)
 - [button](docs/components/button.md)
 - [input](docs/components/input.md)
 - [select](docs/components/select.md)
 - [accordion](docs/components/accordion.md)
-- [table](docs/components/table.md)
 - [modal](docs/components/modal.md)
 - [checkbox](docs/components/checkbox.md)
 - [dimming](docs/components/dimm.md)
+#### alpha
+- [table](docs/components/table.md)
+- [tabs](docs/components/tabs.md)
 
 [Global implementations](docs/globals.md) have been done too
 # Not implemented yet
-## Todos
+## Fiddles
 As this is intended for broad audience, a list of fiddle/examples could definitely help
-### Components
-By order planified
-- tabs
+## Components
 - menus
 - radios
 - embed (iframe)
@@ -60,7 +72,7 @@ By order planified
 - shape
 - rating
 - reveal?
-### Directives
+## Directives
 - popup
 - visibility
 - messages
@@ -80,6 +92,7 @@ Some of `semantic-ui` functionalities are just classes to add to some `div` that
 - transitions (Vue has it)
 
 ## Things that might perhaps be automated
+- label
 - breadcrumbs (integration with vue-router)
 - forms (validation agains json-schema AND/OR semantic validation system)
 - menu (integration with vue-router)

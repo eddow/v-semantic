@@ -1,6 +1,6 @@
-import Modal from './directives/modal'
+import Command from './directives/command'
 import Loading from './directives/loading'
 
 export {
-	Modal, Loading
+	Command, Loading
 }
