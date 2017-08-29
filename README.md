@@ -45,26 +45,26 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 
 #### beta
 These should work and implement their intended final behaviour, even if details can still change
-- [flag](docs/components/flag.md)
-- [icon](docs/components/icon.md)
-- [button](docs/components/button.md)
-- [input](docs/components/input.md)
-- [select](docs/components/select.md)
-- [accordion](docs/components/accordion.md)
-- [modal](docs/components/modal.md)
-- [checkbox](docs/components/checkbox.md)
-- [dimming](docs/components/dimm.md)
-- [form](docs/components/form.md)
+- [flag](./docs/components/flag.md)
+- [icon](./docs/components/icon.md)
+- [button](./docs/components/button.md)
+- [input](./docs/components/input.md)
+- [select](./docs/components/select.md)
+- [accordion](./docs/components/accordion.md)
+- [modal](./docs/components/modal.md)
+- [checkbox](./docs/components/checkbox.md)
+- [dimming](./docs/components/dimm.md)
+- [form](./docs/components/form.md)
 #### alpha
-- [table](docs/components/table.md)
-- [tabs](docs/components/tabs.md)
+- [table](./docs/components/table.md)
+- [tabs](./docs/components/tabs.md)
 
-[Global implementations](docs/globals.md) have been done too
+[Global implementations](./docs/globals.md) have been done too
 # Concepts
 These have been developped deeper in this library even not completely bound to semantic. It is interwined with semantic though.
-- [form](./concepts/form.md)
-- [commanded](./concepts/commanded.md)
-- [panel](./concepts/panel.md)
+- [form](./docs/concepts/form.md)
+- [commanded](./docs/concepts/commanded.md)
+- [panel](./docs/concepts/panel.md)
 # Not implemented yet
 ## Fiddles
 As this is intended for broad audience, a list of fiddle/examples could definitely help

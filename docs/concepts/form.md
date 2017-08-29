@@ -21,7 +21,7 @@ These can simply be used "manually".
 </div>
 ```
 
-The purpose of the developpment on `forms` is to *make repetitive things unnecessary while letting the possibility to detail any specific case*. This might lead to some complications in appearance as it gives the programer several ways to reach the same sometimes; but once well understood, choices can be made clearly.
+The purpose of the development on `forms` is to *make repetitive things unnecessary while letting the possibility to detail any specific case*. This might lead to some complications in appearance as it gives the programer several ways to reach the same sometimes; but once well understood, choices can be made clearly.
 
 ## The simplest : `field`
 ### Inside the `field`
@@ -38,6 +38,7 @@ This was possible because all the fields needed an `<input type="text" />`. Now,
 
 ```html
 <s-form :model="person">
+	...
 	<s-field name="optIn" label="Opted in">
 		<input type="checkbox" v-model="user.optIn" />
 	</s-field>
@@ -45,7 +46,7 @@ This was possible because all the fields needed an `<input type="text" />`. Now,
 ```
 
 #### `Field.Input`
-This was the worst case scenario, if the programer wants to describe exactly this how field  is rendered and nothing was generalised before.
+This was the worst case scenario, if the programer wants to describe exactly how this field  is rendered and nothing was generalised before.
 Most of the time, it will just look like this :
 
 ```html
@@ -59,7 +60,7 @@ Most of the time, it will just look like this :
 `s-checkbox` is really described like this, without `v-model` nor input name - and, in the generated HTML, the label "Opted in" will be described by `<label for="optIn">...` and the checkbox with `<input type="checkbox" name="optIn" />`
 
 This is because [`s-checkbox`](../components/checkbox.md) uses the `Field.Input` mixin (as [`s-input`](../components/input.md) does).
-Refer [here](#creating-a-fieldinput) to write other `Field.Input` components
+Refer [here](#creating-a-fieldinput) to write your own `Field.Input` components
 
 ### Field-modifying form slot
 Labels and errors are displayed in the field object, in so-called `prepend` and `append` slots. The last example was equivalent to this:
@@ -94,7 +95,7 @@ Now, let's imagine we wish to use a `fancy-label`for each input, we could do thi
 
 First of all, **all** the fields will be affected by the template here given **except** if they have a specific `prepend` slot.
 
-In general, the scoped slot of the form is the static slot of the field. This works for `prepend`, `append`, `input` (this is the efault field slot) and `field` that override the whole, even prepend, append and default/input.
+In general, the scoped slot of the form is the static slot of the field. This works for `prepend`, `append`, `input` (this is the default field slot) and `field` that override the whole, even prepend, append and default/input.
 
 The scope is always the `field: VueComponent` object. It gives the programmer acces to valuable information like
 - `label`

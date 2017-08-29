@@ -1,6 +1,8 @@
 # [Form](https://semantic-ui.com/collections/form.html)
 
 Forms use a bit of semantic for shaping and much internal management. For examlpe, the validation occurs through [json-schema](http://json-schema.org/) validation. and the error display is completely customizable.
+
+There is a whole [concept](../concepts/form.md) to read about it to understand the API docs.
 ## Internal management
 
 As `form` is [commanded](../concepts/commanded.md). Its commands will just be emitted as events (the `params` beeing the only argument).
