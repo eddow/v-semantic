@@ -1,6 +1,6 @@
 <template>
 	<div class="ui segments">
-		<!--div class="ui segment">
+		<div class="ui segment">
 			<h1>Buttons</h1>
 			<s-modal v-model="modal1" closable header="">
 				Blah Blah
@@ -42,7 +42,7 @@
 			</s-select>
 			<s-checkbox label="Yes!" v-model="tchk" />
 			--{{tchk}}--
-		</div-->
+		</div>
 		<div class="ui segment">
 			<h1>Forms</h1>
 			<s-form :model="model">
@@ -52,18 +52,18 @@
 					</label>
 				</template>
 				<s-field name="big" label="Big">
-					<s-checkbox label="label" />
+					<s-checkbox label="big" />
+					<s-checkbox label="blurred" v-model="blurred" />
 				</s-field>
 				<s-field name="firstName" label="First name" />
 				<s-field name="lastName" label="Last name" />
 			</s-form>
 			<s-checkbox v-model="model.big" />
 			<s-checkbox checked />
-			<!-- TODO:BUG: check here just up, then modify a string : the field-checkbox unchecks -->
 			<s-input v-model="model.firstName" />
 			--{{model}}--
 		</div>
-		<!--div class="ui segment">
+		<div class="ui segment">
 			<h1>Accordion</h1>
 			<s-accordion>
 				<s-panel title="What is a dog?">
@@ -149,7 +149,7 @@
 					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
 				</s-panel>
 			</s-tabs>
-		</div-->
+		</div>
 	</div>
 </template>
 
@@ -170,6 +170,9 @@ export default class App extends Vue {
 		firstName: null,
 		lastName: null,
 		big: null
+	}
+	created() {
+		window.dob = this;
 	}
 	testme() {
 		console.log('test');

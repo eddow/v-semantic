@@ -68,4 +68,6 @@ export default class Field extends Vue {
 		return this.name || this.gendName || (this.gendName = genFieldName());
 	}
 }
+import Fielded from './fielded'
+Field.Input = Fielded;
 </script>

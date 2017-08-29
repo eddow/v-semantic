@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts">
-//TODO: manage labels as we manage icons
 import * as Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Command from 'directives/command'

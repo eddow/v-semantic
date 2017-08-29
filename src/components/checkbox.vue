@@ -13,7 +13,7 @@
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
-import Fielded from 'lib/fielded'
+import Fielded from './form/fielded'
 
 @Semantic('checkbox', {
 	disabled: Boolean,

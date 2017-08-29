@@ -14,7 +14,7 @@ import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
-import Fielded from 'lib/fielded'
+import Fielded from './form/fielded'
 
 @Semantic('input', {
 	loading: Boolean,
