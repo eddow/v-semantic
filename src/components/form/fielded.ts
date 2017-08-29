@@ -45,12 +45,12 @@ export default {
 		}
 	},
 	mounted() {
-		if(this.field && this.field.form) {
-			var model = this.constructor.options.model,
-				form = this.field.form,
-				name = this.field.name,
-				unwatchModel = !(model.prop in this.$options.propsData) && this.$watch('field.value', this.setModel),
-				forward2form = value=> this.field.value = value;
+		var model = this.constructor.options.model,
+			form = this.field && this.field.form,
+			unwatchModel, forward2form;
+		if(form && !(model.prop in this.$options.propsData)) {
+			unwatchModel = this.$watch('field.value', this.setModel);
+			forward2form = value=> this.field.value = value;
 			this.$on(model.event, forward2form);
 			this.unFielded = ()=> {
 				if(unwatchModel) unwatchModel();

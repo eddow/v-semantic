@@ -32,7 +32,6 @@ export default class Checkbox extends Vue {
 	@Prop() label: string
 	@Prop() state3: boolean
 	@Model('input') checked: boolean
-	@Prop() name: string
 	@Watch('checked')
 	apply(checked) {
 		if(!this.state3) checked = !!checked;
@@ -46,7 +45,6 @@ export default class Checkbox extends Vue {
 	mounted() {
 		this.apply(this.checked);
 	}
-	gendName = null;
 	configure(config) {
 		var cancelable = (name)=> {
 			config[name] = ()=> this.$cancelable(name);

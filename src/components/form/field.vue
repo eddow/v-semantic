@@ -1,14 +1,22 @@
 <template>
-	<div class="field">
-		<slot name="prepend">
-			<label v-if="label" :for="name" class="label" :style="form.labelStyle">
-				{{label}}
-			</label>
-		</slot>
+	<div :class="['field', {error: errors.length, inline}]">
+		<slot name="field">
+			<slot name="prepend">
+				<label v-if="label" :for="name" class="label" :style="form.labelStyle">
+					{{label}}
+				</label>
+			</slot>
+			<slot>
+				<s-input />
+			</slot>
+			<slot name="append">
+				<div :class="['ui', inline&&'left', 'pointing red basic error label']" v-if="errors.length">
+					<div class="" v-for="error in errors" :key="error.schemaPath">
+						{{error.message}}
+					</div>
+				</div>
+			</slot>
 		<slot>
-			<s-input type="text" :name="name" />
-		</slot>
-		<slot name="append" />
 	</div>
 </template>
 
@@ -26,42 +34,86 @@ function patchRender(h) {
 }
 @Component({
 	components: {sInput},
-	mixins: [renderWrap('initSlots')]
+	mixins: [renderWrap('initSlots')],	
+  provide() { return {field: this}; }
 })
 export default class Field extends Vue {
 	@Inject() form
-	@Provide() field = this
 	@Prop() label: string
 	@Prop() name: string
+	@Prop() info: string
+	@Prop() inline: boolean
+	@Prop() type: string
 	errors = []
 
 	value = null
 	unwatch
-	@Watch('name', {immediate: true}) setFieldName(name) {
-		if(this.unwatch) this.unwatch();
-		this.unwatch = this.$watch('form.model.'+name, function(value) {
-			this.value = value;
-		});
+	path
+	@Watch('name', {immediate: true}) setFieldName(name, oldv) {
+		var keys = [];
+		for(let key of name.split('.')) {
+			let subs = /^(.*?)(\[.*\])?$/.exec(key);
+			keys.push(subs[1]);
+			if(subs[2]) keys.push(...subs[2].split(']['));
+		}
+		this.path = keys.join('.');
+		if(this.form) {
+			this.undo(oldv);
+			this.unwatch = this.$watch('form.model.'+name, function(value) {
+				this.value = value;
+			});
+			console.assert(!this.form.fields[name],
+				`Field ${name} appears once in its form`);
+			this.form.fields[name] = this;
+		}
+	}
+	undo(name) {
+		if(this.form) {
+			delete this.form.fields[name];
+			if(this.unwatch) this.unwatch();
+		}
+	}
+	@Watch('form.errors', {immediate: true})
+	validated() {
+		var errors = this.form.fieldErrors;
+		this.errors.splice(0);
+		for(let i = 0; i< errors.length;)
+			if(errors[i].dataPath === '.'+this.path)
+				this.errors.push(...errors.splice(i, 1));
+			else ++i;
 	}
 	destroyed() {
-		if(this.unwatch) this.unwatch();
+		this.undo(this.name);
 	}
-	@Watch('value') setNewValue(value) {
+	@Watch('value')
+	setNewValue(value) {
 		if(!this.form || !this.form.model) return;
 		var obj = this.form.model,
-			keys = this.name.split('.'),
-			key = keys.pop();
-		for(let k in keys) if(!(obj = obj[k])) return;
-		obj[key] = value;
+			keys = this.path.split('.'), lvalue;
+		lvalue = keys.pop();
+		for(let key in keys) if(!(obj = obj[key])) return;
+		obj[lvalue] = value;
 	}
 
+	initSlot(toSlot: string, fromSlot: string = toSlot) {
+		let slots = this.form.$scopedSlots;
+		if(this.$slots[toSlot]) return;
+		let slot = (this.type && slots[fromSlot+'.'+this.type]) || slots[fromSlot];
+		if(slot) this.$slots[toSlot] = slot(this);
+	}
 	initSlots() {
 		if(this.form) {
-			let slots = this.form.$scopedSlots;
-			if(slots.prepend && !this.$slots.prepend)
-				this.$slots.prepend = slots.prepend(this);
-			if(slots.append && !this.$slots.append)
-				this.$slots.append = slots.append(this);
+			this.initSlot('append');
+			this.initSlot('prepend');
+			this.initSlot('field');
+			this.initSlot('input');
+
+			if(!this.$slots.field)
+				this.$slots.default = this.$slots.input;
+			else if(this.$slots.default) {
+				this.$slots.input = this.$slots.default;
+				delete this.$slots.default;
+			}
 		}
 	}
 	gendName = null;

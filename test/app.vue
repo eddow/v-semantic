@@ -45,21 +45,33 @@
 		</div>
 		<div class="ui segment">
 			<h1>Forms</h1>
-			<s-form :model="model">
-				<template slot="prepend" scope="field">
+			<s-form :model="model" :schema="schema" display-errors label-width="200">
+				<template slot="field" scope="field">
+					<label :for="field.internalName" class="ui label">
+						-{{field.label}}-
+					</label>
+					<s-field-input>
+						<s-input class="testMe" />
+					</s-field-input>
+				</template>
+				<!--template slot="prepend" scope="field">
 					<label :for="field.internalName" class="ui label">
 						-{{field.label}}-
 					</label>
 				</template>
-				<template slot="append" scope="field">
-						-{{field.errors}}-
-				</template>
-				<s-field name="big" label="Big">
+				<!--template slot="append" scope="field">
+					<ul class="ui list">
+						<li v-for="error in field.errors" :key="error.schemaPath">
+							{{error.message}}
+						<li>
+					</ul>
+				</template-->
+				<s-field inline name="big" label="Big">
 					<s-checkbox label="big" />
 					<s-checkbox label="blurred" v-model="blurred" />
 				</s-field>
-				<s-field name="firstName" label="First name" />
-				<s-field name="lastName" label="Last name" />
+				<!--s-field name="firstName" label="First name" />
+				<s-field inline name="lastName" label="Last name" /-->
 			</s-form>
 			<s-checkbox v-model="model.big" />
 			<s-checkbox checked />
@@ -169,6 +181,20 @@ export default class App extends Vue {
 	tchk: boolean = true
 	blurred: boolean = false
 	loading: boolean = false
+	schema = {
+		"title": "Person",
+		"type": "object",
+		"properties": {
+			"firstName": {
+				"type": "string"
+			},
+			"lastName": {
+				"description": "Familly name",
+				"type": "string"
+			}
+		},
+		"required": ["firstName", "lastName"]
+	}
 	model = {
 		firstName: null,
 		lastName: null,

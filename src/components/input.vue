@@ -28,8 +28,6 @@ import Fielded from './form/fielded'
 export default class Input extends Vue {
 	@Model('input') value: string
 	@Prop() placeholder: string
-	@Prop() name: string
-	gendName = null;
 	nativeInput($event) { this.$emit('input', $event.target.value); }
 	@Emit() input(value) {}
 	model = null
