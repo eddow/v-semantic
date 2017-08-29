@@ -80,9 +80,7 @@ export default class CheckboxColumn extends Vue {
 			let selection = this.selection;
 			if(!(selection instanceof Array))
 				this.$emit('selection-change', selection = []);
-			selection.length = 0;
-			if(checked) selection.push(...this.table.rows);
-			else if(selection.length) selection.push();	//emit a modified-event
+			selection.splice(0, selection.length, ...(checked?this.table.rows:[]));
 		}
 	}	
 	
