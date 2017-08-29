@@ -45,13 +45,17 @@
 		</div>
 		<div class="ui segment">
 			<h1>Forms</h1>
-			<s-form :model="model" :schema="schema" display-errors label-width="200">
+			<s-form :model="model" :schema="schema" display-errors label-width="200" inline>
 				<template slot="field" scope="field">
 					<label :for="field.internalName" class="ui label">
 						-{{field.label}}-
 					</label>
 					<s-field-input>
-						<s-input class="testMe" />
+						<s-input>
+							<template slot="prepend">
+								<s-icon :icon="field.info" />
+							</template>
+						</s-input>
 					</s-field-input>
 				</template>
 				<!--template slot="prepend" scope="field">
@@ -70,11 +74,10 @@
 					<s-checkbox label="big" />
 					<s-checkbox label="blurred" v-model="blurred" />
 				</s-field>
-				<!--s-field name="firstName" label="First name" />
-				<s-field inline name="lastName" label="Last name" /-->
+				<s-field name="firstName" label="First name" info="hand pointer" />
+				<s-field inline name="lastName" label="Last name" info="signal" />
 			</s-form>
 			<s-checkbox v-model="model.big" />
-			<s-checkbox checked />
 			<s-input v-model="model.firstName" />
 			--{{model}}--
 		</div>

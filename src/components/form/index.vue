@@ -12,7 +12,10 @@ import Command from 'directives/command'
 import * as Ajv from 'ajv'
 
 @Component({
-	provide() { return {form: this}; }
+	provide() { return {
+		form: this,
+		group: this
+	}; }
 })
 export default class Form extends Command.Commanded {
 	
@@ -20,6 +23,7 @@ export default class Form extends Command.Commanded {
 	@Prop() model: any
 	@Prop({default: {}}) schema
 	@Prop() displayErrors: boolean
+	@Prop() inline: boolean
 	@Prop({type: String, default: 'fields'}) errorPanel: 'all'|'fields'|'none'
 	fields = {}
 	ajv

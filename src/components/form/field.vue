@@ -1,8 +1,8 @@
 <template>
-	<div :class="['field', {error: errors.length, inline}]">
+	<div :class="['field', {error: errors.length, inline: isInline}]">
 		<slot name="field">
 			<slot name="prepend">
-				<label v-if="label" :for="name" class="label" :style="form.labelStyle">
+				<label v-if="label" :for="name" class="label" :style="labelStyle">
 					{{label}}
 				</label>
 			</slot>
@@ -39,10 +39,15 @@ function patchRender(h) {
 })
 export default class Field extends Vue {
 	@Inject() form
+	@Inject() group	//TODO: use `group` where we can and then create `field-group`
 	@Prop() label: string
 	@Prop() name: string
 	@Prop() info: string
-	@Prop() inline: boolean
+	@Prop({default: null}) inline: boolean
+	get isInline() {
+		return null=== this.inline && this.form ? 
+			this.form.inline : this.inline;
+	}
 	@Prop() type: string
 	errors = []
 
@@ -115,6 +120,9 @@ export default class Field extends Vue {
 				delete this.$slots.default;
 			}
 		}
+	}
+	get labelStyle() {
+		return this.form && this.form.labelStyle;
 	}
 	gendName = null;
 	get internalName() {
