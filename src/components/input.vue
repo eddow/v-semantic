@@ -34,12 +34,13 @@ export default class Input extends Vue {
 	@Emit() input(value) {}
 	model = null
 
-	@Watch('model') modelChanged(value) {
+	@Watch('model', {immediate: true})
+	modelChanged(value) {
 		if(this.value!== value) {
 			this.input(value);
 		}
 	}
-	@Watch('value', {immediate: true})
+	@Watch('value')
 	valueChanged(value) {
 		this.model = value;
 	}

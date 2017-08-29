@@ -33,7 +33,8 @@ export default class Field extends Vue {
 	@Provide() field = this
 	@Prop() label: string
 	@Prop() name: string
-	
+	errors = []
+
 	value = null
 	unwatch
 	@Watch('name', {immediate: true}) setFieldName(name) {

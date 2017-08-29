@@ -51,6 +51,9 @@
 						-{{field.label}}-
 					</label>
 				</template>
+				<template slot="append" scope="field">
+						-{{field.errors}}-
+				</template>
 				<s-field name="big" label="Big">
 					<s-checkbox label="big" />
 					<s-checkbox label="blurred" v-model="blurred" />

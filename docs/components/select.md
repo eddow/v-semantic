@@ -50,3 +50,6 @@ In the case of `command`, it will raise the `command` event and take no other ac
 - `show(): void` - can cancel the operation by throwing `"cancel"`
 - `visible(): boolean`
 - `clear(): void`
+
+## TODOs
+The multiple selection is still untested
