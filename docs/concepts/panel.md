@@ -1,4 +1,4 @@
-# Panel (thislibrary concept)
+# Panel (this library concept)
 A panel is basically a content and a title that is supposed to be ripped apart. It is used for exemple in [accordion](./accordion.md) and [tabs](./tabs.md).
 
 A panel has no reason to be outside of a panel container (it will show an injection error even), this is a sub-component of other components

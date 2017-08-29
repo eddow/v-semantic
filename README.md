@@ -54,11 +54,17 @@ These should work and implement their intended final behaviour, even if details 
 - [modal](docs/components/modal.md)
 - [checkbox](docs/components/checkbox.md)
 - [dimming](docs/components/dimm.md)
+- [form](docs/components/form.md)
 #### alpha
 - [table](docs/components/table.md)
 - [tabs](docs/components/tabs.md)
 
 [Global implementations](docs/globals.md) have been done too
+# Concepts
+These have been developped deeper in this library even not completely bound to semantic. It is interwined with semantic though.
+- [form](./concepts/form.md)
+- [commanded](./concepts/commanded.md)
+- [panel](./concepts/panel.md)
 # Not implemented yet
 ## Fiddles
 As this is intended for broad audience, a list of fiddle/examples could definitely help

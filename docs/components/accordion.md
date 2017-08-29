@@ -1,5 +1,6 @@
 # [Accordion](https://semantic-ui.com/modules/accordion.html)
-Nested accordions still behave chaotically!
+> Nested accordions still behave chaotically!
+
 ## Exemple
 ```html
 		<s-accordion>
@@ -13,7 +14,7 @@ Nested accordions still behave chaotically!
 		</s-accordion>
 ```
 ## Slots
-An `accordion` is a [panel](./panel.md) container, so panels are described in the main slot.
+An `accordion` is a [panel](../concepts/panel.md) container, so panels are described in the main slot.
 ## Properties
 - `defaultIcon: string` The icon of the items. Defaulted to `'dropdown'`
 ### Forwarded to classes

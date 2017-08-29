@@ -21,7 +21,7 @@ Inside of the modal, a code just has to call the invoker with a string argument 
 ```html
 <s-button @click="myModal1('send')">Send!</s-button>
 ```
-The directive `modal` can be used as a shortcut to the simple case `@click="xxxModal(command)` is :
+As `modal` is [commanded](../concepts/commanded.md), the directive `command` can be used as a shortcut to the simple case `@click="xxxModal(command)` is :
 ```html
 <s-button v-command:send>Send!</s-button>
 ```

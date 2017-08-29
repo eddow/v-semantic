@@ -3,6 +3,8 @@
 Forms use a bit of semantic for shaping and much internal management. For examlpe, the validation occurs through [json-schema](http://json-schema.org/) validation. and the error display is completely customizable.
 ## Internal management
 
+As `form` is [commanded](../concepts/commanded.md). Its commands will just be emitted as events (the `params` beeing the only argument).
+
 ### Fields
 Forms come with their component `field` that automatise a big deal of model/field management. For instance, each field can specify a `prepend` and `append` slots. If a field has no `append` (or `prepend`) slot, it will use the `form`' `append` (or `prepend`) slot. If there is none,
 - the `append` slot will display the label of the field.
@@ -10,18 +12,6 @@ Forms come with their component `field` that automatise a big deal of model/fiel
 
 When described in the form, the `append` and `prepend` slot have a scope : the field `VueComponent`.
 
-A `field` will either contain nothing and display an `<input type="text" />` or contain a `Field.Input`. There a two `Field.Input` in the library :
-- [`input`](./input.md)
-- [`checkbox`](./checkbox.md)
-
-To create a custom `Field.Input`, one has to use it as a mixin. The component will therefore have `name` and an `internalName` to use as the input name `<input :name="internalName" />` in order for the labels to be managed.
-
-```typescript
-import {Field} from 'v-semantic'
-
-@Component({mixins:[Field.Input]})
-class...
-```
 ### v-model
 Another behaviour of `Field.Input` is to attach its model to the field if none is specified. Here are two equivalent codes:
 ```html
@@ -36,6 +26,8 @@ Another behaviour of `Field.Input` is to attach its model to the field if none i
 		<s-input v-model="model.propX" />
 ```
 
+
+#TODO:DOC
 ## Slots
 
 - The `default` slot is the one displayed.

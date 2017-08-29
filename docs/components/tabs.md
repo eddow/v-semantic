@@ -13,7 +13,7 @@
 		</s-tab>
 ```
 ## Slots
-An `tabs` is a [panel](./panel.md) container, so panels are described in the main slot.
+An `tabs` is a [panel](../concepts/panel.md) container, so panels are described in the main slot.
 
 ## Properties
 - `defaultIcon: string` The icon of the items. Defaulted to `''`

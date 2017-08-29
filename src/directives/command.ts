@@ -6,6 +6,7 @@ abstract class Commanded extends Vue {
 
 export default {
 	bind(el, binding, vnode, oldVnode) {
+		//TODO: if no instance, bind to the `click` event of `el`
 		var inst = vnode.componentInstance, originalClick = inst.click, commanded = inst.$parent;
 		if(!originalClick) throw new Error('v-command directive applies only on component exposing events.');
 		while(commanded && !(commanded instanceof Commanded))

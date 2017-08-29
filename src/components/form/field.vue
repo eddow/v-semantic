@@ -7,7 +7,7 @@
 				</label>
 			</slot>
 			<slot>
-				<s-input />
+				<input type="text" v-model="value" />
 			</slot>
 			<slot name="append">
 				<div :class="['ui', inline&&'left', 'pointing red basic error label']" v-if="errors.length">
@@ -40,6 +40,7 @@ function patchRender(h) {
 export default class Field extends Vue {
 	@Inject() form
 	@Inject() group	//TODO: use `group` where we can and then create `field-group`
+	//TODO: make recursive get - for `inline`, `labelWidth`, etc. and the slots
 	@Prop() label: string
 	@Prop() name: string
 	@Prop() info: string
