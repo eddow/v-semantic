@@ -1,6 +1,7 @@
 <template>
-	<div>
-		<div>
+	<div class="ui segments">
+		<!--div class="ui segment">
+			<h1>Buttons</h1>
 			<s-modal v-model="modal1" closable header="">
 				Blah Blah
 				<s-button v-command:cancel>Cancel</s-button>
@@ -25,7 +26,8 @@
 			</s-button>
 			<s-button icon="add square" />
 		</div>
-		<div>
+		<div class="ui segment">
+			<h1>Inputs</h1>
 			<s-input>
 				<s-icon slot="prepend" circular link icon="search" @click="testme" />
 				<s-select class="label" slot="append" v-model="ddn" text="Gender" on="hover">
@@ -40,8 +42,39 @@
 			</s-select>
 			<s-checkbox label="Yes!" v-model="tchk" />
 			--{{tchk}}--
+		</div-->
+		<div class="ui segment">
+			<h1>Forms</h1>
+			<s-form :model="model">
+				<template slot="prepend" scope="field">
+					<label :for="field.internalName" class="ui label">
+						-{{field.label}}-
+					</label>
+				</template>
+				<s-field name="big" label="Big">
+					<s-checkbox label="label" />
+				</s-field>
+				<!--s-field name="firstName" label="First name" />
+				<s-field name="lastName" label="Last name" /-->
+			</s-form>
+			<s-checkbox v-model="model.big" />
+			<!-- TODO:BUG: check here just up, then modify a string : the field-checkbox unchecks -->
+			<!--s-input v-model="model.firstName" /-->
+			--{{model}}--
 		</div>
-		<div>
+		<!--div class="ui segment">
+			<h1>Accordion</h1>
+			<s-accordion>
+				<s-panel title="What is a dog?">
+					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+				</s-panel>
+				<s-panel title="What kinds of dogs are there?">
+					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+				</s-panel>
+			</s-accordion>
+		</div>
+		<div class="ui segment">
+			<h1>Table (blurr)</h1>
 			<s-dimmable blurring v-model="blurred" icon="heart" message="Dimmed Message!">
 				<s-table
 					celled
@@ -69,18 +102,9 @@
 					--{{row}}::{{selection}}--
 			</s-dimmable>
 		</div>
-		<div>
-			<s-accordion styled v-loading.indeterminate="loading">
-				<s-panel title="What is a dog?">
-					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-				</s-panel>
-				<s-panel title="What kinds of dogs are there?">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-			</s-accordion>
-		</div>
-		<div>
-			<s-tabs position="top">
+		<div class="ui segment">
+			<h1>Tabs (loading)</h1>
+			<s-tabs v-loading.indeterminate="loading">
 				<s-panel title="What is a dog?">
 					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
 				</s-panel>
@@ -124,7 +148,7 @@
 					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
 				</s-panel>
 			</s-tabs>
-		</div>
+		</div-->
 	</div>
 </template>
 
@@ -141,6 +165,11 @@ export default class App extends Vue {
 	tchk: boolean = true
 	blurred: boolean = false
 	loading: boolean = false
+	model = {
+		firstName: null,
+		lastName: null,
+		big: null
+	}
 	testme() {
 		console.log('test');
 	}

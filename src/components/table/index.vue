@@ -135,6 +135,8 @@ export default class Table extends Vue {
 			this.$emit('row-click', null);
 	}
 }
+
+//This has to be available from v-semantic users => we cannot export from this file
 Table.managedColumn = {
 	props: {
 		width: {type:[Number, String]},

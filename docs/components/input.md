@@ -4,10 +4,9 @@
 Buttons have two slots (`prepend` and `append`) where an `icon`, a `button` or something with the class `label` can be used.
 
 The `input` slot can also be given, it is defaulted to a simple text input. Its scope is composed of :
-- `internalName` basically `<input name="...">` the name to give to the input 
-- `placeholder`
-- `value`
-- `input` is a callback with one argument (the new value) as `value` is given and changing it won't emit anything
+- `name` will have a value even if no name was given.
+- `value` can be used as a `v-model`
+- `input` is a callback with one argument (the new value)
 ## Properties
 The `v-model` is the value and raises the `input` event on change.
 - `placeholder: string`

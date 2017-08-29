@@ -8,14 +8,12 @@
 				class="title"
 				template="title"
 				:ripper="panel"
-				:data-tab="panel.internalName"
 			/>
 			<ripped
 				tag="div"
 				:key="'c'+uid"
 				class="content"
 				:ripper="panel"
-				:data-tab="panel.internalName"
 			/>
 		</template>
 	</div>

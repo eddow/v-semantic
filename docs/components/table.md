@@ -33,10 +33,10 @@ A custom column must contain only a `ripper` and provide two slots (an unscoped 
 
 ```typescript
 import {Ripper} from 'vue-ripper'
-import {components} from 'v-semantic'
+import {Table} from 'v-semantic'
 @Component({
 	components: {Ripper},
-	mixins: [components.Table.managedColumn]
+	mixins: [Table.managedColumn]
 })
 ```
 

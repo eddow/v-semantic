@@ -36,7 +36,3 @@ Vue.mixin({
 		}
 	}
 });
-
-export abstract class Commanded extends Vue {
-	abstract invoke(name: string, params: any);
-}

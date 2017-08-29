@@ -34,7 +34,9 @@ Sparky.task("build", ()=> {
 		},
 		alias: {
 			//vue: 'vue/dist/vue.common.js',
-			'lib': '~/lib'
+			lib: '~/lib',
+			components: '~/components',
+			directives: '~/directives'
 		},
 		globals: {
 			'v-semantic': '*'
@@ -72,7 +74,9 @@ Sparky.task("test", ()=> {
 		alias: {
 			vue: 'vue/dist/vue.common.js',
 			'v-semantic': '~/src/index',
-			'lib': '~/src/lib'
+			lib: '~/src/lib',
+			components: '~/src/components',
+			directives: '~/src/directives'
 		},
 		shim: {
 			jquery: {

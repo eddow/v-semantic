@@ -15,7 +15,7 @@
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
-import {Commanded} from 'lib/utils'
+import Command from 'directives/command'
 
 @Semantic('modal',
 {}, {
@@ -35,15 +35,15 @@ import {Commanded} from 'lib/utils'
 }, [
 	'visible'
 ])
-export default class Modal extends Commanded {
+export default class Modal extends Command.Commanded {
 	@Prop() header: string
 	@Prop() scrolling: boolean
 	@Prop() image: boolean
 
 	@Model('set-callback') callback: ()=>void
 	@Watch('callback') forceCallback(v) {
-		if(this.invoke!= v)
-			this.$emit('set-callback', this.invoke)
+		if(this.command!= v)
+			this.$emit('set-callback', this.command)
 	}
 	promise = null
 	configure(config) {
@@ -58,14 +58,14 @@ export default class Modal extends Commanded {
 			this.promise = null;
 		}
 	}
-	onApprove() { this.invoke('ok'); }
-	onDeny() { this.invoke('cancel'); }
+	onApprove() { this.command('ok'); }
+	onDeny() { this.command('cancel'); }
 
-	//invoke()
-	//invoke(command: string)
-	//invoke(command: string, params: any)
-	//invoke(resolve: function, reject: function)
-	invoke(command?: string|function, params?: any|function) {
+	//command()
+	//command(command: string)
+	//command(command: string, params: any)
+	//command(resolve: function, reject: function)
+	command(command?: string|function, params?: any|function) {
 		if('string'!== typeof command) {
 			if(this.promise) throw new Error('Modal invoked while being opened already')
 

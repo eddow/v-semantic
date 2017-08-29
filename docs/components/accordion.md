@@ -1,4 +1,5 @@
 # [Accordion](https://semantic-ui.com/modules/accordion.html)
+Nested accordions still behave chaotically!
 ## Exemple
 ```html
 		<s-accordion>

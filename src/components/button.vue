@@ -15,7 +15,7 @@ import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import icon from './icon.vue'
-//TODO: command (+injection from modal per ex.)
+
 //TODO: animated (visible/hidden content)
 //TODO: toggle JS
 @Semantic('button', {

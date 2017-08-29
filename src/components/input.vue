@@ -1,11 +1,11 @@
 <template>
-	<span :class="[cls, dynCls]">
+	<div :class="[cls, dynCls, {field: !!form}]">
 		<slot name="prepend" />
-		<slot name="input" :inputName="internalName" :placeholder="placeholder" :value="value" :input="input">
-			<input :name="internalName" type="text" :placeholder="placeholder" :value="value" @input="nativeInput" />
+		<slot name="input" :inputName="internalName" :value="model" :input="input">
+			<input :name="internalName" type="text" :placeholder="placeholder" v-model="model" />
 		</slot>
 		<slot name="append" />
-	</span>
+	</div>
 </template>
 
 <script lang="ts">
@@ -14,9 +14,7 @@ import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
-import {idSpace} from 'lib/utils'
-
-const genInputName = idSpace('cbx');
+import Fielded from 'lib/fielded'
 
 @Semantic('input', {
 	loading: Boolean,
@@ -24,19 +22,27 @@ const genInputName = idSpace('cbx');
 	error: Boolean,
 	transparent: Boolean,
 	fluid: Boolean
+}, {
+	mixins: [Fielded]
 })
 export default class Input extends Vue {
-	@Model('input')
-	value: string
+	@Model('input') value: string
 	@Prop() placeholder: string
-
 	@Prop() name: string
 	gendName = null;
-	get internalName() {
-		return this.name || this.gendName || (this.gendName = genInputName())
-	}
 	nativeInput($event) { this.$emit('input', $event.target.value); }
-	@Emit() input() {}
+	@Emit() input(value) {}
+	model = null
+
+	@Watch('model') modelChanged(value) {
+		if(this.value!== value) {
+			this.input(value);
+		}
+	}
+	@Watch('value', {immediate: true})
+	valueChanged(value) {
+		this.model = value;
+	}
 	get dynCls() {
 		var rv = [];
 		var searchType = function(slots, types) {

@@ -12,9 +12,8 @@
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
-import {idSpace} from 'lib/utils'
+import Fielded from 'lib/fielded'
 
-const genInputName = idSpace('cbx');
 @Semantic('checkbox', {
 	disabled: Boolean,
 	readOnly: Boolean,
@@ -25,7 +24,9 @@ const genInputName = idSpace('cbx');
 }, [
 	'enable',
 	'disable'
-])
+], {
+	mixins: [Fielded]
+})
 export default class Checkbox extends Vue {
 	@Prop() label: string
 	@Prop() state3: boolean
@@ -63,9 +64,6 @@ export default class Checkbox extends Vue {
 		}
 		for(let cb of ['beforeChecked', 'beforeIndeterminate', 'beforeDeterminate', 'beforeUnchecked'])
 			cancelable(cb);
-	}
-	get internalName() {
-		return this.name || this.gendName || (this.gendName = genInputName())
 	}
 }
 </script>
