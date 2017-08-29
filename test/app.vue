@@ -54,12 +54,13 @@
 				<s-field name="big" label="Big">
 					<s-checkbox label="label" />
 				</s-field>
-				<!--s-field name="firstName" label="First name" />
-				<s-field name="lastName" label="Last name" /-->
+				<s-field name="firstName" label="First name" />
+				<s-field name="lastName" label="Last name" />
 			</s-form>
 			<s-checkbox v-model="model.big" />
+			<s-checkbox checked />
 			<!-- TODO:BUG: check here just up, then modify a string : the field-checkbox unchecks -->
-			<!--s-input v-model="model.firstName" /-->
+			<s-input v-model="model.firstName" />
 			--{{model}}--
 		</div>
 		<!--div class="ui segment">

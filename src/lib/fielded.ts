@@ -5,7 +5,9 @@ import {renderWrap} from 'lib/render'
 const genInputName = idSpace('inp');
 
 export default {
-	mixins: [renderWrap('importValue')],
+	mixins: [renderWrap(function() {
+		if(this.field) this.setModel(this.field.value);
+	})],
 	props: {
 		name: {type: String}
 	},
@@ -29,11 +31,17 @@ export default {
 	},
 	// </patch>
 	methods: {
-		importValue() {
-			var prop = this.constructor.options.model.prop,
-				props = this.$options.propsData;
-			if(!(prop in props))
-				props[prop] = this.field.value;
+		setModel(value) {
+			if(this.field) {
+				var prop = this.constructor.options.model.prop,
+					parent = this.$parent;	//This is a hack that disables the warning
+					
+				if(!(prop in this.$options.propsData)) {
+					this.$parent = null;
+					this[prop] = value;
+					this.$parent = parent;
+				}
+			}
 		}
 	},
 	mounted() {
@@ -41,22 +49,7 @@ export default {
 			var model = this.constructor.options.model,
 				form = this.field.form,
 				name = this.field.name,
-				unwatchModel = this.$watch('field.value', ()=> {
-					this.$forceUpdate();
-					//This is hacky, we know which property to upgrade,
-					// and we know it was not bound : !(model.prop in this.$options.propsData)
-					// Now, we have to find a way to modify the given property without Vue complaining that we modify a property directly
-					/*
-					var parent = this.$parent;	//This is a hack that disables the warning
-					this.$parent = null;
-					this[model.prop] = v;
-					this.$parent = parent;*/
-					//TODO: patch this on rendering; redirect rendering in "created" too,
-					// or make a render-wrapper
-					//this.$options.propsData[model.prop] = v;
-					/*this.$parent.$forceUpdate();	//We update the parent twice with this, but it would badly update it after
-					//this.$vnode.data.hook.prepatch(this.$vnode,this.$vnode);*/
-				}),
+				unwatchModel = !(model.prop in this.$options.propsData) && this.$watch('field.value', this.setModel),
 				forward2form = value=> this.field.value = value;
 			this.$on(model.event, forward2form);
 			this.unFielded = ()=> {

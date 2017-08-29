@@ -3,6 +3,7 @@
 		<input
 			:name="internalName"
 			type="checkbox"
+			:checked="checked"
 		>
 		<label :for="internalName"><slot>{{label}}</slot></label>
 	</div>
