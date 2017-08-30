@@ -10,6 +10,8 @@ The classes specific to a component are set as boolean properties of the compone
 <button class="primary">Click me!</button>
 ```
 
+There is a [live demo/preview](https://rawgit.com/eddow/v-semantic/master/test/index.html)
+
 ## Installation
 Beta stade: 
 
