@@ -121,7 +121,7 @@ These are the only *like* buttons that have a real effect.
 
 - [paypal.me/eeddow](https://www.paypal.me/eeddow)
 - ETH: 0xb79b61130bc5726ddab6c1d59c3e0479afe69540
-- BTC: 39ybn3KGNUvZrhifaLJcf4cJdzkGMdfAMT
+- BTC: 38HbE73qfLf2qP6Ce1ppYwZf458nugS3KY
 - BCH: 3K81iYWwLZuWXY1qHcBL559FYraUqKMkEp
 ### Also,
 If you wanna help, please do.
