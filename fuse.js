@@ -1,6 +1,6 @@
 const {
 	Sparky, FuseBox, UglifyJSPlugin, TypeScriptHelpers, CSSPlugin, EnvPlugin, VuePlugin,
-	JSONPlugin, BabelPlugin, HotReloadPlugin, QuantumPlugin
+	JSONPlugin, BabelPlugin, HotReloadPlugin, QuantumPlugin, RawPlugin
 } = require('fuse-box');
 let producer;
 let production = false;
@@ -58,6 +58,15 @@ Sparky.task("build", ()=> {
 	return fuse.run();
 });
 Sparky.task("test", ()=> {
+	const fuseSrc = FuseBox.init({
+		homeDir: "test/routes",
+		output: "test/$name.js",
+		package: 'source',
+		plugins: [
+			RawPlugin('*.vue'),
+			VuePlugin()
+		]
+	});
 	const fuse = FuseBox.init({
 		homeDir: ".",
 		output: "test/$name.js",
@@ -89,17 +98,19 @@ Sparky.task("test", ()=> {
 	const test = fuse.bundle("test")
 		.watch('(test|src)/**(vue|ts|html)')
 		//.sourceMaps(true)
-		//.plugin(HotReloadPlugin({port: 4445}))
-		.instructions('!> [test/index.ts] - *.d.ts');
+		.instructions('!> [test/index.ts] +test/routes/*.vue -*.d.ts');
+		
+	const source = fuseSrc.bundle("source")
+		.watch('**')
+		.plugin()
+		.instructions('!>[*.vue]');
 	
 	const vendor = fuse.bundle("vendor")
 		//.sourceMaps(true)
-		//.plugin(HotReloadPlugin({port: 4445}))
 		.instructions('~ [test/index.ts] +tslib');
 
-	return fuse.run().then((fuseProducer)=> {
-		producer = fuseProducer;
-	});
+	fuseSrc.run();
+	return fuse.run();
 });
 // main task
 Sparky.task("default", ["clean", "build"], ()=> {});

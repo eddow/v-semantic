@@ -10263,11 +10263,23 @@ require('semantic-ui/dist/semantic.min.css');
 var Vue = require('vue/dist/vue.common.js');
 var v_semantic_1 = require('~/src/index');
 Vue.use(v_semantic_1.default);
+var VueRouter = require('vue-router');
+Vue.use(VueRouter);
+var VueCodeMirror = require('vue-codemirror');
+Vue.use(VueCodeMirror);
 var app_vue_1 = require('./app.vue');
 new Vue({
+    router: new VueRouter({
+        mode: 'hash',
+        routes: require('./routes').routes
+    }),
     el: 'app',
     components: { App: app_vue_1.default }
 });
+require('codemirror/mode/meta');
+require('codemirror/mode/vue/vue');
+require('codemirror/lib/codemirror.css');
+require('codemirror/theme/base16-dark.css');
 });
 ___scope___.file("src/index.js", function(exports, require, module, __filename, __dirname){
 
@@ -13613,420 +13625,341 @@ var _v = function (exports) {
                     r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
+    var __metadata = this && this.__metadata || function (k, v) {
+        if (typeof Reflect === 'object' && typeof Reflect.metadata === 'function')
+            return Reflect.metadata(k, v);
+    };
     Object.defineProperty(exports, '__esModule', { value: true });
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
+    var routes_1 = require('./routes');
     var App = function (_super) {
         __extends(App, _super);
         function App() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.ddn = '';
-            _this.row = null;
-            _this.rows = [
-                { a: 1 },
-                { a: 3 },
-                { a: 5 }
-            ];
-            _this.selection = [];
-            _this.tchk = true;
-            _this.blurred = false;
-            _this.loading = false;
-            _this.schema = {
-                'title': 'Person',
-                'type': 'object',
-                'properties': {
-                    'firstName': { 'type': 'string' },
-                    'lastName': {
-                        'description': 'Familly name',
-                        'type': 'string'
-                    }
+            _this.routes = routes_1.routes;
+            _this.code = null;
+            _this.showSource = false;
+            _this.editorOptions = {
+                tabSize: 2,
+                mode: 'text/x-vue',
+                theme: 'base16-dark',
+                lineNumbers: true,
+                line: true,
+                foldGutter: true,
+                gutters: [
+                    'CodeMirror-linenumbers',
+                    'CodeMirror-foldgutter'
+                ],
+                styleSelectedText: true,
+                highlightSelectionMatches: {
+                    showToken: /\w/,
+                    annotateScrollbar: true
                 },
-                'required': [
-                    'firstName',
-                    'lastName'
-                ]
-            };
-            _this.model = {
-                firstName: null,
-                lastName: null,
-                big: null
+                readOnly: true
             };
             return _this;
         }
-        App.prototype.created = function () {
-            window.dob = this;
+        App.prototype.loadComponent = function (route) {
+            this.code = route.name ? require('source/' + route.name + '.vue') : '// nothing';
         };
-        App.prototype.testme = function () {
-            console.log('test');
+        App.prototype.initCM = function () {
+            var _this = this;
+            setTimeout(function () {
+                return _this.$refs.cm.refresh();
+            });
         };
+        __decorate([
+            vue_property_decorator_1.Watch('$route', { immediate: true }),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], App.prototype, 'loadComponent', null);
+        __decorate([
+            vue_property_decorator_1.Watch('showSource'),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', []),
+            __metadata('design:returntype', void 0)
+        ], App.prototype, 'initCM', null);
         App = __decorate([vue_property_decorator_1.Component], App);
         return App;
     }(Vue);
     exports.default = App;
 };
+require('fuse-box-css')('test/app.vue', '\r\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\r\n}\r\n.work {\r\n\theight: calc(100% - 80px);\r\n}\r\n.work-pane {\r\n\theight: 100%;\r\n\toverflow: auto;\r\n}\r\ndiv.CodeMirror {\r\n\theight: 100%;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
-    return _c('div', { staticClass: 'ui segments' }, [
-        _c('div', { staticClass: 'ui segment' }, [
-            _c('h1', [_vm._v('Buttons')]),
-            _vm._v(' '),
-            _c('s-modal', {
-                attrs: {
-                    'closable': '',
-                    'header': ''
-                },
-                model: {
-                    value: _vm.modal1,
-                    callback: function ($$v) {
-                        _vm.modal1 = $$v;
-                    },
-                    expression: 'modal1'
-                }
-            }, [
-                _vm._v('\n\t\t\tBlah Blah\n\t\t\t'),
-                _c('s-button', {
-                    directives: [{
-                            name: 'command',
-                            rawName: 'v-command:cancel',
-                            arg: 'cancel'
-                        }]
-                }, [_vm._v('Cancel')]),
+    return _c('div', { staticClass: 'screen ui grid' }, [
+        _c('div', { staticClass: 'ui inverted vertical menu two wide column' }, [
+            _c('div', { staticClass: 'item' }, [
+                _c('label', { attrs: { 'for': 'ss' } }, [_vm._v('Show source')]),
                 _vm._v(' '),
-                _c('s-button', {
-                    directives: [{
-                            name: 'command',
-                            rawName: 'v-command:ok',
-                            arg: 'ok'
-                        }]
-                }, [_vm._v('Ok')])
-            ], 1),
-            _vm._v(' '),
-            _c('s-button', {
-                on: {
-                    'click': function ($event) {
-                        _vm.modal1();
-                    }
-                }
-            }, [_vm._v('\n\t\t\tmodal\n\t\t')]),
-            _vm._v(' '),
-            _c('s-button', {
-                on: {
-                    'click': function ($event) {
-                        _vm.blurred = !_vm.blurred;
-                    }
-                }
-            }, [
-                _c('s-icon', {
-                    attrs: { 'icon': 'save' },
-                    slot: 'prepend'
-                }),
-                _vm._v('\n\t\t\tblurr\n\t\t')
-            ], 1),
-            _vm._v(' '),
-            _c('s-button', {
-                attrs: { 'icon': 'plus' },
-                on: {
-                    'click': function ($event) {
-                        _vm.loading = !_vm.loading;
-                    }
-                }
-            }, [_vm._v('\n\t\t\tloading\n\t\t')]),
-            _vm._v(' '),
-            _c('s-button', {
-                on: {
-                    'click': function ($event) {
-                        _vm.loading = !_vm.loading && 'loading!';
-                    }
-                }
-            }, [
-                _c('s-icon', {
-                    attrs: { 'icon': 'minus' },
-                    slot: 'append'
-                }),
-                _vm._v('\n\t\t\tloading text\n\t\t')
-            ], 1),
-            _vm._v(' '),
-            _c('s-button', [_c('s-icon', { attrs: { 'icon': 'add circle' } })], 1),
-            _vm._v(' '),
-            _c('s-button', { attrs: { 'icon': 'add square' } })
-        ], 1),
-        _vm._v(' '),
-        _c('div', { staticClass: 'ui segment' }, [
-            _c('h1', [_vm._v('Inputs')]),
-            _vm._v(' '),
-            _c('s-input', [
-                _c('s-icon', {
+                _c('s-checkbox', {
                     attrs: {
-                        'circular': '',
-                        'link': '',
-                        'icon': 'search'
+                        'name': 'ss',
+                        'toggle': ''
                     },
-                    on: { 'click': _vm.testme },
-                    slot: 'prepend'
-                }),
-                _vm._v(' '),
-                _c('s-select', {
-                    staticClass: 'label',
-                    attrs: {
-                        'text': 'Gender',
-                        'on': 'hover'
-                    },
-                    slot: 'append',
                     model: {
-                        value: _vm.ddn,
+                        value: _vm.showSource,
                         callback: function ($$v) {
-                            _vm.ddn = $$v;
+                            _vm.showSource = $$v;
                         },
-                        expression: 'ddn'
-                    }
-                }, [
-                    _c('s-option', { attrs: { 'value': 'M' } }, [_vm._v('Male')]),
-                    _vm._v(' '),
-                    _c('s-option', { attrs: { 'value': 'F' } }, [_vm._v('Female')])
-                ], 1)
-            ], 1),
-            _vm._v('\n\t\t--' + _vm._s(_vm.ddn) + '--\n\t\t'),
-            _c('s-select', {
-                attrs: {
-                    'inline': '',
-                    'action': 'select',
-                    'text': 'Gender',
-                    'on': 'hover'
-                },
-                model: {
-                    value: _vm.ddn,
-                    callback: function ($$v) {
-                        _vm.ddn = $$v;
-                    },
-                    expression: 'ddn'
-                }
-            }, [
-                _c('s-option', { attrs: { 'value': 'M' } }, [_vm._v('Male')]),
-                _vm._v(' '),
-                _c('s-option', { attrs: { 'value': 'F' } }, [_vm._v('Female')])
-            ], 1),
-            _vm._v(' '),
-            _c('s-checkbox', {
-                attrs: { 'label': 'Yes!' },
-                model: {
-                    value: _vm.tchk,
-                    callback: function ($$v) {
-                        _vm.tchk = $$v;
-                    },
-                    expression: 'tchk'
-                }
-            }),
-            _vm._v('\n\t\t--' + _vm._s(_vm.tchk) + '--\n\t')
-        ], 1),
-        _vm._v(' '),
-        _c('div', { staticClass: 'ui segment' }, [
-            _c('h1', [_vm._v('Forms')]),
-            _vm._v(' '),
-            _c('s-form', {
-                attrs: {
-                    'model': _vm.model,
-                    'schema': _vm.schema,
-                    'display-errors': '',
-                    'label-width': '200',
-                    'inline': ''
-                },
-                scopedSlots: _vm._u([{
-                        key: 'field',
-                        fn: function (field) {
-                            return [
-                                _c('label', {
-                                    staticClass: 'ui label',
-                                    attrs: { 'for': field.internalName }
-                                }, [_vm._v('\n\t\t\t\t\t-' + _vm._s(field.label) + '-\n\t\t\t\t')]),
-                                _vm._v(' '),
-                                _c('s-field-input', [_c('s-input', [_c('template', { slot: 'prepend' }, [_c('s-icon', { attrs: { 'icon': field.info } })], 1)], 2)], 1)
-                            ];
-                        }
-                    }])
-            }, [
-                _c('s-field', {
-                    attrs: {
-                        'inline': '',
-                        'name': 'big',
-                        'label': 'Big'
-                    }
-                }, [
-                    _c('s-checkbox', { attrs: { 'label': 'big' } }),
-                    _vm._v(' '),
-                    _c('s-checkbox', {
-                        attrs: { 'label': 'blurred' },
-                        model: {
-                            value: _vm.blurred,
-                            callback: function ($$v) {
-                                _vm.blurred = $$v;
-                            },
-                            expression: 'blurred'
-                        }
-                    })
-                ], 1),
-                _vm._v(' '),
-                _c('s-field', {
-                    attrs: {
-                        'name': 'firstName',
-                        'label': 'First name',
-                        'info': 'hand pointer'
-                    }
-                }),
-                _vm._v(' '),
-                _c('s-field', {
-                    attrs: {
-                        'inline': '',
-                        'name': 'lastName',
-                        'label': 'Last name',
-                        'info': 'signal'
+                        expression: 'showSource'
                     }
                 })
             ], 1),
             _vm._v(' '),
-            _c('s-checkbox', {
-                model: {
-                    value: _vm.model.big,
-                    callback: function ($$v) {
-                        _vm.model.big = $$v;
-                    },
-                    expression: 'model.big'
-                }
-            }),
-            _vm._v(' '),
-            _c('s-input', {
-                model: {
-                    value: _vm.model.firstName,
-                    callback: function ($$v) {
-                        _vm.model.firstName = $$v;
-                    },
-                    expression: 'model.firstName'
-                }
-            }),
-            _vm._v('\n\t\t--' + _vm._s(_vm.model) + '--\n\t')
-        ], 1),
+            _vm._l(_vm.routes, function (route, index) {
+                return _c('a', {
+                    key: index,
+                    staticClass: 'item',
+                    attrs: { 'href': '#' + route.path }
+                }, [_vm._v('\n\t\t\t' + _vm._s(route.menu) + '\n\t\t')]);
+            })
+        ], 2),
         _vm._v(' '),
-        _c('div', { staticClass: 'ui segment' }, [
-            _c('h1', [_vm._v('Accordion')]),
-            _vm._v(' '),
-            _c('s-accordion', [
-                _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
-            ], 1)
-        ], 1),
+        _c('div', {
+            class: [
+                'work-pane demo',
+                _vm.showSource ? 'seven' : 'fourteen',
+                'wide column'
+            ]
+        }, [_c('router-view')], 1),
         _vm._v(' '),
-        _c('div', { staticClass: 'ui segment' }, [
-            _c('h1', [_vm._v('Table (blurr)')]),
-            _vm._v(' '),
-            _c('s-dimmable', {
-                attrs: {
-                    'blurring': '',
-                    'icon': 'heart',
-                    'message': 'Dimmed Message!'
-                },
+        _c('div', {
+            directives: [{
+                    name: 'show',
+                    rawName: 'v-show',
+                    value: _vm.showSource,
+                    expression: 'showSource'
+                }],
+            staticClass: 'work-pane code seven wide column'
+        }, [_c('codemirror', {
+                ref: 'cm',
+                attrs: { 'options': _vm.editorOptions },
                 model: {
-                    value: _vm.blurred,
+                    value: _vm.code,
                     callback: function ($$v) {
-                        _vm.blurred = $$v;
+                        _vm.code = $$v;
                     },
-                    expression: 'blurred'
+                    expression: 'code'
                 }
-            }, [
-                _c('s-table', {
-                    attrs: {
-                        'celled': '',
-                        'selectable': '',
-                        'rows': _vm.rows,
-                        'very-basic': '',
-                        'body-height': 180
-                    },
-                    model: {
-                        value: _vm.row,
-                        callback: function ($$v) {
-                            _vm.row = $$v;
-                        },
-                        expression: 'row'
-                    }
-                }, [
-                    _c('div', { slot: 'header' }, [_vm._v('\n\t\t\t\t\tqwe\n\t\t\t\t')]),
-                    _vm._v(' '),
-                    _c('s-column', {
-                        attrs: { 'header': 'A' },
-                        scopedSlots: _vm._u([{
-                                key: 'default',
-                                fn: function (scope) {
-                                    return [
-                                        _vm._v('\n\t\t\t\t\t\ta' + _vm._s(scope.row.a) + ' '),
-                                        _c('s-button', [_vm._v('Tyup')])
-                                    ];
-                                }
-                            }])
-                    }),
-                    _vm._v(' '),
-                    _c('s-checkbox-column', {
-                        attrs: {
-                            'selection': _vm.selection,
-                            'width': '55'
-                        }
-                    }),
-                    _vm._v(' '),
-                    _c('s-column', {
-                        attrs: {
-                            'property': 'a',
-                            'width': '150'
-                        }
-                    }, [_c('template', { slot: 'header' }, [_vm._v('\n\t\t\t\t\t\tB\n\t\t\t\t\t')])], 2)
-                ], 1),
-                _vm._v('\n\t\t\t\t--' + _vm._s(_vm.row) + '::' + _vm._s(_vm.selection) + '--\n\t\t')
-            ], 1)
-        ], 1),
-        _vm._v(' '),
-        _c('div', { staticClass: 'ui segment' }, [
-            _c('h1', [_vm._v('Tabs (loading)')]),
-            _vm._v(' '),
-            _c('s-tabs', {
-                directives: [{
-                        name: 'loading',
-                        rawName: 'v-loading.indeterminate',
-                        value: _vm.loading,
-                        expression: 'loading',
-                        modifiers: { 'indeterminate': true }
-                    }]
-            }, [
-                _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
-            ], 1),
-            _vm._v(' '),
-            _c('s-tabs', { attrs: { 'position': 'bottom' } }, [
-                _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
-            ], 1),
-            _vm._v(' '),
-            _c('s-tabs', { attrs: { 'position': 'left' } }, [
-                _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
-            ], 1),
-            _vm._v(' '),
-            _c('s-tabs', { attrs: { 'position': 'right' } }, [
-                _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
-                _vm._v(' '),
-                _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
-            ], 1)
-        ], 1)
+            })], 1)
     ]);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("test/routes.js", function(exports, require, module, __filename, __dirname){
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var MenuContainer = {
+    template: "<router-view></router-view>"
+}; //used for route-group, menu groups
+var comps = require("./routes/*.vue");
+exports.routes = [];
+for (var i in comps) {
+    var name = /test\/routes\/(.*).vue$/.exec(i)[1];
+    exports.routes.push({
+        name: name, path: '/' + name,
+        menu: name.substr(0, 1).toUpperCase() + name.substr(1),
+        component: comps[i].default
+    });
+}
+//# sourceMappingURL=routes.js.map
+});
+___scope___.file("test/routes/accordion.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var Accordion = function (_super) {
+        __extends(Accordion, _super);
+        function Accordion() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Accordion = __decorate([vue_property_decorator_1.Component], Accordion);
+        return Accordion;
+    }(Vue);
+    exports.default = Accordion;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('s-accordion', [
+        _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
+        _vm._v(' '),
+        _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
+    ], 1);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("test/routes/table.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var rows = new Array(10).fill().map(function (x, i) {
+        return {
+            a: i * 2,
+            b: i * 2 + 1
+        };
+    });
+    var Accordion = function (_super) {
+        __extends(Accordion, _super);
+        function Accordion() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.my_row = null;
+            _this.my_rows = rows;
+            _this.my_selection = [];
+            return _this;
+        }
+        Object.defineProperty(Accordion.prototype, 'sum_b', {
+            get: function () {
+                return this.my_rows.reduce(function (acc, row) {
+                    return acc + row.b;
+                }, 0);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Accordion = __decorate([vue_property_decorator_1.Component], Accordion);
+        return Accordion;
+    }(Vue);
+    exports.default = Accordion;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', [
+        _c('s-table', {
+            attrs: {
+                'celled': '',
+                'selectable': '',
+                'rows': _vm.my_rows,
+                'very-basic': '',
+                'body-height': 150
+            },
+            model: {
+                value: _vm.my_row,
+                callback: function ($$v) {
+                    _vm.my_row = $$v;
+                },
+                expression: 'my_row'
+            }
+        }, [
+            _c('div', { slot: 'header' }, [_vm._v('\n\t\t\tIn-table header\n\t\t')]),
+            _vm._v(' '),
+            _c('s-checkbox-column', {
+                attrs: {
+                    'selection': _vm.my_selection,
+                    'width': '29'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-column', {
+                attrs: {
+                    'property': 'a',
+                    'width': '300',
+                    'header': 'a'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-column', {
+                attrs: { 'header': 'A' },
+                scopedSlots: _vm._u([{
+                        key: 'default',
+                        fn: function (scope) {
+                            return [_vm._v('\n\t\t\t\ta' + _vm._s(scope.row.a) + '\n\t\t\t')];
+                        }
+                    }])
+            }),
+            _vm._v(' '),
+            _c('s-column', { attrs: { 'property': 'b' } }, [_c('template', { slot: 'header' }, [_vm._v('\n\t\t\t\tB sum=' + _vm._s(_vm.sum_b) + '\n\t\t\t')])], 2)
+        ], 1),
+        _vm._v(' '),
+        _c('div', [
+            _c('p'),
+            _c('h3', [_vm._v('current-row')]),
+            _vm._v(' ' + _vm._s(_vm.my_row)),
+            _c('p'),
+            _vm._v(' '),
+            _c('p'),
+            _c('h3', [_vm._v('selection')]),
+            _vm._v(' ' + _vm._s(_vm.my_selection)),
+            _c('p')
+        ])
+    ], 1);
 };
 _p.staticRenderFns = [];
 var _e = {};

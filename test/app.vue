@@ -1,213 +1,69 @@
 <template>
-	<div class="ui segments">
-		<div class="ui segment">
-			<h1>Buttons</h1>
-			<s-modal v-model="modal1" closable header="">
-				Blah Blah
-				<s-button v-command:cancel>Cancel</s-button>
-				<s-button v-command:ok>Ok</s-button>
-			</s-modal>
-			<s-button @click="modal1()">
-				modal
-			</s-button>
-			<s-button @click="blurred = !blurred">
-				<s-icon icon="save" slot="prepend" />
-				blurr
-			</s-button>
-			<s-button icon="plus" @click="loading = !loading">
-				loading
-			</s-button>
-			<s-button @click="loading = !loading && 'loading!'">
-				<s-icon icon="minus" slot="append" />
-				loading text
-			</s-button>
-			<s-button>
-				<s-icon icon="add circle" />
-			</s-button>
-			<s-button icon="add square" />
+	<div class="screen ui grid">
+		<div class="ui inverted vertical menu two wide column">
+			<div class="item">
+				<label for="ss">Show source</label>
+				<s-checkbox name="ss" toggle v-model="showSource" />
+			</div>
+			<a class="item" v-for="(route, index) in routes" :key="index"
+				:href="'#'+route.path">
+				{{route.menu}}
+			</a>
 		</div>
-		<div class="ui segment">
-			<h1>Inputs</h1>
-			<s-input>
-				<s-icon slot="prepend" circular link icon="search" @click="testme" />
-				<s-select class="label" slot="append" v-model="ddn" text="Gender" on="hover">
-					<s-option value="M">Male</s-option>
-					<s-option value="F">Female</s-option>
-				</s-select>
-			</s-input>
-			--{{ddn}}--
-			<s-select inline action="select" v-model="ddn" text="Gender" on="hover">
-				<s-option value="M">Male</s-option>
-				<s-option value="F">Female</s-option>
-			</s-select>
-			<s-checkbox label="Yes!" v-model="tchk" />
-			--{{tchk}}--
+		<div :class="['work-pane demo', showSource?'seven':'fourteen', 'wide column']">
+			<router-view></router-view>
 		</div>
-		<div class="ui segment">
-			<h1>Forms</h1>
-			<s-form :model="model" :schema="schema" display-errors label-width="200" inline>
-				<template slot="field" scope="field">
-					<label :for="field.internalName" class="ui label">
-						-{{field.label}}-
-					</label>
-					<s-field-input>
-						<s-input>
-							<template slot="prepend">
-								<s-icon :icon="field.info" />
-							</template>
-						</s-input>
-					</s-field-input>
-				</template>
-				<!--template slot="prepend" scope="field">
-					<label :for="field.internalName" class="ui label">
-						-{{field.label}}-
-					</label>
-				</template>
-				<!--template slot="append" scope="field">
-					<ul class="ui list">
-						<li v-for="error in field.errors" :key="error.schemaPath">
-							{{error.message}}
-						<li>
-					</ul>
-				</template-->
-				<s-field inline name="big" label="Big">
-					<s-checkbox label="big" />
-					<s-checkbox label="blurred" v-model="blurred" />
-				</s-field>
-				<s-field name="firstName" label="First name" info="hand pointer" />
-				<s-field inline name="lastName" label="Last name" info="signal" />
-			</s-form>
-			<s-checkbox v-model="model.big" />
-			<s-input v-model="model.firstName" />
-			--{{model}}--
-		</div>
-		<div class="ui segment">
-			<h1>Accordion</h1>
-			<s-accordion>
-				<s-panel title="What is a dog?">
-					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-				</s-panel>
-				<s-panel title="What kinds of dogs are there?">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-			</s-accordion>
-		</div>
-		<div class="ui segment">
-			<h1>Table (blurr)</h1>
-			<s-dimmable blurring v-model="blurred" icon="heart" message="Dimmed Message!">
-				<s-table
-					celled
-					selectable
-					v-model="row"
-					:rows="rows"
-					very-basic
-					:body-height="180"
-				>
-					<div slot="header">
-						qwe
-					</div>
-					<s-column header="A">
-						<template scope="scope">
-							a{{scope.row.a}} <s-button>Tyup</s-button>
-						</template>
-					</s-column>
-					<s-checkbox-column :selection="selection" width="55" />
-					<s-column property="a" width="150">
-						<template slot="header">
-							B
-						</template>
-					</s-column>
-				</s-table>
-					--{{row}}::{{selection}}--
-			</s-dimmable>
-		</div>
-		<div class="ui segment">
-			<h1>Tabs (loading)</h1>
-			<s-tabs v-loading.indeterminate="loading">
-				<s-panel title="What is a dog?">
-					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-				</s-panel>
-				<s-panel title="What kinds of dogs are there?">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-				<s-panel title="And...">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-			</s-tabs>
-			<s-tabs position="bottom">
-				<s-panel title="What is a dog?">
-					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-				</s-panel>
-				<s-panel title="What kinds of dogs are there?">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-				<s-panel title="And...">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-			</s-tabs>
-			<s-tabs position="left">
-				<s-panel title="What is a dog?">
-					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-				</s-panel>
-				<s-panel title="What kinds of dogs are there?">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-				<s-panel title="And...">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-			</s-tabs>
-			<s-tabs position="right">
-				<s-panel title="What is a dog?">
-					<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-				</s-panel>
-				<s-panel title="What kinds of dogs are there?">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-				<s-panel title="And...">
-					<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
-				</s-panel>
-			</s-tabs>
+		<div class="work-pane code seven wide column" v-show="showSource">
+			<codemirror ref="cm" v-model="code" :options="editorOptions"></codemirror>
 		</div>
 	</div>
 </template>
-
+<style>
+.screen {
+	width: 100vw;
+	height: 100vh;
+}
+.work {
+	height: calc(100% - 80px);
+}
+.work-pane {
+	height: 100%;
+	overflow: auto;
+}
+div.CodeMirror {
+	height: 100%;
+}
+</style>
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {routes} from './routes'
 
 @Component
 export default class App extends Vue {
-	ddn = ''
-	row = null
-	rows = [{a:1},{a:3},{a:5}]
-	selection = []
-	tchk: boolean = true
-	blurred: boolean = false
-	loading: boolean = false
-	schema = {
-		"title": "Person",
-		"type": "object",
-		"properties": {
-			"firstName": {
-				"type": "string"
-			},
-			"lastName": {
-				"description": "Familly name",
-				"type": "string"
-			}
-		},
-		"required": ["firstName", "lastName"]
+	routes = routes
+	code = null
+	showSource: boolean = false
+	editorOptions = {
+		tabSize: 2,
+		mode: 'text/x-vue',
+		theme: 'base16-dark',
+		lineNumbers: true,
+		line: true,
+		foldGutter: true,
+		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+		styleSelectedText: true,
+		highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
+		readOnly: true
 	}
-	model = {
-		firstName: null,
-		lastName: null,
-		big: null
+	@Watch('$route', {immediate: true})
+	loadComponent(route) {
+		this.code = route.name ?
+			require(`source/${route.name}.vue`) :
+			"// nothing";
 	}
-	created() {
-		window.dob = this;
-	}
-	testme() {
-		console.log('test');
+	@Watch('showSource') initCM() {
+		setTimeout(()=> this.$refs.cm.refresh());
 	}
 }
 </script>
