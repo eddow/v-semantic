@@ -12338,7 +12338,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead, table.scroll-body tbody tr {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body thead {\r\n\twidth: calc( 100% - 0.71em )\t/*TODO: real width management engine*/\r\n}\r\n\r\ntable.ui.table.vued tbody tr {\r\n\tborder: 1px solid transparent;\r\n}\r\ntable.ui.table.vued tbody tr.current {\r\n\tborder-color: #111;\r\n\t/*background-color: #E0E0E0;/*\r\nTODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em )\t/*TODO: real width management engine*/\r\n}\r\n\r\ntable.ui.table.vued > tbody.vued > tr.vued {\r\n\tborder: 1px solid transparent;\r\n}\r\ntable.ui.table.vued tbody tr.current {\r\n\tborder-color: #111;\r\n\t/*background-color: #E0E0E0;/*\r\nTODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -12351,7 +12351,7 @@ _p.render = function render() {
         ]
     }, [
         _c('pimp', {
-            attrs: { 'tag': 'thead' },
+            attrs: { 'tag': 'caption' },
             model: {
                 value: _vm.columns,
                 callback: function ($$v) {
@@ -12361,11 +12361,12 @@ _p.render = function render() {
             }
         }, [_vm._t('default')], 2),
         _vm._v(' '),
-        _vm.$slots.header ? _c('thead', [_c('tr', [_c('td', { attrs: { 'colspan': '{{columns.length}}' } }, [_vm._t('header')], 2)])]) : _vm._e(),
+        _vm.$slots.header ? _c('caption', [_vm._t('header')], 2) : _vm._e(),
         _vm._v(' '),
-        _c('thead', [_c('tr', _vm._l(_vm.columns, function (column, uid) {
+        _c('thead', { staticClass: 'vued' }, [_c('tr', { staticClass: 'vued' }, _vm._l(_vm.columns, function (column, uid) {
                 return _c('ripped', {
                     key: uid,
+                    staticClass: 'vued',
                     style: { width: column.width ? column.width + 'px' : undefined },
                     attrs: {
                         'tag': 'th',
@@ -12375,9 +12376,13 @@ _p.render = function render() {
                 });
             }))]),
         _vm._v(' '),
-        _c('tbody', { style: { height: _vm.bodyHeight ? _vm.bodyHeight + 'px' : undefined } }, _vm._l(_vm.rows, function (row, index) {
+        _c('tbody', {
+            staticClass: 'vued',
+            style: { height: _vm.bodyHeight ? _vm.bodyHeight + 'px' : undefined }
+        }, _vm._l(_vm.rows, function (row, index) {
             return _c('tr', {
                 key: _vm.rowId(row),
+                staticClass: 'vued',
                 class: [
                     _vm.rowClass(row, index),
                     { current: _vm.current === row }
@@ -12403,7 +12408,7 @@ _p.render = function render() {
             }));
         })),
         _vm._v(' '),
-        _vm.$slots.footer ? _c('tfoot', [_c('tr', [_c('td', { attrs: { 'colspan': '{{columns.length}}' } }, [_vm._t('foot')], 2)])]) : _vm._e()
+        _vm.$slots.footer ? _c('caption', [_vm._t('foot')], 2) : _vm._e()
     ], 1);
 };
 _p.staticRenderFns = [];
@@ -13834,6 +13839,181 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
+___scope___.file("test/routes/buttons.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var Buttons = function (_super) {
+        __extends(Buttons, _super);
+        function Buttons() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.blurred = false;
+            _this.loading = false;
+            return _this;
+        }
+        Buttons = __decorate([vue_property_decorator_1.Component], Buttons);
+        return Buttons;
+    }(Vue);
+    exports.default = Buttons;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', [
+        _c('div', [
+            _c('s-modal', {
+                attrs: {
+                    'closable': '',
+                    'header': ''
+                },
+                model: {
+                    value: _vm.modal1,
+                    callback: function ($$v) {
+                        _vm.modal1 = $$v;
+                    },
+                    expression: 'modal1'
+                }
+            }, [
+                _vm._v('\n\t\t\tBlah Blah\n\t\t\t'),
+                _c('s-button', {
+                    directives: [{
+                            name: 'command',
+                            rawName: 'v-command:cancel',
+                            arg: 'cancel'
+                        }]
+                }, [_vm._v('Cancel')]),
+                _vm._v(' '),
+                _c('s-button', {
+                    directives: [{
+                            name: 'command',
+                            rawName: 'v-command:ok',
+                            arg: 'ok'
+                        }]
+                }, [_vm._v('Ok')])
+            ], 1),
+            _vm._v(' '),
+            _c('s-button', {
+                on: {
+                    'click': function ($event) {
+                        _vm.modal1(function () {
+                        });
+                    }
+                }
+            }, [_vm._v('\n\t\t\tmodal\n\t\t')]),
+            _vm._v(' '),
+            _c('s-button', {
+                on: {
+                    'click': function ($event) {
+                        _vm.blurred = !_vm.blurred;
+                    }
+                }
+            }, [
+                _c('s-icon', {
+                    attrs: { 'icon': 'save' },
+                    slot: 'prepend'
+                }),
+                _vm._v('\n\t\t\tblurr\n\t\t')
+            ], 1),
+            _vm._v(' '),
+            _c('s-button', {
+                attrs: { 'icon': 'plus' },
+                on: {
+                    'click': function ($event) {
+                        _vm.loading = !_vm.loading;
+                    }
+                }
+            }, [_vm._v('\n\t\t\tloading\n\t\t')]),
+            _vm._v(' '),
+            _c('s-button', {
+                on: {
+                    'click': function ($event) {
+                        _vm.loading = !_vm.loading && 'loading!';
+                    }
+                }
+            }, [
+                _c('s-icon', {
+                    attrs: { 'icon': 'minus' },
+                    slot: 'append'
+                }),
+                _vm._v('\n\t\t\tloading text\n\t\t')
+            ], 1),
+            _vm._v(' '),
+            _c('s-button', [_c('s-icon', { attrs: { 'icon': 'add circle' } })], 1),
+            _vm._v(' '),
+            _c('s-button', { attrs: { 'icon': 'add square' } })
+        ], 1),
+        _vm._v(' '),
+        _c('div', [
+            _c('s-dimmable', {
+                attrs: {
+                    'blurring': '',
+                    'icon': 'heart',
+                    'message': 'Dimmed Message!'
+                },
+                model: {
+                    value: _vm.blurred,
+                    callback: function ($$v) {
+                        _vm.blurred = $$v;
+                    },
+                    expression: 'blurred'
+                }
+            }, [_c('img', {
+                    staticClass: 'ui medium image',
+                    attrs: { 'src': 'https://semantic-ui.com/images/wireframe/image.png' }
+                })]),
+            _vm._v(' '),
+            _c('div', {
+                directives: [{
+                        name: 'loading',
+                        rawName: 'v-loading.indeterminate',
+                        value: _vm.loading,
+                        expression: 'loading',
+                        modifiers: { 'indeterminate': true }
+                    }]
+            }, [_c('img', {
+                    staticClass: 'ui medium image',
+                    attrs: { 'src': 'https://semantic-ui.com/images/wireframe/image.png' }
+                })])
+        ], 1)
+    ]);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
 ___scope___.file("test/routes/table.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
@@ -13940,7 +14120,7 @@ _p.render = function render() {
                 scopedSlots: _vm._u([{
                         key: 'default',
                         fn: function (scope) {
-                            return [_vm._v('\n\t\t\t\ta' + _vm._s(scope.row.a) + '\n\t\t\t')];
+                            return [_vm._v('\n\t\t\t\ta' + _vm._s(scope.row.a) + '-b' + _vm._s(scope.row.b) + '\n\t\t\t')];
                         }
                     }])
             }),
@@ -13959,6 +14139,78 @@ _p.render = function render() {
             _vm._v(' ' + _vm._s(_vm.my_selection)),
             _c('p')
         ])
+    ], 1);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("test/routes/tabs.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var Tabs = function (_super) {
+        __extends(Tabs, _super);
+        function Tabs() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Tabs = __decorate([vue_property_decorator_1.Component], Tabs);
+        return Tabs;
+    }(Vue);
+    exports.default = Tabs;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', [
+        _c('s-tabs', [
+            _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
+        ], 1),
+        _vm._v(' '),
+        _c('s-tabs', { attrs: { 'position': 'bottom' } }, [
+            _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
+        ], 1)
     ], 1);
 };
 _p.staticRenderFns = [];

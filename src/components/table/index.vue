@@ -5,30 +5,28 @@
 		td/th - the compiler thinks these elements will appear outside of the <table>
 	-->
 	<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]">
-		<pimp tag="thead" v-model="columns">
+		<pimp tag="caption" v-model="columns">
 			<slot />
 		</pimp>
-		<thead v-if="$slots.header">
-			<tr>
-				<td colspan="{{columns.length}}">
-					<slot name="header"/>
-				</td>
-			</tr>
-		</thead>
-		<thead>
-			<tr>
+		<caption v-if="$slots.header">
+			<slot name="header"/>
+		</caption>
+		<thead class="vued">
+			<tr class="vued">
 				<ripped v-for="(column, uid) in columns" :key="uid"
 					tag="th"
+					class="vued"
 					:style="{width: column.width?column.width+'px':undefined}"
 					template="header"
 					:ripper="column"
 				/>
 			</tr>
 		</thead>
-		<tbody :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
+		<tbody class="vued" :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
 			<tr
 				v-for="(row, index) in rows"
 				:key="rowId(row)"
+				class="vued"
 				:class="[
 					rowClass(row, index),
 					{current: current === row}
@@ -43,13 +41,9 @@
 				/>
 			</tr>
 		</tbody>
-		<tfoot v-if="$slots.footer">
-			<tr>
-				<td colspan="{{columns.length}}">
-					<slot name="foot"/>
-				</td>
-			</tr>
-		</tfoot>
+		<caption v-if="$slots.footer">
+			<slot name="foot"/>
+		</caption>
 	</table>
 </template>
 <style>
@@ -57,16 +51,16 @@ table.scroll-body tbody {
 	display: block;
 	overflow-y: scroll;
 }
-table.scroll-body thead, table.scroll-body tbody tr {
+table.scroll-body thead, table.scroll-body tbody.vued tr.vued {
 	display: table;
 	width: 100%;
 	table-layout: fixed;
 }
-table.scroll-body thead {
+table.scroll-body > thead.vued {
 	width: calc( 100% - 0.71em )	/*TODO: real width management engine*/
 }
 
-table.ui.table.vued tbody tr {
+table.ui.table.vued > tbody.vued > tr.vued {
 	border: 1px solid transparent;
 }
 table.ui.table.vued tbody tr.current {

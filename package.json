@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/eddow/v-semantic#readme",
   "devDependencies": {
-    "fuse-box": "file:.yalc/fuse-box",
+    "fuse-box": "^2.2.3-beta.18",
     "typescript": "^2.5.1",
     "vue-codemirror": "^3.1.4",
     "vue-property-decorator": "file:.yalc/vue-property-decorator",

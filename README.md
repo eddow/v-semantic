@@ -68,8 +68,6 @@ These have been developped deeper in this library even not completely bound to s
 - [commanded](./docs/concepts/commanded.md)
 - [panel](./docs/concepts/panel.md)
 # Not implemented yet
-## Fiddles
-As this is intended for broad audience, a list of fiddle/examples could definitely help
 ## Components
 - menus
 - radios

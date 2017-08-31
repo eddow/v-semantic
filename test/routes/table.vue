@@ -15,7 +15,7 @@
 			<s-column property="a" width="300" header="a" />
 			<s-column header="A">
 				<template scope="scope">
-					a{{scope.row.a}}
+					a{{scope.row.a}}-b{{scope.row.b}}
 				</template>
 			</s-column>
 			<s-column property="b">

@@ -1,6 +1,7 @@
 # [Table](https://semantic-ui.com/collections/table.html)
 ## Slots
 The default slot contains the columns to display.
+`header` and `footer` are table-wide headers and footers
 ## Proprieties
 The `v-model` is the current row : the one the user clicked on. One can set it to another row with an affectation or bind to it. (note: the current row is an item from the provided `rows`)
 
