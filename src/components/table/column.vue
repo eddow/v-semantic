@@ -7,7 +7,7 @@
 		</template>
 		<template scope="scope">
 			<slot :row="scope.row" :index="scope.index">
-				{{value(scope.row, property)}}
+				{{value(scope.row)}}
 			</slot>
 		</template>
 	</ripper>
@@ -17,6 +17,7 @@
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {Ripper} from 'vue-ripper'
+import * as deep from 'lib/deep'
 import table from './index.vue'
 
 @Component({
@@ -29,12 +30,13 @@ export default class Column extends Vue {
 	@Prop() property: string
 	@Prop() header: string
 	
-	value(row, property) {
+	get path() { return deep.path(this.property); }
+	value(row) {
 		return this.extract ?
 			this.extract(row) :
 			this.render ?
-			this.render(row[property]) :
-			row[property];
+			this.render(deep.get(row, this.property)) :
+			deep.get(row, this.property);
 	}
 }
 </script>

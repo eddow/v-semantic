@@ -1,6 +1,7 @@
 <template>
 	<div :class="[cls, {fitted: !label}]">
 		<input
+			ref="input"
 			:name="internalName"
 			type="checkbox"
 			:checked="checked"

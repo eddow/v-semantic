@@ -2,11 +2,11 @@
 	<form class="ui form">
 		<template v-if="model">
 			<slot />
-			<div v-if="displayErrors && fieldErrors.length"
+			<div v-if="displayErrors && displayedErrors.length"
 				class="ui pointing red basic error label"
 			>
-					<div v-for="error in fieldErrors" :key="error.schemaPath">
-						{{error.message}}
+					<div v-for="error in displayedErrors" :key="error.schemaPath">
+						{{error.dataPath}}: {{error.message}}
 					</div>
 				</div>
 			</div>
@@ -33,10 +33,16 @@ export default class Form extends Command.Commanded {
 	
 	@Prop({type: [String, Number]}) labelWidth: number|string
 	@Prop() model: any
-	@Prop({default: {}}) schema
+	@Prop({default: ()=> ({})}) schema
 	@Prop() displayErrors: boolean
 	@Prop() inline: boolean
 	@Prop({type: String, default: 'fields'}) errorPanel: 'all'|'fields'
+	get displayedErrors() {
+		return {
+			fields: this.fieldErrors,
+			all: this.errors
+		}[this.errorPanel];
+	}
 	fields = {}
 	ajv
 	beforeCreate() {
@@ -48,12 +54,13 @@ export default class Form extends Command.Commanded {
 	validation
 	@Watch('schema', {immediate: true})
 	compileSchema(schema) {
-		this.validation = this.ajv.compile(schema);
+		if(schema) this.validation = this.ajv.compile(schema);
 	}
 	@Prop({default: ()=>[]}) errors: any[]
 	@Prop({default: ()=>[]}) fieldErrors: any[]
 	@Watch('model', {immediate: true, deep: true})
 	validate(model) {
+		if(!this.validation) return;
 		var valid = this.validation(model)
 		this.errors.splice(0);
 		if(!valid) this.errors.push(...this.validation.errors);
@@ -61,7 +68,7 @@ export default class Form extends Command.Commanded {
 		this.$emit('validated');
 	}
 	get labelStyle() {
-		return this.labelWidth?{width: this.labelWidth+'px'}:{};
+		return this.labelWidth?{width: this.labelWidth}:{};
 	}
 	command(command: string, params?: any) {
 		this.$emit(command, params);

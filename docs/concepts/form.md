@@ -59,7 +59,7 @@ Most of the time, it will just look like this :
 ```
 `s-checkbox` is really described like this, without `v-model` nor input name - and, in the generated HTML, the label "Opted in" will be described by `<label for="optIn">...` and the checkbox with `<input type="checkbox" name="optIn" />`
 
-This is because [`s-checkbox`](../components/checkbox.md) uses the `Field.Input` mixin (as [`s-input`](../components/input.md) does).
+This is because [`s-checkbox`](../components/checkbox.md) uses the `Field.Input` mixin (as [`s-input`](../components/input.md) and [`s-select'](../components/select) do).
 Refer [here](#creating-a-fieldinput) to write your own `Field.Input` components
 
 ### Field-modifying form slot
@@ -106,8 +106,9 @@ The scope is always the `field: VueComponent` object. It gives the programmer ac
 - and also `info`, that is a property of field that is unused by `v-semantic` and just forwarded here - that can be useful to set an icon if the template uses an icon for instance.
 # TODO: customised even more
 # TODO: manage end-page notes
-#### Creating a `Field.Input`
-To create a custom `Field.Input`, one has to use it as a mixin. The component will therefore have `name` defined as a property and an `internalName` to use as the input name `<input :name="internalName" />` in order for the labels to be managed.
+### Creating a `Field.Input`
+
+To create a custom `Field.Input` from scratch, one has to use it as a mixin. The component will therefore have `name` defined as a property and an `internalName` to use as the input name `<input :name="internalName" />` in order for the labels to be managed.
 
 ```typescript
 import {Field} from 'v-semantic'
@@ -115,5 +116,4 @@ import {Field} from 'v-semantic'
 @Component({mixins:[Field.Input]})
 class...
 ```
-
 Beside, their `v-model` will be managed by the `field` that contains them **if they don't have any specified**.

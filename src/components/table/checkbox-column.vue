@@ -69,6 +69,7 @@ export default class CheckboxColumn extends Vue {
 				this.$emit('selection-change', selection);
 			for(let row of this.table.rows)
 				this.setRow(row, !!~selection.indexOf(row));
+			this.computeAll();
 		}
 		else throw new Error('Unexpected selection specification');
 	}
@@ -90,7 +91,6 @@ export default class CheckboxColumn extends Vue {
 			0=== this.selection.length ? false :
 			this.table.rows.length === this.selection.length ?
 				true : null;
-		this.$emit('selection-change', this.selection);
 	}
 
 	select(row) {

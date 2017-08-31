@@ -1,8 +1,8 @@
 <template>
 	<div :class="[cls, dynCls, {field: !!form}]">
 		<slot name="prepend" />
-		<slot name="input" :input="this">
-			<input :name="internalName" type="text" :placeholder="placeholder" v-model="model" />
+		<slot>
+			<input ref="input" :name="internalName" type="text" :placeholder="placeholder" v-model="model" />
 		</slot>
 		<slot name="append" />
 	</div>

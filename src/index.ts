@@ -4,7 +4,8 @@ import * as components from './components'
 export * from './components'
 import * as directives from './directives'
 export * from './directives'
-export * from 'lib/utils'
+import * as lib from 'lib/*'
+export {lib}
 import 'semantic-ui/dist/semantic'
 export default {
 	install(Vue, options) {

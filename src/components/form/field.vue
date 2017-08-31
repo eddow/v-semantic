@@ -10,7 +10,9 @@
 				<input type="text" v-model="value" />
 			</slot>
 			<slot name="append">
-				<div :class="['ui', isInline&&'left', 'pointing red basic error label']" v-if="errors.length && form.displayErrors">
+				<div v-if="errors.length && form.displayErrors && 'fields'=== this.form.errorPanel"
+					:class="['ui', isInline&&'left', 'pointing red basic error label']"
+				>
 					<div v-for="error in errors" :key="error.schemaPath">
 						{{error.message}}
 					</div>
@@ -24,6 +26,7 @@
 import * as Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {idSpace} from 'lib/utils'
+import * as deep from 'lib/deep'
 import {renderWrap} from 'lib/render'
 import sInput from '../input.vue'
 
@@ -42,9 +45,10 @@ export default class Field extends Vue {
 	@Inject() group	//TODO: use `group` where we can and then create `field-group`
 	//TODO: make recursive get - for `inline`, `labelWidth`, etc. and the slots
 	//TODO: finish the 'type' system and why not generalise something with table-cell editors
+	//TODO: allow validation specifications that will add into the schema
 	@Prop() label: string
 	@Prop() name: string
-	@Prop() info: string
+	@Prop({default: null}) info: string
 	@Prop({default: null}) inline: boolean
 	get isInline() {
 		return null=== this.inline && this.form ? 
@@ -53,22 +57,15 @@ export default class Field extends Vue {
 	@Prop() type: string
 	errors = []
 
+	get path() { return deep.path(this.name); }
 	value = null
 	unwatch
-	path
 	@Watch('name', {immediate: true}) setFieldName(name, oldv) {
-		var keys = [];
-		for(let key of name.split('.')) {
-			let subs = /^(.*?)(\[.*\])?$/.exec(key);
-			keys.push(subs[1]);
-			if(subs[2]) keys.push(...subs[2].split(']['));
-		}
-		this.path = keys.join('.');
 		if(this.form) {
 			this.undo(oldv);
 			this.unwatch = this.$watch('form.model.'+name, function(value) {
 				this.value = value;
-			});
+			}, {immediate: true});
 			console.assert(!this.form.fields[name],
 				`Field ${name} appears once in its form`);
 			this.form.fields[name] = this;
@@ -82,26 +79,20 @@ export default class Field extends Vue {
 	}
 	@Watch('form.errors', {immediate: true})
 	validated() {
-		if('fields'=== this.form.errorPanel) {
-			var errors = this.form.fieldErrors;
-			this.errors.splice(0);
-			for(let i = 0; i< errors.length;)
-				if(errors[i].dataPath === '.'+this.path)
-					this.errors.push(...errors.splice(i, 1));
-				else ++i;
-		}
+		var errors = this.form.fieldErrors;
+		this.errors.splice(0);
+		for(let i = 0; i< errors.length;)
+			if(errors[i].dataPath === '.'+this.path)
+				this.errors.push(...errors.splice(i, 1));
+			else ++i;
+		if(!this.errors.length) this.$emit('validated', this.value);
 	}
 	destroyed() {
 		this.undo(this.name);
 	}
 	@Watch('value')
-	setNewValue(value) {
-		if(!this.form || !this.form.model) return;
-		var obj = this.form.model,
-			keys = this.path.split('.'), lvalue;
-		lvalue = keys.pop();
-		for(let key in keys) if(!(obj = obj[key])) return;
-		obj[lvalue] = value;
+	@Emit() change(value) {
+		deep.set(this.form && this.form.model, this.path, value);
 	}
 
 	initSlot(toSlot: string, fromSlot: string = toSlot) {
@@ -117,7 +108,7 @@ export default class Field extends Vue {
 			this.initSlot('field');
 			this.initSlot('input');
 			let slots = this.$slots;
-			if(!slots.field && !slots.default) {
+			if(!slots.field && !slots.default && slots.input) {
 				slots.default = slots.input;
 				delete slots.input;
 			} else if(slots.field && slots.default) {

@@ -10295,7 +10295,8 @@ var components = require('./components');
 __export(require('./components'));
 var directives = require('./directives');
 __export(require('./directives'));
-__export(require('~/src/lib/utils'));
+var lib = require('~/src/lib/*');
+exports.lib = lib;
 require('semantic-ui/dist/semantic');
 exports.default = {
     install: function (Vue, options) {
@@ -10316,6 +10317,7 @@ require('ajv');
 require('~/src/lib/classed');
 require('~/src/lib/module');
 require('~/src/lib/utils');
+require('~/src/lib/deep');
 require('~/src/lib/render');
 require('~/src/components/form/fielded');
 });
@@ -10511,8 +10513,11 @@ function idSpace(pfx) {
         pfx = '_';
     }
     var cpt = '';
-    return function () {
-        return pfx + (cpt = nextLEB37(cpt));
+    return function (post) {
+        if (post === void 0) {
+            post = '';
+        }
+        return pfx + (cpt = nextLEB37(cpt)) + post;
     };
 }
 exports.idSpace = idSpace;
@@ -10539,6 +10544,52 @@ Vue.mixin({
     }
 });
 });
+___scope___.file("src/lib/deep.js", function(exports, require, module, __filename, __dirname){
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function path(name) {
+    var keys = [];
+    for (var _i = 0, _a = name.split('.'); _i < _a.length; _i++) {
+        var key = _a[_i];
+        var subs = /^(.*?)(\[.*\])?$/.exec(key);
+        keys.push(subs[1]);
+        if (subs[2])
+            keys.push.apply(keys, subs[2].split(']['));
+    }
+    return keys.join('.');
+}
+exports.path = path;
+function recur(obj, path) {
+    if (!obj || !path)
+        return;
+    var keys = path.split('.'), lvalue;
+    lvalue = keys.pop();
+    for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+        var key = keys_1[_i];
+        if (!(obj = obj[key]))
+            return;
+    }
+    return { obj: obj, key: lvalue };
+}
+function set(obj, path, value) {
+    var lv = recur(obj, path);
+    if (!lv)
+        return false;
+    if (undefined === value)
+        delete lv.obj[lv.key];
+    else
+        lv.obj[lv.key] = value;
+    return true;
+}
+exports.set = set;
+function get(obj, path) {
+    var lv = recur(obj, path);
+    return lv && lv.obj[lv.key];
+}
+exports.get = get;
+//# sourceMappingURL=deep.js.map
+});
 ___scope___.file("src/lib/render.js", function(exports, require, module, __filename, __dirname){
 
 "use strict";
@@ -10547,18 +10598,36 @@ exports.rendered = {
     props: { render: { required: true } },
     render: function (h) { return this.render(h); }
 };
+// Call the original render with the arguments you wish or not - return `undefined` and the original renderer will be invoked
 function renderWrap(wrap) {
     return {
         created: function () {
-            var originalRender, newRender = 'string' !== typeof wrap ? wrap : this[wrap];
+            var originalRender, newRender = 'string' !== typeof wrap ? wrap : this[wrap], that = this;
             originalRender = this._render;
             this._render = function (h) {
-                return newRender.call(this, h, originalRender) || originalRender.call(this, h);
+                return newRender.call(that, h, function () {
+                    return originalRender.apply(that, arguments);
+                }) || originalRender.call(that, h);
             };
         }
     };
 }
 exports.renderWrap = renderWrap;
+// Call the original update with no arguments - just do!
+function updateWrap(wrap) {
+    return {
+        created: function () {
+            var originalUpdate, newUpdate = 'string' !== typeof wrap ? wrap : this[wrap], that = this;
+            originalUpdate = this._update;
+            this._update = function (rendered, hydrating) {
+                return newUpdate.call(that, function (specRendered) {
+                    originalUpdate.call(that, specRendered || rendered, hydrating);
+                }, rendered);
+            };
+        }
+    };
+}
+exports.updateWrap = updateWrap;
 //# sourceMappingURL=render.js.map
 });
 ___scope___.file("src/components/form/fielded.js", function(exports, require, module, __filename, __dirname){
@@ -10566,13 +10635,8 @@ ___scope___.file("src/components/form/fielded.js", function(exports, require, mo
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
 var utils_1 = require('~/src/lib/utils');
-var render_1 = require('~/src/lib/render');
 var genInputName = utils_1.idSpace('inp');
 exports.default = {
-    mixins: [render_1.renderWrap(function () {
-            if (this.field)
-                this.setModel(this.field.value);
-        })],
     props: { name: { type: String } },
     data: function () {
         return { field: null };
@@ -10583,29 +10647,27 @@ exports.default = {
         }
     },
     created: function () {
+        var _this = this;
         var p = this;
         while (p && !(p._provided && p._provided.field))
             p = p.$parent;
         if (p)
             this.field = p._provided.field;
-    },
-    methods: {
-        setModel: function (value) {
-            if (this.field) {
-                var prop = this.constructor.options.model.prop, parent = this.$parent;
-                if (!(prop in this.$options.propsData)) {
-                    this.$parent = null;
-                    this[prop] = value;
-                    this.$parent = parent;
-                }
-            }
+        if (!this.constructor.fielded) {
+            this.constructor.fielded = true;
+            var model = this.constructor.options.model, props = this.constructor.options.props, dft_1 = props[model.prop].default;
+            props[model.prop].default = function () {
+                return _this.field ? _this.field.value : dft_1;
+            };
         }
     },
     mounted: function () {
         var _this = this;
         var model = this.constructor.options.model, form = this.field && this.field.form, unwatchModel, forward2form;
         if (form && !(model.prop in this.$options.propsData)) {
-            unwatchModel = this.$watch('field.value', this.setModel);
+            unwatchModel = this.$watch('field.value', function () {
+                return _this.$forceUpdate();
+            });
             forward2form = function (value) {
                 return _this.field.value = value;
             };
@@ -11106,13 +11168,14 @@ _p.render = function render() {
     }, [
         _vm._t('prepend'),
         _vm._v(' '),
-        _vm._t('input', [_c('input', {
+        _vm._t('default', [_c('input', {
                 directives: [{
                         name: 'model',
                         rawName: 'v-model',
                         value: _vm.model,
                         expression: 'model'
                     }],
+                ref: 'input',
                 attrs: {
                     'name': _vm.internalName,
                     'type': 'text',
@@ -11127,7 +11190,7 @@ _p.render = function render() {
                         _vm.model = $event.target.value;
                     }
                 }
-            })], { input: this }),
+            })]),
         _vm._v(' '),
         _vm._t('append')
     ], 2);
@@ -11428,6 +11491,7 @@ _p.render = function render() {
         ]
     }, [
         _c('input', {
+            ref: 'input',
             attrs: {
                 'name': _vm.internalName,
                 'type': 'checkbox'
@@ -11490,13 +11554,26 @@ var _v = function (exports) {
             _this.fields = {};
             return _this;
         }
+        Object.defineProperty(Form.prototype, 'displayedErrors', {
+            get: function () {
+                return {
+                    fields: this.fieldErrors,
+                    all: this.errors
+                }[this.errorPanel];
+            },
+            enumerable: true,
+            configurable: true
+        });
         Form.prototype.beforeCreate = function () {
             this.ajv = new Ajv({ allErrors: true });
         };
         Form.prototype.compileSchema = function (schema) {
-            this.validation = this.ajv.compile(schema);
+            if (schema)
+                this.validation = this.ajv.compile(schema);
         };
         Form.prototype.validate = function (model) {
+            if (!this.validation)
+                return;
             var valid = this.validation(model);
             this.errors.splice(0);
             if (!valid)
@@ -11510,7 +11587,7 @@ var _v = function (exports) {
         };
         Object.defineProperty(Form.prototype, 'labelStyle', {
             get: function () {
-                return this.labelWidth ? { width: this.labelWidth + 'px' } : {};
+                return this.labelWidth ? { width: this.labelWidth } : {};
             },
             enumerable: true,
             configurable: true
@@ -11532,7 +11609,11 @@ var _v = function (exports) {
             __metadata('design:type', Object)
         ], Form.prototype, 'model', void 0);
         __decorate([
-            vue_property_decorator_1.Prop({ default: {} }),
+            vue_property_decorator_1.Prop({
+                default: function () {
+                    return {};
+                }
+            }),
             __metadata('design:type', Object)
         ], Form.prototype, 'schema', void 0);
         __decorate([
@@ -11600,8 +11681,8 @@ _p.render = function render() {
     return _c('form', { staticClass: 'ui form' }, [_vm.model ? [
             _vm._t('default'),
             _vm._v(' '),
-            _vm.displayErrors && _vm.fieldErrors.length ? _c('div', { staticClass: 'ui pointing red basic error label' }, _vm._l(_vm.fieldErrors, function (error) {
-                return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t' + _vm._s(error.message) + '\n\t\t\t\t')]);
+            _vm.displayErrors && _vm.displayedErrors.length ? _c('div', { staticClass: 'ui pointing red basic error label' }, _vm._l(_vm.displayedErrors, function (error) {
+                return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t' + _vm._s(error.dataPath) + ': ' + _vm._s(error.message) + '\n\t\t\t\t')]);
             })) : _vm._e()
         ] : _vm._t('empty', [_vm._v('\n\t\tNo data to show\n\t')])], 2);
 };
@@ -11650,6 +11731,7 @@ var _v = function (exports) {
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
     var utils_1 = require('~/src/lib/utils');
+    var deep = require('~/src/lib/deep');
     var render_1 = require('~/src/lib/render');
     var input_vue_1 = require('../input.vue');
     var genFieldName = utils_1.idSpace('fld');
@@ -11673,21 +11755,19 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(Field.prototype, 'path', {
+            get: function () {
+                return deep.path(this.name);
+            },
+            enumerable: true,
+            configurable: true
+        });
         Field.prototype.setFieldName = function (name, oldv) {
-            var keys = [];
-            for (var _i = 0, _a = name.split('.'); _i < _a.length; _i++) {
-                var key = _a[_i];
-                var subs = /^(.*?)(\[.*\])?$/.exec(key);
-                keys.push(subs[1]);
-                if (subs[2])
-                    keys.push.apply(keys, subs[2].split(']['));
-            }
-            this.path = keys.join('.');
             if (this.form) {
                 this.undo(oldv);
                 this.unwatch = this.$watch('form.model.' + name, function (value) {
                     this.value = value;
-                });
+                }, { immediate: true });
                 console.assert(!this.form.fields[name], 'Field ' + name + ' appears once in its form');
                 this.form.fields[name] = this;
             }
@@ -11700,29 +11780,22 @@ var _v = function (exports) {
             }
         };
         Field.prototype.validated = function () {
-            if ('fields' === this.form.errorPanel) {
-                var errors = this.form.fieldErrors;
-                this.errors.splice(0);
-                for (var i = 0; i < errors.length;)
-                    if (errors[i].dataPath === '.' + this.path)
-                        (_a = this.errors).push.apply(_a, errors.splice(i, 1));
-                    else
-                        ++i;
-            }
+            var errors = this.form.fieldErrors;
+            this.errors.splice(0);
+            for (var i = 0; i < errors.length;)
+                if (errors[i].dataPath === '.' + this.path)
+                    (_a = this.errors).push.apply(_a, errors.splice(i, 1));
+                else
+                    ++i;
+            if (!this.errors.length)
+                this.$emit('validated', this.value);
             var _a;
         };
         Field.prototype.destroyed = function () {
             this.undo(this.name);
         };
-        Field.prototype.setNewValue = function (value) {
-            if (!this.form || !this.form.model)
-                return;
-            var obj = this.form.model, keys = this.path.split('.'), lvalue;
-            lvalue = keys.pop();
-            for (var key in keys)
-                if (!(obj = obj[key]))
-                    return;
-            obj[lvalue] = value;
+        Field.prototype.change = function (value) {
+            deep.set(this.form && this.form.model, this.path, value);
         };
         Field.prototype.initSlot = function (toSlot, fromSlot) {
             if (fromSlot === void 0) {
@@ -11742,7 +11815,7 @@ var _v = function (exports) {
                 this.initSlot('field');
                 this.initSlot('input');
                 var slots = this.$slots;
-                if (!slots.field && !slots.default) {
+                if (!slots.field && !slots.default && slots.input) {
                     slots.default = slots.input;
                     delete slots.input;
                 } else if (slots.field && slots.default) {
@@ -11782,7 +11855,7 @@ var _v = function (exports) {
             __metadata('design:type', String)
         ], Field.prototype, 'name', void 0);
         __decorate([
-            vue_property_decorator_1.Prop(),
+            vue_property_decorator_1.Prop({ default: null }),
             __metadata('design:type', String)
         ], Field.prototype, 'info', void 0);
         __decorate([
@@ -11810,10 +11883,11 @@ var _v = function (exports) {
         ], Field.prototype, 'validated', null);
         __decorate([
             vue_property_decorator_1.Watch('value'),
+            vue_property_decorator_1.Emit(),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
             __metadata('design:returntype', void 0)
-        ], Field.prototype, 'setNewValue', null);
+        ], Field.prototype, 'change', null);
         Field = __decorate([vue_property_decorator_1.Component({
                 components: { sInput: input_vue_1.default },
                 mixins: [render_1.renderWrap('initSlots')],
@@ -11865,7 +11939,7 @@ _p.render = function render() {
                     }
                 })]),
             _vm._v(' '),
-            _vm._t('append', [_vm.errors.length && _vm.form.displayErrors ? _c('div', {
+            _vm._t('append', [_vm.errors.length && _vm.form.displayErrors && 'fields' === this.form.errorPanel ? _c('div', {
                     class: [
                         'ui',
                         _vm.isInline && 'left',
@@ -11935,21 +12009,13 @@ var _v = function (exports) {
     var vue_property_decorator_1 = require('vue-property-decorator');
     var module_1 = require('~/src/lib/module');
     var utils_1 = require('~/src/lib/utils');
-    var genInputName = utils_1.idSpace('cbx');
+    var fielded_1 = require('../form/fielded');
+    var genInputName = utils_1.idSpace('slct');
     var Select = function (_super) {
         __extends(Select, _super);
         function Select() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.gendName = null;
-            return _this;
+            return _super !== null && _super.apply(this, arguments) || this;
         }
-        Object.defineProperty(Select.prototype, 'internalName', {
-            get: function () {
-                return this.name || this.gendName || (this.gendName = genInputName());
-            },
-            enumerable: true,
-            configurable: true
-        });
         Select.prototype.onCommand = function (text, value, element) {
         };
         Select.prototype.configure = function (config) {
@@ -11998,10 +12064,6 @@ var _v = function (exports) {
             }),
             __metadata('design:type', Object)
         ], Select.prototype, 'text', void 0);
-        __decorate([
-            vue_property_decorator_1.Prop(),
-            __metadata('design:type', String)
-        ], Select.prototype, 'name', void 0);
         __decorate([
             vue_property_decorator_1.Emit('command'),
             __metadata('design:type', Function),
@@ -12056,7 +12118,7 @@ var _v = function (exports) {
                 'noResult',
                 'show',
                 'hide'
-            ])], Select);
+            ], { mixins: [fielded_1.default] })], Select);
         return Select;
     }(Vue);
     exports.default = Select;
@@ -12074,6 +12136,7 @@ _p.render = function render() {
         attrs: { 'multiple': _vm.multiple }
     }, [
         _c('input', {
+            ref: 'input',
             attrs: {
                 'type': 'hidden',
                 'name': _vm.internalName
@@ -12460,14 +12523,22 @@ var _v = function (exports) {
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
     var vue_ripper_1 = require('vue-ripper');
+    var deep = require('~/src/lib/deep');
     var index_vue_1 = require('./index.vue');
     var Column = function (_super) {
         __extends(Column, _super);
         function Column() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        Column.prototype.value = function (row, property) {
-            return this.extract ? this.extract(row) : this.render ? this.render(row[property]) : row[property];
+        Object.defineProperty(Column.prototype, 'path', {
+            get: function () {
+                return deep.path(this.property);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Column.prototype.value = function (row) {
+            return this.extract ? this.extract(row) : this.render ? this.render(deep.get(row, this.property)) : deep.get(row, this.property);
         };
         __decorate([
             vue_property_decorator_1.Prop(),
@@ -12501,7 +12572,7 @@ _p.render = function render() {
         scopedSlots: _vm._u([{
                 key: 'default',
                 fn: function (scope) {
-                    return [_vm._t('default', [_vm._v('\n\t\t\t' + _vm._s(_vm.value(scope.row, _vm.property)) + '\n\t\t')], {
+                    return [_vm._t('default', [_vm._v('\n\t\t\t' + _vm._s(_vm.value(scope.row)) + '\n\t\t')], {
                             row: scope.row,
                             index: scope.index
                         })];
@@ -12600,6 +12671,7 @@ var _v = function (exports) {
                     var row = _a[_i];
                     this.setRow(row, !!~selection.indexOf(row));
                 }
+                this.computeAll();
             } else
                 throw new Error('Unexpected selection specification');
         };
@@ -12620,7 +12692,6 @@ var _v = function (exports) {
         };
         CheckboxColumn.prototype.computeAll = function () {
             this.allSelected = 0 === this.table.rows.length ? this.defaultv : 0 === this.selection.length ? false : this.table.rows.length === this.selection.length ? true : null;
-            this.$emit('selection-change', this.selection);
         };
         CheckboxColumn.prototype.select = function (row) {
             if (this.selection)
@@ -14058,7 +14129,8 @@ var _v = function (exports) {
             _this.model = {
                 firstName: '',
                 lastName: '',
-                big: false
+                big: false,
+                deep: { reason: 42 }
             };
             _this.schema = {
                 'title': 'Person',
@@ -14071,6 +14143,11 @@ var _v = function (exports) {
                     'lastName': {
                         'description': 'Familly name',
                         'type': 'string'
+                    },
+                    'deep': {
+                        'description': 'Deep property',
+                        'type': 'object',
+                        'properties': { 'reason': { 'type': 'number' } }
                     }
                 },
                 'required': [
@@ -14096,67 +14173,24 @@ _p.render = function render() {
                 'model': _vm.model,
                 'schema': _vm.schema,
                 'display-errors': '',
-                'label-width': '200',
+                'label-width': '200px',
                 'inline': ''
             },
-            scopedSlots: _vm._u([
-                {
-                    key: 'prepend',
-                    fn: function (field) {
-                        return [_c('label', {
-                                staticClass: 'ui label',
-                                attrs: { 'for': field.internalName }
-                            }, [_c('h3', [_vm._v(_vm._s(field.label))])])];
-                    }
-                },
-                {
+            scopedSlots: _vm._u([{
                     key: 'input',
                     fn: function (field) {
                         return [_c('s-input', [_c('s-icon', {
-                                    attrs: { 'icon': field.info },
+                                    attrs: { 'icon': field.info || '' },
                                     slot: 'prepend'
                                 })], 1)];
                     }
-                }
-            ])
-        }, [
-            _c('s-field', {
+                }])
+        }, [_c('s-field', {
                 attrs: {
-                    'inline': '',
-                    'name': 'big',
-                    'label': 'Big'
+                    'name': 'deep.reason',
+                    'label': 'Deep reason'
                 }
-            }, [
-                _c('s-checkbox', { attrs: { 'label': 'big' } }),
-                _vm._v(' '),
-                _c('s-checkbox', {
-                    attrs: { 'label': 'Other' },
-                    model: {
-                        value: _vm.other,
-                        callback: function ($$v) {
-                            _vm.other = $$v;
-                        },
-                        expression: 'other'
-                    }
-                })
-            ], 1),
-            _vm._v(' '),
-            _c('s-field', {
-                attrs: {
-                    'name': 'firstName',
-                    'label': 'First name',
-                    'info': 'hand pointer'
-                }
-            }),
-            _vm._v(' '),
-            _c('s-field', {
-                attrs: {
-                    'name': 'lastName',
-                    'label': 'Last name',
-                    'info': 'signal'
-                }
-            })
-        ], 1),
+            })], 1),
         _vm._v(' '),
         _c('div', { staticClass: 'ui segment' }, [
             _c('h1', [_vm._v('Out of the form')]),
@@ -14378,7 +14412,8 @@ var _v = function (exports) {
     var rows = new Array(10).fill().map(function (x, i) {
         return {
             a: i * 2,
-            b: i * 2 + 1
+            b: i * 2 + 1,
+            deep: { reason: 42 }
         };
     });
     var Accordion = function (_super) {
@@ -14452,7 +14487,14 @@ _p.render = function render() {
                     }])
             }),
             _vm._v(' '),
-            _c('s-column', { attrs: { 'property': 'b' } }, [_c('template', { slot: 'header' }, [_vm._v('\n\t\t\t\tB sum=' + _vm._s(_vm.sum_b) + '\n\t\t\t')])], 2)
+            _c('s-column', { attrs: { 'property': 'b' } }, [_c('template', { slot: 'header' }, [_vm._v('\n\t\t\t\tB sum=' + _vm._s(_vm.sum_b) + '\n\t\t\t')])], 2),
+            _vm._v(' '),
+            _c('s-column', {
+                attrs: {
+                    'property': 'deep.reason',
+                    'header': 'Q?'
+                }
+            })
         ], 1),
         _vm._v(' '),
         _c('div', [

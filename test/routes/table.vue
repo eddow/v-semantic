@@ -23,6 +23,7 @@
 					B sum={{sum_b}}
 				</template>
 			</s-column>
+			<s-column property="deep.reason" header="Q?" />
 		</s-table>
 		<div>
 			<p><h3>current-row</h3> {{my_row}}</p>
@@ -34,7 +35,11 @@
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 
-var rows = (new Array(10)).fill().map((x,i)=> ({a: i*2, b:i*2+1}));
+var rows = (new Array(10)).fill().map((x,i)=> ({
+	a: i*2,
+	b:i*2+1,
+	deep: {reason: 42}
+}));
 @Component
 export default class Accordion extends Vue {
 	my_row = null
