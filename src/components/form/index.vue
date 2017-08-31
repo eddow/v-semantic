@@ -1,7 +1,19 @@
 <template>
 	<form class="ui form">
-		<slot v-if="model" />
-		
+		<template v-if="model">
+			<slot />
+			<div v-if="displayErrors && fieldErrors.length"
+				class="ui pointing red basic error label"
+			>
+					<div v-for="error in fieldErrors" :key="error.schemaPath">
+						{{error.message}}
+					</div>
+				</div>
+			</div>
+		</template>
+		<slot v-else name="empty">
+			No data to show
+		</slot>
 	</form>
 </template>
 
@@ -24,12 +36,14 @@ export default class Form extends Command.Commanded {
 	@Prop({default: {}}) schema
 	@Prop() displayErrors: boolean
 	@Prop() inline: boolean
-	@Prop({type: String, default: 'fields'}) errorPanel: 'all'|'fields'|'none'
+	@Prop({type: String, default: 'fields'}) errorPanel: 'all'|'fields'
 	fields = {}
 	ajv
 	beforeCreate() {
 		//TODO: add ajv options
-		this.ajv = new Ajv();
+		this.ajv = new Ajv({
+			allErrors: true
+		});
 	}
 	validation
 	@Watch('schema', {immediate: true})

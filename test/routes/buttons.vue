@@ -6,7 +6,7 @@
 				<s-button v-command:cancel>Cancel</s-button>
 				<s-button v-command:ok>Ok</s-button>
 			</s-modal>
-			<s-button @click="modal1(()=> {})">
+			<s-button @click="modal1(()=> loading='This is ok...')">
 				modal
 			</s-button>
 			<s-button @click="blurred = !blurred">

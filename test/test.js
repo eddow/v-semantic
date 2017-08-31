@@ -11008,12 +11008,12 @@ var _v = function (exports) {
             return _this;
         }
         Input.prototype.nativeInput = function ($event) {
-            this.$emit('input', $event.target.value);
+            this.input($event.target.value);
         };
         Input.prototype.input = function (value) {
         };
         Input.prototype.modelChanged = function (value) {
-            if (this.value !== value) {
+            if (this.value !== value && (this.value || value)) {
                 this.input(value);
             }
         };
@@ -11127,11 +11127,7 @@ _p.render = function render() {
                         _vm.model = $event.target.value;
                     }
                 }
-            })], {
-            inputName: _vm.internalName,
-            value: _vm.model,
-            input: _vm.input
-        }),
+            })], { input: this }),
         _vm._v(' '),
         _vm._t('append')
     ], 2);
@@ -11495,7 +11491,7 @@ var _v = function (exports) {
             return _this;
         }
         Form.prototype.beforeCreate = function () {
-            this.ajv = new Ajv();
+            this.ajv = new Ajv({ allErrors: true });
         };
         Form.prototype.compileSchema = function (schema) {
             this.validation = this.ajv.compile(schema);
@@ -11601,7 +11597,13 @@ _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
-    return _c('form', { staticClass: 'ui form' }, [_vm.model ? _vm._t('default') : _vm._e()], 2);
+    return _c('form', { staticClass: 'ui form' }, [_vm.model ? [
+            _vm._t('default'),
+            _vm._v(' '),
+            _vm.displayErrors && _vm.fieldErrors.length ? _c('div', { staticClass: 'ui pointing red basic error label' }, _vm._l(_vm.fieldErrors, function (error) {
+                return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t' + _vm._s(error.message) + '\n\t\t\t\t')]);
+            })) : _vm._e()
+        ] : _vm._t('empty', [_vm._v('\n\t\tNo data to show\n\t')])], 2);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -11698,13 +11700,15 @@ var _v = function (exports) {
             }
         };
         Field.prototype.validated = function () {
-            var errors = this.form.fieldErrors;
-            this.errors.splice(0);
-            for (var i = 0; i < errors.length;)
-                if (errors[i].dataPath === '.' + this.path)
-                    (_a = this.errors).push.apply(_a, errors.splice(i, 1));
-                else
-                    ++i;
+            if ('fields' === this.form.errorPanel) {
+                var errors = this.form.fieldErrors;
+                this.errors.splice(0);
+                for (var i = 0; i < errors.length;)
+                    if (errors[i].dataPath === '.' + this.path)
+                        (_a = this.errors).push.apply(_a, errors.splice(i, 1));
+                    else
+                        ++i;
+            }
             var _a;
         };
         Field.prototype.destroyed = function () {
@@ -11737,11 +11741,13 @@ var _v = function (exports) {
                 this.initSlot('prepend');
                 this.initSlot('field');
                 this.initSlot('input');
-                if (!this.$slots.field)
-                    this.$slots.default = this.$slots.input;
-                else if (this.$slots.default) {
-                    this.$slots.input = this.$slots.default;
-                    delete this.$slots.default;
+                var slots = this.$slots;
+                if (!slots.field && !slots.default) {
+                    slots.default = slots.input;
+                    delete slots.input;
+                } else if (slots.field && slots.default) {
+                    slots.input = slots.default;
+                    delete slots.default;
                 }
             }
         };
@@ -11837,7 +11843,7 @@ _p.render = function render() {
             _vm._t('prepend', [_vm.label ? _c('label', {
                     staticClass: 'label',
                     style: _vm.labelStyle,
-                    attrs: { 'for': _vm.name }
+                    attrs: { 'for': _vm.internalName }
                 }, [_vm._v('\n\t\t\t\t' + _vm._s(_vm.label) + '\n\t\t\t')]) : _vm._e()]),
             _vm._v(' '),
             _vm._t('default', [_c('input', {
@@ -11859,17 +11865,15 @@ _p.render = function render() {
                     }
                 })]),
             _vm._v(' '),
-            _vm._t('append', [_vm.errors.length ? _c('div', {
+            _vm._t('append', [_vm.errors.length && _vm.form.displayErrors ? _c('div', {
                     class: [
                         'ui',
-                        _vm.inline && 'left',
+                        _vm.isInline && 'left',
                         'pointing red basic error label'
                     ]
                 }, _vm._l(_vm.errors, function (error) {
                     return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t' + _vm._s(error.message) + '\n\t\t\t\t')]);
-                })) : _vm._e()]),
-            _vm._v(' '),
-            _vm._t('default')
+                })) : _vm._e()])
         ])], 2);
 };
 _p.staticRenderFns = [];
@@ -13593,9 +13597,6 @@ exports.default = {
         else
             shims_1.$(el).data('dimmel').removeClass('text').text('');
         shims_1.$(el).dimmer(binding.value ? 'show' : 'hide');
-    },
-    unbind: function (el, binding, vnode, oldVnode) {
-        vnode.componentInstance.$off('click', oldVnode.modalClick);
     }
 };
 });
@@ -13927,6 +13928,7 @@ _p.render = function render() {
                 on: {
                     'click': function ($event) {
                         _vm.modal1(function () {
+                            return _vm.loading = 'This is ok...';
                         });
                     }
                 }
@@ -14007,6 +14009,331 @@ _p.render = function render() {
                 })])
         ], 1)
     ]);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("test/routes/form.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var Form = function (_super) {
+        __extends(Form, _super);
+        function Form() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.other = null;
+            _this.model = {
+                firstName: '',
+                lastName: '',
+                big: false
+            };
+            _this.schema = {
+                'title': 'Person',
+                'type': 'object',
+                'properties': {
+                    'firstName': {
+                        'type': 'string',
+                        'minLength': 1
+                    },
+                    'lastName': {
+                        'description': 'Familly name',
+                        'type': 'string'
+                    }
+                },
+                'required': [
+                    'firstName',
+                    'lastName'
+                ]
+            };
+            return _this;
+        }
+        Form = __decorate([vue_property_decorator_1.Component], Form);
+        return Form;
+    }(Vue);
+    exports.default = Form;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', { staticClass: 'ui segments' }, [
+        _c('s-form', {
+            staticClass: 'ui segment',
+            attrs: {
+                'model': _vm.model,
+                'schema': _vm.schema,
+                'display-errors': '',
+                'label-width': '200',
+                'inline': ''
+            },
+            scopedSlots: _vm._u([
+                {
+                    key: 'prepend',
+                    fn: function (field) {
+                        return [_c('label', {
+                                staticClass: 'ui label',
+                                attrs: { 'for': field.internalName }
+                            }, [_c('h3', [_vm._v(_vm._s(field.label))])])];
+                    }
+                },
+                {
+                    key: 'input',
+                    fn: function (field) {
+                        return [_c('s-input', [_c('s-icon', {
+                                    attrs: { 'icon': field.info },
+                                    slot: 'prepend'
+                                })], 1)];
+                    }
+                }
+            ])
+        }, [
+            _c('s-field', {
+                attrs: {
+                    'inline': '',
+                    'name': 'big',
+                    'label': 'Big'
+                }
+            }, [
+                _c('s-checkbox', { attrs: { 'label': 'big' } }),
+                _vm._v(' '),
+                _c('s-checkbox', {
+                    attrs: { 'label': 'Other' },
+                    model: {
+                        value: _vm.other,
+                        callback: function ($$v) {
+                            _vm.other = $$v;
+                        },
+                        expression: 'other'
+                    }
+                })
+            ], 1),
+            _vm._v(' '),
+            _c('s-field', {
+                attrs: {
+                    'name': 'firstName',
+                    'label': 'First name',
+                    'info': 'hand pointer'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-field', {
+                attrs: {
+                    'name': 'lastName',
+                    'label': 'Last name',
+                    'info': 'signal'
+                }
+            })
+        ], 1),
+        _vm._v(' '),
+        _c('div', { staticClass: 'ui segment' }, [
+            _c('h1', [_vm._v('Out of the form')]),
+            _vm._v(' '),
+            _c('s-checkbox', {
+                staticStyle: { 'display': 'block' },
+                attrs: { 'label': 'model.big' },
+                model: {
+                    value: _vm.model.big,
+                    callback: function ($$v) {
+                        _vm.model.big = $$v;
+                    },
+                    expression: 'model.big'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-checkbox', {
+                staticStyle: { 'display': 'block' },
+                attrs: { 'label': 'other' },
+                model: {
+                    value: _vm.other,
+                    callback: function ($$v) {
+                        _vm.other = $$v;
+                    },
+                    expression: 'other'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-input', {
+                staticStyle: { 'display': 'block' },
+                model: {
+                    value: _vm.model.firstName,
+                    callback: function ($$v) {
+                        _vm.model.firstName = $$v;
+                    },
+                    expression: 'model.firstName'
+                }
+            }),
+            _vm._v('\n\t\t' + _vm._s(_vm.model) + '\n\t')
+        ], 1)
+    ], 1);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("test/routes/inputs.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var Inputs = function (_super) {
+        __extends(Inputs, _super);
+        function Inputs() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.ddn = '';
+            _this.tchk = true;
+            return _this;
+        }
+        Inputs.prototype.testme = function () {
+            console.log('icon click');
+        };
+        Inputs = __decorate([vue_property_decorator_1.Component], Inputs);
+        return Inputs;
+    }(Vue);
+    exports.default = Inputs;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', [
+        _c('s-input', [
+            _c('s-icon', {
+                attrs: {
+                    'circular': '',
+                    'link': '',
+                    'icon': 'search'
+                },
+                on: { 'click': _vm.testme },
+                slot: 'prepend'
+            }),
+            _vm._v(' '),
+            _c('s-select', {
+                staticClass: 'label',
+                attrs: {
+                    'text': 'Gender',
+                    'on': 'hover'
+                },
+                slot: 'append',
+                model: {
+                    value: _vm.ddn,
+                    callback: function ($$v) {
+                        _vm.ddn = $$v;
+                    },
+                    expression: 'ddn'
+                }
+            }, [
+                _c('s-option', { attrs: { 'value': 'M' } }, [_vm._v('Male')]),
+                _vm._v(' '),
+                _c('s-option', { attrs: { 'value': 'F' } }, [_vm._v('Female')])
+            ], 1)
+        ], 1),
+        _vm._v(' '),
+        _c('div', [
+            _c('label', [_vm._v('Drop down:')]),
+            _vm._v('\n\t\t' + _vm._s(_vm.ddn) + '\n\t')
+        ]),
+        _vm._v(' '),
+        _c('s-select', {
+            staticStyle: { 'display': 'block' },
+            attrs: {
+                'inline': '',
+                'action': 'select',
+                'text': 'Gender',
+                'on': 'hover'
+            },
+            model: {
+                value: _vm.ddn,
+                callback: function ($$v) {
+                    _vm.ddn = $$v;
+                },
+                expression: 'ddn'
+            }
+        }, [
+            _c('s-option', { attrs: { 'value': 'M' } }, [_vm._v('Male')]),
+            _vm._v(' '),
+            _c('s-option', { attrs: { 'value': 'F' } }, [_vm._v('Female')])
+        ], 1),
+        _vm._v(' '),
+        _c('s-checkbox', {
+            attrs: { 'label': 'Yes!' },
+            model: {
+                value: _vm.tchk,
+                callback: function ($$v) {
+                    _vm.tchk = $$v;
+                },
+                expression: 'tchk'
+            }
+        }),
+        _vm._v(' '),
+        _c('div', [
+            _c('label', [_vm._v('Checked:')]),
+            _vm._v('\n\t\t' + _vm._s(_vm.tchk) + '\n\t')
+        ])
+    ], 1);
 };
 _p.staticRenderFns = [];
 var _e = {};

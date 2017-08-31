@@ -21,8 +21,5 @@ export default {
 				.removeClass('text')
 				.text('');
 		$(el).dimmer(binding.value?'show':'hide');
-	},
-	unbind(el, binding, vnode, oldVnode) {
-		vnode.componentInstance.$off('click', oldVnode.modalClick);
 	}
 };

@@ -2,7 +2,7 @@
 	<div :class="['field', {error: errors.length, inline: isInline}]">
 		<slot name="field">
 			<slot name="prepend">
-				<label v-if="label" :for="name" class="label" :style="labelStyle">
+				<label v-if="label" :for="internalName" class="label" :style="labelStyle">
 					{{label}}
 				</label>
 			</slot>
@@ -10,13 +10,13 @@
 				<input type="text" v-model="value" />
 			</slot>
 			<slot name="append">
-				<div :class="['ui', inline&&'left', 'pointing red basic error label']" v-if="errors.length">
-					<div class="" v-for="error in errors" :key="error.schemaPath">
+				<div :class="['ui', isInline&&'left', 'pointing red basic error label']" v-if="errors.length && form.displayErrors">
+					<div v-for="error in errors" :key="error.schemaPath">
 						{{error.message}}
 					</div>
 				</div>
 			</slot>
-		<slot>
+		</slot>
 	</div>
 </template>
 
@@ -41,6 +41,7 @@ export default class Field extends Vue {
 	@Inject() form
 	@Inject() group	//TODO: use `group` where we can and then create `field-group`
 	//TODO: make recursive get - for `inline`, `labelWidth`, etc. and the slots
+	//TODO: finish the 'type' system and why not generalise something with table-cell editors
 	@Prop() label: string
 	@Prop() name: string
 	@Prop() info: string
@@ -81,12 +82,14 @@ export default class Field extends Vue {
 	}
 	@Watch('form.errors', {immediate: true})
 	validated() {
-		var errors = this.form.fieldErrors;
-		this.errors.splice(0);
-		for(let i = 0; i< errors.length;)
-			if(errors[i].dataPath === '.'+this.path)
-				this.errors.push(...errors.splice(i, 1));
-			else ++i;
+		if('fields'=== this.form.errorPanel) {
+			var errors = this.form.fieldErrors;
+			this.errors.splice(0);
+			for(let i = 0; i< errors.length;)
+				if(errors[i].dataPath === '.'+this.path)
+					this.errors.push(...errors.splice(i, 1));
+				else ++i;
+		}
 	}
 	destroyed() {
 		this.undo(this.name);
@@ -113,12 +116,13 @@ export default class Field extends Vue {
 			this.initSlot('prepend');
 			this.initSlot('field');
 			this.initSlot('input');
-
-			if(!this.$slots.field)
-				this.$slots.default = this.$slots.input;
-			else if(this.$slots.default) {
-				this.$slots.input = this.$slots.default;
-				delete this.$slots.default;
+			let slots = this.$slots;
+			if(!slots.field && !slots.default) {
+				slots.default = slots.input;
+				delete slots.input;
+			} else if(slots.field && slots.default) {
+				slots.input = slots.default;
+				delete slots.default;
 			}
 		}
 	}

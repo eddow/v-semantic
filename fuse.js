@@ -101,7 +101,7 @@ Sparky.task("test", ()=> {
 		.instructions('!> [test/index.ts] +test/routes/*.vue -*.d.ts');
 		
 	const source = fuseSrc.bundle("source")
-		.watch('**')
+		//.watch('**')
 		.plugin()
 		.instructions('!>[*.vue]');
 	

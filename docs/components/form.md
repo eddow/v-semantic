@@ -33,7 +33,8 @@ Another behaviour of `Field.Input` is to attach its model to the field if none i
 ## Slots
 
 - The `default` slot is the one displayed.
-- The `prepend` and `append` will be used for each field until expressed otherwise.
+- The `prepend`, `append`, `input` and `field` will be used for each field until expressed otherwise.
+- The `empty` slot is displayed when no model is available
 
 ## Properties
 - `model: any`
