@@ -28,7 +28,7 @@ import Command from 'directives/command'
 	keyboardShortcuts: Boolean,
 	offset: Number,
 	closable: Boolean,
-	//todo: dimmerSettings?
+	//TODO: dimmerSettings?
 	transition: String,
 	duration: Number,
 	queue: Boolean

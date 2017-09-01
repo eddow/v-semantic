@@ -9,8 +9,9 @@ export {lib}
 import 'semantic-ui/dist/semantic'
 export default {
 	install(Vue, options) {
+		var pfx = (options && options.prefix) || 'S';
 		for(let i in components)
-			Vue.component(`S${i}`, components[i]);
+			Vue.component(pfx+i, components[i]);
 		for(let i in directives)
 			Vue.directive(i, directives[i]);
 	}

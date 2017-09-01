@@ -44,7 +44,7 @@ A `header` slot can be given. If not, a `header` property can be given.
 - `keyboardShortcuts: boolean`
 - `offset: number`
 - `closable: boolean`
-- //todo: dimmerSettings?
+- //TODO: dimmerSettings?
 - `transition: string`
 - `duration: number`
 - `queue: boolean`

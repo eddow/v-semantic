@@ -108,7 +108,7 @@ export default class Table extends Vue {
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
 	columns = null
 	@Prop({type: [Number, String]}) bodyHeight: number|string
-
+//TODO: templates and lists in columns like in fields
 	rowId(row) {
 		if(this.idProperty) {
 			console.assert(

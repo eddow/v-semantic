@@ -51,5 +51,5 @@ In the case of `command`, it will raise the `command` event and take no other ac
 - `visible(): boolean`
 - `clear(): void`
 
-## TODOs
+## TODO-s
 The multiple selection is still untested
