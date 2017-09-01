@@ -63,7 +63,7 @@ table.scroll-body > thead.vued {
 table.ui.table.vued > tbody.vued > tr.vued {
 	border: 1px solid transparent;
 }
-table.ui.table.vued tbody tr.current {
+table.ui.table.vued tbody.vued tr.vued.current {
 	border-color: #111;
 	/*background-color: #E0E0E0;/*
 TODO: use theming
