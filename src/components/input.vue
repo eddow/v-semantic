@@ -1,7 +1,7 @@
 <template>
 	<div :class="[cls, dynCls, {field: !!form}]">
 		<slot name="prepend" />
-		<slot>
+		<slot name="input">
 			<input ref="input" :name="internalName" type="text" :placeholder="placeholder" v-model="model" />
 		</slot>
 		<slot name="append" />
@@ -32,13 +32,11 @@ export default class Input extends Vue {
 	@Emit() input(value) {}
 	model = null
 
-	@Watch('model', {immediate: true})
+	@Watch('model')
 	modelChanged(value) {
-		if(this.value!== value && (this.value || value)) {
-			this.input(value);
-		}
+		this.input(value);
 	}
-	@Watch('value')
+	@Watch('value', {immediate: true})
 	valueChanged(value) {
 		this.model = value;
 	}

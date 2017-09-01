@@ -10638,15 +10638,12 @@ var utils_1 = require('~/src/lib/utils');
 var genInputName = utils_1.idSpace('inp');
 exports.default = {
     props: { name: { type: String } },
-    data: function () {
-        return { field: null };
-    },
     computed: {
         internalName: function () {
             return this.name || this.field && this.field.internalName || this.gendName || (this.gendName = genInputName());
         }
     },
-    created: function () {
+    beforeCreate: function () {
         var _this = this;
         var p = this;
         while (p && !(p._provided && p._provided.field))
@@ -10657,14 +10654,15 @@ exports.default = {
             this.constructor.fielded = true;
             var model = this.constructor.options.model, props = this.constructor.options.props, dft_1 = props[model.prop].default;
             props[model.prop].default = function () {
+                _this.formBound = true;
                 return _this.field ? _this.field.value : dft_1;
             };
         }
     },
-    mounted: function () {
+    created: function () {
         var _this = this;
         var model = this.constructor.options.model, form = this.field && this.field.form, unwatchModel, forward2form;
-        if (form && !(model.prop in this.$options.propsData)) {
+        if (form && this.formBound) {
             unwatchModel = this.$watch('field.value', function () {
                 return _this.$forceUpdate();
             });
@@ -11075,9 +11073,7 @@ var _v = function (exports) {
         Input.prototype.input = function (value) {
         };
         Input.prototype.modelChanged = function (value) {
-            if (this.value !== value && (this.value || value)) {
-                this.input(value);
-            }
+            this.input(value);
         };
         Input.prototype.valueChanged = function (value) {
             this.model = value;
@@ -11133,13 +11129,13 @@ var _v = function (exports) {
             __metadata('design:returntype', void 0)
         ], Input.prototype, 'input', null);
         __decorate([
-            vue_property_decorator_1.Watch('model', { immediate: true }),
+            vue_property_decorator_1.Watch('model'),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
             __metadata('design:returntype', void 0)
         ], Input.prototype, 'modelChanged', null);
         __decorate([
-            vue_property_decorator_1.Watch('value'),
+            vue_property_decorator_1.Watch('value', { immediate: true }),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
             __metadata('design:returntype', void 0)
@@ -11168,7 +11164,7 @@ _p.render = function render() {
     }, [
         _vm._t('prepend'),
         _vm._v(' '),
-        _vm._t('default', [_c('input', {
+        _vm._t('input', [_c('input', {
                 directives: [{
                         name: 'model',
                         rawName: 'v-model',
@@ -14130,7 +14126,7 @@ var _v = function (exports) {
                 firstName: '',
                 lastName: '',
                 big: false,
-                deep: { reason: 42 }
+                deep: { reason: '42' }
             };
             _this.schema = {
                 'title': 'Person',
@@ -14176,7 +14172,18 @@ _p.render = function render() {
                 'label-width': '200px',
                 'inline': ''
             },
-            scopedSlots: _vm._u([{
+            scopedSlots: _vm._u([
+                {
+                    key: 'prepend',
+                    fn: function (field) {
+                        return [_c('label', {
+                                staticClass: 'ui label',
+                                style: field.labelStyle,
+                                attrs: { 'for': field.internalName }
+                            }, [_c('h3', [_vm._v(_vm._s(field.label))])])];
+                    }
+                },
+                {
                     key: 'input',
                     fn: function (field) {
                         return [_c('s-input', [_c('s-icon', {
@@ -14184,13 +14191,53 @@ _p.render = function render() {
                                     slot: 'prepend'
                                 })], 1)];
                     }
-                }])
-        }, [_c('s-field', {
+                }
+            ])
+        }, [
+            _c('s-field', {
+                attrs: {
+                    'inline': '',
+                    'name': 'big',
+                    'label': 'Big'
+                }
+            }, [
+                _c('s-checkbox', { attrs: { 'label': 'big' } }),
+                _vm._v(' '),
+                _c('s-checkbox', {
+                    attrs: { 'label': 'Other' },
+                    model: {
+                        value: _vm.other,
+                        callback: function ($$v) {
+                            _vm.other = $$v;
+                        },
+                        expression: 'other'
+                    }
+                })
+            ], 1),
+            _vm._v(' '),
+            _c('s-field', {
+                attrs: {
+                    'name': 'firstName',
+                    'label': 'First name',
+                    'info': 'hand pointer'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-field', {
+                attrs: {
+                    'name': 'lastName',
+                    'label': 'Last name',
+                    'info': 'signal'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-field', {
                 attrs: {
                     'name': 'deep.reason',
                     'label': 'Deep reason'
                 }
-            })], 1),
+            })
+        ], 1),
         _vm._v(' '),
         _c('div', { staticClass: 'ui segment' }, [
             _c('h1', [_vm._v('Out of the form')]),

@@ -3,7 +3,7 @@
 ## Slots
 Buttons have two slots (`prepend` and `append`) where an `icon`, a `button` or something with the class `label` can be used.
 
-The default slot can also be given to replace the `<input type="text">` used by default.
+The `input` slot can also be given to replace the `<input type="text">` used by default.
 
 ## Properties
 The `v-model` is the value and raises the `input` event on change.

@@ -6,20 +6,17 @@ export default {
 	props: {
 		name: {type: String}
 	},
-	data: ()=> ({
-		field: null
-	}),
 	computed: {
 		internalName() {
 			return this.name ||
-				(this.field && this.field.internalName) ||
+				(this.field && this.formBound && this.field.internalName) ||
 				this.gendName ||
 				(this.gendName = genInputName());
 		}
 	},
 	// <patch url="https://github.com/vuejs/vue/issues/6097">
 	//inject: ['field'],
-	created() {
+	beforeCreate() {
 		var p = this;
 		while(p && !(p._provided && p._provided.field)) p = p.$parent;
 		if(p) this.field = p._provided.field;
@@ -33,15 +30,16 @@ export default {
 				props = this.constructor.options.props,
 				dft = props[model.prop].default;
 			props[model.prop].default = ()=> {
+				this.formBound = true;
 				return this.field?this.field.value:dft;
 			}
 		}
 	},
-	mounted() {
+	created() {
 		var model = this.constructor.options.model,
 			form = this.field && this.field.form,
 			unwatchModel, forward2form;
-		if(form && !(model.prop in this.$options.propsData)) {
+		if(form && this.formBound) {
 			unwatchModel = this.$watch('field.value', ()=> this.$forceUpdate());
 			forward2form = value=> this.field.value = value;
 			this.$on(model.event, forward2form);

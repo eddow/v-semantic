@@ -7,23 +7,23 @@
 			inline
 			class="ui segment"
 		>
-			<!--template slot="prepend" scope="field">
-				<label :for="field.internalName" class="ui label" :style="labelStyle">
+			<template slot="prepend" scope="field">
+				<label :for="field.internalName" class="ui label" :style="field.labelStyle">
 					<h3>{{field.label}}</h3>
 				</label>
-			</template-->
+			</template>
 			<template slot="input" scope="field">
 				<s-input>
 					<s-icon slot="prepend" :icon="field.info || ''" />
 				</s-input>
 			</template>
 			
-			<!--s-field inline name="big" label="Big">
+			<s-field inline name="big" label="Big">
 				<s-checkbox label="big" />
 				<s-checkbox label="Other" v-model="other" />
 			</s-field>
 			<s-field name="firstName" label="First name" info="hand pointer" />
-			<s-field name="lastName" label="Last name" info="signal" /-->
+			<s-field name="lastName" label="Last name" info="signal" />
 			<s-field name="deep.reason" label="Deep reason" />
 		</s-form>
 		<div class="ui segment">
@@ -47,7 +47,7 @@ export default class Form extends Vue {
 		firstName: "",
 		lastName: "",
 		big: false,
-		deep: {reason: 42}
+		deep: {reason: '42'}
 	}
 	schema = {
 		"title": "Person",
