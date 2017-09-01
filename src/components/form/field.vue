@@ -93,7 +93,6 @@ export default class Field extends Vue {
 	}
 	@Watch('value')
 	@Emit() change(value) {
-		console.log('value :'+ value);
 		deep.set(this.modeled && this.modeled.model, this.path, value);
 	}
 
@@ -102,7 +101,10 @@ export default class Field extends Vue {
 		if(this.originalSlots[name]) return;
 		for(let mold of this.modeled.molds) {
 			let slot = mold.$scopedSlots[name];
-			if(slot && mold.select(this)) {
+			if(slot && (
+				!mold.select ||
+				('function'=== typeof mold.select && mold.select(this)) ||
+				mold.select === this.type  )) {
 				return this.$slots[name] = slot(this)||[];	//we keep [] for empty vnodes
 			}
 		}

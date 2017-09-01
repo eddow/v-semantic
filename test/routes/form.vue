@@ -19,7 +19,7 @@
 					</s-input>
 				</template>
 			</s-data-mold>
-			<s-data-mold :select="x=> 'bool'=== x.type">
+			<s-data-mold select="bool">
 				<template slot="prepend" scope="field">
 					<label :style="field.labelStyle" />
 				</template>

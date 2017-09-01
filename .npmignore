@@ -1,9 +1,15 @@
 node_modules
 npm-debug.log
 test
+docs
+src
 .fusebox
 .yalc
 .vscode
 package-lock.*
 *.lock
-semantic/*
+semantic
+tsconfig.*
+fuse.*
+.gitignore
+semantic.*

@@ -4,7 +4,7 @@ export const DataMold = {
 	mixins: [Ripper],
 	inject: ['modeled'],
 	props: {
-		select: {default: ()=> true, type: Function}
+		select: {type: [Function, String]}
 	},
 	mounted: function() {
 		this.modeled.molds.unshift(this);

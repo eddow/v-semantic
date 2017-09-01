@@ -1,4 +1,5 @@
 export function path(name) {
+	if(!name) return;
 	var keys = [];
 	for(let key of name.split('.')) {
 		let subs = /^(.*?)(\[.*\])?$/.exec(key);

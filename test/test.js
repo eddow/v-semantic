@@ -10549,6 +10549,8 @@ ___scope___.file("src/lib/deep.js", function(exports, require, module, __filenam
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function path(name) {
+    if (!name)
+        return;
     var keys = [];
     for (var _i = 0, _a = name.split('.'); _i < _a.length; _i++) {
         var key = _a[_i];
@@ -11787,7 +11789,6 @@ var _v = function (exports) {
             this.undo(this.property);
         };
         Field.prototype.change = function (value) {
-            console.log('value :' + value);
             deep.set(this.modeled && this.modeled.model, this.path, value);
         };
         Field.prototype.initSlot = function (name) {
@@ -11796,7 +11797,7 @@ var _v = function (exports) {
             for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
                 var mold = _a[_i];
                 var slot = mold.$scopedSlots[name];
-                if (slot && mold.select(this)) {
+                if (slot && (!mold.select || 'function' === typeof mold.select && mold.select(this) || mold.select === this.type)) {
                     return this.$slots[name] = slot(this) || [];
                 }
             }
@@ -11961,7 +11962,7 @@ exports.DataMold = {
     mixins: [vue_ripper_1.Ripper],
     inject: ['modeled'],
     props: {
-        select: { default: function () { return true; }, type: Function }
+        select: { type: [Function, String] }
     },
     mounted: function () {
         this.modeled.molds.unshift(this);
@@ -14295,11 +14296,7 @@ _p.render = function render() {
             }),
             _vm._v(' '),
             _c('s-data-mold', {
-                attrs: {
-                    'select': function (x) {
-                        return 'bool' === x.type;
-                    }
-                },
+                attrs: { 'select': 'bool' },
                 scopedSlots: _vm._u([
                     {
                         key: 'prepend',
