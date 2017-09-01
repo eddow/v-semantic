@@ -10298,7 +10298,6 @@ __export(require('./directives'));
 var lib = require('~/src/lib/*');
 exports.lib = lib;
 require('semantic-ui/dist/semantic');
-require('./warnHandler');
 exports.default = {
     install: function (Vue, options) {
         var pfx = options && options.prefix || 'S';
@@ -10321,7 +10320,6 @@ require('~/src/lib/module');
 require('~/src/lib/utils');
 require('~/src/lib/deep');
 require('~/src/lib/render');
-require('~/src/components/form/fielded');
 });
 ___scope___.file("src/lib/classed.js", function(exports, require, module, __filename, __dirname){
 
@@ -10590,6 +10588,46 @@ function get(obj, path) {
     return lv && lv.obj[lv.key];
 }
 exports.get = get;
+// https://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects/16788517#16788517
+function equals(x, y) {
+    if (x === null || x === undefined || y === null || y === undefined) {
+        return x === y;
+    }
+    // after this just checking type of one would be enough
+    if (x.constructor !== y.constructor) {
+        return false;
+    }
+    // if they are functions, they should exactly refer to same one (because of closures)
+    if (x instanceof Function) {
+        return x === y;
+    }
+    // if they are regexps, they should exactly refer to same one (it is hard to better equality check on current ES)
+    if (x instanceof RegExp) {
+        return x === y;
+    }
+    if (x === y || x.valueOf() === y.valueOf()) {
+        return true;
+    }
+    if (Array.isArray(x) && x.length !== y.length) {
+        return false;
+    }
+    // if they are dates, they must had equal valueOf
+    if (x instanceof Date) {
+        return false;
+    }
+    // if they are strictly equal, they both need to be object at least
+    if (!(x instanceof Object)) {
+        return false;
+    }
+    if (!(y instanceof Object)) {
+        return false;
+    }
+    // recursive object equality check
+    var p = Object.keys(x);
+    return Object.keys(y).every(function (i) { return p.indexOf(i) !== -1; }) &&
+        p.every(function (i) { return equals(x[i], y[i]); });
+}
+exports.equals = equals;
 //# sourceMappingURL=deep.js.map
 });
 ___scope___.file("src/lib/render.js", function(exports, require, module, __filename, __dirname){
@@ -10632,64 +10670,6 @@ function updateWrap(wrap) {
 exports.updateWrap = updateWrap;
 //# sourceMappingURL=render.js.map
 });
-___scope___.file("src/components/form/fielded.js", function(exports, require, module, __filename, __dirname){
-
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var utils_1 = require('~/src/lib/utils');
-var Vue = require('vue/dist/vue.common.js');
-var genInputName = utils_1.idSpace('inp');
-exports.default = {
-    provide: { field: null },
-    props: {
-        name: {
-            type: String,
-            default: function () {
-                return this.formBound && this.field && this.field.name || this.gendName || (this.gendName = genInputName());
-            }
-        }
-    },
-    beforeCreate: function () {
-        var p = this;
-        while (p && !(p._provided && 'field' in p._provided))
-            p = p.$parent;
-        if (p)
-            this.field = p._provided.field;
-        if (!this.constructor.fielded) {
-            this.constructor.fielded = true;
-            var model = this.constructor.options.model, props = this.constructor.options.props, dft_1 = props[model.prop].default;
-            props[model.prop].default = function () {
-                this.formBound = true;
-                return this.field ? this.field.value : dft_1;
-            };
-        }
-    },
-    created: function () {
-        var _this = this;
-        var model = this.constructor.options.model, form = this.field && this.field.form, unwatchModel, forward2form;
-        if (form && this.formBound) {
-            unwatchModel = this.$watch('field.value', function (value) {
-                Vue.warnIgnore(function () {
-                    return _this[model.prop] = value;
-                });
-            });
-            forward2form = function (value) {
-                return _this.field.value = value;
-            };
-            this.$on(model.event, forward2form);
-            this.unFielded = function () {
-                if (unwatchModel)
-                    unwatchModel();
-                _this.$off(model.event, forward2form);
-            };
-        }
-    },
-    destroyed: function () {
-        if (this.unFielded)
-            this.unFielded();
-    }
-};
-});
 ___scope___.file("src/components.js", function(exports, require, module, __filename, __dirname){
 
 "use strict";
@@ -10710,8 +10690,9 @@ var index_vue_1 = require("./components/form/index.vue");
 exports.Form = index_vue_1.default;
 var field_vue_1 = require("./components/form/field.vue");
 exports.Field = field_vue_1.default;
-var field_input_1 = require("./components/form/field-input");
-exports.FieldInput = field_input_1.default;
+var holders_1 = require("./components/data/holders");
+exports.DataMold = holders_1.DataMold;
+exports.FieldInput = holders_1.FieldInput;
 var index_vue_2 = require("./components/select/index.vue");
 exports.Select = index_vue_2.default;
 var option_vue_1 = require("./components/select/option.vue");
@@ -11066,7 +11047,6 @@ var _v = function (exports) {
     var classed_1 = require('~/src/lib/classed');
     var icon_vue_1 = require('./icon.vue');
     var button_vue_1 = require('./button.vue');
-    var fielded_1 = require('./form/fielded');
     var Input = function (_super) {
         __extends(Input, _super);
         function Input() {
@@ -11150,7 +11130,7 @@ var _v = function (exports) {
                 error: Boolean,
                 transparent: Boolean,
                 fluid: Boolean
-            }, { mixins: [fielded_1.default] })], Input);
+            })], Input);
         return Input;
     }(Vue);
     exports.default = Input;
@@ -11406,7 +11386,6 @@ var _v = function (exports) {
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
     var module_1 = require('~/src/lib/module');
-    var fielded_1 = require('./form/fielded');
     var Checkbox = function (_super) {
         __extends(Checkbox, _super);
         function Checkbox() {
@@ -11475,7 +11454,7 @@ var _v = function (exports) {
             }, {}, [
                 'enable',
                 'disable'
-            ], { mixins: [fielded_1.default] })], Checkbox);
+            ])], Checkbox);
         return Checkbox;
     }(Vue);
     exports.default = Checkbox;
@@ -11551,6 +11530,7 @@ var _v = function (exports) {
         __extends(Form, _super);
         function Form() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.molds = [];
             _this.fields = {};
             return _this;
         }
@@ -11665,7 +11645,7 @@ var _v = function (exports) {
         Form = __decorate([vue_property_decorator_1.Component({
                 provide: function () {
                     return {
-                        form: this,
+                        modeled: this,
                         group: this
                     };
                 }
@@ -11715,6 +11695,15 @@ var _v = function (exports) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     }();
+    var __assign = this && this.__assign || Object.assign || function (t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s)
+                if (Object.prototype.hasOwnProperty.call(s, p))
+                    t[p] = s[p];
+        }
+        return t;
+    };
     var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
@@ -11752,7 +11741,7 @@ var _v = function (exports) {
         }
         Object.defineProperty(Field.prototype, 'isInline', {
             get: function () {
-                return null === this.inline && this.form ? this.form.inline : this.inline;
+                return null === this.inline && this.modeled ? this.modeled.inline : this.inline;
             },
             enumerable: true,
             configurable: true
@@ -11765,24 +11754,25 @@ var _v = function (exports) {
             configurable: true
         });
         Field.prototype.setFieldProperty = function (property, oldv) {
-            if (this.form) {
+            if (this.modeled) {
                 this.undo(oldv);
-                this.unwatch = this.$watch('form.model.' + property, function (value) {
+                this.unwatch = this.$watch('modeled.model.' + property, function (value) {
                     this.value = value;
+                    this.$forceUpdate();
                 }, { immediate: true });
-                console.assert(!this.form.fields[property], 'Field ' + property + ' appears once in its form');
-                this.form.fields[property] = this;
+                console.assert(!this.modeled.fields[property], 'Field ' + property + ' appears once in its form');
+                this.modeled.fields[property] = this;
             }
         };
         Field.prototype.undo = function (property) {
-            if (this.form) {
-                delete this.form.fields[property];
+            if (this.modeled) {
+                delete this.modeled.fields[property];
                 if (this.unwatch)
                     this.unwatch();
             }
         };
         Field.prototype.validated = function () {
-            var errors = this.form.fieldErrors;
+            var errors = this.modeled.fieldErrors;
             this.errors.splice(0);
             for (var i = 0; i < errors.length;)
                 if (errors[i].dataPath === '.' + this.path)
@@ -11797,27 +11787,33 @@ var _v = function (exports) {
             this.undo(this.property);
         };
         Field.prototype.change = function (value) {
-            deep.set(this.form && this.form.model, this.path, value);
+            console.log('value :' + value);
+            deep.set(this.modeled && this.modeled.model, this.path, value);
         };
-        Field.prototype.initSlot = function (toSlot, fromSlot) {
-            if (fromSlot === void 0) {
-                fromSlot = toSlot;
-            }
-            var slots = this.form.$scopedSlots;
-            if (this.$slots[toSlot])
+        Field.prototype.initSlot = function (name) {
+            if (this.originalSlots[name])
                 return;
-            var slot = this.type && slots[fromSlot + '.' + this.type] || slots[fromSlot];
-            if (slot)
-                this.$slots[toSlot] = slot(this);
+            for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
+                var mold = _a[_i];
+                var slot = mold.$scopedSlots[name];
+                if (slot && mold.select(this)) {
+                    return this.$slots[name] = slot(this) || [];
+                }
+            }
+        };
+        Field.prototype.childUpdate = function () {
+            this.$forceUpdate();
         };
         Field.prototype.initSlots = function () {
-            if (this.form) {
+            if (this.modeled) {
+                if (!this.originalSlots)
+                    this.originalSlots = __assign({}, this.$slots);
                 this.initSlot('append');
                 this.initSlot('prepend');
                 this.initSlot('field');
                 this.initSlot('input');
                 var slots = this.$slots;
-                if (!slots.field && !slots.default && slots.input) {
+                if (!slots.field && !this.originalSlots.default && slots.input) {
                     slots.default = slots.input;
                     delete slots.input;
                 } else if (slots.field && slots.default) {
@@ -11828,7 +11824,7 @@ var _v = function (exports) {
         };
         Object.defineProperty(Field.prototype, 'labelStyle', {
             get: function () {
-                return this.form && this.form.labelStyle;
+                return this.modeled && this.modeled.labelStyle;
             },
             enumerable: true,
             configurable: true
@@ -11843,7 +11839,7 @@ var _v = function (exports) {
         __decorate([
             vue_property_decorator_1.Inject(),
             __metadata('design:type', Object)
-        ], Field.prototype, 'form', void 0);
+        ], Field.prototype, 'modeled', void 0);
         __decorate([
             vue_property_decorator_1.Inject(),
             __metadata('design:type', Object)
@@ -11878,7 +11874,7 @@ var _v = function (exports) {
             __metadata('design:returntype', void 0)
         ], Field.prototype, 'setFieldProperty', null);
         __decorate([
-            vue_property_decorator_1.Watch('form.errors', { immediate: true }),
+            vue_property_decorator_1.Watch('modeled.errors', { immediate: true }),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', []),
             __metadata('design:returntype', void 0)
@@ -11900,8 +11896,6 @@ var _v = function (exports) {
         return Field;
     }(Vue);
     exports.default = Field;
-    var fielded_1 = require('./fielded');
-    Field.Input = fielded_1.default;
 };
 _p.render = function render() {
     var _vm = this;
@@ -11941,7 +11935,7 @@ _p.render = function render() {
                     }
                 })]),
             _vm._v(' '),
-            _vm._t('append', [_vm.errors.length && _vm.form.displayErrors && 'fields' === this.form.errorPanel ? _c('div', {
+            _vm._t('append', [_vm.errors.length && _vm.modeled.displayErrors && 'fields' === this.modeled.errorPanel ? _c('div', {
                     class: [
                         'ui',
                         _vm.isInline && 'left',
@@ -11958,18 +11952,34 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("src/components/form/field-input.js", function(exports, require, module, __filename, __dirname){
+___scope___.file("src/components/data/holders.js", function(exports, require, module, __filename, __dirname){
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+var vue_ripper_1 = require("vue-ripper");
+exports.DataMold = {
+    mixins: [vue_ripper_1.Ripper],
+    inject: ['modeled'],
+    props: {
+        select: { default: function () { return true; }, type: Function }
+    },
+    mounted: function () {
+        this.modeled.molds.unshift(this);
+    },
+    destroyed: function () {
+        var lst = this.modeled.molds, ndx = lst.indexOf(this);
+        if (~ndx)
+            lst.splice(ndx, 1);
+    }
+};
+exports.FieldInput = {
     inject: ['field'],
     props: { tag: { type: String, default: 'span' } },
     render: function (h) {
         return h(this.tag, this.field.$slots.input || this.$slots.default);
     }
 };
-//# sourceMappingURL=field-input.js.map
+//# sourceMappingURL=holders.js.map
 });
 ___scope___.file("src/components/select/index.vue", function(exports, require, module, __filename, __dirname){
 
@@ -12020,7 +12030,7 @@ var _v = function (exports) {
     var vue_property_decorator_1 = require('vue-property-decorator');
     var module_1 = require('~/src/lib/module');
     var utils_1 = require('~/src/lib/utils');
-    var fielded_1 = require('../form/fielded');
+    var deep_1 = require('~/src/lib/deep');
     var genInputName = utils_1.idSpace('slct');
     var Select = function (_super) {
         __extends(Select, _super);
@@ -12043,8 +12053,9 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
-        Select.prototype.changeValues = function (values) {
-            this.semantic('change values', this.mappedValues);
+        Select.prototype.changeValues = function (values, oldv) {
+            if (!deep_1.equals(values, oldv))
+                this.semantic('change values', this.mappedValues);
         };
         Select.prototype.mounted = function () {
         };
@@ -12108,7 +12119,10 @@ var _v = function (exports) {
         __decorate([
             vue_property_decorator_1.Watch('values', { deep: true }),
             __metadata('design:type', Function),
-            __metadata('design:paramtypes', [Object]),
+            __metadata('design:paramtypes', [
+                Object,
+                Object
+            ]),
             __metadata('design:returntype', void 0)
         ], Select.prototype, 'changeValues', null);
         __decorate([
@@ -12165,7 +12179,7 @@ var _v = function (exports) {
                 'noResult',
                 'show',
                 'hide'
-            ], { mixins: [fielded_1.default] })], Select);
+            ])], Select);
         return Select;
     }(Vue);
     exports.default = Select;
@@ -13729,24 +13743,6 @@ exports.default = {
     }
 };
 });
-___scope___.file("src/warnHandler.js", function(exports, require, module, __filename, __dirname){
-
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var Vue = require('vue/dist/vue.common.js');
-var ignoreWarnings = 0;
-Vue.config.warnHandler = function (msg, vm, trace) {
-    console.assert(0 < ignoreWarnings, '[Vue warn]: ' + msg + trace);
-};
-Vue.warnIgnore = function (cb) {
-    ++ignoreWarnings;
-    try {
-        return cb();
-    } finally {
-        --ignoreWarnings;
-    }
-};
-});
 ___scope___.file("test/app.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
@@ -14201,7 +14197,6 @@ var _v = function (exports) {
         __extends(Form, _super);
         function Form() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.other = null;
             _this.model = {
                 firstName: '',
                 lastName: '',
@@ -14234,6 +14229,9 @@ var _v = function (exports) {
             };
             return _this;
         }
+        Form.prototype.getValue = function (field) {
+            return field.value;
+        };
         Form.prototype.reInit = function () {
             this.model = {
                 firstName: '',
@@ -14261,49 +14259,80 @@ _p.render = function render() {
                 'display-errors': '',
                 'label-width': '200px',
                 'inline': ''
-            },
-            scopedSlots: _vm._u([
-                {
-                    key: 'prepend',
-                    fn: function (field) {
-                        return [_c('label', {
-                                staticClass: 'ui label',
-                                style: field.labelStyle,
-                                attrs: { 'for': field.name }
-                            }, [_c('h3', [_vm._v(_vm._s(field.label))])])];
+            }
+        }, [
+            _c('s-data-mold', {
+                scopedSlots: _vm._u([
+                    {
+                        key: 'prepend',
+                        fn: function (field) {
+                            return [_c('label', {
+                                    staticClass: 'ui label',
+                                    style: field.labelStyle,
+                                    attrs: { 'for': field.name }
+                                }, [_c('h3', [_vm._v(_vm._s(field.label))])])];
+                        }
+                    },
+                    {
+                        key: 'input',
+                        fn: function (field) {
+                            return [_c('s-input', {
+                                    attrs: { 'name': field.name },
+                                    model: {
+                                        value: field.value,
+                                        callback: function ($$v) {
+                                            field.value = $$v;
+                                        },
+                                        expression: 'field.value'
+                                    }
+                                }, [_c('s-icon', {
+                                        attrs: { 'icon': field.info || '' },
+                                        slot: 'prepend'
+                                    })], 1)];
+                        }
+                    }
+                ])
+            }),
+            _vm._v(' '),
+            _c('s-data-mold', {
+                attrs: {
+                    'select': function (x) {
+                        return 'bool' === x.type;
                     }
                 },
-                {
-                    key: 'input',
-                    fn: function (field) {
-                        return [_c('s-input', [_c('s-icon', {
-                                    attrs: { 'icon': field.info || '' },
-                                    slot: 'prepend'
-                                })], 1)];
+                scopedSlots: _vm._u([
+                    {
+                        key: 'prepend',
+                        fn: function (field) {
+                            return [_c('label', { style: field.labelStyle })];
+                        }
+                    },
+                    {
+                        key: 'input',
+                        fn: function (field) {
+                            return [_c('s-checkbox', {
+                                    attrs: { 'label': field.label },
+                                    model: {
+                                        value: field.value,
+                                        callback: function ($$v) {
+                                            field.value = $$v;
+                                        },
+                                        expression: 'field.value'
+                                    }
+                                })];
+                        }
                     }
-                }
-            ])
-        }, [
+                ])
+            }),
+            _vm._v(' '),
             _c('s-field', {
                 attrs: {
                     'inline': '',
                     'property': 'big',
-                    'label': 'Big'
+                    'label': 'Big',
+                    'type': 'bool'
                 }
-            }, [
-                _c('s-checkbox', { attrs: { 'label': 'big' } }),
-                _vm._v(' '),
-                _c('s-checkbox', {
-                    attrs: { 'label': 'Other' },
-                    model: {
-                        value: _vm.other,
-                        callback: function ($$v) {
-                            _vm.other = $$v;
-                        },
-                        expression: 'other'
-                    }
-                })
-            ], 1),
+            }),
             _vm._v(' '),
             _c('s-field', {
                 attrs: {
@@ -14340,6 +14369,13 @@ _p.render = function render() {
                             'Yes',
                             'No'
                         ]
+                    },
+                    model: {
+                        value: _vm.model.kindness,
+                        callback: function ($$v) {
+                            _vm.model.kindness = $$v;
+                        },
+                        expression: 'model.kindness'
                     }
                 })], 1)
         ], 1),
@@ -14356,18 +14392,6 @@ _p.render = function render() {
                         _vm.model.big = $$v;
                     },
                     expression: 'model.big'
-                }
-            }),
-            _vm._v(' '),
-            _c('s-checkbox', {
-                staticStyle: { 'display': 'block' },
-                attrs: { 'label': 'other' },
-                model: {
-                    value: _vm.other,
-                    callback: function ($$v) {
-                        _vm.other = $$v;
-                    },
-                    expression: 'other'
                 }
             }),
             _vm._v(' '),

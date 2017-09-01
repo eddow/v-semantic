@@ -7,32 +7,37 @@
 			inline
 			class="ui segment"
 		>
-			<template slot="prepend" scope="field">
-				<label :for="field.name" class="ui label" :style="field.labelStyle">
-					<h3>{{field.label}}</h3>
-				</label>
-			</template>
-			<template slot="input" scope="field">
-				<s-input>
-					<s-icon slot="prepend" :icon="field.info || ''" />
-				</s-input>
-			</template>
-			
-			<s-field inline property="big" label="Big">
-				<s-checkbox label="big" />
-				<s-checkbox label="Other" v-model="other" />
-			</s-field>
+			<s-data-mold>
+				<template slot="prepend" scope="field">
+					<label :for="field.name" class="ui label" :style="field.labelStyle">
+						<h3>{{field.label}}</h3>
+					</label>
+				</template>
+				<template slot="input" scope="field">
+					<s-input :name="field.name" v-model="field.value">
+						<s-icon slot="prepend" :icon="field.info || ''" />
+					</s-input>
+				</template>
+			</s-data-mold>
+			<s-data-mold :select="x=> 'bool'=== x.type">
+				<template slot="prepend" scope="field">
+					<label :style="field.labelStyle" />
+				</template>
+				<template slot="input" scope="field">
+					<s-checkbox :label="field.label" v-model="field.value" />
+				</template>
+			</s-data-mold>
+			<s-field inline property="big" label="Big" type="bool" />
 			<s-field property="firstName" label="First name" info="hand pointer" />
 			<s-field property="lastName" label="Last name" info="signal" />
 			<s-field property="deep.reason" label="Deep reason" />
 			<s-field property="kindness" label="Kindness">
-				<s-select :values="['Too much', 'Yes', 'No']" />
+				<s-select v-model="model.kindness" :values="['Too much', 'Yes', 'No']" />
 			</s-field>
 		</s-form>
 		<div class="ui segment">
 			<h1>Out of the form</h1>
 			<s-checkbox style="display: block;" v-model="model.big" label="model.big" />
-			<s-checkbox style="display: block;" v-model="other" label="other" />
 			<s-input style="display: block;" v-model="model.firstName" />
 			{{model}}
 			<s-button style="display: block;" @click="reInit">Re-init</s-button>
@@ -46,7 +51,9 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 
 @Component
 export default class Form extends Vue {
-	other: boolean = null
+	getValue(field) {
+		return field.value;
+	}
 	reInit() {
 		this.model = {
 			firstName: "",

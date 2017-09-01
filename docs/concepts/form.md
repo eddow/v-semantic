@@ -45,23 +45,6 @@ This was possible because all the fields needed an `<input type="text" />`. Now,
 </s-form>
 ```
 
-#### `Field.Input`
-This was the worst case scenario, if the programer wants to describe exactly how this field  is rendered and nothing was generalised before.
-Most of the time, it will just look like this :
-
-```html
-<s-form :model="person">
-	...
-	<s-field name="optIn" label="Opted in">
-		<s-checkbox />
-	</s-field>
-</s-form>
-```
-`s-checkbox` is really described like this, without `v-model` nor input name - and, in the generated HTML, the label "Opted in" will be described by `<label for="optIn">...` and the checkbox with `<input type="checkbox" name="optIn" />`
-
-This is because [`s-checkbox`](../components/checkbox.md) uses the `Field.Input` mixin (as [`s-input`](../components/input.md) and [`s-select'](../components/select) do).
-Refer [here](#creating-a-fieldinput) to write your own `Field.Input` components
-
 ### Field-modifying form slot
 Labels and errors are displayed in the field object, in so-called `prepend` and `append` slots. The last example was equivalent to this:
 ```html
@@ -79,11 +62,13 @@ Now, let's imagine we wish to use a `fancy-label`for each input, we could do thi
 
 ```html
 <s-form :model="person">
-	<template slot="prepend" scope="field">
-		<fancy-label :for="field.name">
-			{{field.label}}
-		</fancy-label>
-	</template>
+	<s-data-mold>
+		<template slot="prepend" scope="field">
+			<fancy-label :for="field.name" :style="field.labelStyle">
+				{{field.label}}
+			</fancy-label>
+		</template>
+	</s-data-mold>
 	<s-field property="firstName" label="First name" />
 	<s-field property="middleName" label="Middle name" />
 	<s-field property="lastName" label="Last name" />
@@ -99,21 +84,9 @@ In general, the scoped slot of the form is the static slot of the field. This wo
 
 The scope is always the `field: VueComponent` object. It gives the programmer acces to valuable information like
 - `label`
+- `labelStyle`
 - `property` that is the given name
 - `name` that is the given name or a generated name if needed
 - `value` that is watched and is up-to-date, so that can be used as a `v-model`
 
 - and also `info`, that is a property of field that is unused by `v-semantic` and just forwarded here - that can be useful to set an icon if the template uses an icon for instance.
-# TODO: customised even more
-# TODO: manage end-page notes
-### Creating a `Field.Input`
-
-To create a custom `Field.Input` from scratch, one has to use it as a mixin. The component will therefore have `property` defined as a property and an `name` to use as the input name `<input :name="name" />` in order for the labels to be managed.
-
-```typescript
-import {Field} from 'v-semantic'
-
-@Component({mixins:[Field.Input]})
-class...
-```
-Beside, their `v-model` will be managed by the `field` that contains them **if they don't have any specified**.

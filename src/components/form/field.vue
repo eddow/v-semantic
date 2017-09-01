@@ -10,7 +10,7 @@
 				<input type="text" v-model="value" />
 			</slot>
 			<slot name="append">
-				<div v-if="errors.length && form.displayErrors && 'fields'=== this.form.errorPanel"
+				<div v-if="errors.length && modeled.displayErrors && 'fields'=== this.modeled.errorPanel"
 					:class="['ui', isInline&&'left', 'pointing red basic error label']"
 				>
 					<div v-for="error in errors" :key="error.schemaPath">
@@ -41,7 +41,7 @@ function patchRender(h) {
   provide() { return {field: this}; }
 })
 export default class Field extends Vue {
-	@Inject() form
+	@Inject() modeled
 	@Inject() group	//TODO: use `group` where we can and then create `field-group`
 	//TODO: make recursive get - for `inline`, `labelWidth`, etc. and the slots
 	//TODO: finish the 'type' system and why not generalise something with table-cell editors
@@ -51,8 +51,8 @@ export default class Field extends Vue {
 	@Prop({default: null}) info: string
 	@Prop({default: null}) inline: boolean
 	get isInline() {
-		return null=== this.inline && this.form ? 
-			this.form.inline : this.inline;
+		return null=== this.inline && this.modeled ? 
+			this.modeled.inline : this.inline;
 	}
 	@Prop() type: string
 	errors = []
@@ -60,26 +60,27 @@ export default class Field extends Vue {
 	get path() { return deep.path(this.property); }
 	value = null
 	unwatch
-	@Watch('property', {immediate: true}) setFieldProperty(property, oldv) {	//TODO: check if oldValue is given
-		if(this.form) {
+	@Watch('property', {immediate: true}) setFieldProperty(property, oldv) {
+		if(this.modeled) {
 			this.undo(oldv);
-			this.unwatch = this.$watch('form.model.'+property, function(value) {
+			this.unwatch = this.$watch('modeled.model.'+property, function(value) {
 				this.value = value;
+				this.$forceUpdate();
 			}, {immediate: true});
-			console.assert(!this.form.fields[property],
+			console.assert(!this.modeled.fields[property],
 				`Field ${property} appears once in its form`);
-			this.form.fields[property] = this;
+			this.modeled.fields[property] = this;
 		}
 	}
 	undo(property) {
-		if(this.form) {
-			delete this.form.fields[property];
+		if(this.modeled) {
+			delete this.modeled.fields[property];
 			if(this.unwatch) this.unwatch();
 		}
 	}
-	@Watch('form.errors', {immediate: true})
+	@Watch('modeled.errors', {immediate: true})
 	validated() {
-		var errors = this.form.fieldErrors;
+		var errors = this.modeled.fieldErrors;
 		this.errors.splice(0);
 		for(let i = 0; i< errors.length;)
 			if(errors[i].dataPath === '.'+this.path)
@@ -92,23 +93,34 @@ export default class Field extends Vue {
 	}
 	@Watch('value')
 	@Emit() change(value) {
-		deep.set(this.form && this.form.model, this.path, value);
+		console.log('value :'+ value);
+		deep.set(this.modeled && this.modeled.model, this.path, value);
 	}
 
-	initSlot(toSlot: string, fromSlot: string = toSlot) {
-		let slots = this.form.$scopedSlots;
-		if(this.$slots[toSlot]) return;
-		let slot = (this.type && slots[fromSlot+'.'+this.type]) || slots[fromSlot];
-		if(slot) this.$slots[toSlot] = slot(this);
+	originalSlots
+	initSlot(name: string) {
+		if(this.originalSlots[name]) return;
+		for(let mold of this.modeled.molds) {
+			let slot = mold.$scopedSlots[name];
+			if(slot && mold.select(this)) {
+				return this.$slots[name] = slot(this)||[];	//we keep [] for empty vnodes
+			}
+		}
+	}
+	childUpdate() {
+		this.$forceUpdate();
 	}
 	initSlots() {
-		if(this.form) {
+		if(this.modeled) {
+			if(!this.originalSlots)
+				this.originalSlots = {...this.$slots};
 			this.initSlot('append');
 			this.initSlot('prepend');
 			this.initSlot('field');
 			this.initSlot('input');
+			//When defined in the field, it is not the `input` slot that is used but the default one
 			let slots = this.$slots;
-			if(!slots.field && !slots.default && slots.input) {
+			if(!slots.field && !this.originalSlots.default && slots.input) {
 				slots.default = slots.input;
 				delete slots.input;
 			} else if(slots.field && slots.default) {
@@ -118,13 +130,11 @@ export default class Field extends Vue {
 		}
 	}
 	get labelStyle() {
-		return this.form && this.form.labelStyle;
+		return this.modeled && this.modeled.labelStyle;
 	}
 	gendName = null;
 	get name() {
 		return this.property || this.gendName || (this.gendName = genFieldName());
 	}
 }
-import Fielded from './fielded'
-Field.Input = Fielded;
 </script>

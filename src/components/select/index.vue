@@ -28,7 +28,7 @@ import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
 import {idSpace} from 'lib/utils'
-import Fielded from '../form/fielded'
+import {equals} from 'lib/deep'
 
 const genInputName = idSpace('slct');
 
@@ -68,9 +68,7 @@ const genInputName = idSpace('slct');
 	'noResult',
 	'show',
 	'hide'
-], {
-	mixins: [Fielded]
-})
+])
 //TODO: finish and test `multiple`
 export default class Select extends Vue {
 	@Model('change') @Prop() value: string
@@ -89,8 +87,9 @@ export default class Select extends Vue {
 			selected: x.value === this.value
 		}));
 	}
-	@Watch('values', {deep: true}) changeValues(values) {
-		this.semantic('change values', this.mappedValues);
+	@Watch('values', {deep: true}) changeValues(values, oldv) {
+		if(!equals(values, oldv))
+			this.semantic('change values', this.mappedValues);
 	}
 	mounted() {
 		//this.semantic('set selected', this.value);

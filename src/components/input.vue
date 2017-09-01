@@ -19,7 +19,6 @@ import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
-import Fielded from './form/fielded'
 
 @Semantic('input', {
 	loading: Boolean,
@@ -27,8 +26,6 @@ import Fielded from './form/fielded'
 	error: Boolean,
 	transparent: Boolean,
 	fluid: Boolean
-}, {
-	mixins: [Fielded]
 })
 export default class Input extends Vue {
 	@Model('input') value: string

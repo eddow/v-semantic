@@ -14,19 +14,6 @@ Forms come with their component `field` that automatise a big deal of model/fiel
 
 When described in the form, the `append` and `prepend` slot have a scope : the field `VueComponent`.
 
-### v-model
-Another behaviour of `Field.Input` is to attach its model to the field if none is specified. Here are two equivalent codes:
-```html
-<s-form :model="model">
-	<s-field name="propX" label="A property">
-		<s-input />
-```
-
-```html
-<s-form :model="model">
-	<s-field name="propX" label="A property">
-		<s-input v-model="model.propX" />
-```
 
 
 #TODO:DOC

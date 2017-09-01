@@ -32,7 +32,7 @@ import * as Ajv from 'ajv'
 
 @Component({
 	provide() { return {
-		form: this,
+		modeled: this,
 		group: this
 	}; }
 })
@@ -50,6 +50,7 @@ export default class Form extends Command.Commanded {
 			all: this.errors
 		}[this.errorPanel];
 	}
+	molds = []
 	fields = {}
 	ajv
 	beforeCreate() {
@@ -65,6 +66,7 @@ export default class Form extends Command.Commanded {
 	}
 	@Prop({default: ()=>[]}) errors: any[]
 	@Prop({default: ()=>[]}) fieldErrors: any[]
+
 	@Watch('model', {immediate: true, deep: true})
 	validate(model) {
 		if(!this.validation) return;

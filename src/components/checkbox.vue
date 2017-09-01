@@ -14,7 +14,6 @@
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
-import Fielded from './form/fielded'
 
 @Semantic('checkbox', {
 	disabled: Boolean,
@@ -26,9 +25,7 @@ import Fielded from './form/fielded'
 }, [
 	'enable',
 	'disable'
-], {
-	mixins: [Fielded]
-})
+])
 export default class Checkbox extends Vue {
 	@Prop() label: string
 	@Prop() state3: boolean

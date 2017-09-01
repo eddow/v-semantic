@@ -8,7 +8,7 @@ import Checkbox from './components/checkbox.vue'
 
 import Form from './components/form/index.vue'
 import Field from './components/form/field.vue'
-import FieldInput from './components/form/field-input'
+import {DataMold, FieldInput} from './components/data/holders'
 
 import Select from './components/select/index.vue'
 import Option from './components/select/option.vue'
@@ -26,7 +26,7 @@ import Dimmable from './components/dimmable.vue'
 
 export {
 	Flag, Button, Icon, Modal, Checkbox, Input,
-	Form, Field, FieldInput,
+	Form, Field, FieldInput, DataMold,
 	Select, Option,
 	Table, Column, CheckboxColumn,
 	Accordion, Tabs, Panel,

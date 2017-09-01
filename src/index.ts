@@ -7,7 +7,6 @@ export * from './directives'
 import * as lib from 'lib/*'
 export {lib}
 import 'semantic-ui/dist/semantic'
-import './warnHandler'
 
 export default {
 	install(Vue, options) {
