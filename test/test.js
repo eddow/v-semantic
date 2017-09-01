@@ -10640,11 +10640,10 @@ exports.default = {
     props: { name: { type: String } },
     computed: {
         internalName: function () {
-            return this.name || this.field && this.field.internalName || this.gendName || (this.gendName = genInputName());
+            return this.name || this.formBound && this.field && this.field.internalName || this.gendName || (this.gendName = genInputName());
         }
     },
     beforeCreate: function () {
-        var _this = this;
         var p = this;
         while (p && !(p._provided && p._provided.field))
             p = p.$parent;
@@ -10654,8 +10653,8 @@ exports.default = {
             this.constructor.fielded = true;
             var model = this.constructor.options.model, props = this.constructor.options.props, dft_1 = props[model.prop].default;
             props[model.prop].default = function () {
-                _this.formBound = true;
-                return _this.field ? _this.field.value : dft_1;
+                this.formBound = true;
+                return this.field ? this.field.value : dft_1;
             };
         }
     },
@@ -12526,6 +12525,10 @@ var _v = function (exports) {
         function Column() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        Column.prototype.input = function (row, value) {
+            if (!deep.set(row, this.property, value))
+                throw new Error('Unable to bind back the given value.');
+        };
         Object.defineProperty(Column.prototype, 'path', {
             get: function () {
                 return deep.path(this.property);
@@ -12570,7 +12573,11 @@ _p.render = function render() {
                 fn: function (scope) {
                     return [_vm._t('default', [_vm._v('\n\t\t\t' + _vm._s(_vm.value(scope.row)) + '\n\t\t')], {
                             row: scope.row,
-                            index: scope.index
+                            index: scope.index,
+                            value: _vm.value(scope.row),
+                            input: function (value) {
+                                return _vm.input(scope.row, value);
+                            }
                         })];
                 }
             }])

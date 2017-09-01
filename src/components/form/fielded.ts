@@ -9,7 +9,7 @@ export default {
 	computed: {
 		internalName() {
 			return this.name ||
-				(this.field && this.formBound && this.field.internalName) ||
+				(this.formBound && this.field && this.field.internalName) ||
 				this.gendName ||
 				(this.gendName = genInputName());
 		}
@@ -29,7 +29,7 @@ export default {
 			let model = this.constructor.options.model,
 				props = this.constructor.options.props,
 				dft = props[model.prop].default;
-			props[model.prop].default = ()=> {
+			props[model.prop].default = function() {
 				this.formBound = true;
 				return this.field?this.field.value:dft;
 			}

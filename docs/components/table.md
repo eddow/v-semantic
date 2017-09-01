@@ -14,7 +14,11 @@ Vue's magic is that : if `v-model` is not used, no row will be marked current. I
 
 # Columns
 ## Slots
- Each column has two slots : `header` and the default scoped slot whose scope contains the `row` property.
+Each column has two slots : `header` and the default scoped slot whose scope contains:
+- `row` is the object mapped to this row (from `table.rows`)
+- `index` is the numeric index of the row
+- `value` is the value extracted and rendered from `row.property`
+- `input` is the function `(value)=> void` that has to be called to change the value in the row
 ```html
 <s-column>
 	<template slot="header">My property</template>
