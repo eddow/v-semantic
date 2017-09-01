@@ -4,7 +4,7 @@
 			<span class="description">{{description}}</span>
 			<span class="text"><slot>{{text}}</slot></span>
 		</template>
-		<slot v-else>{{text}}</slot>
+		<slot v-else>{{text || value}}</slot>
 	</div>
 </template>
 

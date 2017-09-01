@@ -1,8 +1,13 @@
 <template>
 	<div :class="[cls, dynCls, {field: !!form}]">
 		<slot name="prepend" />
-		<slot name="input">
-			<input ref="input" :name="internalName" type="text" :placeholder="placeholder" v-model="model" />
+		<slot name="input" :input="_self">
+			<input type="text"
+				ref="input"
+				:name="internalName"
+				:placeholder="placeholder"
+				v-model="model"
+			/>
 		</slot>
 		<slot name="append" />
 	</div>
@@ -28,7 +33,6 @@ import Fielded from './form/fielded'
 export default class Input extends Vue {
 	@Model('input') value: string
 	@Prop() placeholder: string
-	nativeInput($event) { this.input($event.target.value); }
 	@Emit() input(value) {}
 	model = null
 

@@ -11066,9 +11066,6 @@ var _v = function (exports) {
             _this.model = null;
             return _this;
         }
-        Input.prototype.nativeInput = function ($event) {
-            this.input($event.target.value);
-        };
         Input.prototype.input = function (value) {
         };
         Input.prototype.modelChanged = function (value) {
@@ -11172,8 +11169,8 @@ _p.render = function render() {
                     }],
                 ref: 'input',
                 attrs: {
-                    'name': _vm.internalName,
                     'type': 'text',
+                    'name': _vm.internalName,
                     'placeholder': _vm.placeholder
                 },
                 domProps: { 'value': _vm.model },
@@ -11185,7 +11182,7 @@ _p.render = function render() {
                         _vm.model = $event.target.value;
                     }
                 }
-            })]),
+            })], { input: _vm._self }),
         _vm._v(' '),
         _vm._t('append')
     ], 2);
@@ -11985,6 +11982,15 @@ var _v = function (exports) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     }();
+    var __assign = this && this.__assign || Object.assign || function (t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s)
+                if (Object.prototype.hasOwnProperty.call(s, p))
+                    t[p] = s[p];
+        }
+        return t;
+    };
     var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
@@ -12011,11 +12017,37 @@ var _v = function (exports) {
         function Select() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        Object.defineProperty(Select.prototype, 'mappedValues', {
+            get: function () {
+                var _this = this;
+                return this.values.map(function (x) {
+                    return 'string' === typeof x ? {
+                        name: x,
+                        text: x,
+                        value: x
+                    } : x;
+                }).map(function (x) {
+                    return __assign({}, x, { selected: x.value === _this.value });
+                });
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Select.prototype.changeValues = function (values) {
+            this.semantic('change values', this.mappedValues);
+        };
+        Select.prototype.mounted = function () {
+        };
         Select.prototype.onCommand = function (text, value, element) {
         };
         Select.prototype.configure = function (config) {
+            config.selected = this.value;
             if ('command' === config.action)
                 config.action = this.onCommand;
+            if (this.values)
+                config.values = this.mappedValues;
+            else {
+            }
         };
         Select.prototype.setValue = function (value) {
             this.semantic('set selected', value);
@@ -12059,6 +12091,16 @@ var _v = function (exports) {
             }),
             __metadata('design:type', Object)
         ], Select.prototype, 'text', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', Array)
+        ], Select.prototype, 'values', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('values', { deep: true }),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], Select.prototype, 'changeValues', null);
         __decorate([
             vue_property_decorator_1.Emit('command'),
             __metadata('design:type', Function),
@@ -12135,6 +12177,12 @@ _p.render = function render() {
             attrs: {
                 'type': 'hidden',
                 'name': _vm.internalName
+            },
+            domProps: { 'value': _vm.value },
+            on: {
+                'input': function ($event) {
+                    return _vm.change($event.target.value);
+                }
             }
         }),
         _vm._v(' '),
@@ -12151,12 +12199,12 @@ _p.render = function render() {
             }) : _vm._e()
         ]),
         _vm._v(' '),
-        _c('div', {
-            class: {
-                menu: 1,
-                left: 'left' === _vm.menu
-            }
-        }, [_vm._t('default')], 2)
+        !_vm.values ? _c('div', {
+            class: [
+                'left' === _vm.menu && 'left',
+                'menu'
+            ]
+        }, [_vm._t('default')], 2) : _vm._e()
     ], 2);
 };
 _p.staticRenderFns = [];
@@ -12239,7 +12287,7 @@ _p.render = function render() {
             _c('span', { staticClass: 'description' }, [_vm._v(_vm._s(_vm.description))]),
             _vm._v(' '),
             _c('span', { staticClass: 'text' }, [_vm._t('default', [_vm._v(_vm._s(_vm.text))])], 2)
-        ] : _vm._t('default', [_vm._v(_vm._s(_vm.text))])], 2);
+        ] : _vm._t('default', [_vm._v(_vm._s(_vm.text || _vm.value))])], 2);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -14133,7 +14181,8 @@ var _v = function (exports) {
                 firstName: '',
                 lastName: '',
                 big: false,
-                deep: { reason: '42' }
+                deep: { reason: '42' },
+                kindness: 'Yes'
             };
             _this.schema = {
                 'title': 'Person',
@@ -14243,7 +14292,22 @@ _p.render = function render() {
                     'name': 'deep.reason',
                     'label': 'Deep reason'
                 }
-            })
+            }),
+            _vm._v(' '),
+            _c('s-field', {
+                attrs: {
+                    'name': 'kindness',
+                    'label': 'Kindness'
+                }
+            }, [_c('s-select', {
+                    attrs: {
+                        'values': [
+                            'Too much',
+                            'Yes',
+                            'No'
+                        ]
+                    }
+                })], 1)
         ], 1),
         _vm._v(' '),
         _c('div', { staticClass: 'ui segment' }, [

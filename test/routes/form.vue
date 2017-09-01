@@ -25,6 +25,9 @@
 			<s-field name="firstName" label="First name" info="hand pointer" />
 			<s-field name="lastName" label="Last name" info="signal" />
 			<s-field name="deep.reason" label="Deep reason" />
+			<s-field name="kindness" label="Kindness">
+				<s-select :values="['Too much', 'Yes', 'No']" />
+			</s-field>
 		</s-form>
 		<div class="ui segment">
 			<h1>Out of the form</h1>
@@ -47,7 +50,8 @@ export default class Form extends Vue {
 		firstName: "",
 		lastName: "",
 		big: false,
-		deep: {reason: '42'}
+		deep: {reason: '42'},
+		kindness: 'Yes'
 	}
 	schema = {
 		"title": "Person",

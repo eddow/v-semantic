@@ -1,12 +1,17 @@
 <template>
 	<div :class="[cls, {iconOnly: false=== this.text}]" :multiple="multiple">
-		<input type="hidden" ref="input" :name="internalName">
+		<input type="hidden"
+			ref="input"
+			:name="internalName"
+			:value="value"
+			@input="$event=> change($event.target.value)"
+		/>
 		<slot name="bar">
 			<div v-if="placeholder" class="default text">{{placeholder}}</div>
 			<span v-if="!placeholder && false!== text" class="text">{{text}}</span>
 			<i v-if="icon" :class="[icon, 'icon']"></i>
 		</slot>
-		<div :class="{menu:1, left: 'left'=== menu}">
+		<div :class="['left'=== menu && 'left', 'menu']" v-if="!values">
 			<slot />
 		</div>
 	</div>
@@ -73,10 +78,31 @@ export default class Select extends Vue {
 	@Prop() placeholder: string
 	@Prop({default: 'right'}) menu: 'right'|'left'
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
-
+	@Prop() values: any[]
+	get mappedValues() {
+		return this.values.map(x=> 'string'=== typeof x ? {
+			name: x,
+			text: x,
+			value: x
+		} : x).map(x=> ({
+			...x,
+			selected: x.value === this.value
+		}));
+	}
+	@Watch('values', {deep: true}) changeValues(values) {
+		this.semantic('change values', this.mappedValues);
+	}
+	mounted() {
+		//this.semantic('set selected', this.value);
+	}
 	@Emit('command') onCommand(text, value, element) {}
 	configure(config) {
+		config.selected = this.value;
 		if('command'=== config.action) config.action = this.onCommand;
+		if(this.values) config.values = this.mappedValues;
+		else {
+			//TODO: we need to set the class 'selected' to the option item that has `item.value === this.value`
+		}
 	}
 	@Watch('value') setValue(value) {
 		this.semantic('set selected', value);
