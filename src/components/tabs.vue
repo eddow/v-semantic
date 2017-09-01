@@ -9,7 +9,7 @@
 						class="item"
 						template="title"
 						:ripper="panel"
-						:data-tab="panel.internalName"
+						:data-tab="panel.name"
 					/>
 				</div>
 			</div>
@@ -18,7 +18,7 @@
 					tag="div"
 					:class="['ui', pnlAttach, 'tab segment']"
 					:ripper="panel"
-					:data-tab="panel.internalName"
+					:data-tab="panel.name"
 				/>
 			</div>
 		</template>
@@ -28,7 +28,7 @@
 					tag="div"
 					:class="['ui', pnlAttach, 'tab segment']"
 					:ripper="panel"
-					:data-tab="panel.internalName"
+					:data-tab="panel.name"
 				/>
 			</div>
 			<div :class="tabClmn">
@@ -38,7 +38,7 @@
 						class="item"
 						template="title"
 						:ripper="panel"
-						:data-tab="panel.internalName"
+						:data-tab="panel.name"
 					/>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 				tag="div"
 				:class="['ui', pnlAttach, 'tab segment']"
 				:ripper="panel"
-				:data-tab="panel.internalName"
+				:data-tab="panel.name"
 			/>
 			<div ref="menu" :class="[cls, tabAttach]">
 				<ripped v-for="(panel, uid) in panels" :key="uid"
@@ -56,7 +56,7 @@
 					class="item"
 					template="title"
 					:ripper="panel"
-					:data-tab="panel.internalName"
+					:data-tab="panel.name"
 				/>
 			</div>
 		</template>
@@ -67,14 +67,14 @@
 					class="item"
 					template="title"
 					:ripper="panel"
-					:data-tab="panel.internalName"
+					:data-tab="panel.name"
 				/>
 			</div>
 			<ripped v-for="(panel, uid) in panels" :key="uid"
 				tag="div"
 				:class="['ui', pnlAttach, 'tab segment']"
 				:ripper="panel"
-				:data-tab="panel.internalName"
+				:data-tab="panel.name"
 			/>
 		</template>
 	</div>

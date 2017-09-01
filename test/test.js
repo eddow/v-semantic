@@ -10298,10 +10298,12 @@ __export(require('./directives'));
 var lib = require('~/src/lib/*');
 exports.lib = lib;
 require('semantic-ui/dist/semantic');
+require('./warnHandler');
 exports.default = {
     install: function (Vue, options) {
+        var pfx = options && options.prefix || 'S';
         for (var i in components)
-            Vue.component('S' + i, components[i]);
+            Vue.component(pfx + i, components[i]);
         for (var i in directives)
             Vue.directive(i, directives[i]);
     }
@@ -10635,17 +10637,21 @@ ___scope___.file("src/components/form/fielded.js", function(exports, require, mo
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
 var utils_1 = require('~/src/lib/utils');
+var Vue = require('vue/dist/vue.common.js');
 var genInputName = utils_1.idSpace('inp');
 exports.default = {
-    props: { name: { type: String } },
-    computed: {
-        internalName: function () {
-            return this.name || this.formBound && this.field && this.field.internalName || this.gendName || (this.gendName = genInputName());
+    provide: { field: null },
+    props: {
+        name: {
+            type: String,
+            default: function () {
+                return this.formBound && this.field && this.field.name || this.gendName || (this.gendName = genInputName());
+            }
         }
     },
     beforeCreate: function () {
         var p = this;
-        while (p && !(p._provided && p._provided.field))
+        while (p && !(p._provided && 'field' in p._provided))
             p = p.$parent;
         if (p)
             this.field = p._provided.field;
@@ -10663,10 +10669,9 @@ exports.default = {
         var model = this.constructor.options.model, form = this.field && this.field.form, unwatchModel, forward2form;
         if (form && this.formBound) {
             unwatchModel = this.$watch('field.value', function (value) {
-                var parent = _this.$parent;
-                _this.$parent = null;
-                _this[model.prop] = value;
-                _this.$parent = parent;
+                Vue.warnIgnore(function () {
+                    return _this[model.prop] = value;
+                });
             });
             forward2form = function (value) {
                 return _this.field.value = value;
@@ -11173,7 +11178,7 @@ _p.render = function render() {
                 ref: 'input',
                 attrs: {
                     'type': 'text',
-                    'name': _vm.internalName,
+                    'name': _vm.name,
                     'placeholder': _vm.placeholder
                 },
                 domProps: { 'value': _vm.model },
@@ -11488,13 +11493,13 @@ _p.render = function render() {
         _c('input', {
             ref: 'input',
             attrs: {
-                'name': _vm.internalName,
+                'name': _vm.name,
                 'type': 'checkbox'
             },
             domProps: { 'checked': _vm.checked }
         }),
         _vm._v(' '),
-        _c('label', { attrs: { 'for': _vm.internalName } }, [_vm._t('default', [_vm._v(_vm._s(_vm.label))])], 2)
+        _c('label', { attrs: { 'for': _vm.name } }, [_vm._t('default', [_vm._v(_vm._s(_vm.label))])], 2)
     ]);
 };
 _p.staticRenderFns = [];
@@ -11674,9 +11679,11 @@ _p.render = function render() {
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
     return _c('form', { staticClass: 'ui form' }, [_vm.model ? [
+            _vm.header || _vm.$slots.header ? _c('div', { staticClass: 'ui attached message' }, [_vm._t('header', [_c('div', { staticClass: 'header' }, [_vm._v('\n\t\t\t\t\t' + _vm._s(_vm.header) + '\n\t\t\t\t')])])], 2) : _vm._e(),
+            _vm._v(' '),
             _vm._t('default'),
             _vm._v(' '),
-            _vm.displayErrors && _vm.displayedErrors.length ? _c('div', { staticClass: 'ui pointing red basic error label' }, _vm._l(_vm.displayedErrors, function (error) {
+            _vm.displayErrors && _vm.displayedErrors.length ? _c('div', { staticClass: 'ui ui bottom attached error message' }, _vm._l(_vm.displayedErrors, function (error) {
                 return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t' + _vm._s(error.dataPath) + ': ' + _vm._s(error.message) + '\n\t\t\t\t')]);
             })) : _vm._e()
         ] : _vm._t('empty', [_vm._v('\n\t\tNo data to show\n\t')])], 2);
@@ -11752,24 +11759,24 @@ var _v = function (exports) {
         });
         Object.defineProperty(Field.prototype, 'path', {
             get: function () {
-                return deep.path(this.name);
+                return deep.path(this.property);
             },
             enumerable: true,
             configurable: true
         });
-        Field.prototype.setFieldName = function (name, oldv) {
+        Field.prototype.setFieldProperty = function (property, oldv) {
             if (this.form) {
                 this.undo(oldv);
-                this.unwatch = this.$watch('form.model.' + name, function (value) {
+                this.unwatch = this.$watch('form.model.' + property, function (value) {
                     this.value = value;
                 }, { immediate: true });
-                console.assert(!this.form.fields[name], 'Field ' + name + ' appears once in its form');
-                this.form.fields[name] = this;
+                console.assert(!this.form.fields[property], 'Field ' + property + ' appears once in its form');
+                this.form.fields[property] = this;
             }
         };
-        Field.prototype.undo = function (name) {
+        Field.prototype.undo = function (property) {
             if (this.form) {
-                delete this.form.fields[name];
+                delete this.form.fields[property];
                 if (this.unwatch)
                     this.unwatch();
             }
@@ -11787,7 +11794,7 @@ var _v = function (exports) {
             var _a;
         };
         Field.prototype.destroyed = function () {
-            this.undo(this.name);
+            this.undo(this.property);
         };
         Field.prototype.change = function (value) {
             deep.set(this.form && this.form.model, this.path, value);
@@ -11826,9 +11833,9 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Field.prototype, 'internalName', {
+        Object.defineProperty(Field.prototype, 'name', {
             get: function () {
-                return this.name || this.gendName || (this.gendName = genFieldName());
+                return this.property || this.gendName || (this.gendName = genFieldName());
             },
             enumerable: true,
             configurable: true
@@ -11848,7 +11855,7 @@ var _v = function (exports) {
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
-        ], Field.prototype, 'name', void 0);
+        ], Field.prototype, 'property', void 0);
         __decorate([
             vue_property_decorator_1.Prop({ default: null }),
             __metadata('design:type', String)
@@ -11862,14 +11869,14 @@ var _v = function (exports) {
             __metadata('design:type', String)
         ], Field.prototype, 'type', void 0);
         __decorate([
-            vue_property_decorator_1.Watch('name', { immediate: true }),
+            vue_property_decorator_1.Watch('property', { immediate: true }),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [
                 Object,
                 Object
             ]),
             __metadata('design:returntype', void 0)
-        ], Field.prototype, 'setFieldName', null);
+        ], Field.prototype, 'setFieldProperty', null);
         __decorate([
             vue_property_decorator_1.Watch('form.errors', { immediate: true }),
             __metadata('design:type', Function),
@@ -11912,7 +11919,7 @@ _p.render = function render() {
             _vm._t('prepend', [_vm.label ? _c('label', {
                     staticClass: 'label',
                     style: _vm.labelStyle,
-                    attrs: { 'for': _vm.internalName }
+                    attrs: { 'for': _vm.name }
                 }, [_vm._v('\n\t\t\t\t' + _vm._s(_vm.label) + '\n\t\t\t')]) : _vm._e()]),
             _vm._v(' '),
             _vm._t('default', [_c('input', {
@@ -12179,7 +12186,7 @@ _p.render = function render() {
             ref: 'input',
             attrs: {
                 'type': 'hidden',
-                'name': _vm.internalName
+                'name': _vm.name
             },
             domProps: { 'value': _vm.value },
             on: {
@@ -12451,7 +12458,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em )\t/*TODO: real width management engine*/\r\n}\r\n\r\ntable.ui.table.vued > tbody.vued > tr.vued {\r\n\tborder: 1px solid transparent;\r\n}\r\ntable.ui.table.vued tbody tr.current {\r\n\tborder-color: #111;\r\n\t/*background-color: #E0E0E0;/*\r\nTODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em )\t/*TODO: real width management engine*/\r\n}\r\n\r\ntable.ui.table.vued > tbody.vued > tr.vued {\r\n\tborder: 1px solid transparent;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current {\r\n\tborder-color: #111;\r\n\t/*background-color: #E0E0E0;/*\r\nTODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -13181,7 +13188,7 @@ _p.render = function render() {
                             'tag': 'a',
                             'template': 'title',
                             'ripper': panel,
-                            'data-tab': panel.internalName
+                            'data-tab': panel.name
                         }
                     });
                 }))]),
@@ -13197,7 +13204,7 @@ _p.render = function render() {
                     attrs: {
                         'tag': 'div',
                         'ripper': panel,
-                        'data-tab': panel.internalName
+                        'data-tab': panel.name
                     }
                 });
             }))
@@ -13213,7 +13220,7 @@ _p.render = function render() {
                     attrs: {
                         'tag': 'div',
                         'ripper': panel,
-                        'data-tab': panel.internalName
+                        'data-tab': panel.name
                     }
                 });
             })),
@@ -13232,7 +13239,7 @@ _p.render = function render() {
                             'tag': 'a',
                             'template': 'title',
                             'ripper': panel,
-                            'data-tab': panel.internalName
+                            'data-tab': panel.name
                         }
                     });
                 }))])
@@ -13248,7 +13255,7 @@ _p.render = function render() {
                     attrs: {
                         'tag': 'div',
                         'ripper': panel,
-                        'data-tab': panel.internalName
+                        'data-tab': panel.name
                     }
                 });
             }),
@@ -13267,7 +13274,7 @@ _p.render = function render() {
                         'tag': 'a',
                         'template': 'title',
                         'ripper': panel,
-                        'data-tab': panel.internalName
+                        'data-tab': panel.name
                     }
                 });
             }))
@@ -13286,7 +13293,7 @@ _p.render = function render() {
                         'tag': 'a',
                         'template': 'title',
                         'ripper': panel,
-                        'data-tab': panel.internalName
+                        'data-tab': panel.name
                     }
                 });
             })),
@@ -13302,7 +13309,7 @@ _p.render = function render() {
                     attrs: {
                         'tag': 'div',
                         'ripper': panel,
-                        'data-tab': panel.internalName
+                        'data-tab': panel.name
                     }
                 });
             })
@@ -13370,13 +13377,6 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Panel.prototype, 'internalName', {
-            get: function () {
-                return this.name || this.gendName || (this.gendName = generatePanelId());
-            },
-            enumerable: true,
-            configurable: true
-        });
         __decorate([
             vue_property_decorator_1.Prop({ default: null }),
             __metadata('design:type', String)
@@ -13386,7 +13386,11 @@ var _v = function (exports) {
             __metadata('design:type', String)
         ], Panel.prototype, 'title', void 0);
         __decorate([
-            vue_property_decorator_1.Prop(),
+            vue_property_decorator_1.Prop({
+                default: function () {
+                    return this.gendName || (this.gendName = generatePanelId());
+                }
+            }),
             __metadata('design:type', String)
         ], Panel.prototype, 'name', void 0);
         __decorate([
@@ -13722,6 +13726,24 @@ exports.default = {
         else
             shims_1.$(el).data('dimmel').removeClass('text').text('');
         shims_1.$(el).dimmer(binding.value ? 'show' : 'hide');
+    }
+};
+});
+___scope___.file("src/warnHandler.js", function(exports, require, module, __filename, __dirname){
+
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var Vue = require('vue/dist/vue.common.js');
+var ignoreWarnings = 0;
+Vue.config.warnHandler = function (msg, vm, trace) {
+    console.assert(0 < ignoreWarnings, '[Vue warn]: ' + msg + trace);
+};
+Vue.warnIgnore = function (cb) {
+    ++ignoreWarnings;
+    try {
+        return cb();
+    } finally {
+        --ignoreWarnings;
     }
 };
 });
@@ -14212,6 +14234,15 @@ var _v = function (exports) {
             };
             return _this;
         }
+        Form.prototype.reInit = function () {
+            this.model = {
+                firstName: '',
+                lastName: '',
+                big: false,
+                deep: { reason: '42' },
+                kindness: 'Yes'
+            };
+        };
         Form = __decorate([vue_property_decorator_1.Component], Form);
         return Form;
     }(Vue);
@@ -14238,7 +14269,7 @@ _p.render = function render() {
                         return [_c('label', {
                                 staticClass: 'ui label',
                                 style: field.labelStyle,
-                                attrs: { 'for': field.internalName }
+                                attrs: { 'for': field.name }
                             }, [_c('h3', [_vm._v(_vm._s(field.label))])])];
                     }
                 },
@@ -14256,7 +14287,7 @@ _p.render = function render() {
             _c('s-field', {
                 attrs: {
                     'inline': '',
-                    'name': 'big',
+                    'property': 'big',
                     'label': 'Big'
                 }
             }, [
@@ -14276,7 +14307,7 @@ _p.render = function render() {
             _vm._v(' '),
             _c('s-field', {
                 attrs: {
-                    'name': 'firstName',
+                    'property': 'firstName',
                     'label': 'First name',
                     'info': 'hand pointer'
                 }
@@ -14284,7 +14315,7 @@ _p.render = function render() {
             _vm._v(' '),
             _c('s-field', {
                 attrs: {
-                    'name': 'lastName',
+                    'property': 'lastName',
                     'label': 'Last name',
                     'info': 'signal'
                 }
@@ -14292,14 +14323,14 @@ _p.render = function render() {
             _vm._v(' '),
             _c('s-field', {
                 attrs: {
-                    'name': 'deep.reason',
+                    'property': 'deep.reason',
                     'label': 'Deep reason'
                 }
             }),
             _vm._v(' '),
             _c('s-field', {
                 attrs: {
-                    'name': 'kindness',
+                    'property': 'kindness',
                     'label': 'Kindness'
                 }
             }, [_c('s-select', {
@@ -14350,7 +14381,11 @@ _p.render = function render() {
                     expression: 'model.firstName'
                 }
             }),
-            _vm._v('\n\t\t' + _vm._s(_vm.model) + '\n\t')
+            _vm._v('\n\t\t' + _vm._s(_vm.model) + '\n\t\t'),
+            _c('s-button', {
+                staticStyle: { 'display': 'block' },
+                on: { 'click': _vm.reInit }
+            }, [_vm._v('Re-init')])
         ], 1)
     ], 1);
 };

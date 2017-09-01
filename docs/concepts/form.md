@@ -80,14 +80,14 @@ Now, let's imagine we wish to use a `fancy-label`for each input, we could do thi
 ```html
 <s-form :model="person">
 	<template slot="prepend" scope="field">
-		<fancy-label :for="field.internalName">
+		<fancy-label :for="field.name">
 			{{field.label}}
 		</fancy-label>
 	</template>
-	<s-field name="firstName" label="First name" />
-	<s-field name="middleName" label="Middle name" />
-	<s-field name="lastName" label="Last name" />
-	<s-field name="optIn" label="Opted in">
+	<s-field property="firstName" label="First name" />
+	<s-field property="middleName" label="Middle name" />
+	<s-field property="lastName" label="Last name" />
+	<s-field property="optIn" label="Opted in">
 		<s-checkbox />
 	</s-field>
 </s-form>
@@ -99,8 +99,8 @@ In general, the scoped slot of the form is the static slot of the field. This wo
 
 The scope is always the `field: VueComponent` object. It gives the programmer acces to valuable information like
 - `label`
-- `name` that is the given name
-- `internalName` that is the given name or a generated name if needed
+- `property` that is the given name
+- `name` that is the given name or a generated name if needed
 - `value` that is watched and is up-to-date, so that can be used as a `v-model`
 
 - and also `info`, that is a property of field that is unused by `v-semantic` and just forwarded here - that can be useful to set an icon if the template uses an icon for instance.
@@ -108,7 +108,7 @@ The scope is always the `field: VueComponent` object. It gives the programmer ac
 # TODO: manage end-page notes
 ### Creating a `Field.Input`
 
-To create a custom `Field.Input` from scratch, one has to use it as a mixin. The component will therefore have `name` defined as a property and an `internalName` to use as the input name `<input :name="internalName" />` in order for the labels to be managed.
+To create a custom `Field.Input` from scratch, one has to use it as a mixin. The component will therefore have `property` defined as a property and an `name` to use as the input name `<input :name="name" />` in order for the labels to be managed.
 
 ```typescript
 import {Field} from 'v-semantic'

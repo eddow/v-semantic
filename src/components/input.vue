@@ -4,7 +4,7 @@
 		<slot name="input" :input="_self">
 			<input type="text"
 				ref="input"
-				:name="internalName"
+				:name="name"
 				:placeholder="placeholder"
 				v-model="model"
 			/>

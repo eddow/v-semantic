@@ -2,7 +2,7 @@
 	<div :class="['field', {error: errors.length, inline: isInline}]">
 		<slot name="field">
 			<slot name="prepend">
-				<label v-if="label" :for="internalName" class="label" :style="labelStyle">
+				<label v-if="label" :for="name" class="label" :style="labelStyle">
 					{{label}}
 				</label>
 			</slot>
@@ -47,7 +47,7 @@ export default class Field extends Vue {
 	//TODO: finish the 'type' system and why not generalise something with table-cell editors
 	//TODO: allow validation specifications that will add into the schema
 	@Prop() label: string
-	@Prop() name: string
+	@Prop() property: string
 	@Prop({default: null}) info: string
 	@Prop({default: null}) inline: boolean
 	get isInline() {
@@ -57,23 +57,23 @@ export default class Field extends Vue {
 	@Prop() type: string
 	errors = []
 
-	get path() { return deep.path(this.name); }
+	get path() { return deep.path(this.property); }
 	value = null
 	unwatch
-	@Watch('name', {immediate: true}) setFieldName(name, oldv) {
+	@Watch('property', {immediate: true}) setFieldProperty(property, oldv) {	//TODO: check if oldValue is given
 		if(this.form) {
 			this.undo(oldv);
-			this.unwatch = this.$watch('form.model.'+name, function(value) {
+			this.unwatch = this.$watch('form.model.'+property, function(value) {
 				this.value = value;
 			}, {immediate: true});
-			console.assert(!this.form.fields[name],
-				`Field ${name} appears once in its form`);
-			this.form.fields[name] = this;
+			console.assert(!this.form.fields[property],
+				`Field ${property} appears once in its form`);
+			this.form.fields[property] = this;
 		}
 	}
-	undo(name) {
+	undo(property) {
 		if(this.form) {
-			delete this.form.fields[name];
+			delete this.form.fields[property];
 			if(this.unwatch) this.unwatch();
 		}
 	}
@@ -88,7 +88,7 @@ export default class Field extends Vue {
 		if(!this.errors.length) this.$emit('validated', this.value);
 	}
 	destroyed() {
-		this.undo(this.name);
+		this.undo(this.property);
 	}
 	@Watch('value')
 	@Emit() change(value) {
@@ -121,8 +121,8 @@ export default class Field extends Vue {
 		return this.form && this.form.labelStyle;
 	}
 	gendName = null;
-	get internalName() {
-		return this.name || this.gendName || (this.gendName = genFieldName());
+	get name() {
+		return this.property || this.gendName || (this.gendName = genFieldName());
 	}
 }
 import Fielded from './fielded'

@@ -2,11 +2,11 @@
 	<div :class="[cls, {fitted: !label}]">
 		<input
 			ref="input"
-			:name="internalName"
+			:name="name"
 			type="checkbox"
 			:checked="checked"
 		>
-		<label :for="internalName"><slot>{{label}}</slot></label>
+		<label :for="name"><slot>{{label}}</slot></label>
 	</div>
 </template>
 

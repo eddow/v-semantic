@@ -3,22 +3,21 @@ import * as Vue from 'vue'
 
 const genInputName = idSpace('inp');
 export default {
+	provide: {field: null},
 	props: {
-		name: {type: String}
-	},
-	computed: {
-		internalName() {
-			return this.name ||
-				(this.formBound && this.field && this.field.internalName) ||
-				this.gendName ||
-				(this.gendName = genInputName());
+		name: {
+			type: String,
+			default: function() {
+				return (this.formBound && this.field && this.field.name) ||
+					this.gendName || (this.gendName = genInputName());
+			}
 		}
 	},
 	// <patch url="https://github.com/vuejs/vue/issues/6097">
 	//inject: ['field'],
 	beforeCreate() {
 		var p = this;
-		while(p && !(p._provided && p._provided.field)) p = p.$parent;
+		while(p && !(p._provided && 'field' in p._provided)) p = p.$parent;
 		if(p) this.field = p._provided.field;
 	// </patch>
 		// In order to push the value of the field to the model, the `default` of model prop is rewritten
@@ -44,10 +43,13 @@ export default {
 				//This is hacky, we know which property to upgrade,
 				// and we know it was not bound : `form && this.formBound`
 				// Now, we have to find a way to modify the given property without Vue complaining that we modify a property directly
+				Vue.warnIgnore(()=> this[model.prop] = value);
+				/*
 				var parent = this.$parent;	//This is a hack that disables the warning
 				this.$parent = null;
 				this[model.prop] = value;
 				this.$parent = parent;
+				*/
 			});
 			forward2form = value=> this.field.value = value;
 			this.$on(model.event, forward2form);

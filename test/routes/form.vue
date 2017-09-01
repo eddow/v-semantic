@@ -8,7 +8,7 @@
 			class="ui segment"
 		>
 			<template slot="prepend" scope="field">
-				<label :for="field.internalName" class="ui label" :style="field.labelStyle">
+				<label :for="field.name" class="ui label" :style="field.labelStyle">
 					<h3>{{field.label}}</h3>
 				</label>
 			</template>
@@ -18,14 +18,14 @@
 				</s-input>
 			</template>
 			
-			<s-field inline name="big" label="Big">
+			<s-field inline property="big" label="Big">
 				<s-checkbox label="big" />
 				<s-checkbox label="Other" v-model="other" />
 			</s-field>
-			<s-field name="firstName" label="First name" info="hand pointer" />
-			<s-field name="lastName" label="Last name" info="signal" />
-			<s-field name="deep.reason" label="Deep reason" />
-			<s-field name="kindness" label="Kindness">
+			<s-field property="firstName" label="First name" info="hand pointer" />
+			<s-field property="lastName" label="Last name" info="signal" />
+			<s-field property="deep.reason" label="Deep reason" />
+			<s-field property="kindness" label="Kindness">
 				<s-select :values="['Too much', 'Yes', 'No']" />
 			</s-field>
 		</s-form>
@@ -35,6 +35,7 @@
 			<s-checkbox style="display: block;" v-model="other" label="other" />
 			<s-input style="display: block;" v-model="model.firstName" />
 			{{model}}
+			<s-button style="display: block;" @click="reInit">Re-init</s-button>
 		</div>
 	</div>
 </template>
@@ -46,6 +47,15 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 @Component
 export default class Form extends Vue {
 	other: boolean = null
+	reInit() {
+		this.model = {
+			firstName: "",
+			lastName: "",
+			big: false,
+			deep: {reason: '42'},
+			kindness: 'Yes'
+		}
+	}
 	model = {
 		firstName: "",
 		lastName: "",

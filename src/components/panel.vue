@@ -22,14 +22,15 @@ const generatePanelId = idSpace('pnl');
 export default class Panel extends Vue {
 	@Prop({default: null}) icon: string
 	@Prop() title: string
-	@Prop() name: string
+	@Prop({
+		default: function() {
+			return this.gendName || (this.gendName = generatePanelId());
+		}
+	}) name: string
 	@Inject() container
 	gendName = null;
 	get usedIcon() {
 		return null=== this.icon ? this.container.defaultIcon : this.icon;
-	}
-	get internalName() {
-		return this.name || this.gendName || (this.gendName = generatePanelId())
 	}
 }
 </script>

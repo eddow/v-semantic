@@ -1,9 +1,16 @@
 <template>
 	<form class="ui form">
 		<template v-if="model">
-			<slot />
+			<div class="ui attached message" v-if="header || $slots.header">
+				<slot name="header">
+					<div class="header">
+						{{header}}
+					</div>
+				</slot>
+			</div>
+			<slot class="ui form attached fluid segment"/>
 			<div v-if="displayErrors && displayedErrors.length"
-				class="ui pointing red basic error label"
+				class="ui ui bottom attached error message"
 			>
 					<div v-for="error in displayedErrors" :key="error.schemaPath">
 						{{error.dataPath}}: {{error.message}}

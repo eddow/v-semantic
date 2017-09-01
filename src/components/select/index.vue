@@ -2,7 +2,7 @@
 	<div :class="[cls, {iconOnly: false=== this.text}]" :multiple="multiple">
 		<input type="hidden"
 			ref="input"
-			:name="internalName"
+			:name="name"
 			:value="value"
 			@input="$event=> change($event.target.value)"
 		/>
