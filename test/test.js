@@ -10662,8 +10662,11 @@ exports.default = {
         var _this = this;
         var model = this.constructor.options.model, form = this.field && this.field.form, unwatchModel, forward2form;
         if (form && this.formBound) {
-            unwatchModel = this.$watch('field.value', function () {
-                return _this.$forceUpdate();
+            unwatchModel = this.$watch('field.value', function (value) {
+                var parent = _this.$parent;
+                _this.$parent = null;
+                _this[model.prop] = value;
+                _this.$parent = parent;
             });
             forward2form = function (value) {
                 return _this.field.value = value;

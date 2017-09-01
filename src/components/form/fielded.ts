@@ -40,7 +40,15 @@ export default {
 			form = this.field && this.field.form,
 			unwatchModel, forward2form;
 		if(form && this.formBound) {
-			unwatchModel = this.$watch('field.value', ()=> this.$forceUpdate());
+			unwatchModel = this.$watch('field.value', (value)=> {
+				//This is hacky, we know which property to upgrade,
+				// and we know it was not bound : `form && this.formBound`
+				// Now, we have to find a way to modify the given property without Vue complaining that we modify a property directly
+				var parent = this.$parent;	//This is a hack that disables the warning
+				this.$parent = null;
+				this[model.prop] = value;
+				this.$parent = parent;
+			});
 			forward2form = value=> this.field.value = value;
 			this.$on(model.event, forward2form);
 			this.unFielded = ()=> {
