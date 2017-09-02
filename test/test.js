@@ -1935,7 +1935,7 @@ var _v = function (exports) {
     }(Vue);
     exports.default = Select;
 };
-require('fuse-box-css')('src/components/select/index.vue', '\r\n.ui.dropdown.iconOnly > .dropdown.icon {\r\n  margin: 0;\r\n}\r\n');
+__fsbx_css('src/components/select/index.vue', '\r\n.ui.dropdown.iconOnly > .dropdown.icon {\r\n  margin: 0;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -2223,7 +2223,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em )\t/*TODO: real width management engine*/\r\n}\r\n\r\ntable.ui.table.vued > tbody.vued > tr.vued {\r\n\tborder: 1px solid transparent;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current {\r\n\tborder-color: #111;\r\n\t/*background-color: #E0E0E0;/*\r\nTODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
+__fsbx_css('src/components/table/index.vue', '\r\ntable.scroll-body tbody {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em )\t/*TODO: real width management engine*/\r\n}\r\n\r\ntable.ui.table.vued > tbody.vued > tr.vued {\r\n\tborder: 1px solid transparent;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current {\r\n\tborder-color: #111;\r\n\t/*background-color: #E0E0E0;/*\r\nTODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -3633,7 +3633,7 @@ var _v = function (exports) {
     }(Vue);
     exports.default = App;
 };
-require('fuse-box-css')('test/app.vue', '\r\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\r\n}\r\n.work {\r\n\theight: calc(100% - 80px);\r\n}\r\n.work-pane {\r\n\theight: 100%;\r\n\toverflow: auto;\r\n}\r\ndiv.CodeMirror {\r\n\theight: 100%;\r\n}\r\n');
+__fsbx_css('test/app.vue', '\r\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\r\n}\r\n.work {\r\n\theight: calc(100% - 80px);\r\n}\r\n.work-pane {\r\n\theight: 100%;\r\n\toverflow: auto;\r\n}\r\ndiv.CodeMirror {\r\n\theight: 100%;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;

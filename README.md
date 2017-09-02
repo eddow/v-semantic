@@ -35,6 +35,24 @@ import {Modal, Command, Button} from 'v-semantic'
 ```
 Requiring the main library will export each components and a `default` that lets you `Vue.install(...)`.
 The `prefix` (default `"s"`) option will be used before each name of component for registration ('button' --> `<s-button />`)
+
+## Bundling
+This library integrate a straightforward way bundling with [fuse-box](fuse-box.org). If you make a project with this bundler, it will be straight-forward.
+
+ Unfortunately, fuse-box poorly makes universal bundles. To bundle `v-semantic`, you can simply bundle the sources.
+## Usage
+This library integrate a straightforward way bundling with [fuse-box](fuse-box.org). If you make a project with this bundler, it will be straight-forward.
+
+```javascript
+import vs from 'v-semantic'
+Vue.use(vs);
+```
+Unfortunately, fuse-box poorly makes universal bundles. To bundle `v-semantic`, you can simply bundle the sources.
+The sources entry point is in `v-semantic/src/index.ts`
+```javascript
+import vs from 'v-semantic/src'
+Vue.use(vs);
+```
 ### For development
 
 ```

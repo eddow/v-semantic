@@ -5,11 +5,10 @@ docs
 src
 .fusebox
 .yalc
+yalc.lock
 .vscode
 package-lock.*
 *.lock
 semantic
-tsconfig.*
 fuse.*
 .gitignore
-semantic.*

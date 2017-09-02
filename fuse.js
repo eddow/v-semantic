@@ -52,7 +52,7 @@ Sparky.task("build", ()=> {
 	const app = fuse.bundle("v-semantic")
 		//.sourceMaps(true)
 		//.plugin(HotReloadPlugin({port: 4445}))
-    .instructions('!> [index.ts] - *.d.ts');
+    .instructions('> [index.ts] +fuse-box-css - *.d.ts');
 	//if (!production) app.hmr();
 
 	return fuse.run();
@@ -92,7 +92,7 @@ Sparky.task("test", ()=> {
 	const test = fuse.bundle("test")
 	.watch('(test|src)/**(vue|ts|html)')
 		//.sourceMaps(true)
-		.instructions('!> [test/index.ts] +test/routes/*.vue -*.d.ts');
+		.instructions('> [test/index.ts] +test/routes/*.vue -*.d.ts');
 		
 	const source = fuseSrc.bundle("source")
 		//.watch('**')
