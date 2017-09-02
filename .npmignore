@@ -4,7 +4,6 @@ test
 docs
 src
 .fusebox
-.yalc
 yalc.lock
 .vscode
 package-lock.*

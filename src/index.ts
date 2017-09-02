@@ -4,8 +4,8 @@ import * as components from './components'
 export * from './components'
 import * as directives from './directives'
 export * from './directives'
-import * as lib from 'lib/*'
-export {lib}
+/*import * as lib from 'lib/*'
+export {lib}*/
 import 'semantic-ui/dist/semantic'
 
 export default {

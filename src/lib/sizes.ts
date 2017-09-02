@@ -1,4 +1,4 @@
-//unused file with procedures that might end up useful one day
+//unused file with procedures that might end up useful for table-column width mgt
 import * as onResize from 'resize-event'
 import {$} from 'lib/shims'
 
