@@ -52,7 +52,7 @@ Sparky.task("build", ()=> {
 	const app = fuse.bundle("v-semantic")
 		//.sourceMaps(true)
 		//.plugin(HotReloadPlugin({port: 4445}))
-    .instructions('> [index.ts] +fuse-box-css - *.d.ts');
+    .instructions('> [index.ts] - *.d.ts'); // +fuse-box-css
 	//if (!production) app.hmr();
 
 	return fuse.run();

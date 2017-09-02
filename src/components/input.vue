@@ -31,6 +31,7 @@ import {$} from 'lib/shims'
 export default class Input extends Vue {
 	@Model('input') value: string
 	@Prop() placeholder: string
+	@Prop() name: string
 	@Emit() input(value) {}
 	model = null
 

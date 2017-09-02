@@ -77,6 +77,7 @@ export default class Select extends Vue {
 	@Prop({default: 'right'}) menu: 'right'|'left'
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
 	@Prop() values: any[]
+	@Prop() name: string
 	get mappedValues() {
 		return this.values.map(x=> 'string'=== typeof x ? {
 			name: x,

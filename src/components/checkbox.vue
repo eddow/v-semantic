@@ -29,6 +29,7 @@ import Semantic from 'lib/module'
 export default class Checkbox extends Vue {
 	@Prop() label: string
 	@Prop() state3: boolean
+	@Prop() name: string
 	@Model('input') checked: boolean
 	@Watch('checked')
 	apply(checked) {

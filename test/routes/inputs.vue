@@ -11,17 +11,17 @@
 			<label>Drop down:</label>
 			{{ddn}}
 		</div>
-		<s-select style="display: block;" inline action="select" v-model="ddn" text="Gender" on="hover">
+		<s-select name="extSelect" style="display: block;" inline action="select" v-model="ddn" text="Gender" on="hover">
 			<s-option value="M">Male</s-option>
 			<s-option value="F">Female</s-option>
 		</s-select>
-		<s-checkbox label="Yes!" v-model="tchk" />
+		<s-checkbox name="checkyes" label="Yes!" v-model="tchk" />
 		<div>
 			<label>Checked:</label>
 			{{tchk}}
 		</div>
 		<div>
-			<s-input inline v-dimm-parts:minus.inverted>
+			<s-input name="dimmedMinus" inline v-dimm-parts:minus.inverted>
 				<s-button slot="append" class="input-dimmed" icon="minus" dimmed-part="minus" />
 			</s-input>
 		</div>

@@ -871,6 +871,10 @@ var _v = function (exports) {
             __metadata('design:type', String)
         ], Input.prototype, 'placeholder', void 0);
         __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], Input.prototype, 'name', void 0);
+        __decorate([
             vue_property_decorator_1.Emit(),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
@@ -1204,6 +1208,10 @@ var _v = function (exports) {
             vue_property_decorator_1.Prop(),
             __metadata('design:type', Boolean)
         ], Checkbox.prototype, 'state3', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], Checkbox.prototype, 'name', void 0);
         __decorate([
             vue_property_decorator_1.Model('input'),
             __metadata('design:type', Boolean)
@@ -1883,6 +1891,10 @@ var _v = function (exports) {
             vue_property_decorator_1.Prop(),
             __metadata('design:type', Array)
         ], Select.prototype, 'values', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], Select.prototype, 'name', void 0);
         __decorate([
             vue_property_decorator_1.Watch('values', { deep: true }),
             __metadata('design:type', Function),
@@ -4338,6 +4350,7 @@ _p.render = function render() {
         _c('s-select', {
             staticStyle: { 'display': 'block' },
             attrs: {
+                'name': 'extSelect',
                 'inline': '',
                 'action': 'select',
                 'text': 'Gender',
@@ -4357,7 +4370,10 @@ _p.render = function render() {
         ], 1),
         _vm._v(' '),
         _c('s-checkbox', {
-            attrs: { 'label': 'Yes!' },
+            attrs: {
+                'name': 'checkyes',
+                'label': 'Yes!'
+            },
             model: {
                 value: _vm.tchk,
                 callback: function ($$v) {
@@ -4379,7 +4395,10 @@ _p.render = function render() {
                         arg: 'minus',
                         modifiers: { 'inverted': true }
                     }],
-                attrs: { 'inline': '' }
+                attrs: {
+                    'name': 'dimmedMinus',
+                    'inline': ''
+                }
             }, [_c('s-button', {
                     staticClass: 'input-dimmed',
                     attrs: {

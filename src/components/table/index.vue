@@ -47,11 +47,11 @@
 	</table>
 </template>
 <style>
-table.scroll-body tbody {
+table.scroll-body tbody.vued {
 	display: block;
 	overflow-y: scroll;
 }
-table.scroll-body thead, table.scroll-body tbody.vued tr.vued {
+table.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {
 	display: table;
 	width: 100%;
 	table-layout: fixed;
