@@ -10254,7 +10254,7 @@ return jQuery;
 } );
 
 var __process_env__ = {"NODE_ENV":"development"};
-FuseBox.pkg("test", {"vue-property-decorator":"5.2.1"}, function(___scope___){
+FuseBox.pkg("test", {}, function(___scope___){
 });
 FuseBox.pkg("jquery", {}, function(___scope___){
 ___scope___.file("index.js", function(exports, require, module, __filename, __dirname){
@@ -43499,7 +43499,7 @@ if (FuseBox.isServer) {
 });
 return ___scope___.entry = "index.js";
 });
-FuseBox.pkg("vue-property-decorator@5.2.1", {"vue-class-component":"5.0.2","reflect-metadata":"0.1.10"}, function(___scope___){
+FuseBox.pkg("vue-property-decorator", {}, function(___scope___){
 ___scope___.file("lib/vue-property-decorator.umd.js", function(exports, require, module, __filename, __dirname){
 
 (function (global, factory) {
@@ -43616,7 +43616,7 @@ ___scope___.file("lib/vue-property-decorator.umd.js", function(exports, require,
 });
 return ___scope___.entry = "lib/vue-property-decorator.umd.js";
 });
-FuseBox.pkg("vue-class-component@5.0.2", {}, function(___scope___){
+FuseBox.pkg("vue-class-component", {}, function(___scope___){
 ___scope___.file("dist/vue-class-component.common.js", function(exports, require, module, __filename, __dirname){
 /* fuse:injection: */ var process = require("process");
 'use strict';
@@ -43755,7 +43755,7 @@ exports.createDecorator = createDecorator;
 });
 return ___scope___.entry = "dist/vue-class-component.common.js";
 });
-FuseBox.pkg("reflect-metadata@0.1.10", {}, function(___scope___){
+FuseBox.pkg("reflect-metadata", {}, function(___scope___){
 ___scope___.file("Reflect.js", function(exports, require, module, __filename, __dirname){
 /* fuse:injection: */ var process = require("process");
 /*! *****************************************************************************

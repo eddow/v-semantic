@@ -25,19 +25,17 @@ export function idSpace(pfx = '_') {
 }
 
 const CancelError = new Error('Canceled event');
-Vue.mixin({
-	methods: {
-		$cancelEvent() {
-			throw CancelError;
-		},
-		$cancelable(event, ...args) {
-			try {
-				this.$emit(S(event).dasherize().s, ...args);
-				return true;
-			} catch(x) {
-				if(CancelError!== x) throw x;
-				return false;
-			}
+__assign(Vue.prototype, {
+	$cancelEvent() {
+		throw CancelError;
+	},
+	$cancelable(event, ...args) {
+		try {
+			this.$emit(S(event).dasherize().s, ...args);
+			return true;
+		} catch(x) {
+			if(CancelError!== x) throw x;
+			return false;
 		}
 	}
 });

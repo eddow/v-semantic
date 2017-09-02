@@ -23,6 +23,9 @@ npm install v-semantic --save
 import vs from 'v-semantic'
 Vue.install(vs);
 //- or -
+import vs from 'v-semantic'
+Vue.install(vs, {prefix: 'x'});
+//- or -
 import {Modal, Command, Button} from 'v-semantic'
 
 @Component({
@@ -31,6 +34,7 @@ import {Modal, Command, Button} from 'v-semantic'
 })
 ```
 Requiring the main library will export each components and a `default` that lets you `Vue.install(...)`.
+The `prefix` (default `"s"`) option will be used before each name of component for registration ('button' --> `<s-button />`)
 ### For development
 
 ```

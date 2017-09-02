@@ -19,6 +19,7 @@ import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
+import {$} from 'lib/shims'
 
 @Semantic('input', {
 	loading: Boolean,
@@ -33,6 +34,8 @@ export default class Input extends Vue {
 	@Emit() input(value) {}
 	model = null
 
+	@Prop() dimmPost: boolean
+	
 	@Watch('model')
 	modelChanged(value) {
 		this.input(value);
@@ -50,7 +53,7 @@ export default class Input extends Vue {
 		}
 		var searchLabel = function(slots) {
 			if(slots) for(let slot of slots)
-				if(~(' '+slot.data.staticClass+' ').indexOf(' label '))
+				if(slot.data && ~(' '+slot.data.staticClass+' ').indexOf(' label '))
 					return true;
 		}
 		if(searchType(this.$slots.prepend, [icon]))

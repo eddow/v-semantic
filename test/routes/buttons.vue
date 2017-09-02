@@ -20,8 +20,12 @@
 				<s-icon icon="minus" slot="append" />
 				loading text
 			</s-button>
-			<s-button>
+			<s-button @click="test" ref="button">
 				<s-icon icon="add circle" />
+				<div class="ui special popup">
+					<div class="header">Custom Header</div>
+					<div class="ui button">Click Me</div>
+				</div>
 			</s-button>
 			<s-button icon="add square" />
 		</div>
@@ -39,10 +43,23 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {$} from 'lib/shims'
 
 @Component
 export default class Buttons extends Vue {
 	blurred: boolean = false
 	loading: boolean = false
+	test() {
+		debugger;
+		/*$(this.$refs.button)
+			.popup({
+				title   : 'Popup Title',
+				content : 'Hello I am a popup'
+			});
+		$(this.$refs.button)
+			.popup({
+				inline: true
+			});*/
+	}
 }
 </script>

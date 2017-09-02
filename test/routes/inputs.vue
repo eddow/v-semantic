@@ -20,6 +20,11 @@
 			<label>Checked:</label>
 			{{tchk}}
 		</div>
+		<div>
+			<s-input inline v-dimm-parts:minus.inverted>
+				<s-button slot="append" class="input-dimmed" icon="minus" dimmed-part="minus" />
+			</s-input>
+		</div>
 	</div>
 </template>
 <script lang="ts">

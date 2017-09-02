@@ -83,3 +83,16 @@ Some easy way to manage a boolean and use a string are:
 - `indeterminate`
 - `inverted`
 - Size specification : `mini`, `tiny`, `small`, `medium`, `large`
+
+# dimm-parts
+
+The directive `v-dimm-parts` allow some parts of the element to be dimmed when the mouse is out of the element.
+```html
+<s-input inline v-dimm-parts:minus.inverted>
+	<s-button slot="append" class="input-dimmed" icon="minus" dimmed-part="minus" />
+</s-input>
+```
+Use a dimming-identifier if the element might contain other dimm-parts. All the sub-elements with the attribute `dimmed-part` (or `dimmed-part="identifier"` if `v-dimm-parts:identifier` has been used) will be dimmed when the mouse is out of the `dimm-part` element.
+
+Modifiers:
+- `inverted` to have inverted dimmers

@@ -86,12 +86,6 @@ Sparky.task("test", ()=> {
 			lib: '~/src/lib',
 			components: '~/src/components',
 			directives: '~/src/directives'
-		},
-		shim: {
-			jquery: {
-				source: "node_modules/jquery/dist/jquery.js",
-				exports: "$",
-			}
 		}
 	});
 
@@ -107,6 +101,12 @@ Sparky.task("test", ()=> {
 	
 	const vendor = fuse.bundle("vendor")
 		//.sourceMaps(true)
+		.shim({
+			jquery: {
+				source: "node_modules/jquery/dist/jquery.js",
+				exports: "$"
+			}
+		})
 		.instructions('~ [test/index.ts] +tslib');
 
 	fuseSrc.run();

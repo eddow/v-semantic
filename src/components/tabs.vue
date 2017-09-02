@@ -86,10 +86,9 @@ import {Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import {Pimp, Ripped} from 'vue-ripper'
 import {$} from 'lib/shims'
-
+//generalise shapes and end up using `childrenOnly`
 @Semantic('menu', {
-	//tabular, pointing
-	type: {type: String, default: 'tabular'},
+	type: {type: String, default: 'tabular'},	//tabular, pointing
 	primary: Boolean,
 	secondary: Boolean
 }, {
@@ -100,9 +99,15 @@ export default class Tabs extends Vue {
 	@Prop({default: ''}) defaultIcon: string
 	@Prop({default: 'top'}) position: 'top'|'bottom'|'left'|'right'
 	@Prop({default: true}) attached: boolean
+	@Model('tab-change') active: string
+	@Watch('active') setTab(name) {
+    //this.semantic('change tab', name);
+		//+ onVisible	tabPath
+	}
 	panels = []
 	@Watch('panels') initSemantic() {
 		setTimeout(()=>{
+			//TODO: use $refs instead of .find('.item')
 			$(this.$refs.menu).find('.item').tab({
 				context: $(this.$refs.context)
 			});
