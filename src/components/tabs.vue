@@ -1,98 +1,57 @@
 <template>
-	<div ref="context" class="ui grid">
-		<pimp v-model="panels"><slot /></pimp>
-		<template v-if="'left'=== position">
-			<div :class="tabClmn">
-				<div ref="menu" :class="[cls, tabAttach]">
-					<ripped v-for="(panel, uid) in panels" :key="uid"
-						tag="a"
-						class="item"
-						template="title"
-						:ripper="panel"
-						:data-tab="panel.name"
-					/>
-				</div>
-			</div>
-			<div :cls="pnlClmn">
-				<ripped v-for="(panel, uid) in panels" :key="uid"
-					tag="div"
-					:class="['ui', pnlAttach, 'tab segment']"
-					:ripper="panel"
-					:data-tab="panel.name"
-				/>
-			</div>
-		</template>
-		<template v-else-if="'right'=== position">
-			<div :cls="pnlClmn">
-				<ripped v-for="(panel, uid) in panels" :key="uid"
-					tag="div"
-					:class="['ui', pnlAttach, 'tab segment']"
-					:ripper="panel"
-					:data-tab="panel.name"
-				/>
-			</div>
-			<div :class="tabClmn">
-				<div ref="menu" :class="[cls, tabAttach]">
-					<ripped v-for="(panel, uid) in panels" :key="uid"
-						tag="a"
-						class="item"
-						template="title"
-						:ripper="panel"
-						:data-tab="panel.name"
-					/>
-				</div>
-			</div>
-		</template>
-		<template v-else-if="'bottom'=== position">
+	<depot ref="context" :class="['vued tabs', horizontal?'horizontal':'vertical']" :order="order">
+		<pimp slot="pimp" v-model="panels"><slot /></pimp>
+		<div slot="tabs" ref="menu"
+			:class="['ui', type, horizontal && 'vertical', position, 'attached tabs vued menu']"
+			:style="tabsStyle"
+		>
 			<ripped v-for="(panel, uid) in panels" :key="uid"
-				tag="div"
-				:class="['ui', pnlAttach, 'tab segment']"
+				tag="a"
+				class="item"
+				template="title"
 				:ripper="panel"
 				:data-tab="panel.name"
 			/>
-			<div ref="menu" :class="[cls, tabAttach]">
-				<ripped v-for="(panel, uid) in panels" :key="uid"
-					tag="a"
-					class="item"
-					template="title"
-					:ripper="panel"
-					:data-tab="panel.name"
-				/>
-			</div>
-		</template>
-		<template v-else>
-			<div ref="menu" :class="[cls, tabAttach]">
-				<ripped v-for="(panel, uid) in panels" :key="uid"
-					tag="a"
-					class="item"
-					template="title"
-					:ripper="panel"
-					:data-tab="panel.name"
-				/>
-			</div>
+		</div>
+		<div :class="['ui segment panels vued', opposite, 'attached']">
 			<ripped v-for="(panel, uid) in panels" :key="uid"
 				tag="div"
-				:class="['ui', pnlAttach, 'tab segment']"
+				:class="['ui', 'tab']"
 				:ripper="panel"
 				:data-tab="panel.name"
 			/>
-		</template>
-	</div>
+		</div>
+	</depot>
 </template>
-
+<style>
+.vued.tabs.horizontal {
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+}
+.vued.panels[class*="right attached"] {
+	border-left: 0;	/*Hacky: the order makes the border of the panel visible over the tabs*/
+	margin-left: 0;
+	margin-top: 0;
+	margin-right: 0;
+	width: 100%;
+}
+</style>
 <script lang="ts">
 import * as Vue from 'vue'
-import {Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/classed'
+import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {Pimp, Ripped} from 'vue-ripper'
 import {$} from 'lib/shims'
+import {depot} from 'lib/render'
+
+var orders = {
+	tabsFirst: ['pimp', 'tabs', 'default'],
+	tabsLast: ['pimp', 'default', 'tabs']
+}
+
 //generalise shapes and end up using `childrenOnly`
-@Semantic('menu', {
-	type: {type: String, default: 'tabular'},	//tabular, pointing
-	primary: Boolean,
-	secondary: Boolean
-}, {
-	components: {Pimp, Ripped}
+@Component({
+	components: {Pimp, Ripped, depot}
 })
 export default class Tabs extends Vue {
 	@Provide() container = this
@@ -100,6 +59,18 @@ export default class Tabs extends Vue {
 	@Prop({default: 'top'}) position: 'top'|'bottom'|'left'|'right'
 	@Prop({default: true}) attached: boolean
 	@Model('tab-change') active: string
+	@Prop({type: String, default: 'tabular'}) type: 'tabular'|'pointing'
+	@Prop({default: '250px'}) tabsWidth: string
+
+	get order() {
+		return ~['left', 'top'].indexOf(this.position) ?
+			orders.tabsFirst : orders.tabsLast;
+	}
+	get horizontal() { return !!~['left', 'right'].indexOf(this.position); }
+	/*conditionalWrap(name, slot, h) {
+		if(!this.horizontal || 'pimp'=== name) return slot;
+		return h('div', {class: 'tabs'=== name?this.tabClmn:this.pnlClmn}, slot);
+	}*/
 	@Watch('active') setTab(name) {
     //this.semantic('change tab', name);
 		//+ onVisible	tabPath
@@ -108,40 +79,25 @@ export default class Tabs extends Vue {
 	@Watch('panels') initSemantic() {
 		setTimeout(()=>{
 			//TODO: use $refs instead of .find('.item')
+			//TODO: apply on new tabs only (remove from old tabs??)
 			$(this.$refs.menu).find('.item').tab({
-				context: $(this.$refs.context)
+				context: $(this.$refs.context.$el)
 			});
 		});
 	}
-	get tabsFirst() {
-		return !!~['left', 'top'].indexOf(this.position);
+	get opposite() {
+		return {
+				top: 'bottom',
+				bottom: 'top',
+				//semantic has some `.ui.tabular.menu+.attached:not(.top).segment`
+				left: 'top right',
+				right: 'left'
+			}[this.position];
 	}
-	get tabClmn() {
-		return 'four wide column';
-	}
-	get tabAttach() {
-		if(!this.attached) return '';
-		var rv = [{
-			top: 'top attached',
-			bottom: 'bottom attached',
-			left: 'left attached',
-			right: 'right attached'
-		}[this.position]];
-		if(~['left', 'right'].indexOf(this.position)) rv.push('fluid vertical')
-		return rv;
-	}
-	get pnlClmn() {
-		return 'twelve wide stretched column';
-	}
-	get pnlAttach() {
-		if(!this.attached) return '';
-		var rv = [{
-			top: 'bottom attached',
-			bottom: 'top attached',
-			left: 'right attached',
-			right: 'left attached'
-		}[this.position]];
-		return rv;
+	get tabsStyle() {
+		return [
+			this.horizontal && {flex: this.tabsWidth}
+		];
 	}
 }
 </script>

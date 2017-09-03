@@ -5,7 +5,7 @@ ___scope___.file("test/index.js", function(exports, require, module, __filename,
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-require('semantic-ui/dist/semantic.css');
+require('semantic-ui/dist/semantic.min.css');
 var Vue = require('vue/dist/vue.common.js');
 var v_semantic_1 = require('~/src/index');
 Vue.use(v_semantic_1.default);
@@ -482,6 +482,22 @@ function updateWrap(wrap) {
     };
 }
 exports.updateWrap = updateWrap;
+exports.depot = {
+    props: {
+        tag: { type: String, default: 'div' },
+        order: { type: Array, required: true },
+        map: Function //(string, vnode[], renderFunction) => vnode[]
+    },
+    render: function (h) {
+        var children = [], slot;
+        for (var _i = 0, _a = this.order; _i < _a.length; _i++) {
+            var name = _a[_i];
+            var slot_1 = this.$slots[name];
+            children = children.concat(this.map ? this.map(name, slot_1, h) : slot_1);
+        }
+        return h(this.tag, children);
+    }
+};
 //# sourceMappingURL=render.js.map
 });
 ___scope___.file("src/components.js", function(exports, require, module, __filename, __dirname){
@@ -2359,7 +2375,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n\tdisplay: ta\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current td {\r\n\tbackground: linear-gradient(rgba(151,91,51,0.5), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(151,91,51,0.5));\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: linear-gradient(rgba(151,91,51,0.5), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(151,91,51,0.5));\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -2429,7 +2445,10 @@ _p.render = function render() {
             }));
         })),
         _vm._v(' '),
-        _vm.$slots.footer ? _c('tfoot', [_c('tr', [_c('td', { attrs: { 'colspan': _vm.columns && _vm.columns.length } }, [_vm._t('footer')], 2)])]) : _vm._e()
+        _vm.$slots.footer ? _c('tfoot', { staticClass: 'vued' }, [_c('tr', { staticClass: 'vued' }, [_c('td', {
+                    staticClass: 'vued',
+                    attrs: { 'colspan': _vm.columns && _vm.columns.length }
+                }, [_vm._t('footer')], 2)])]) : _vm._e()
     ], 1);
 };
 _p.staticRenderFns = [];
@@ -2941,9 +2960,21 @@ var _v = function (exports) {
     Object.defineProperty(exports, '__esModule', { value: true });
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
-    var classed_1 = require('~/src/lib/classed');
     var vue_ripper_1 = require('vue-ripper');
     var shims_1 = require('~/src/lib/shims');
+    var render_1 = require('~/src/lib/render');
+    var orders = {
+        tabsFirst: [
+            'pimp',
+            'tabs',
+            'default'
+        ],
+        tabsLast: [
+            'pimp',
+            'default',
+            'tabs'
+        ]
+    };
     var Tabs = function (_super) {
         __extends(Tabs, _super);
         function Tabs() {
@@ -2952,69 +2983,49 @@ var _v = function (exports) {
             _this.panels = [];
             return _this;
         }
-        Tabs.prototype.setTab = function (name) {
-        };
-        Tabs.prototype.initSemantic = function () {
-            var _this = this;
-            setTimeout(function () {
-                shims_1.$(_this.$refs.menu).find('.item').tab({ context: shims_1.$(_this.$refs.context) });
-            });
-        };
-        Object.defineProperty(Tabs.prototype, 'tabsFirst', {
+        Object.defineProperty(Tabs.prototype, 'order', {
+            get: function () {
+                return ~[
+                    'left',
+                    'top'
+                ].indexOf(this.position) ? orders.tabsFirst : orders.tabsLast;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Tabs.prototype, 'horizontal', {
             get: function () {
                 return !!~[
                     'left',
-                    'top'
+                    'right'
                 ].indexOf(this.position);
             },
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Tabs.prototype, 'tabClmn', {
+        Tabs.prototype.setTab = function (name) {
+        };
+        Tabs.prototype.initSemantic = function () {
+            var _this = this;
+            setTimeout(function () {
+                shims_1.$(_this.$refs.menu).find('.item').tab({ context: shims_1.$(_this.$refs.context.$el) });
+            });
+        };
+        Object.defineProperty(Tabs.prototype, 'opposite', {
             get: function () {
-                return 'four wide column';
+                return {
+                    top: 'bottom',
+                    bottom: 'top',
+                    left: 'top right',
+                    right: 'left'
+                }[this.position];
             },
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Tabs.prototype, 'tabAttach', {
+        Object.defineProperty(Tabs.prototype, 'tabsStyle', {
             get: function () {
-                if (!this.attached)
-                    return '';
-                var rv = [{
-                        top: 'top attached',
-                        bottom: 'bottom attached',
-                        left: 'left attached',
-                        right: 'right attached'
-                    }[this.position]];
-                if (~[
-                        'left',
-                        'right'
-                    ].indexOf(this.position))
-                    rv.push('fluid vertical');
-                return rv;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Tabs.prototype, 'pnlClmn', {
-            get: function () {
-                return 'twelve wide stretched column';
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Tabs.prototype, 'pnlAttach', {
-            get: function () {
-                if (!this.attached)
-                    return '';
-                var rv = [{
-                        top: 'bottom attached',
-                        bottom: 'top attached',
-                        left: 'right attached',
-                        right: 'left attached'
-                    }[this.position]];
-                return rv;
+                return [this.horizontal && { flex: this.tabsWidth }];
             },
             enumerable: true,
             configurable: true
@@ -3040,6 +3051,17 @@ var _v = function (exports) {
             __metadata('design:type', String)
         ], Tabs.prototype, 'active', void 0);
         __decorate([
+            vue_property_decorator_1.Prop({
+                type: String,
+                default: 'tabular'
+            }),
+            __metadata('design:type', String)
+        ], Tabs.prototype, 'type', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ default: '250px' }),
+            __metadata('design:type', String)
+        ], Tabs.prototype, 'tabsWidth', void 0);
+        __decorate([
             vue_property_decorator_1.Watch('active'),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
@@ -3051,32 +3073,32 @@ var _v = function (exports) {
             __metadata('design:paramtypes', []),
             __metadata('design:returntype', void 0)
         ], Tabs.prototype, 'initSemantic', null);
-        Tabs = __decorate([classed_1.default('menu', {
-                type: {
-                    type: String,
-                    default: 'tabular'
-                },
-                primary: Boolean,
-                secondary: Boolean
-            }, {
+        Tabs = __decorate([vue_property_decorator_1.Component({
                 components: {
                     Pimp: vue_ripper_1.Pimp,
-                    Ripped: vue_ripper_1.Ripped
+                    Ripped: vue_ripper_1.Ripped,
+                    depot: render_1.depot
                 }
             })], Tabs);
         return Tabs;
     }(Vue);
     exports.default = Tabs;
 };
+require('fuse-box-css')('src/components/tabs.vue', '\r\n.vued.tabs.horizontal {\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n}\r\n.vued.panels[class*="right attached"] {\r\n\tborder-left: 0;\t/*Hacky: the order makes the border of the panel visible over the tabs*/\r\n\tmargin-left: 0;\r\n\tmargin-top: 0;\r\n\tmargin-right: 0;\r\n\twidth: 100%;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
-    return _c('div', {
+    return _c('depot', {
         ref: 'context',
-        staticClass: 'ui grid'
+        class: [
+            'vued tabs',
+            _vm.horizontal ? 'horizontal' : 'vertical'
+        ],
+        attrs: { 'order': _vm.order }
     }, [
         _c('pimp', {
+            slot: 'pimp',
             model: {
                 value: _vm.panels,
                 callback: function ($$v) {
@@ -3086,148 +3108,51 @@ _p.render = function render() {
             }
         }, [_vm._t('default')], 2),
         _vm._v(' '),
-        'left' === _vm.position ? [
-            _c('div', { class: _vm.tabClmn }, [_c('div', {
-                    ref: 'menu',
-                    class: [
-                        _vm.cls,
-                        _vm.tabAttach
-                    ]
-                }, _vm._l(_vm.panels, function (panel, uid) {
-                    return _c('ripped', {
-                        key: uid,
-                        staticClass: 'item',
-                        attrs: {
-                            'tag': 'a',
-                            'template': 'title',
-                            'ripper': panel,
-                            'data-tab': panel.name
-                        }
-                    });
-                }))]),
-            _vm._v(' '),
-            _c('div', { attrs: { 'cls': _vm.pnlClmn } }, _vm._l(_vm.panels, function (panel, uid) {
-                return _c('ripped', {
-                    key: uid,
-                    class: [
-                        'ui',
-                        _vm.pnlAttach,
-                        'tab segment'
-                    ],
-                    attrs: {
-                        'tag': 'div',
-                        'ripper': panel,
-                        'data-tab': panel.name
-                    }
-                });
-            }))
-        ] : 'right' === _vm.position ? [
-            _c('div', { attrs: { 'cls': _vm.pnlClmn } }, _vm._l(_vm.panels, function (panel, uid) {
-                return _c('ripped', {
-                    key: uid,
-                    class: [
-                        'ui',
-                        _vm.pnlAttach,
-                        'tab segment'
-                    ],
-                    attrs: {
-                        'tag': 'div',
-                        'ripper': panel,
-                        'data-tab': panel.name
-                    }
-                });
-            })),
-            _vm._v(' '),
-            _c('div', { class: _vm.tabClmn }, [_c('div', {
-                    ref: 'menu',
-                    class: [
-                        _vm.cls,
-                        _vm.tabAttach
-                    ]
-                }, _vm._l(_vm.panels, function (panel, uid) {
-                    return _c('ripped', {
-                        key: uid,
-                        staticClass: 'item',
-                        attrs: {
-                            'tag': 'a',
-                            'template': 'title',
-                            'ripper': panel,
-                            'data-tab': panel.name
-                        }
-                    });
-                }))])
-        ] : 'bottom' === _vm.position ? [
-            _vm._l(_vm.panels, function (panel, uid) {
-                return _c('ripped', {
-                    key: uid,
-                    class: [
-                        'ui',
-                        _vm.pnlAttach,
-                        'tab segment'
-                    ],
-                    attrs: {
-                        'tag': 'div',
-                        'ripper': panel,
-                        'data-tab': panel.name
-                    }
-                });
-            }),
-            _vm._v(' '),
-            _c('div', {
-                ref: 'menu',
+        _c('div', {
+            ref: 'menu',
+            class: [
+                'ui',
+                _vm.type,
+                _vm.horizontal && 'vertical',
+                _vm.position,
+                'attached tabs vued menu'
+            ],
+            style: _vm.tabsStyle,
+            slot: 'tabs'
+        }, _vm._l(_vm.panels, function (panel, uid) {
+            return _c('ripped', {
+                key: uid,
+                staticClass: 'item',
+                attrs: {
+                    'tag': 'a',
+                    'template': 'title',
+                    'ripper': panel,
+                    'data-tab': panel.name
+                }
+            });
+        })),
+        _vm._v(' '),
+        _c('div', {
+            class: [
+                'ui segment panels vued',
+                _vm.opposite,
+                'attached'
+            ]
+        }, _vm._l(_vm.panels, function (panel, uid) {
+            return _c('ripped', {
+                key: uid,
                 class: [
-                    _vm.cls,
-                    _vm.tabAttach
-                ]
-            }, _vm._l(_vm.panels, function (panel, uid) {
-                return _c('ripped', {
-                    key: uid,
-                    staticClass: 'item',
-                    attrs: {
-                        'tag': 'a',
-                        'template': 'title',
-                        'ripper': panel,
-                        'data-tab': panel.name
-                    }
-                });
-            }))
-        ] : [
-            _c('div', {
-                ref: 'menu',
-                class: [
-                    _vm.cls,
-                    _vm.tabAttach
-                ]
-            }, _vm._l(_vm.panels, function (panel, uid) {
-                return _c('ripped', {
-                    key: uid,
-                    staticClass: 'item',
-                    attrs: {
-                        'tag': 'a',
-                        'template': 'title',
-                        'ripper': panel,
-                        'data-tab': panel.name
-                    }
-                });
-            })),
-            _vm._v(' '),
-            _vm._l(_vm.panels, function (panel, uid) {
-                return _c('ripped', {
-                    key: uid,
-                    class: [
-                        'ui',
-                        _vm.pnlAttach,
-                        'tab segment'
-                    ],
-                    attrs: {
-                        'tag': 'div',
-                        'ripper': panel,
-                        'data-tab': panel.name
-                    }
-                });
-            })
-        ]
-    ], 2);
+                    'ui',
+                    'tab'
+                ],
+                attrs: {
+                    'tag': 'div',
+                    'ripper': panel,
+                    'data-tab': panel.name
+                }
+            });
+        }))
+    ], 1);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -4722,6 +4647,22 @@ _p.render = function render() {
         ], 1),
         _vm._v(' '),
         _c('s-tabs', { attrs: { 'position': 'bottom' } }, [
+            _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
+        ], 1),
+        _vm._v(' '),
+        _c('s-tabs', { attrs: { 'position': 'left' } }, [
+            _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),
+            _vm._v(' '),
+            _c('s-panel', { attrs: { 'title': 'And...' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])])
+        ], 1),
+        _vm._v(' '),
+        _c('s-tabs', { attrs: { 'position': 'right' } }, [
             _c('s-panel', { attrs: { 'title': 'What is a dog?' } }, [_c('p', [_vm._v('A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.')])]),
             _vm._v(' '),
             _c('s-panel', { attrs: { 'title': 'What kinds of dogs are there?' } }, [_c('p', [_vm._v('There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.')])]),

@@ -34,3 +34,19 @@ export function updateWrap(wrap: string | ((orgupdate, rendered)=> any)) {
 		}
 	}
 }
+
+export const depot = {
+	props: {
+		tag: {type: String, default: 'div'},
+		order: {type: Array, required: true},
+		map: Function	//(string, vnode[], renderFunction) => vnode[]
+	},
+	render: function(h) {
+		var children = [], slot;
+		for(let name of this.order) {
+			let slot = this.$slots[name];
+			children = children.concat(this.map ? this.map(name, slot, h) : slot);
+		}
+		return h(this.tag, children);
+	}
+}

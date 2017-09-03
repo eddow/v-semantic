@@ -41,9 +41,9 @@
 				/>
 			</tr>
 		</tbody>
-		<tfoot v-if="$slots.footer">
-			<tr>
-				<td :colspan="columns && columns.length">
+		<tfoot v-if="$slots.footer" class="vued">
+			<tr class="vued">
+				<td :colspan="columns && columns.length" class="vued">
 					<slot name="footer"/>
 				</td>
 			</tr>
@@ -68,6 +68,9 @@ table.ui.table.vued tbody.vued tr.vued.current > td {
 /*TODO: use theming
 @activeColor: @textColor;
 @activeBackgroundColor: #E0E0E0;*/
+}
+tfoot.vued td.vued {
+	padding: 0;
 }
 </style>
 <script lang="ts">

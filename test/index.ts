@@ -1,4 +1,4 @@
-import 'semantic-ui/dist/semantic.css'
+import 'semantic-ui/dist/semantic.min.css'
 import * as Vue from 'vue'
 import semanticVue from 'v-semantic'
 Vue.use(semanticVue);
