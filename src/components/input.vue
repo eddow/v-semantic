@@ -16,7 +16,7 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/classed'
+import Semantic, {stringifyClass} from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
 import {$} from 'lib/shims'
@@ -69,7 +69,7 @@ export default class Input extends Vue {
 			rv.push('right labeled');
 		else if(searchLabel(this.$slots.prepend))
 			rv.push('labeled');
-		return rv.css();
+		return stringifyClass(rv);
 	}
 }
 </script>

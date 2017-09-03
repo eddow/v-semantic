@@ -41,9 +41,13 @@
 				/>
 			</tr>
 		</tbody>
-		<caption v-if="$slots.footer">
-			<slot name="foot"/>
-		</caption>
+		<tfoot v-if="$slots.footer">
+			<tr>
+				<td :colspan="columns && columns.length">
+					<slot name="footer"/>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
 </template>
 <style>
@@ -57,16 +61,12 @@ table.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {
 	table-layout: fixed;
 }
 table.scroll-body > thead.vued {
-	width: calc( 100% - 0.71em )	/*TODO: real width management engine*/
+	width: calc( 100% - 0.71em );	/*TODO: real width management engine*/
+	display: ta
 }
-
-table.ui.table.vued > tbody.vued > tr.vued {
-	border: 1px solid transparent;
-}
-table.ui.table.vued tbody.vued tr.vued.current {
-	border-color: #111;
-	/*background-color: #E0E0E0;/*
-TODO: use theming
+table.ui.table.vued tbody.vued tr.vued.current td {
+	background: linear-gradient(rgba(151,91,51,0.5), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(151,91,51,0.5));
+/*TODO: use theming
 @activeColor: @textColor;
 @activeBackgroundColor: #E0E0E0;*/
 }

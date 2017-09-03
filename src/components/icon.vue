@@ -1,11 +1,12 @@
 <template>
-	<i :class="[icon, cls]" @click="click"></i>
+	<i :class="iconAnalysis?[iconAnalysis.group, 'icons']:[single, cls]" @click="click">
+		<i v-for="icon in iconAnalysis.icons" :key="icon" :class="[icon, 'icon']"></i>
+	</i>
 </template>
-
 <script lang="ts">
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/classed'
+import Semantic, {stringifyClass} from 'lib/classed'
 
 @Semantic('icon', {
 	loading: Boolean,
@@ -19,7 +20,25 @@ import Semantic from 'lib/classed'
 	corner: String
 })
 export default class Icon extends Vue {
-	@Prop({required: true}) icon: string
+	//TODO: `icon` becomes like class : string|any|array
+	@Prop({required: true, type: [String, Array, Object]}) icon: string|string[]|any[]|any
 	@Emit() click() {}
+	get iconString() {
+		return stringifyClass(this.icon);
+	}
+	get iconAnalysis() {
+		var str = this.iconString;
+		if(~str.indexOf('+')) {
+			str = str.split('+');
+			return {
+				group: str.shift(),
+				icons: str.filter(x=>!!x)
+			};
+		}
+		return false;
+	}
+	get single() {
+		return !this.iconAnalysis && this.iconString;
+	}
 }
 </script>

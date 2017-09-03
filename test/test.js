@@ -5,7 +5,7 @@ ___scope___.file("test/index.js", function(exports, require, module, __filename,
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-require('semantic-ui/dist/semantic.min.css');
+require('semantic-ui/dist/semantic.css');
 var Vue = require('vue/dist/vue.common.js');
 var v_semantic_1 = require('~/src/index');
 Vue.use(v_semantic_1.default);
@@ -99,6 +99,54 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_property_decorator_1 = require("vue-property-decorator");
 var S = require("string");
+//<c-p src="vue.js">
+function isObject(obj) {
+    return obj !== null && typeof obj === 'object';
+}
+function isDef(v) {
+    return v !== undefined && v !== null;
+}
+//---------
+function stringifyClass(value) {
+    if (Array.isArray(value)) {
+        return stringifyArray(value);
+    }
+    if (isObject(value)) {
+        return stringifyObject(value);
+    }
+    if (typeof value === 'string') {
+        return value;
+    }
+    /* istanbul ignore next */
+    return '';
+}
+exports.stringifyClass = stringifyClass;
+function stringifyArray(value) {
+    var res = '';
+    var stringified;
+    for (var i = 0, l = value.length; i < l; i++) {
+        if (isDef(stringified = stringifyClass(value[i])) && stringified !== '') {
+            if (res) {
+                res += ' ';
+            }
+            res += stringified;
+        }
+    }
+    return res;
+}
+function stringifyObject(value) {
+    var res = '';
+    for (var key in value) {
+        if (value[key]) {
+            if (res) {
+                res += ' ';
+            }
+            res += key;
+        }
+    }
+    return res;
+}
+//</c-p>
 Object.defineProperty(Array.prototype, 'css', {
     value: function () {
         return this.filter(function (x) { return x; }).join(' ');
@@ -107,7 +155,9 @@ Object.defineProperty(Array.prototype, 'css', {
 //TODO? size, colored
 function mixin(type, classes) {
     if (classes === void 0) { classes = {}; }
-    classes = __assign({ inverted: Boolean }, classes);
+    classes = __assign({ 
+        //generic classes that all semantic-ui-classed share
+        inverted: Boolean }, classes);
     return {
         props: classes,
         computed: {
@@ -120,8 +170,8 @@ function mixin(type, classes) {
                                 rv.push(this[cls]);
                             rv.push(S(cls).dasherize().s.replace(/\-/g, ' '));
                         }
-                rv.push(type);
-                return rv.css();
+                rv.push('function' === typeof type ? type.call(this) : type);
+                return stringifyArray(rv);
             }
         }
     };
@@ -606,19 +656,26 @@ var _v = function (exports) {
                         return _this.$slots[side][0] && _this.$slots[side][0].componentOptions && _this.$slots[side][0].componentOptions.Ctor;
                     }, slotDec = function (side) {
                         console.assert(!_this.$slots[side] || 1 === _this.$slots[side].length, 'Only one sided-slot allowed for buttons');
-                        return _this.$slots[side] && icon_vue_1.default == slotTag(side) && _this.rtled(side) + ' labeled icon';
+                        return _this.$slots[side] && icon_vue_1.default == slotTag(side) && [
+                            _this.labeled && _this.rtled(side) + ' labeled',
+                            'icon'
+                        ];
                     };
-                return [
+                return classed_1.stringifyClass([
                     slotDec('prepend'),
                     slotDec('append'),
-                    this.icon ? this.$slots.default ? 'labeled icon' : 'icon' : !this.$slots.prepend && !this.$slots.append && this.$slots.default && 1 === this.$slots.default.length && icon_vue_1.default === slotTag('default') ? 'icon' : ''
-                ].css();
+                    this.icon ? this.labeled ? 'labeled icon' : 'icon' : !this.$slots.prepend && !this.$slots.append && this.$slots.default && 1 === this.$slots.default.length && icon_vue_1.default === slotTag('default') ? 'icon' : ''
+                ]);
             },
             enumerable: true,
             configurable: true
         });
         Button.prototype.click = function () {
         };
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', Boolean)
+        ], Button.prototype, 'labeled', void 0);
         __decorate([
             vue_property_decorator_1.Prop({ default: '' }),
             __metadata('design:type', String)
@@ -638,24 +695,25 @@ var _v = function (exports) {
             __metadata('design:returntype', void 0)
         ], Button.prototype, 'click', null);
         Button = __decorate([classed_1.default('button', {
-                loading: Boolean,
-                disabled: Boolean,
+                attached: String,
                 basic: Boolean,
+                circular: Boolean,
+                compact: Boolean,
+                disabled: Boolean,
+                floated: String,
+                fluid: Boolean,
+                loading: Boolean,
+                negative: Boolean,
+                positive: Boolean,
                 primary: Boolean,
                 secondary: Boolean,
-                compact: Boolean,
-                toggle: Boolean,
-                positive: Boolean,
-                negative: Boolean,
-                fluid: Boolean,
-                circular: Boolean,
-                floated: String,
-                attached: String
+                toggle: Boolean
             }, { components: { icon: icon_vue_1.default } })], Button);
         return Button;
     }(Vue);
     exports.default = Button;
 };
+require('fuse-box-css')('src/components/button.vue', '\r\n.ui.button.vued > i.icons .icon:first-child {\r\n\tmargin-right: 0;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -663,7 +721,8 @@ _p.render = function render() {
     return _c('button', {
         class: [
             _vm.cls,
-            _vm.dynCls
+            _vm.dynCls,
+            'vued'
         ],
         attrs: { 'type': _vm.nativeType },
         on: { 'click': _vm.click }
@@ -727,9 +786,47 @@ var _v = function (exports) {
         }
         Icon.prototype.click = function () {
         };
+        Object.defineProperty(Icon.prototype, 'iconString', {
+            get: function () {
+                return classed_1.stringifyClass(this.icon);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Icon.prototype, 'iconAnalysis', {
+            get: function () {
+                var str = this.iconString;
+                if (~str.indexOf('+')) {
+                    str = str.split('+');
+                    return {
+                        group: str.shift(),
+                        icons: str.filter(function (x) {
+                            return !!x;
+                        })
+                    };
+                }
+                return false;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Icon.prototype, 'single', {
+            get: function () {
+                return !this.iconAnalysis && this.iconString;
+            },
+            enumerable: true,
+            configurable: true
+        });
         __decorate([
-            vue_property_decorator_1.Prop({ required: true }),
-            __metadata('design:type', String)
+            vue_property_decorator_1.Prop({
+                required: true,
+                type: [
+                    String,
+                    Array,
+                    Object
+                ]
+            }),
+            __metadata('design:type', Object)
         ], Icon.prototype, 'icon', void 0);
         __decorate([
             vue_property_decorator_1.Emit(),
@@ -757,12 +854,23 @@ _p.render = function render() {
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
     return _c('i', {
-        class: [
-            _vm.icon,
+        class: _vm.iconAnalysis ? [
+            _vm.iconAnalysis.group,
+            'icons'
+        ] : [
+            _vm.single,
             _vm.cls
         ],
         on: { 'click': _vm.click }
-    });
+    }, _vm._l(_vm.iconAnalysis.icons, function (icon) {
+        return _c('i', {
+            key: icon,
+            class: [
+                icon,
+                'icon'
+            ]
+        });
+    }));
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -857,7 +965,7 @@ var _v = function (exports) {
                     rv.push('right labeled');
                 else if (searchLabel(this.$slots.prepend))
                     rv.push('labeled');
-                return rv.css();
+                return classed_1.stringifyClass(rv);
             },
             enumerable: true,
             configurable: true
@@ -2251,7 +2359,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em )\t/*TODO: real width management engine*/\r\n}\r\n\r\ntable.ui.table.vued > tbody.vued > tr.vued {\r\n\tborder: 1px solid transparent;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current {\r\n\tborder-color: #111;\r\n\t/*background-color: #E0E0E0;/*\r\nTODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n\tdisplay: ta\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current td {\r\n\tbackground: linear-gradient(rgba(151,91,51,0.5), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(151,91,51,0.5));\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -2321,7 +2429,7 @@ _p.render = function render() {
             }));
         })),
         _vm._v(' '),
-        _vm.$slots.footer ? _c('caption', [_vm._t('foot')], 2) : _vm._e()
+        _vm.$slots.footer ? _c('tfoot', [_c('tr', [_c('td', { attrs: { 'colspan': _vm.columns && _vm.columns.length } }, [_vm._t('footer')], 2)])]) : _vm._e()
     ], 1);
 };
 _p.staticRenderFns = [];
@@ -3921,7 +4029,7 @@ _p.render = function render() {
             ], 1),
             _vm._v(' '),
             _c('s-button', {
-                attrs: { 'icon': 'plus' },
+                attrs: { 'icon': '+plus+red dont' },
                 on: {
                     'click': function ($event) {
                         _vm.loading = !_vm.loading;

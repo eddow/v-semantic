@@ -1,37 +1,41 @@
 <template>
 	<button
 		:type="nativeType"
-		:class="[cls, dynCls]"
+		:class="[cls, dynCls, 'vued']"
 		@click="click"
 	>
 		<icon v-if="icon" :icon="icon" />
 		<slot name="prepend" /><slot /><slot name="append" />
 	</button>
 </template>
-
+<style>
+.ui.button.vued > i.icons .icon:first-child {
+	margin-right: 0;
+}
+</style>
 <script lang="ts">
 //TODO: manage labels as we manage icons
 import * as Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/classed'
+import Semantic, {stringifyClass} from 'lib/classed'
 import icon from './icon.vue'
 
 //TODO: animated (visible/hidden content)
 //TODO: toggle JS
 @Semantic('button', {
-	loading: Boolean,
-	disabled: Boolean,
+	attached: String,
 	basic: Boolean,
+	circular: Boolean,
+	compact: Boolean,
+	disabled: Boolean,
+	floated: String,
+	fluid: Boolean,
+	loading: Boolean,
+	negative: Boolean,
+	positive: Boolean,
 	primary: Boolean,
 	secondary: Boolean,
-	compact: Boolean,
-	toggle: Boolean,
-	positive: Boolean,
-	negative: Boolean,
-	fluid: Boolean,
-	circular: Boolean,
-	floated: String,
-	attached: String
+	toggle: Boolean
 }, {components: {icon}})
 export default class Button extends Vue {
 	rtled(pend) {
@@ -40,6 +44,7 @@ export default class Button extends Vue {
 			append: 'right'
 		}[pend];
 	}
+	@Prop() labeled: boolean
 	get dynCls() {
 		var slotTag = side=> {
 			return this.$slots[side][0] && this.$slots[side][0].componentOptions && this.$slots[side][0].componentOptions.Ctor;
@@ -51,19 +56,19 @@ export default class Button extends Vue {
 			);
 			return this.$slots[side] &&
 				icon == slotTag(side) &&
-				(this.rtled(side)+' labeled icon');
+					[this.labeled&&this.rtled(side)+' labeled', 'icon'];
 		};
-		return [
+		return stringifyClass([
 			slotDec('prepend'),
 			slotDec('append'),
 			this.icon ?
-				(this.$slots.default?'labeled icon': 'icon') :
+				(this.labeled?'labeled icon': 'icon') :
 				//In the specific case there is only one icon in the default slot
 				(!this.$slots.prepend && !this.$slots.append && this.$slots.default &&
 					1=== this.$slots.default.length && icon=== slotTag('default')) ?
 				'icon':
 				''
-		].css();
+		]);
 	}
 	/**
 	 * @description Position of the icon if specified

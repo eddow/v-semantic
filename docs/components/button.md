@@ -24,18 +24,19 @@ Buttons have two slots (`prepend` and `append`) where an `icon` can be used.
 - `icon`: Specifying an icon here is a shortcut to introducing in the button `<icon type="given-value" slot="left" />`
 - `native-type`: `<button :type="nativeType" ...`
 ### Forwarded as classes
-- `loading: Boolean`
-- `disabled: Boolean`
+- `attached: String`
 - `basic: Boolean`
+- `circular: Boolean`
+- `compact: Boolean`
+- `disabled: Boolean`
+- `floated: String`
+- `fluid: Boolean`
+- `labeled: Boolean`
+- `loading: Boolean`
+- `negative: Boolean`
+- `positive: Boolean`
 - `primary: Boolean`
 - `secondary: Boolean`
-- `compact: Boolean`
 - `toggle: Boolean`
-- `positive: Boolean`
-- `negative: Boolean`
-- `fluid: Boolean`
-- `circular: Boolean`
-- `floated: String`
-- `attached: String`
 ## Events
 - `click`

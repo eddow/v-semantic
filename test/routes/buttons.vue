@@ -13,7 +13,7 @@
 				<s-icon icon="save" slot="prepend" />
 				blurr
 			</s-button>
-			<s-button icon="plus" @click="loading = !loading">
+			<s-button icon="+plus+red dont" @click="loading = !loading">
 				loading
 			</s-button>
 			<s-button @click="loading = !loading && 'loading!'">
