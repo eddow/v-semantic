@@ -62,9 +62,8 @@ table.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {
 }
 table.scroll-body > thead.vued {
 	width: calc( 100% - 0.71em );	/*TODO: real width management engine*/
-	display: ta
 }
-table.ui.table.vued tbody.vued tr.vued.current td {
+table.ui.table.vued tbody.vued tr.vued.current > td {
 	background: linear-gradient(rgba(151,91,51,0.5), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(151,91,51,0.5));
 /*TODO: use theming
 @activeColor: @textColor;
