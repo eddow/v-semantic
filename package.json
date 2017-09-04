@@ -1,6 +1,6 @@
 {
   "name": "v-semantic",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Semantic-ui2 + vue2",
   "main": "dist/v-semantic.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/eddow/v-semantic#readme",
   "devDependencies": {
-    "fuse-box": "^2.2.3-beta.20",
+    "fuse-box": "^2.2.3",
     "typescript": "^2.5.2",
     "vue-codemirror": "^3.1.4",
     "vue-property-decorator": "file:.yalc/vue-property-decorator",
@@ -35,6 +35,6 @@
     "semantic-ui": "^2.2.13",
     "string": "^3.3.3",
     "vue": "^2.4.2",
-    "vue-ripper": "^1.0.5"
+    "vue-ripper": "^1.0.6"
   }
 }

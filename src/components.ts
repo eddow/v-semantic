@@ -5,6 +5,7 @@ import Icon from './components/icon.vue'
 import Input from './components/input.vue'
 import Modal from './components/modal.vue'
 import Checkbox from './components/checkbox.vue'
+import Progress from './components/progress.vue'
 
 import Form from './components/form/index.vue'
 import Field from './components/form/field.vue'
@@ -25,7 +26,7 @@ import Dimmer from './components/dimmer.vue'
 import Dimmable from './components/dimmable.vue'
 
 export {
-	Flag, Button, Icon, Modal, Checkbox, Input,
+	Flag, Button, Icon, Input, Modal, Checkbox, Progress,
 	Form, Field, FieldInput, DataMold,
 	Select, Option,
 	Table, Column, CheckboxColumn,

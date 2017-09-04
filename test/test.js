@@ -516,6 +516,8 @@ var modal_vue_1 = require("./components/modal.vue");
 exports.Modal = modal_vue_1.default;
 var checkbox_vue_1 = require("./components/checkbox.vue");
 exports.Checkbox = checkbox_vue_1.default;
+var progress_vue_1 = require("./components/progress.vue");
+exports.Progress = progress_vue_1.default;
 var index_vue_1 = require("./components/form/index.vue");
 exports.Form = index_vue_1.default;
 var field_vue_1 = require("./components/form/field.vue");
@@ -1382,6 +1384,212 @@ _p.render = function render() {
     ]);
 };
 _p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("src/components/progress.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata = this && this.__metadata || function (k, v) {
+        if (typeof Reflect === 'object' && typeof Reflect.metadata === 'function')
+            return Reflect.metadata(k, v);
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var module_1 = require('~/src/lib/module');
+    var texts = [
+            'active',
+            'error',
+            'success',
+            'warning',
+            'percent',
+            'ratio'
+        ], stati = [
+            'active',
+            'warning',
+            'success',
+            'error'
+        ];
+    var Progress = function (_super) {
+        __extends(Progress, _super);
+        function Progress() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Progress.prototype.changeLabel = function (v) {
+            this.semantic('set label', v);
+        };
+        Progress.prototype.changeTotal = function (v) {
+            this.semantic('set total', v);
+        };
+        Progress.prototype.changeValue = function (v) {
+            this.semantic('set progress', v);
+        };
+        Progress.prototype.changePercent = function (v) {
+            this.semantic('set percent', v);
+        };
+        Progress.prototype.changeStatus = function (v) {
+            this.semantic('set ' + v);
+        };
+        Progress.prototype.mounted = function () {
+            if (this.status)
+                this.changeStatus(this.status);
+        };
+        Progress.prototype.configure = function (config) {
+            var text = { ratio: this.progressText || '{value}/{total}' }, that = this;
+            for (var _i = 0, stati_1 = stati; _i < stati_1.length; _i++) {
+                var k = stati_1[_i];
+                if (this[k + 'Text'])
+                    text[k] = this[k + 'Text'];
+            }
+            if (this.progressText)
+                text.percent = this.progressText;
+            config.text = text;
+            if (this.ratio)
+                config.label = 'ratio';
+            if (undefined !== this.value)
+                config.value = this.value;
+            if (undefined !== this.total)
+                config.total = this.total;
+            function emitter(status) {
+                return function () {
+                    return that.$emit('status', status);
+                };
+            }
+            for (var _a = 0, stati_2 = stati; _a < stati_2.length; _a++) {
+                var status = stati_2[_a];
+                config['on' + status.substr(0, 1).toUpperCase() + status.substr(1)] = emitter(status);
+            }
+        };
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], Progress.prototype, 'label', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('label'),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], Progress.prototype, 'changeLabel', null);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', Number)
+        ], Progress.prototype, 'total', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('total'),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], Progress.prototype, 'changeTotal', null);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', Number)
+        ], Progress.prototype, 'value', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('value'),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], Progress.prototype, 'changeValue', null);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', Number)
+        ], Progress.prototype, 'percent', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('percent'),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], Progress.prototype, 'changePercent', null);
+        __decorate([
+            vue_property_decorator_1.Model('status', {
+                validator: function (x) {
+                    return !x || !!~stati.indexOf(x);
+                }
+            }),
+            __metadata('design:type', String)
+        ], Progress.prototype, 'status', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('status'),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], Progress.prototype, 'changeStatus', null);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], Progress.prototype, 'progressText', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', Boolean)
+        ], Progress.prototype, 'ratio', void 0);
+        Progress = __decorate([module_1.default('progress', {
+                active: Boolean,
+                'bottom-attached': Boolean,
+                disabled: Boolean,
+                indicating: Boolean,
+                inverted: Boolean,
+                'top-attached': Boolean
+            }, {
+                autoSuccess: Boolean,
+                showActivity: Boolean,
+                precision: Number
+            }, ['change'], {
+                props: texts.reduce(function (acc, value) {
+                    acc[value + 'Text'] = String;
+                    return acc;
+                }, {})
+            })], Progress);
+        return Progress;
+    }(Vue);
+    exports.default = Progress;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', { class: _vm.cls }, [
+        _vm._m(0),
+        _vm._v(' '),
+        _c('div', { staticClass: 'label' }, [_vm._t('default', [_vm._v(_vm._s(_vm.label))])], 2)
+    ]);
+};
+_p.staticRenderFns = [function render() {
+        var _vm = this;
+        var _h = _vm.$createElement;
+        var _c = _vm._self._c || _h;
+        return _c('div', { staticClass: 'bar' }, [_c('div', { staticClass: 'progress' })]);
+    }];
 var _e = {};
 _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
@@ -2375,7 +2583,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: linear-gradient(rgba(151,91,51,0.5), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(151,91,51,0.5));\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -4440,6 +4648,201 @@ _p.render = function render() {
                     },
                     slot: 'append'
                 })], 1)], 1)
+    ], 1);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("test/routes/progress.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var Form = function (_super) {
+        __extends(Form, _super);
+        function Form() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.percent = 0;
+            _this.value = 0;
+            _this.total = 23;
+            _this.setValue = 0;
+            _this.setPercent = 0;
+            _this.status = null;
+            return _this;
+        }
+        Form.prototype.mounted = function () {
+        };
+        Form.prototype.mm = function ($event) {
+            this.setValue = Math.round($event.offsetX * 23 / 800);
+            this.setPercent = Math.round($event.offsetX / 8);
+        };
+        Form.prototype.md = function ($event) {
+            this.percent = this.setPercent;
+            this.value = this.setValue;
+        };
+        Form = __decorate([vue_property_decorator_1.Component], Form);
+        return Form;
+    }(Vue);
+    exports.default = Form;
+};
+require('fuse-box-css')('test/routes/progress.vue', '\r\ndiv.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', [
+        _c('s-progress', {
+            attrs: { 'percent': _vm.percent },
+            model: {
+                value: _vm.status,
+                callback: function ($$v) {
+                    _vm.status = $$v;
+                },
+                expression: 'status'
+            }
+        }),
+        _vm._v(' '),
+        _c('s-progress', {
+            attrs: {
+                'value': _vm.value,
+                'total': _vm.total,
+                'indicating': '',
+                'ratio': ''
+            },
+            model: {
+                value: _vm.status,
+                callback: function ($$v) {
+                    _vm.status = $$v;
+                },
+                expression: 'status'
+            }
+        }, [_vm._v('\n\t\tindicating ratio\n\t')]),
+        _vm._v(' '),
+        _c('div', { staticClass: 'ui inverted segment' }, [
+            _c('s-progress', {
+                attrs: {
+                    'percent': _vm.percent,
+                    'inverted': '',
+                    'progress-text': '!{percent}!',
+                    'error-text': 'Error!',
+                    'warning-text': 'Warning!',
+                    'active-text': '{left}% to go...',
+                    'success-text': '{percent}% done'
+                },
+                model: {
+                    value: _vm.status,
+                    callback: function ($$v) {
+                        _vm.status = $$v;
+                    },
+                    expression: 'status'
+                }
+            }),
+            _vm._v(' '),
+            _c('s-progress', {
+                attrs: {
+                    'inverted': '',
+                    'indicating': '',
+                    'value': _vm.value,
+                    'total': _vm.total,
+                    'ratio': '',
+                    'progress-text': '!{value}/{total}!',
+                    'error-text': 'Error!',
+                    'warning-text': 'Warning!',
+                    'active-text': '{left} to go...',
+                    'success-text': '{value} done'
+                },
+                model: {
+                    value: _vm.status,
+                    callback: function ($$v) {
+                        _vm.status = $$v;
+                    },
+                    expression: 'status'
+                }
+            })
+        ], 1),
+        _vm._v(' '),
+        _c('s-select', {
+            attrs: { 'placeholder': 'status' },
+            model: {
+                value: _vm.status,
+                callback: function ($$v) {
+                    _vm.status = $$v;
+                },
+                expression: 'status'
+            }
+        }, [
+            _c('s-option', { attrs: { 'value': 'active' } }),
+            _vm._v(' '),
+            _c('s-option', { attrs: { 'value': 'warning' } }),
+            _vm._v(' '),
+            _c('s-option', { attrs: { 'value': 'success' } }),
+            _vm._v(' '),
+            _c('s-option', { attrs: { 'value': 'error' } })
+        ], 1),
+        _vm._v(' '),
+        _c('div', { on: { 'mousedown': _vm.md } }, [
+            _vm._v('\n\t\tClick here :\n\t\t'),
+            _c('div', {
+                staticClass: 'command',
+                staticStyle: { 'background': 'black' },
+                on: {
+                    'mousemove': function ($event) {
+                        _vm.mm({ offsetX: 0 });
+                    }
+                }
+            }, [_vm._v('\n\t\t\t\xA0\n\t\t')]),
+            _vm._v(' '),
+            _c('div', {
+                staticClass: 'command',
+                staticStyle: {
+                    'background': 'grey',
+                    'width': '800px'
+                },
+                on: { 'mousemove': _vm.mm }
+            }, [_vm._v('\n\t\t\t' + _vm._s(_vm.setValue) + '/' + _vm._s(_vm.total) + ' -- ' + _vm._s(_vm.setPercent) + '\n\t\t')]),
+            _vm._v(' '),
+            _c('div', {
+                staticClass: 'command',
+                staticStyle: { 'background': 'green' },
+                on: {
+                    'mousemove': function ($event) {
+                        _vm.mm({ offsetX: 800 });
+                    }
+                }
+            }, [_vm._v('\n\t\t\t\xA0\n\t\t')])
+        ])
     ], 1);
 };
 _p.staticRenderFns = [];
