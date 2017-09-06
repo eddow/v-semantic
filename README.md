@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/v-semantic.svg)](https://www.npmjs.com/package/v-semantic)
+
 # v-semantic
 
 Integration of [semantic-ui2](https://semantic-ui.com) with [vue.js2](https://vuejs.org/)

@@ -2,15 +2,13 @@
 	<div :class="cls">
 		<pimp v-model="panels"><slot /></pimp>
 		<template v-for="(panel, uid) in panels">
-			<ripped
-				tag="div"
+			<div is="ripped"
 				:key="'t'+uid"
 				class="title"
 				template="title"
 				:ripper="panel"
 			/>
-			<ripped
-				tag="div"
+			<div is="ripped"
 				:key="'c'+uid"
 				class="content"
 				:ripper="panel"

@@ -1,20 +1,14 @@
 <template>
-	<!--
-		[vue-language-server] The template root requires exactly one element.
-		This error is due to the fact some thead/tbody don't contain tr and some tr don't contain
-		td/th - the compiler thinks these elements will appear outside of the <table>
-	-->
 	<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]">
-		<pimp tag="caption" v-model="columns">
+		<caption is="pimp" v-model="columns">
 			<slot />
-		</pimp>
+		</caption>
 		<caption v-if="$slots.header">
 			<slot name="header"/>
 		</caption>
 		<thead class="vued">
 			<tr class="vued">
-				<ripped v-for="(column, uid) in columns" :key="uid"
-					tag="th"
+				<th is="ripped" v-for="(column, uid) in columns" :key="uid"
 					class="vued"
 					:style="{width: column.width?column.width+'px':undefined}"
 					template="header"
@@ -33,8 +27,7 @@
 				]"
 				@click="rowClick(row)"
 			>
-				<ripped v-for="(column, uid) in columns" :key="uid"
-					tag="td"
+				<td is="ripped" v-for="(column, uid) in columns" :key="uid"
 					:style="{width: column.width?column.width+'px':undefined}"
 					:ripper="column"
 					:scope="{row, index}"

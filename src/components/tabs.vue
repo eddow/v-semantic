@@ -5,8 +5,7 @@
 			:class="['ui', type, horizontal && 'vertical', position, 'attached tabs vued menu']"
 			:style="tabsStyle"
 		>
-			<ripped v-for="(panel, uid) in panels" :key="uid"
-				tag="a"
+			<a is="ripped" v-for="(panel, uid) in panels" :key="uid"
 				class="item"
 				template="title"
 				:ripper="panel"
@@ -14,8 +13,7 @@
 			/>
 		</div>
 		<div :class="['ui segment panels vued', opposite, 'attached']">
-			<ripped v-for="(panel, uid) in panels" :key="uid"
-				tag="div"
+			<div is="ripped" v-for="(panel, uid) in panels" :key="uid"
 				:class="['ui', 'tab']"
 				:ripper="panel"
 				:data-tab="panel.name"
@@ -40,9 +38,8 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import {Pimp, Ripped} from 'vue-ripper'
+import {Pimp, Ripped, Depot} from 'vue-ripper'
 import {$} from 'lib/shims'
-import {depot} from 'lib/render'
 
 var orders = {
 	tabsFirst: ['pimp', 'tabs', 'default'],
@@ -51,7 +48,7 @@ var orders = {
 
 //generalise shapes and end up using `childrenOnly`
 @Component({
-	components: {Pimp, Ripped, depot}
+	components: {Pimp, Ripped, Depot}
 })
 export default class Tabs extends Vue {
 	@Provide() container = this

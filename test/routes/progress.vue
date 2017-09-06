@@ -33,7 +33,7 @@
 				&nbsp;
 			</div>
 			<div class="command" style="background: grey; width: 800px;" @mousemove="mm">
-				{{setValue}}/{{total}} -- {{setPercent}}
+				{{setValue}}/{{total}} -- {{setPercent}}%
 			</div>
 			<div class="command" style="background: green;" @mousemove="mm({offsetX: 800})">
 				&nbsp;
