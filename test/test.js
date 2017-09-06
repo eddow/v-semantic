@@ -482,22 +482,6 @@ function updateWrap(wrap) {
     };
 }
 exports.updateWrap = updateWrap;
-exports.depot = {
-    props: {
-        tag: { type: String, default: 'div' },
-        order: { type: Array, required: true },
-        map: Function //(string, vnode[], renderFunction) => vnode[]
-    },
-    render: function (h) {
-        var children = [], slot;
-        for (var _i = 0, _a = this.order; _i < _a.length; _i++) {
-            var name = _a[_i];
-            var slot_1 = this.$slots[name];
-            children = children.concat(this.map ? this.map(name, slot_1, h) : slot_1);
-        }
-        return h(this.tag, children);
-    }
-};
 //# sourceMappingURL=render.js.map
 });
 ___scope___.file("src/components.js", function(exports, require, module, __filename, __dirname){
@@ -2596,7 +2580,7 @@ _p.render = function render() {
         ]
     }, [
         _c('pimp', {
-            attrs: { 'tag': 'caption' },
+            tag: 'caption',
             model: {
                 value: _vm.columns,
                 callback: function ($$v) {
@@ -2611,10 +2595,10 @@ _p.render = function render() {
         _c('thead', { staticClass: 'vued' }, [_c('tr', { staticClass: 'vued' }, _vm._l(_vm.columns, function (column, uid) {
                 return _c('ripped', {
                     key: uid,
+                    tag: 'th',
                     staticClass: 'vued',
                     style: { width: column.width ? column.width + 'px' : undefined },
                     attrs: {
-                        'tag': 'th',
                         'template': 'header',
                         'ripper': column
                     }
@@ -2640,9 +2624,9 @@ _p.render = function render() {
             }, _vm._l(_vm.columns, function (column, uid) {
                 return _c('ripped', {
                     key: uid,
+                    tag: 'td',
                     style: { width: column.width ? column.width + 'px' : undefined },
                     attrs: {
-                        'tag': 'td',
                         'ripper': column,
                         'scope': {
                             row: row,
@@ -2657,7 +2641,7 @@ _p.render = function render() {
                     staticClass: 'vued',
                     attrs: { 'colspan': _vm.columns && _vm.columns.length }
                 }, [_vm._t('footer')], 2)])]) : _vm._e()
-    ], 1);
+    ]);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -3104,9 +3088,9 @@ _p.render = function render() {
             return [
                 _c('ripped', {
                     key: 't' + uid,
+                    tag: 'div',
                     staticClass: 'title',
                     attrs: {
-                        'tag': 'div',
                         'template': 'title',
                         'ripper': panel
                     }
@@ -3114,11 +3098,9 @@ _p.render = function render() {
                 _vm._v(' '),
                 _c('ripped', {
                     key: 'c' + uid,
+                    tag: 'div',
                     staticClass: 'content',
-                    attrs: {
-                        'tag': 'div',
-                        'ripper': panel
-                    }
+                    attrs: { 'ripper': panel }
                 })
             ];
         })
@@ -3170,7 +3152,6 @@ var _v = function (exports) {
     var vue_property_decorator_1 = require('vue-property-decorator');
     var vue_ripper_1 = require('vue-ripper');
     var shims_1 = require('~/src/lib/shims');
-    var render_1 = require('~/src/lib/render');
     var orders = {
         tabsFirst: [
             'pimp',
@@ -3285,7 +3266,7 @@ var _v = function (exports) {
                 components: {
                     Pimp: vue_ripper_1.Pimp,
                     Ripped: vue_ripper_1.Ripped,
-                    depot: render_1.depot
+                    Depot: vue_ripper_1.Depot
                 }
             })], Tabs);
         return Tabs;
@@ -3330,9 +3311,9 @@ _p.render = function render() {
         }, _vm._l(_vm.panels, function (panel, uid) {
             return _c('ripped', {
                 key: uid,
+                tag: 'a',
                 staticClass: 'item',
                 attrs: {
-                    'tag': 'a',
                     'template': 'title',
                     'ripper': panel,
                     'data-tab': panel.name
@@ -3349,12 +3330,12 @@ _p.render = function render() {
         }, _vm._l(_vm.panels, function (panel, uid) {
             return _c('ripped', {
                 key: uid,
+                tag: 'div',
                 class: [
                     'ui',
                     'tab'
                 ],
                 attrs: {
-                    'tag': 'div',
                     'ripper': panel,
                     'data-tab': panel.name
                 }
@@ -3855,7 +3836,7 @@ var _v = function (exports) {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.routes = routes_1.routes;
             _this.code = null;
-            _this.showSource = false;
+            _this.showSource = true;
             _this.editorOptions = {
                 tabSize: 2,
                 mode: 'text/x-vue',
@@ -4831,7 +4812,7 @@ _p.render = function render() {
                     'width': '800px'
                 },
                 on: { 'mousemove': _vm.mm }
-            }, [_vm._v('\n\t\t\t' + _vm._s(_vm.setValue) + '/' + _vm._s(_vm.total) + ' -- ' + _vm._s(_vm.setPercent) + '\n\t\t')]),
+            }, [_vm._v('\n\t\t\t' + _vm._s(_vm.setValue) + '/' + _vm._s(_vm.total) + ' -- ' + _vm._s(_vm.setPercent) + '%\n\t\t')]),
             _vm._v(' '),
             _c('div', {
                 staticClass: 'command',
