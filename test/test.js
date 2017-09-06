@@ -524,7 +524,14 @@ var Vue = require('vue/dist/vue.common.js');
 var vue_property_decorator_1 = require('vue-property-decorator');
 var deep = require('~/src/lib/deep');
 var utils_1 = require('~/src/lib/utils');
+var render_1 = require('~/src/lib/render');
 var genFieldName = utils_1.idSpace('fld');
+var slotNames = [
+    'append',
+    'prepend',
+    'field',
+    'input'
+];
 var Property = function (_super) {
     __extends(Property, _super);
     function Property() {
@@ -563,7 +570,7 @@ var Property = function (_super) {
     });
     Property.prototype.scope = function (model) {
         var that = this;
-        return Object.create(this, {
+        return Object.create(this, model ? {
             model: { value: model },
             value: {
                 set: function (value) {
@@ -573,7 +580,43 @@ var Property = function (_super) {
                     return deep.get(model, that.path);
                 }
             }
-        });
+        } : {});
+    };
+    Property.prototype.initSlot = function (name, scoped) {
+        var _this = this;
+        if (this.$scopedSlots[name])
+            return this.$scopedSlots[name];
+        var _loop_1 = function (mold) {
+            var slot = mold.$scopedSlots[name];
+            if (slot && (!mold.select || 'function' === typeof mold.select && mold.select(this_1) || mold.select === this_1.type)) {
+                return {
+                    value: this_1.$scopedSlots[name] = function (_a) {
+                        var model = _a.model;
+                        return slot(_this.scope(model)) || [];
+                    }
+                };
+            }
+        };
+        var this_1 = this;
+        for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
+            var mold = _a[_i];
+            var state_1 = _loop_1(mold);
+            if (typeof state_1 === 'object')
+                return state_1.value;
+        }
+    };
+    Property.prototype.initSlots = function () {
+        if (this.modeled) {
+            var ss = {};
+            for (var _i = 0, slotNames_1 = slotNames; _i < slotNames_1.length; _i++) {
+                var name = slotNames_1[_i];
+                var thisSs = this.initSlot(name);
+                if (thisSs)
+                    ss[name] = thisSs;
+            }
+            var data = this.$options._parentVnode.data;
+            data.scopedSlots = __assign(ss, data.scopedSlots);
+        }
     };
     __decorate([
         vue_property_decorator_1.Inject(),
@@ -604,7 +647,7 @@ var Property = function (_super) {
         ]),
         __metadata('design:returntype', void 0)
     ], Property.prototype, 'setFieldProperty', null);
-    Property = __decorate([vue_property_decorator_1.Component], Property);
+    Property = __decorate([vue_property_decorator_1.Component({ mixins: [render_1.renderWrap('initSlots')] })], Property);
     return Property;
 }(Vue);
 exports.default = Property;
@@ -1959,15 +2002,6 @@ var _v = function (exports) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     }();
-    var __assign = this && this.__assign || Object.assign || function (t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s)
-                if (Object.prototype.hasOwnProperty.call(s, p))
-                    t[p] = s[p];
-        }
-        return t;
-    };
     var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
@@ -1985,8 +2019,6 @@ var _v = function (exports) {
     Object.defineProperty(exports, '__esModule', { value: true });
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
-    var render_1 = require('~/src/lib/render');
-    var input_vue_1 = require('../input.vue');
     var property_1 = require('../data/property');
     var Field = function (_super) {
         __extends(Field, _super);
@@ -2002,35 +2034,6 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
-        Field.prototype.initSlot = function (name) {
-            if (this.originalSlots[name])
-                return;
-            for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
-                var mold = _a[_i];
-                var slot = mold.$scopedSlots[name];
-                if (slot && (!mold.select || 'function' === typeof mold.select && mold.select(this) || mold.select === this.type)) {
-                    return this.$slots[name] = slot(this.scope(this.modeled.model)) || [];
-                }
-            }
-        };
-        Field.prototype.initSlots = function () {
-            if (this.modeled) {
-                if (!this.originalSlots)
-                    this.originalSlots = __assign({}, this.$slots);
-                this.initSlot('append');
-                this.initSlot('prepend');
-                this.initSlot('field');
-                this.initSlot('input');
-                var slots = this.$slots;
-                if (!slots.field && !this.originalSlots.default && slots.input) {
-                    slots.default = slots.input;
-                    delete slots.input;
-                } else if (slots.field && slots.default) {
-                    slots.input = slots.default;
-                    delete slots.default;
-                }
-            }
-        };
         Object.defineProperty(Field.prototype, 'labelStyle', {
             get: function () {
                 return this.modeled && this.modeled.labelStyle;
@@ -2046,13 +2049,7 @@ var _v = function (exports) {
             vue_property_decorator_1.Prop({ default: null }),
             __metadata('design:type', Boolean)
         ], Field.prototype, 'inline', void 0);
-        Field = __decorate([vue_property_decorator_1.Component({
-                components: { sInput: input_vue_1.default },
-                mixins: [
-                    render_1.renderWrap('initSlots'),
-                    property_1.default
-                ]
-            })], Field);
+        Field = __decorate([vue_property_decorator_1.Component({ mixins: [property_1.default] })], Field);
         return Field;
     }(Vue);
     exports.default = Field;
@@ -2069,42 +2066,42 @@ _p.render = function render() {
                 inline: _vm.isInline
             }
         ]
-    }, [_vm._t('field', [
-            _vm._t('prepend', [_vm.label ? _c('label', {
-                    staticClass: 'label',
-                    style: _vm.labelStyle,
-                    attrs: { 'for': _vm.name }
-                }, [_vm._v('\n\t\t\t\t' + _vm._s(_vm.label) + '\n\t\t\t')]) : _vm._e()]),
-            _vm._v(' '),
-            _vm._t('default', [_c('input', {
-                    directives: [{
-                            name: 'model',
-                            rawName: 'v-model',
-                            value: _vm.value,
-                            expression: 'value'
-                        }],
-                    attrs: { 'type': 'text' },
-                    domProps: { 'value': _vm.value },
-                    on: {
-                        'input': function ($event) {
-                            if ($event.target.composing) {
-                                return;
+    }, [_vm._t('field', [_vm._t('field', [
+                _vm._t('prepend', [_vm._t('prepend', [_vm.label ? _c('label', {
+                            staticClass: 'label',
+                            style: _vm.labelStyle,
+                            attrs: { 'for': _vm.name }
+                        }, [_vm._v('\n\t\t\t\t\t\t' + _vm._s(_vm.label) + '\n\t\t\t\t\t')]) : _vm._e()], { model: _vm.modeled.model })]),
+                _vm._v(' '),
+                _vm._t('default', [_vm._t('input', [_c('input', {
+                            directives: [{
+                                    name: 'model',
+                                    rawName: 'v-model',
+                                    value: _vm.value,
+                                    expression: 'value'
+                                }],
+                            attrs: { 'type': 'text' },
+                            domProps: { 'value': _vm.value },
+                            on: {
+                                'input': function ($event) {
+                                    if ($event.target.composing) {
+                                        return;
+                                    }
+                                    _vm.value = $event.target.value;
+                                }
                             }
-                            _vm.value = $event.target.value;
-                        }
-                    }
-                })]),
-            _vm._v(' '),
-            _vm._t('append', [_vm.errors.length && _vm.modeled.displayErrors && 'fields' === this.modeled.errorPanel ? _c('div', {
-                    class: [
-                        'ui',
-                        _vm.isInline && 'left',
-                        'pointing red basic error label'
-                    ]
-                }, _vm._l(_vm.errors, function (error) {
-                    return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t' + _vm._s(error.message) + '\n\t\t\t\t')]);
-                })) : _vm._e()])
-        ])], 2);
+                        })], { model: _vm.modeled.model })]),
+                _vm._v(' '),
+                _vm._t('append', [_vm._t('append', [_vm.errors.length && _vm.modeled.displayErrors && 'fields' === this.modeled.errorPanel ? _c('div', {
+                            class: [
+                                'ui',
+                                _vm.isInline && 'left',
+                                'pointing red basic error label'
+                            ]
+                        }, _vm._l(_vm.errors, function (error) {
+                            return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t\t\t' + _vm._s(error.message) + '\n\t\t\t\t\t\t')]);
+                        })) : _vm._e()], { model: _vm.modeled.model })])
+            ], { model: _vm.modeled.model })])], 2);
 };
 _p.staticRenderFns = [];
 var _e = {};

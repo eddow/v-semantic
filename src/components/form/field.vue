@@ -1,22 +1,30 @@
 <template>
 	<div :class="['field', {error: errors.length, inline: isInline}]">
 		<slot name="field">
-			<slot name="prepend">
-				<label v-if="label" :for="name" class="label" :style="labelStyle">
-					{{label}}
-				</label>
-			</slot>
-			<slot>
-				<input type="text" v-model="value" />
-			</slot>
-			<slot name="append">
-				<div v-if="errors.length && modeled.displayErrors && 'fields'=== this.modeled.errorPanel"
-					:class="['ui', isInline&&'left', 'pointing red basic error label']"
-				>
-					<div v-for="error in errors" :key="error.schemaPath">
-						{{error.message}}
-					</div>
-				</div>
+			<slot name="field" :model="modeled.model">
+				<slot name="prepend">
+					<slot name="prepend" :model="modeled.model">
+						<label v-if="label" :for="name" class="label" :style="labelStyle">
+							{{label}}
+						</label>
+					</slot>
+				</slot>
+				<slot>
+					<slot name="input":model="modeled.model">
+						<input type="text" v-model="value" />
+					</slot>
+				</slot>
+				<slot name="append">
+					<slot name="append" :model="modeled.model">
+						<div v-if="errors.length && modeled.displayErrors && 'fields'=== this.modeled.errorPanel"
+							:class="['ui', isInline&&'left', 'pointing red basic error label']"
+						>
+							<div v-for="error in errors" :key="error.schemaPath">
+								{{error.message}}
+							</div>
+						</div>
+					</slot>
+				</slot>
 			</slot>
 		</slot>
 	</div>
@@ -27,14 +35,9 @@ import * as Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {idSpace} from 'lib/utils'
 import * as deep from 'lib/deep'
-import {renderWrap} from 'lib/render'
-import sInput from '../input.vue'
 import Property from '../data/property'
 
-@Component({
-	components: {sInput},
-	mixins: [renderWrap('initSlots'), Property]
-})
+@Component({mixins: [Property]})
 export default class Field extends Vue {
 	//from Property
 	modeled
@@ -62,39 +65,6 @@ export default class Field extends Vue {
 		if(!this.errors.length) this.$emit('validated', this.value);
 	}*/
 
-	originalSlots
-	initSlot(name: string) {
-		if(this.originalSlots[name]) return;
-		for(let mold of this.modeled.molds) {
-			let slot = mold.$scopedSlots[name];
-			if(slot && (
-				!mold.select ||
-				('function'=== typeof mold.select && mold.select(this)) ||
-				mold.select === this.type)
-			) {
-				return this.$slots[name] = slot(this.scope(this.modeled.model))||[];	//we keep [] for empty vnodes
-			}
-		}
-	}
-	initSlots() {
-		if(this.modeled) {
-			if(!this.originalSlots)
-				this.originalSlots = {...this.$slots};
-			this.initSlot('append');
-			this.initSlot('prepend');
-			this.initSlot('field');
-			this.initSlot('input');
-			//When defined in the field, it is not the `input` slot that is used but the default one
-			let slots = this.$slots;
-			if(!slots.field && !this.originalSlots.default && slots.input) {
-				slots.default = slots.input;
-				delete slots.input;
-			} else if(slots.field && slots.default) {
-				slots.input = slots.default;
-				delete slots.default;
-			}
-		}
-	}
 	get labelStyle() {
 		return this.modeled && this.modeled.labelStyle;
 	}
