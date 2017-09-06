@@ -27,42 +27,24 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import Modeled from '../data/modeled'
 import Command from 'directives/command'
-import * as Ajv from 'ajv'
 
 @Component({
-	provide() { return {
-		modeled: this,
-		group: this
-	}; }
+	mixins: [Modeled]
 })
 export default class Form extends Command.Commanded {
-	
 	@Prop({type: [String, Number]}) labelWidth: number|string
 	@Prop() model: any
-	@Prop({default: ()=> ({})}) schema
 	@Prop() displayErrors: boolean
 	@Prop() inline: boolean
 	@Prop({type: String, default: 'fields'}) errorPanel: 'all'|'fields'
+
 	get displayedErrors() {
 		return {
 			fields: this.fieldErrors,
 			all: this.errors
 		}[this.errorPanel];
-	}
-	molds = []
-	fields = {}
-	ajv
-	beforeCreate() {
-		//TODO: add ajv options
-		this.ajv = new Ajv({
-			allErrors: true
-		});
-	}
-	validation
-	@Watch('schema', {immediate: true})
-	compileSchema(schema) {
-		if(schema) this.validation = this.ajv.compile(schema);
 	}
 	@Prop({default: ()=>[]}) errors: any[]
 	@Prop({default: ()=>[]}) fieldErrors: any[]

@@ -10254,7 +10254,7 @@ return jQuery;
 } );
 
 var __process_env__ = {"NODE_ENV":"development"};
-FuseBox.pkg("test", {}, function(___scope___){
+FuseBox.pkg("test", {"vue-property-decorator":"5.2.1"}, function(___scope___){
 });
 FuseBox.pkg("jquery", {}, function(___scope___){
 ___scope___.file("index.js", function(exports, require, module, __filename, __dirname){
@@ -43499,7 +43499,7 @@ if (FuseBox.isServer) {
 });
 return ___scope___.entry = "index.js";
 });
-FuseBox.pkg("vue-property-decorator", {}, function(___scope___){
+FuseBox.pkg("vue-property-decorator@5.2.1", {"vue-class-component":"5.0.2","reflect-metadata":"0.1.10"}, function(___scope___){
 ___scope___.file("lib/vue-property-decorator.umd.js", function(exports, require, module, __filename, __dirname){
 
 (function (global, factory) {
@@ -43616,7 +43616,7 @@ ___scope___.file("lib/vue-property-decorator.umd.js", function(exports, require,
 });
 return ___scope___.entry = "lib/vue-property-decorator.umd.js";
 });
-FuseBox.pkg("vue-class-component", {}, function(___scope___){
+FuseBox.pkg("vue-class-component@5.0.2", {}, function(___scope___){
 ___scope___.file("dist/vue-class-component.common.js", function(exports, require, module, __filename, __dirname){
 /* fuse:injection: */ var process = require("process");
 'use strict';
@@ -43755,7 +43755,7 @@ exports.createDecorator = createDecorator;
 });
 return ___scope___.entry = "dist/vue-class-component.common.js";
 });
-FuseBox.pkg("reflect-metadata", {}, function(___scope___){
+FuseBox.pkg("reflect-metadata@0.1.10", {}, function(___scope___){
 ___scope___.file("Reflect.js", function(exports, require, module, __filename, __dirname){
 /* fuse:injection: */ var process = require("process");
 /*! *****************************************************************************
@@ -44913,13 +44913,6 @@ ___scope___.file("dist/vue-ripper.js", function(exports, require, module, __file
 // vue-ripper/index.js
 $fsx.f[0] = function(module,exports){
 Object.defineProperty(exports, '__esModule', { value: true });
-function render(h, tag, slot) {
-    if (tag)
-        return h(tag, slot);
-    if (1 < slot.length)
-        return slot[0];
-    console.error('Ripped has no surrounding tag and has many vnodes to render');
-}
 exports.Ripper = {
     render: function (h) {
         return h();
@@ -44954,12 +44947,9 @@ exports.Pimp = {
             this.$emit('items', slots);
         }
     },
-    props: [
-        'items',
-        'tag'
-    ],
+    props: ['items'],
     render: function (h) {
-        return h(this.tag || 'div', { style: { display: 'none' } }, this.$slots.default);
+        return h(this.$vnode.data.tag || 'div', { style: { display: 'none' } }, this.$slots.default);
     },
     mounted: function () {
         this.give(this.slots);
@@ -44976,7 +44966,6 @@ exports.Pimp = {
 };
 exports.Ripped = {
     props: {
-        tag: { type: String },
         template: {
             default: 'default',
             type: String
@@ -44998,14 +44987,39 @@ exports.Ripped = {
             this.ripper.$off('updated', this.childUpdate);
     },
     render: function (h) {
-        var ripper = this.ripper.$children[0], slot = this.scope ? ripper.$scopedSlots[this.template](this.scope) : ripper.$slots[this.template];
-        return render(h, this.tag, slot);
+        var ripper = this.ripper.$children[0], slot = this.scope ? ripper.$scopedSlots[this.template] && ripper.$scopedSlots[this.template](this.scope) : ripper.$slots[this.template];
+        if (!slot)
+            slot = this.$slots.default;
+        if (this.$vnode.data.tag)
+            return h(this.$vnode.data.tag, slot);
+        if (1 < slot.length)
+            return slot[0];
+        console.error('Ripped has no surrounding tag and has many vnodes to render');
+    }
+};
+exports.Depot = {
+    props: {
+        order: {
+            type: Array,
+            required: true
+        },
+        map: Function
+    },
+    render: function (h) {
+        var children = [], slot;
+        for (var _i = 0, _a = this.order || ['default']; _i < _a.length; _i++) {
+            var name = _a[_i];
+            var slot_1 = this.$slots[name];
+            children = children.concat(this.map && this.map(slot_1, name, h) || slot_1);
+        }
+        return h(this.$vnode.data.tag || 'div', children);
     }
 };
 var components = {
     Ripper: exports.Ripper,
     Pimp: exports.Pimp,
-    Ripped: exports.Ripped
+    Ripped: exports.Ripped,
+    Depot: exports.Depot
 };
 exports.default = {
     install: function (Vue, options) {
@@ -71580,6 +71594,36 @@ FuseBox.global("__assign", function(t) {
                 t[p] = s[p];
     }
     return t;
+});
+
+FuseBox.global("__fsbx_decorate", function(localArguments) {
+    return function(decorators, target, key, desc) {
+        var c = arguments.length,
+            r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+            d;
+
+        if (!decorators) {
+            return;
+        }
+        if (decorators && decorators.push) {
+            decorators.push(
+                __metadata("fusebox:exports", localArguments[0]),
+                __metadata("fusebox:require", localArguments[1]),
+                __metadata("fusebox:module", localArguments[2]),
+                __metadata("fusebox:__filename", localArguments[3]),
+                __metadata("fusebox:__dirname", localArguments[4])
+            );
+        }
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+});
+
+FuseBox.global("__metadata", function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 });
 
 FuseBox.global("__extends", function(d, b) {

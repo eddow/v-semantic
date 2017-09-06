@@ -27,11 +27,11 @@
 					<s-checkbox :label="field.label" v-model="field.value" />
 				</template>
 			</s-data-mold>
-			<s-field inline property="big" label="Big" type="bool" />
-			<s-field property="firstName" label="First name" info="hand pointer" />
-			<s-field property="lastName" label="Last name" info="signal" />
-			<s-field property="deep.reason" label="Deep reason" />
-			<s-field property="kindness" label="Kindness">
+			<s-field inline prop="big" label="Big" type="bool" />
+			<s-field prop="firstName" label="First name" info="hand pointer" />
+			<s-field prop="lastName" label="Last name" info="signal" />
+			<s-field prop="deep.reason" label="Deep reason" />
+			<s-field prop="kindness" label="Kindness">
 				<s-select v-model="model.kindness" :values="['Too much', 'Yes', 'No']" />
 			</s-field>
 		</s-form>

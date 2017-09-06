@@ -27,20 +27,20 @@ import table from './index.vue'
 export default class Column extends Vue {
 	@Prop() render: (value: any)=> string
 	@Prop() extract: (row: any)=> string
-	@Prop() property: string
+	@Prop() prop: string
 	@Prop() header: string
 	
 	input(row, value) {
-		if(!deep.set(row, this.property, value))
+		if(!deep.set(row, this.prop, value))
 			throw new Error('Unable to bind back the given value.');
 	}
-	get path() { return deep.path(this.property); }
+	get path() { return deep.path(this.prop); }
 	value(row) {
 		return this.extract ?
 			this.extract(row) :
 			this.render ?
-			this.render(deep.get(row, this.property)) :
-			deep.get(row, this.property);
+			this.render(deep.get(row, this.prop)) :
+			deep.get(row, this.prop);
 	}
 }
 </script>

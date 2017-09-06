@@ -29,55 +29,28 @@ import {idSpace} from 'lib/utils'
 import * as deep from 'lib/deep'
 import {renderWrap} from 'lib/render'
 import sInput from '../input.vue'
+import Property from '../data/property'
 
-const genFieldName = idSpace('fld');
-function patchRender(h) {
-	this.$parent.importSlots();
-	return h('div', {class: 'field'}, this.$slots.default);
-}
 @Component({
 	components: {sInput},
-	mixins: [renderWrap('initSlots')],	
-  provide() { return {field: this}; }
+	mixins: [renderWrap('initSlots'), Property]
 })
 export default class Field extends Vue {
-	@Inject() modeled
-	@Inject() group	//TODO: use `group` where we can and then create `field-group`
+	//from Property
+	modeled
+	prop
+	//TODO: use `group` where we can and then create `field-group`
 	//TODO: make recursive get - for `inline`, `labelWidth`, etc. and the slots
-	//TODO: finish the 'type' system and why not generalise something with table-cell editors
 	//TODO: allow validation specifications that will add into the schema
 	@Prop() label: string
-	@Prop() property: string
-	@Prop({default: null}) info: string
 	@Prop({default: null}) inline: boolean
 	get isInline() {
 		return null=== this.inline && this.modeled ? 
 			this.modeled.inline : this.inline;
 	}
-	@Prop() type: string
 	errors = []
 
-	get path() { return deep.path(this.property); }
-	value = null
-	unwatch
-	@Watch('property', {immediate: true}) setFieldProperty(property, oldv) {
-		if(this.modeled) {
-			this.undo(oldv);
-			this.unwatch = this.$watch('modeled.model.'+property, function(value) {
-				this.value = value;
-				this.$forceUpdate();
-			}, {immediate: true});
-			console.assert(!this.modeled.fields[property],
-				`Field ${property} appears once in its form`);
-			this.modeled.fields[property] = this;
-		}
-	}
-	undo(property) {
-		if(this.modeled) {
-			delete this.modeled.fields[property];
-			if(this.unwatch) this.unwatch();
-		}
-	}
+	/*
 	@Watch('modeled.errors', {immediate: true})
 	validated() {
 		var errors = this.modeled.fieldErrors;
@@ -87,14 +60,7 @@ export default class Field extends Vue {
 				this.errors.push(...errors.splice(i, 1));
 			else ++i;
 		if(!this.errors.length) this.$emit('validated', this.value);
-	}
-	destroyed() {
-		this.undo(this.property);
-	}
-	@Watch('value')
-	@Emit() change(value) {
-		deep.set(this.modeled && this.modeled.model, this.path, value);
-	}
+	}*/
 
 	originalSlots
 	initSlot(name: string) {
@@ -104,13 +70,11 @@ export default class Field extends Vue {
 			if(slot && (
 				!mold.select ||
 				('function'=== typeof mold.select && mold.select(this)) ||
-				mold.select === this.type  )) {
-				return this.$slots[name] = slot(this)||[];	//we keep [] for empty vnodes
+				mold.select === this.type)
+			) {
+				return this.$slots[name] = slot(this.scope(this.modeled.model))||[];	//we keep [] for empty vnodes
 			}
 		}
-	}
-	childUpdate() {
-		this.$forceUpdate();
 	}
 	initSlots() {
 		if(this.modeled) {
@@ -133,10 +97,6 @@ export default class Field extends Vue {
 	}
 	get labelStyle() {
 		return this.modeled && this.modeled.labelStyle;
-	}
-	gendName = null;
-	get name() {
-		return this.property || this.gendName || (this.gendName = genFieldName());
 	}
 }
 </script>

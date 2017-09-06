@@ -12,18 +12,18 @@
 				In-table header
 			</div>
 			<s-checkbox-column :selection="my_selection" width="29" />
-			<s-column property="a" width="300" header="a" />
+			<s-column prop="a" width="300" header="a" />
 			<s-column header="A">
 				<template scope="scope">
 					a{{scope.row.a}}-b{{scope.row.b}}
 				</template>
 			</s-column>
-			<s-column property="b">
+			<s-column prop="b">
 				<template slot="header">
 					B sum={{sum_b}}
 				</template>
 			</s-column>
-			<s-column property="deep.reason" header="Q?" />
+			<s-column prop="deep.reason" header="Q?" />
 		</s-table>
 		<div>
 			<p><h3>current-row</h3> {{my_row}}</p>

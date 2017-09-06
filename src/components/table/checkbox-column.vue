@@ -7,8 +7,8 @@
 			</slot>
 		</template>
 		<template scope="scope">
-			<slot :row="scope.row" :checked="scope.row[property]" :select="select" :unselect="unselect" :toggle="toggle">
-				<checkbox :checked="scope.row[property]" @checked="select(scope.row)" @unchecked="unselect(scope.row)" />
+			<slot :row="scope.row" :checked="scope.row[prop]" :select="select" :unselect="unselect" :toggle="toggle">
+				<checkbox :checked="scope.row[prop]" @checked="select(scope.row)" @unchecked="unselect(scope.row)" />
 			</slot>
 		</template>
 	</ripper>
@@ -28,7 +28,7 @@ import table from './index.vue'
 })
 export default class CheckboxColumn extends Vue {
 	@Inject() table
-	@Prop({default: 'selected'}) property: string
+	@Prop({default: 'selected'}) prop: string
 	@Prop() header: string
 	defaultv: boolean = null
 	
@@ -36,11 +36,11 @@ export default class CheckboxColumn extends Vue {
 	@Model('selection-change',{type:[Boolean,Array]}) selection
 
 	setRow(row, checked) {
-		var hideProp = !(this.property in row);
-		Vue.set(row, this.property, checked);
+		var hideProp = !(this.prop in row);
+		Vue.set(row, this.prop, checked);
 		if(hideProp)
-			Object.defineProperty(row, this.property, {
-				...Object.getOwnPropertyDescriptor(row, this.property),
+			Object.defineProperty(row, this.prop, {
+				...Object.getOwnPropertyDescriptor(row, this.prop),
 				enumerable: false
 			});
 	}
@@ -49,9 +49,9 @@ export default class CheckboxColumn extends Vue {
 	//We don't use `immediate` because the `selection` will be initiated (by `:selection` or `v-model`)
 	rowsChanged(rows) {
 		this.setSelection(rows.filter(x=> {
-			if(null!== this.defaultv && !(this.property in x))
+			if(null!== this.defaultv && !(this.prop in x))
 				this.setRow(x, this.defaultv);
-			return x[this.property];
+			return x[this.prop];
 		}));
 	}
 
@@ -112,7 +112,7 @@ export default class CheckboxColumn extends Vue {
 		}
 	}
 	toggle(row) {
-		return row[this.property] ? this.unselect(row) : this.select(row);
+		return row[this.prop] ? this.unselect(row) : this.select(row);
 	}
 	rowClick(row) {
 		console.log('click!');
