@@ -7,6 +7,14 @@
 			inline
 			class="ui segment"
 		>
+			<s-data-mold select="bool">
+				<template slot="prepend" scope="field">
+					<label :style="field.labelStyle" />
+				</template>
+				<template slot="input" scope="field">
+					<s-checkbox :label="field.label" v-model="field.value" />
+				</template>
+			</s-data-mold>
 			<s-data-mold>
 				<template slot="prepend" scope="field">
 					<label :for="field.name" class="ui label" :style="field.labelStyle">
@@ -19,18 +27,13 @@
 					</s-input>
 				</template>
 			</s-data-mold>
-			<s-data-mold select="bool">
-				<template slot="prepend" scope="field">
-					<label :style="field.labelStyle" />
-				</template>
-				<template slot="input" scope="field">
-					<s-checkbox :label="field.label" v-model="field.value" />
-				</template>
-			</s-data-mold>
 			<s-field inline prop="big" label="Big" type="bool" />
 			<s-field prop="firstName" label="First name" info="hand pointer" />
 			<s-field prop="lastName" label="Last name" info="signal" />
-			<s-field prop="deep.reason" label="Deep reason" />
+			<s-field prop="deep.reason" label="Deep reason"
+				:input="Number"
+				:output="x=> ''+ x"
+			/>
 			<s-field prop="deep.thinking" label="Deep thinking">
 				<s-select v-model="model.deep.thinking" :options="['Too much', 'Yes', 'No']" />
 			</s-field>
@@ -55,13 +58,14 @@ export default class Form extends Vue {
 		return field.value;
 	}
 	created() { this.reInit(); }
+	
 	reInit() {
 		this.model = {
 			firstName: "",
 			lastName: "",
 			big: false,
 			deep: {
-				reason: '42',
+				reason: 42,
 				thinking: 'Yes'
 			}
 		}

@@ -15,7 +15,12 @@
 			<s-column prop="a" width="300" header="a" />
 			<s-column header="A">
 				<template scope="scope">
-					a{{scope.row.a}}-b{{scope.row.b}}
+					a{{scope.model.a}}-b{{scope.model.b}}
+				</template>
+			</s-column>
+			<s-column header="Edit A">
+				<template scope="scope">
+					<s-input v-model="scope.model.a" />
 				</template>
 			</s-column>
 			<s-column prop="b">
@@ -36,7 +41,7 @@ import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 
 var rows = (new Array(10)).fill().map((x,i)=> ({
-	a: i*2,
+	a: ''+i*2,
 	b:i*2+1,
 	deep: {reason: 42}
 }));

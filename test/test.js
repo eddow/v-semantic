@@ -527,11 +527,11 @@ var utils_1 = require('~/src/lib/utils');
 var render_1 = require('~/src/lib/render');
 var genFieldName = utils_1.idSpace('fld');
 var slotNames = [
-    'append',
-    'prepend',
-    'field',
-    'input'
-];
+        'append',
+        'prepend',
+        'field',
+        'input'
+    ], emptyModel = {};
 var Property = function (_super) {
     __extends(Property, _super);
     function Property() {
@@ -541,6 +541,33 @@ var Property = function (_super) {
         _this.scopedModels = [];
         return _this;
     }
+    Object.defineProperty(Property.prototype, 'moldRender', {
+        get: function () {
+            return this.moldProp('render') || function (x) {
+                return x;
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Property.prototype, 'moldInput', {
+        get: function () {
+            return this.moldProp('input') || function (x) {
+                return x;
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Property.prototype, 'moldOutput', {
+        get: function () {
+            return this.moldProp('output') || function (x) {
+                return x;
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Property.prototype, 'path', {
         get: function () {
             return deep.path(this.prop);
@@ -573,39 +600,73 @@ var Property = function (_super) {
         configurable: true
     });
     Property.prototype.invalidateScopes = function (models) {
-        for (var model in this.scopedModels)
-            if (!~models.indexOf(model) && this.scopes.has(model))
-                this.scopes.delete(model);
+        for (var _i = 0, _a = this.scopedModels; _i < _a.length; _i++) {
+            var model = _a[_i];
+            if (!~models.indexOf(model) && this.scopes.has(model || emptyModel)) {
+                this.scopes.get(model || emptyModel).unwatch();
+                this.scopes.delete(model || emptyModel);
+            }
+        }
         this.scopedModels = [].concat(models);
     };
-    Property.prototype.scope = function (model) {
-        var that = this;
-        return this.scopes[model] || (this.scopes[model] = Object.create(this, model ? {
-            model: model,
-            value: {
-                set: function (value) {
-                    deep.set(model, that.path, value);
-                },
-                get: function () {
-                    return deep.get(model, that.path);
-                }
-            }
-        } : {}));
+    Property.prototype.modelChanged = function (scope, value) {
+        var errors = this.modeled.getFieldErrors(scope.model);
+        scope.errors.splice(0);
+        for (var i = 0; i < errors.length;)
+            if (errors[i].dataPath === '.' + this.path)
+                (_a = scope.errors).push.apply(_a, errors.splice(i, 1));
+            else
+                ++i;
+        var _a;
     };
-    Property.prototype.initSlot = function (name, scoped) {
+    Property.prototype.scope = function (model) {
+        var _this = this;
+        if (!this.scopes.has(model || emptyModel)) {
+            var scope_1 = Object.create(this, {
+                model: { value: model },
+                value: {
+                    set: function (value) {
+                        return deep.set(model, _this.path, _this.moldInput(value));
+                    },
+                    get: function () {
+                        return _this.moldOutput(deep.get(model, _this.path));
+                    }
+                },
+                errors: { value: [] }
+            });
+            scope_1.unwatch = this.$watch(function () {
+                return _this.modeled.getErrors(model);
+            }, function (value) {
+                return _this.modelChanged(scope_1, value);
+            }, {
+                deep: true,
+                immediate: true
+            });
+            this.scopes.set(model || emptyModel, scope_1);
+        }
+        return this.scopes.get(model || emptyModel);
+    };
+    Property.prototype.moldProp = function (name) {
+        if (this[name])
+            return this[name];
+        for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
+            var mold = _a[_i];
+            if (mold[name])
+                return mold[name];
+        }
+    };
+    Property.prototype.initSlot = function (name) {
         var _this = this;
         if (this.$scopedSlots[name])
             return this.$scopedSlots[name];
         var _loop_1 = function (mold) {
             var slot = mold.$scopedSlots[name];
-            if (slot && (!mold.select || 'function' === typeof mold.select && mold.select(this_1) || mold.select === this_1.type)) {
+            if (slot && (!mold.select || 'function' === typeof mold.select && mold.select(this_1) || mold.select === this_1.type))
                 return {
-                    value: this_1.$scopedSlots[name] = function (_a) {
-                        var model = _a.model;
-                        return slot(_this.scope(model)) || [];
+                    value: this_1.$scopedSlots[name] = function (params) {
+                        return slot(__assign(_this.scope(params.model), params)) || [];
                     }
                 };
-            }
         };
         var this_1 = this;
         for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
@@ -648,6 +709,18 @@ var Property = function (_super) {
         vue_property_decorator_1.Prop(),
         __metadata('design:type', String)
     ], Property.prototype, 'type', void 0);
+    __decorate([
+        vue_property_decorator_1.Prop({ type: Function }),
+        __metadata('design:type', Object)
+    ], Property.prototype, 'render', void 0);
+    __decorate([
+        vue_property_decorator_1.Prop({ type: Function }),
+        __metadata('design:type', Object)
+    ], Property.prototype, 'input', void 0);
+    __decorate([
+        vue_property_decorator_1.Prop({ type: Function }),
+        __metadata('design:type', Object)
+    ], Property.prototype, 'output', void 0);
     __decorate([
         vue_property_decorator_1.Watch('prop', { immediate: true }),
         __metadata('design:type', Function),
@@ -1903,6 +1976,14 @@ var _v = function (exports) {
             this.$emit('validated');
             var _a, _b;
         };
+        Form.prototype.getFieldErrors = function (model) {
+            console.assert(model === this.model, 'consistency in model validated');
+            return this.fieldErrors;
+        };
+        Form.prototype.getErrors = function (model) {
+            console.assert(model === this.model, 'consistency in model validated');
+            return this.errors;
+        };
         Object.defineProperty(Form.prototype, 'labelStyle', {
             get: function () {
                 return this.labelWidth ? { width: this.labelWidth } : {};
@@ -2033,9 +2114,7 @@ var _v = function (exports) {
     var Field = function (_super) {
         __extends(Field, _super);
         function Field() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.errors = [];
-            return _this;
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         Object.defineProperty(Field.prototype, 'isInline', {
             get: function () {
@@ -2046,6 +2125,13 @@ var _v = function (exports) {
         });
         Field.prototype.created = function () {
         };
+        Object.defineProperty(Field.prototype, 'scoped', {
+            get: function () {
+                return this.scope(this.modeled.model);
+            },
+            enumerable: true,
+            configurable: true
+        });
         Field.prototype.changeModel = function (model) {
             this.invalidateScopes([model]);
         };
@@ -2065,7 +2151,7 @@ var _v = function (exports) {
             __metadata('design:type', Boolean)
         ], Field.prototype, 'inline', void 0);
         __decorate([
-            vue_property_decorator_1.Watch('modeled.model'),
+            vue_property_decorator_1.Watch('modeled.model', { immediate: true }),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
             __metadata('design:returntype', void 0)
@@ -2083,46 +2169,46 @@ _p.render = function render() {
         class: [
             'field',
             {
-                error: _vm.errors.length,
+                error: _vm.scoped.errors.length,
                 inline: _vm.isInline
             }
         ]
-    }, [_vm._t('field', [_vm._t('field', [
-                _vm._t('prepend', [_vm._t('prepend', [_vm.label ? _c('label', {
-                            staticClass: 'label',
-                            style: _vm.labelStyle,
-                            attrs: { 'for': _vm.name }
-                        }, [_vm._v('\n\t\t\t\t\t\t' + _vm._s(_vm.label) + '\n\t\t\t\t\t')]) : _vm._e()], { model: _vm.modeled.model })]),
-                _vm._v(' '),
-                _vm._t('default', [_vm._t('input', [_c('input', {
-                            directives: [{
-                                    name: 'model',
-                                    rawName: 'v-model',
-                                    value: _vm.scope(_vm.modeled.model).value,
-                                    expression: 'scope(modeled.model).value'
-                                }],
-                            attrs: { 'type': 'text' },
-                            domProps: { 'value': _vm.scope(_vm.modeled.model).value },
-                            on: {
-                                'input': function ($event) {
-                                    if ($event.target.composing) {
-                                        return;
-                                    }
-                                    _vm.scope(_vm.modeled.model).value = $event.target.value;
-                                }
+    }, [
+        _vm._t('field', [_vm._t('prepend', [_vm.label ? _c('label', {
+                    staticClass: 'label',
+                    style: _vm.labelStyle,
+                    attrs: { 'for': _vm.name }
+                }, [_vm._v('\n\t\t\t\t' + _vm._s(_vm.label) + '\n\t\t\t')]) : _vm._e()], { model: _vm.modeled.model })], { model: _vm.modeled.model }),
+        _vm._v(' '),
+        _vm._t('default', [_vm._t('input', [_c('input', {
+                    directives: [{
+                            name: 'model',
+                            rawName: 'v-model',
+                            value: _vm.scoped.value,
+                            expression: 'scoped.value'
+                        }],
+                    attrs: { 'type': 'text' },
+                    domProps: { 'value': _vm.scoped.value },
+                    on: {
+                        'input': function ($event) {
+                            if ($event.target.composing) {
+                                return;
                             }
-                        })], { model: _vm.modeled.model })]),
-                _vm._v(' '),
-                _vm._t('append', [_vm._t('append', [_vm.errors.length && _vm.modeled.displayErrors && 'fields' === this.modeled.errorPanel ? _c('div', {
-                            class: [
-                                'ui',
-                                _vm.isInline && 'left',
-                                'pointing red basic error label'
-                            ]
-                        }, _vm._l(_vm.errors, function (error) {
-                            return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t\t\t\t' + _vm._s(error.message) + '\n\t\t\t\t\t\t')]);
-                        })) : _vm._e()], { model: _vm.modeled.model })])
-            ], { model: _vm.modeled.model })])], 2);
+                            _vm.scoped.value = $event.target.value;
+                        }
+                    }
+                })], { model: _vm.modeled.model })]),
+        _vm._v(' '),
+        _vm._t('append', [_vm.scoped.errors.length && _vm.modeled.displayErrors && 'fields' === this.modeled.errorPanel ? _c('div', {
+                class: [
+                    'ui',
+                    _vm.isInline && 'left',
+                    'pointing red basic error label'
+                ]
+            }, _vm._l(_vm.scoped.errors, function (error) {
+                return _c('div', { key: error.schemaPath }, [_vm._v('\n\t\t\t\t' + _vm._s(error.message) + '\n\t\t\t')]);
+            })) : _vm._e()], { model: _vm.modeled.model })
+    ], 2);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -2139,10 +2225,13 @@ exports.DataMold = {
     mixins: [vue_ripper_1.Ripper],
     inject: ['modeled'],
     props: {
-        select: { type: [Function, String] }
+        select: { type: [Function, String] },
+        render: Function,
+        input: Function,
+        output: Function
     },
     mounted: function () {
-        this.modeled.molds.unshift(this);
+        this.modeled.molds.push(this);
     },
     destroyed: function () {
         var lst = this.modeled.molds, ndx = lst.indexOf(this);
@@ -2542,6 +2631,7 @@ var _v = function (exports) {
     var classed_1 = require('~/src/lib/classed');
     var utils_1 = require('~/src/lib/utils');
     var vue_ripper_1 = require('vue-ripper');
+    var modeled_1 = require('../data/modeled');
     var generateRowId = utils_1.idSpace('rw');
     var Table = function (_super) {
         __extends(Table, _super);
@@ -2551,6 +2641,12 @@ var _v = function (exports) {
             _this.columns = null;
             return _this;
         }
+        Table.prototype.renderCell = function (h, slot) {
+            var classes = ['vued'];
+            if (1 !== slot.length || 1 !== slot[0].length || slot[0][0].tag)
+                classes.push('compound');
+            return h('td', { class: classes }, slot);
+        };
         Table.prototype.rowId = function (row) {
             if (this.idProperty) {
                 console.assert(row[this.idProperty], 'Rows have initialised IDs when `idProperty` is given');
@@ -2632,7 +2728,8 @@ var _v = function (exports) {
                 components: {
                     Pimp: vue_ripper_1.Pimp,
                     Ripped: vue_ripper_1.Ripped
-                }
+                },
+                mixins: [modeled_1.default]
             })], Table);
         return Table;
     }(Vue);
@@ -2654,7 +2751,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input {\r\n\twidth: 100%;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input input {\r\n\tborder: 0;\r\n\tbackground: transparent;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -2718,7 +2815,8 @@ _p.render = function render() {
                         'scope': {
                             row: row,
                             index: index
-                        }
+                        },
+                        'render': _vm.renderCell
                     }
                 });
             }));
@@ -2777,15 +2875,12 @@ var _v = function (exports) {
     var vue_ripper_1 = require('vue-ripper');
     var deep = require('~/src/lib/deep');
     var index_vue_1 = require('./index.vue');
+    var property_1 = require('../data/property');
     var Column = function (_super) {
         __extends(Column, _super);
         function Column() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        Column.prototype.input = function (row, value) {
-            if (!deep.set(row, this.prop, value))
-                throw new Error('Unable to bind back the given value.');
-        };
         Object.defineProperty(Column.prototype, 'path', {
             get: function () {
                 return deep.path(this.prop);
@@ -2814,7 +2909,10 @@ var _v = function (exports) {
         ], Column.prototype, 'header', void 0);
         Column = __decorate([vue_property_decorator_1.Component({
                 components: { Ripper: vue_ripper_1.Ripper },
-                mixins: [index_vue_1.default.managedColumn]
+                mixins: [
+                    index_vue_1.default.managedColumn,
+                    property_1.default
+                ]
             })], Column);
         return Column;
     }(Vue);
@@ -2828,13 +2926,9 @@ _p.render = function render() {
         scopedSlots: _vm._u([{
                 key: 'default',
                 fn: function (scope) {
-                    return [_vm._t('default', [_vm._v('\n\t\t\t' + _vm._s(_vm.value(scope.row)) + '\n\t\t')], {
-                            row: scope.row,
-                            index: scope.index,
-                            value: _vm.value(scope.row),
-                            input: function (value) {
-                                return _vm.input(scope.row, value);
-                            }
+                    return [_vm._t('default', [_vm._v('\n\t\t\t' + _vm._s(_vm.moldRender(_vm.value(scope.row))) + '\n\t\t')], {
+                            model: scope.row,
+                            index: scope.index
                         })];
                 }
             }])
@@ -4384,7 +4478,7 @@ var _v = function (exports) {
                 lastName: '',
                 big: false,
                 deep: {
-                    reason: '42',
+                    reason: 42,
                     thinking: 'Yes'
                 }
             };
@@ -4409,6 +4503,33 @@ _p.render = function render() {
                 'inline': ''
             }
         }, [
+            _c('s-data-mold', {
+                attrs: { 'select': 'bool' },
+                scopedSlots: _vm._u([
+                    {
+                        key: 'prepend',
+                        fn: function (field) {
+                            return [_c('label', { style: field.labelStyle })];
+                        }
+                    },
+                    {
+                        key: 'input',
+                        fn: function (field) {
+                            return [_c('s-checkbox', {
+                                    attrs: { 'label': field.label },
+                                    model: {
+                                        value: field.value,
+                                        callback: function ($$v) {
+                                            field.value = $$v;
+                                        },
+                                        expression: 'field.value'
+                                    }
+                                })];
+                        }
+                    }
+                ])
+            }),
+            _vm._v(' '),
             _c('s-data-mold', {
                 scopedSlots: _vm._u([
                     {
@@ -4442,33 +4563,6 @@ _p.render = function render() {
                 ])
             }),
             _vm._v(' '),
-            _c('s-data-mold', {
-                attrs: { 'select': 'bool' },
-                scopedSlots: _vm._u([
-                    {
-                        key: 'prepend',
-                        fn: function (field) {
-                            return [_c('label', { style: field.labelStyle })];
-                        }
-                    },
-                    {
-                        key: 'input',
-                        fn: function (field) {
-                            return [_c('s-checkbox', {
-                                    attrs: { 'label': field.label },
-                                    model: {
-                                        value: field.value,
-                                        callback: function ($$v) {
-                                            field.value = $$v;
-                                        },
-                                        expression: 'field.value'
-                                    }
-                                })];
-                        }
-                    }
-                ])
-            }),
-            _vm._v(' '),
             _c('s-field', {
                 attrs: {
                     'inline': '',
@@ -4497,7 +4591,11 @@ _p.render = function render() {
             _c('s-field', {
                 attrs: {
                     'prop': 'deep.reason',
-                    'label': 'Deep reason'
+                    'label': 'Deep reason',
+                    'input': Number,
+                    'output': function (x) {
+                        return '' + x;
+                    }
                 }
             }),
             _vm._v(' '),
@@ -4954,7 +5052,7 @@ var _v = function (exports) {
     var vue_property_decorator_1 = require('vue-property-decorator');
     var rows = new Array(10).fill().map(function (x, i) {
         return {
-            a: i * 2,
+            a: '' + i * 2,
             b: i * 2 + 1,
             deep: { reason: 42 }
         };
@@ -5025,7 +5123,25 @@ _p.render = function render() {
                 scopedSlots: _vm._u([{
                         key: 'default',
                         fn: function (scope) {
-                            return [_vm._v('\n\t\t\t\ta' + _vm._s(scope.row.a) + '-b' + _vm._s(scope.row.b) + '\n\t\t\t')];
+                            return [_vm._v('\n\t\t\t\ta' + _vm._s(scope.model.a) + '-b' + _vm._s(scope.model.b) + '\n\t\t\t')];
+                        }
+                    }])
+            }),
+            _vm._v(' '),
+            _c('s-column', {
+                attrs: { 'header': 'Edit A' },
+                scopedSlots: _vm._u([{
+                        key: 'default',
+                        fn: function (scope) {
+                            return [_c('s-input', {
+                                    model: {
+                                        value: scope.model.a,
+                                        callback: function ($$v) {
+                                            scope.model.a = $$v;
+                                        },
+                                        expression: 'scope.model.a'
+                                    }
+                                })];
                         }
                     }])
             }),

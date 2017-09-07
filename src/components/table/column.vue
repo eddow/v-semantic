@@ -6,8 +6,8 @@
 			</slot>
 		</template>
 		<template scope="scope">
-			<slot :row="scope.row" :index="scope.index" :value="value(scope.row)" :input="value=> input(scope.row, value)">
-				{{value(scope.row)}}
+			<slot :model="scope.row" :index="scope.index">
+				{{moldRender(value(scope.row))}}
 			</slot>
 		</template>
 	</ripper>
@@ -19,10 +19,11 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 import {Ripper} from 'vue-ripper'
 import * as deep from 'lib/deep'
 import table from './index.vue'
+import Property from '../data/property'
 
 @Component({
 	components: {Ripper},
-	mixins: [table.managedColumn]
+	mixins: [table.managedColumn, Property]
 })
 export default class Column extends Vue {
 	@Prop() render: (value: any)=> string
@@ -30,10 +31,6 @@ export default class Column extends Vue {
 	@Prop() prop: string
 	@Prop() header: string
 	
-	input(row, value) {
-		if(!deep.set(row, this.prop, value))
-			throw new Error('Unable to bind back the given value.');
-	}
 	get path() { return deep.path(this.prop); }
 	value(row) {
 		return this.extract ?

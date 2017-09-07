@@ -31,6 +31,7 @@
 					:style="{width: column.width?column.width+'px':undefined}"
 					:ripper="column"
 					:scope="{row, index}"
+					:render="renderCell"
 				/>
 			</tr>
 		</tbody>
@@ -65,6 +66,16 @@ table.ui.table.vued tbody.vued tr.vued.current > td {
 tfoot.vued td.vued {
 	padding: 0;
 }
+.ui.table tbody.vued td.vued.compound {
+	padding: 0;
+}
+.ui.table tbody.vued td.vued.compound .ui.input {
+	width: 100%;
+}
+.ui.table tbody.vued td.vued.compound .ui.input input {
+	border: 0;
+	background: transparent;
+}
 </style>
 <script lang="ts">
 import * as Vue from 'vue'
@@ -72,6 +83,7 @@ import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import {idSpace} from 'lib/utils'
 import {Pimp, Ripped} from 'vue-ripper'
+import Modeled from '../data/modeled'
 
 const generateRowId = idSpace('rw');
 
@@ -93,7 +105,8 @@ const generateRowId = idSpace('rw');
 	sortable: Boolean,
 	compact: Boolean
 }, {
-	components: {Pimp, Ripped}
+	components: {Pimp, Ripped},
+	mixins: [Modeled]
 })
 export default class Table extends Vue {
 	@Model('row-click') @Prop() current
@@ -103,7 +116,12 @@ export default class Table extends Vue {
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
 	columns = null
 	@Prop({type: [Number, String]}) bodyHeight: number|string
-//TODO: templates and lists in columns like in fields
+	renderCell(h, slot) {
+		var classes = ['vued'];
+		if(1!== slot.length || 1!== slot[0].length || slot[0][0].tag)
+			classes.push('compound')
+		return h('td', {class:classes}, slot);
+	}
 	rowId(row) {
 		if(this.idProperty) {
 			console.assert(

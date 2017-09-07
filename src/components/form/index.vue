@@ -58,7 +58,14 @@ export default class Form extends Command.Commanded {
 		this.fieldErrors.splice(0, this.fieldErrors.length, ...this.errors);
 		this.$emit('validated');
 	}
-	
+	getFieldErrors(model) {
+		console.assert(model === this.model, 'consistency in model validated');
+		return this.fieldErrors;
+	}
+	getErrors(model) {
+		console.assert(model === this.model, 'consistency in model validated');
+		return this.errors;
+	}
 	get labelStyle() {
 		return this.labelWidth?{width: this.labelWidth}:{};
 	}

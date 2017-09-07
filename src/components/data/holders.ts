@@ -4,10 +4,13 @@ export const DataMold = {
 	mixins: [Ripper],
 	inject: ['modeled'],
 	props: {
-		select: {type: [Function, String]}
+		select: {type: [Function, String]},
+		render: Function,
+		input: Function,
+		output: Function
 	},
 	mounted: function() {
-		this.modeled.molds.unshift(this);
+		this.modeled.molds.push(this);
 	},
 	destroyed: function() {
 		var lst = this.modeled.molds,
@@ -15,6 +18,7 @@ export const DataMold = {
 		if(~ndx) lst.splice(ndx, 1);
 	}
 };
+
 export const FieldInput = {
 	inject: ['field'],
 	props: {tag: {type: String, default: 'span'}},

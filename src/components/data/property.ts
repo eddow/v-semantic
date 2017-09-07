@@ -7,9 +7,9 @@ import {idSpace} from 'lib/utils'
 import {renderWrap} from 'lib/render'
 
 const genFieldName = idSpace('fld');
-//true/false indicate if the slot has a scope (in which scope.model)
 
-const slotNames = ['append', 'prepend', 'field', 'input'];
+const slotNames = ['append', 'prepend', 'field', 'input'],
+	emptyModel = {};
 
 @Component({
 	mixins: [renderWrap('initSlots')]
@@ -20,6 +20,13 @@ export default class Property extends Vue {
 	@Prop() prop: string
 	@Prop({default: null}) info: string
 	@Prop() type: string
+
+	@Prop({type: Function}) render
+	get moldRender() { return this.moldProp('render') || (x=>x); }
+	@Prop({type: Function}) input
+	get moldInput() { return this.moldProp('input') || (x=>x); }
+	@Prop({type: Function}) output
+	get moldOutput() { return this.moldProp('output') || (x=>x); }
 
 	get path() { return deep.path(this.prop); }
 	
@@ -47,30 +54,61 @@ export default class Property extends Vue {
 	scopes: WeakMap<any, any> = new WeakMap()	//model=> scope
 	scopedModels: any[] = []
 	invalidateScopes(models: any[]) {
-		for(let model in this.scopedModels)
-			if(!~models.indexOf(model) && this.scopes.has(model))
-				this.scopes.delete(model);
+		for(let model of this.scopedModels)
+			if(!~models.indexOf(model) && this.scopes.has(model||emptyModel)) {
+				this.scopes.get(model||emptyModel).unwatch();
+				this.scopes.delete(model||emptyModel);
+			}
 		this.scopedModels = [].concat(models);
 	}
-	scope(model) {
-		var that = this;
-		return this.scopes[model] || (this.scopes[model] = Object.create(this,
-			model ? {
-				model,
-				value: {
-					set(value) {
-						deep.set(model, that.path, value);
-					},
-					get() {
-						return deep.get(model, that.path);
-					}
-				}
-			} :
-			{}
-		));
+	modelChanged(scope, value) {
+		//validate & errors
+		var errors = this.modeled.getFieldErrors(scope.model);
+		scope.errors.splice(0);
+		for(let i = 0; i< errors.length;)
+			if(errors[i].dataPath === '.'+this.path)
+				scope.errors.push(...errors.splice(i, 1));
+			else ++i;
 	}
-	
-	initSlot(name: string, scoped?: boolean) {
+	scope(model) {
+		if(!this.scopes.has(model||emptyModel)) {
+			let scope: any = Object.create(this, {
+				//Beware : these are property descriptors (like in Object.defineProperty)
+				model: {
+					value: model
+				},
+				value: {
+					set: (value)=> deep.set(model, this.path, this.moldInput(value))
+					/*{
+						try { deep.set(model, this.path, this.moldInput(scope, value)); }
+						catch(x) { error = x; }
+						finally {
+							if(error) scope.errors.input = error;
+							else scope.errors.input;
+						}
+					}*/,
+					get: ()=> this.moldOutput(deep.get(model, this.path))
+				},
+				errors: {
+					value: []
+				}
+			});
+			scope.unwatch = this.$watch(
+				()=> this.modeled.getErrors(model),
+				value=> this.modelChanged(scope, value),
+				{deep:true, immediate:true}
+			);
+			this.scopes.set(model||emptyModel, scope);
+		}
+		return this.scopes.get(model||emptyModel);
+	}
+	moldProp(name) {
+		if(this[name]) return this[name];
+		for(let mold of this.modeled.molds)
+			if(mold[name])
+				return mold[name];
+	}
+	initSlot(name: string) {
 		if(this.$scopedSlots[name]) return this.$scopedSlots[name];
 		for(let mold of this.modeled.molds) {
 			let slot = mold.$scopedSlots[name];
@@ -78,27 +116,10 @@ export default class Property extends Vue {
 				!mold.select ||
 				('function'=== typeof mold.select && mold.select(this)) ||
 				mold.select === this.type)
-			) {
-				
-				//return this.$slots[name] = slot(this.scope(this.modeled.model))||[];	//we keep [] for empty vnodes
-				
-				//if(scoped)
-					return this.$scopedSlots[name] = ({model})=>
-						slot(this.scope(model))||[];
-				/*else Object.defineProperty(this.$slots, name, {
-					configurable: true,
-					enumerable: true,
-					get: ()=> {
-						const rv = slot(this)||[];	//we keep [] for empty vnodes
-						Object.defineProperty(this.$slots, name, {
-							enumerable: true,
-							value: rv
-						});
-						return rv;
-					}
-				});
-				return;*/
-			}
+			)
+				//return this.$slots[name] = slot(this.scope(this.modeled.model))||[];
+				return this.$scopedSlots[name] = (params)=> 
+					slot(__assign(this.scope(params.model), params))||[];	//we keep [] for empty vnodes
 		}
 	}
 	initSlots() {

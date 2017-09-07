@@ -44971,7 +44971,8 @@ exports.Ripped = {
             type: String
         },
         scope: { type: Object },
-        ripper: { type: Object }
+        ripper: { type: Object },
+        render: { type: Function }
     },
     methods: {
         childUpdate: function () {
@@ -44990,6 +44991,8 @@ exports.Ripped = {
         var ripper = this.ripper.$children[0], slot = this.scope ? ripper.$scopedSlots[this.template] && ripper.$scopedSlots[this.template](this.scope) : ripper.$slots[this.template];
         if (!slot)
             slot = this.$slots.default;
+        if (this.render)
+            return this.render(h, slot);
         if (this.$vnode.data.tag)
             return h(this.$vnode.data.tag, slot);
         if (1 < slot.length)
