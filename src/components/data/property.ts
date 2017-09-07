@@ -5,14 +5,14 @@ import * as deep from 'lib/deep'
 import * as Ajv from 'ajv'
 import {idSpace} from 'lib/utils'
 import {renderWrap} from 'lib/render'
+import {modelScoped, propertyScope} from './scope'
 
 const genFieldName = idSpace('fld');
 
-const slotNames = ['append', 'prepend', 'field', 'input'],
-	emptyModel = {};
+const slotNames = ['append', 'prepend', 'field', 'input'];
 
 @Component({
-	mixins: [renderWrap('initSlots')]
+	mixins: [renderWrap('initSlots'), modelScoped]
 })
 export default class Property extends Vue {
 	@Inject() modeled
@@ -51,56 +51,30 @@ export default class Property extends Vue {
 	get name() {
 		return this.prop || this.gendName || (this.gendName = genFieldName());
 	}
-	scopes: WeakMap<any, any> = new WeakMap()	//model=> scope
-	scopedModels: any[] = []
-	invalidateScopes(models: any[]) {
-		for(let model of this.scopedModels)
-			if(!~models.indexOf(model) && this.scopes.has(model||emptyModel)) {
-				this.scopes.get(model||emptyModel).unwatch();
-				this.scopes.delete(model||emptyModel);
-			}
-		this.scopedModels = [].concat(models);
+	get errorPath() {
+		return this.path ? '.'+this.path : this.name;
 	}
-	modelChanged(scope, value) {
+	errorsChanged(scope, value) {
 		//validate & errors
-		var errors = this.modeled.getFieldErrors(scope.model);
+		var errors;
+		errors = scope.errScope.field;
 		scope.errors.splice(0);
 		for(let i = 0; i< errors.length;)
-			if(errors[i].dataPath === '.'+this.path)
+			if(this.errorPath == errors[i].dataPath)
 				scope.errors.push(...errors.splice(i, 1));
 			else ++i;
 	}
-	scope(model) {
-		if(!this.scopes.has(model||emptyModel)) {
-			let scope: any = Object.create(this, {
-				//Beware : these are property descriptors (like in Object.defineProperty)
-				model: {
-					value: model
-				},
-				value: {
-					set: (value)=> deep.set(model, this.path, this.moldInput(value))
-					/*{
-						try { deep.set(model, this.path, this.moldInput(scope, value)); }
-						catch(x) { error = x; }
-						finally {
-							if(error) scope.errors.input = error;
-							else scope.errors.input;
-						}
-					}*/,
-					get: ()=> this.moldOutput(deep.get(model, this.path))
-				},
-				errors: {
-					value: []
-				}
-			});
-			scope.unwatch = this.$watch(
-				()=> this.modeled.getErrors(model),
-				value=> this.modelChanged(scope, value),
-				{deep:true, immediate:true}
-			);
-			this.scopes.set(model||emptyModel, scope);
-		}
-		return this.scopes.get(model||emptyModel);
+	buildScope(model) {
+		var scope = propertyScope(this, model, this.modeled.scope(model));
+		scope.unwatch = this.$watch(
+			()=> scope.errScope.total,
+			value=> this.errorsChanged(scope, value),
+			{deep:true, immediate:true}
+		);
+		return scope;
+	}
+	destroyScope(scope) {
+		scope.unwatch();
 	}
 	moldProp(name) {
 		if(this[name]) return this[name];
@@ -132,5 +106,18 @@ export default class Property extends Vue {
 			var data = this.$options._parentVnode.data;
 			data.scopedSlots = __assign(ss, data.scopedSlots);
 		}
+	}
+	get schema() {
+		if(!this.modeled.schema) return {};	//this will be cached and can be modified outside
+		var path = this.path.split('.'), rv = this.modeled.schema, prop;
+
+		while(prop = path.shift()) {
+			if('object'=== rv.type) rv = rv.properties[prop];
+			else if('array'=== rv.type) rv = rv.items;
+			else {
+				console.error(`Error reading schema, ${prop} is expected to be ${rv.type}`);
+			}
+		}
+		return rv;
 	}
 }

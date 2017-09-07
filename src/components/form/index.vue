@@ -48,23 +48,10 @@ export default class Form extends Command.Commanded {
 	}
 	@Prop({default: ()=>[]}) errors: any[]
 	@Prop({default: ()=>[]}) fieldErrors: any[]
-	
-	@Watch('model', {immediate: true, deep: true})
-	validate(model) {
-		if(!this.validation) return;
-		var valid = this.validation(model)
-		this.errors.splice(0);
-		if(!valid) this.errors.push(...this.validation.errors);
-		this.fieldErrors.splice(0, this.fieldErrors.length, ...this.errors);
-		this.$emit('validated');
-	}
-	getFieldErrors(model) {
-		console.assert(model === this.model, 'consistency in model validated');
-		return this.fieldErrors;
-	}
-	getErrors(model) {
-		console.assert(model === this.model, 'consistency in model validated');
-		return this.errors;
+	invalidateScopes
+	modelErrors = null
+	@Watch('model', {immediate: true}) changeModel(model) {
+		this.invalidateScopes([model]);
 	}
 	get labelStyle() {
 		return this.labelWidth?{width: this.labelWidth}:{};

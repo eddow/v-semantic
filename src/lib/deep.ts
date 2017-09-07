@@ -52,3 +52,17 @@ export function equals(x, y) {
 	return Object.keys(y).every(function (i) { return p.indexOf(i) !== -1; }) &&
 			p.every(function (i) { return equals(x[i], y[i]); });
 }
+
+//Can be used for deep cloning
+export function copy(src: any, dst?) {
+	if(src instanceof Array)
+		return [].concat(src).map(x=> copy(x));
+	if(!src || !src.constructor || Object!== src.constructor)
+		return src;
+	if(!dst || !dst.constructor || Object!== dst.constructor)
+		dst = {};
+	for(let key in src) {
+		dst[key] = copy(src[key], dst[key]);
+	}
+	return dst;
+}

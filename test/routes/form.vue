@@ -31,7 +31,7 @@
 			<s-field prop="firstName" label="First name" info="hand pointer" />
 			<s-field prop="lastName" label="Last name" info="signal" />
 			<s-field prop="deep.reason" label="Deep reason"
-				:input="Number"
+				:input="number"
 				:output="x=> ''+ x"
 			/>
 			<s-field prop="deep.thinking" label="Deep thinking">
@@ -58,7 +58,11 @@ export default class Form extends Vue {
 		return field.value;
 	}
 	created() { this.reInit(); }
-	
+	number(string) {
+		var rv = Number(string);
+		if(isNaN(rv)) throw new Error('Bad number');
+		return rv;
+	}
 	reInit() {
 		this.model = {
 			firstName: "",
