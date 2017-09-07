@@ -11,7 +11,7 @@
 			<span v-if="!placeholder && false!== text" class="text">{{text}}</span>
 			<i v-if="icon" :class="[icon, 'icon']"></i>
 		</slot>
-		<div :class="['left'=== menu && 'left', 'menu']" v-if="!values">
+		<div :class="['left'=== menu && 'left', 'menu']" v-if="!options">
 			<slot />
 		</div>
 	</div>
@@ -76,10 +76,10 @@ export default class Select extends Vue {
 	@Prop() placeholder: string
 	@Prop({default: 'right'}) menu: 'right'|'left'
 	@Prop({default: '', type: [String, Boolean]}) text: string|false
-	@Prop() values: any[]
+	@Prop() options: any[]
 	@Prop() name: string
 	get mappedValues() {
-		return this.values.map(x=> 'string'=== typeof x ? {
+		return this.options.map(x=> 'string'=== typeof x ? {
 			name: x,
 			text: x,
 			value: x
@@ -88,8 +88,8 @@ export default class Select extends Vue {
 			selected: x.value === this.value
 		}));
 	}
-	@Watch('values', {deep: true}) changeValues(values, oldv) {
-		if(!equals(values, oldv))
+	@Watch('options', {deep: true}) changeValues(options, oldv) {
+		if(!equals(options, oldv))
 			this.semantic('change values', this.mappedValues);
 	}
 	mounted() {
@@ -99,7 +99,7 @@ export default class Select extends Vue {
 	configure(config) {
 		config.selected = this.value;
 		if('command'=== config.action) config.action = this.onCommand;
-		if(this.values) config.values = this.mappedValues;
+		if(this.options) config.values = this.mappedValues;
 		else {
 			//TODO: we need to set the class 'selected' to the option item that has `item.value === this.value`
 		}

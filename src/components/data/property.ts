@@ -26,9 +26,10 @@ export default class Property extends Vue {
 	@Watch('prop', {immediate: true}) setFieldProperty(prop, oldv) {
 		if(this.modeled) {
 			this.undo(oldv);
-			console.assert(!this.modeled.fields[prop],
-				`Field ${prop} appears once in its form`);
-			this.modeled.fields[prop] = this;
+			if(prop) {
+				console.assert(!this.modeled.fields[prop], `Field ${prop} appears once in its form`);
+				this.modeled.fields[prop] = this;
+			}
 		}
 	}
 	undo(prop) {
@@ -47,9 +48,9 @@ export default class Property extends Vue {
 	scope(model) {
 		var that = this;
 		return Object.create(this, model ? {
-			model: {
+			model/*: {
 				value: model
-			},
+			}*/,
 			value: {
 				set(value) {
 					deep.set(model, that.path, value);

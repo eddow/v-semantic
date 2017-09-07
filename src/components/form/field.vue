@@ -51,6 +51,10 @@ export default class Field extends Vue {
 		return null=== this.inline && this.modeled ? 
 			this.modeled.inline : this.inline;
 	}
+	created() {
+		console.assert(this.modeled && 'Form'=== this.modeled.constructor.name,
+			'Fields cannot be used outside of a Form')
+	}
 	errors = []
 
 	/*

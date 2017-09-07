@@ -549,8 +549,10 @@ var Property = function (_super) {
     Property.prototype.setFieldProperty = function (prop, oldv) {
         if (this.modeled) {
             this.undo(oldv);
-            console.assert(!this.modeled.fields[prop], 'Field ' + prop + ' appears once in its form');
-            this.modeled.fields[prop] = this;
+            if (prop) {
+                console.assert(!this.modeled.fields[prop], 'Field ' + prop + ' appears once in its form');
+                this.modeled.fields[prop] = this;
+            }
         }
     };
     Property.prototype.undo = function (prop) {
@@ -571,7 +573,7 @@ var Property = function (_super) {
     Property.prototype.scope = function (model) {
         var that = this;
         return Object.create(this, model ? {
-            model: { value: model },
+            model: model,
             value: {
                 set: function (value) {
                     deep.set(model, that.path, value);
@@ -2034,6 +2036,9 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
+        Field.prototype.created = function () {
+            console.assert(this.modeled && 'Form' === this.modeled.constructor.name, 'Fields cannot be used outside of a Form');
+        };
         Object.defineProperty(Field.prototype, 'labelStyle', {
             get: function () {
                 return this.modeled && this.modeled.labelStyle;
@@ -2197,7 +2202,7 @@ var _v = function (exports) {
         Object.defineProperty(Select.prototype, 'mappedValues', {
             get: function () {
                 var _this = this;
-                return this.values.map(function (x) {
+                return this.options.map(function (x) {
                     return 'string' === typeof x ? {
                         name: x,
                         text: x,
@@ -2210,8 +2215,8 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
-        Select.prototype.changeValues = function (values, oldv) {
-            if (!deep_1.equals(values, oldv))
+        Select.prototype.changeValues = function (options, oldv) {
+            if (!deep_1.equals(options, oldv))
                 this.semantic('change values', this.mappedValues);
         };
         Select.prototype.mounted = function () {
@@ -2222,7 +2227,7 @@ var _v = function (exports) {
             config.selected = this.value;
             if ('command' === config.action)
                 config.action = this.onCommand;
-            if (this.values)
+            if (this.options)
                 config.values = this.mappedValues;
             else {
             }
@@ -2272,13 +2277,13 @@ var _v = function (exports) {
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', Array)
-        ], Select.prototype, 'values', void 0);
+        ], Select.prototype, 'options', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
         ], Select.prototype, 'name', void 0);
         __decorate([
-            vue_property_decorator_1.Watch('values', { deep: true }),
+            vue_property_decorator_1.Watch('options', { deep: true }),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [
                 Object,
@@ -2384,7 +2389,7 @@ _p.render = function render() {
             }) : _vm._e()
         ]),
         _vm._v(' '),
-        !_vm.values ? _c('div', {
+        !_vm.options ? _c('div', {
             class: [
                 'left' === _vm.menu && 'left',
                 'menu'
@@ -4325,13 +4330,7 @@ var _v = function (exports) {
         __extends(Form, _super);
         function Form() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.model = {
-                firstName: '',
-                lastName: '',
-                big: false,
-                deep: { reason: '42' },
-                kindness: 'Yes'
-            };
+            _this.model = null;
             _this.schema = {
                 'title': 'Person',
                 'type': 'object',
@@ -4360,13 +4359,18 @@ var _v = function (exports) {
         Form.prototype.getValue = function (field) {
             return field.value;
         };
+        Form.prototype.created = function () {
+            this.reInit();
+        };
         Form.prototype.reInit = function () {
             this.model = {
                 firstName: '',
                 lastName: '',
                 big: false,
-                deep: { reason: '42' },
-                kindness: 'Yes'
+                deep: {
+                    reason: '42',
+                    thinking: 'Yes'
+                }
             };
         };
         Form = __decorate([vue_property_decorator_1.Component], Form);
@@ -4483,23 +4487,23 @@ _p.render = function render() {
             _vm._v(' '),
             _c('s-field', {
                 attrs: {
-                    'prop': 'kindness',
-                    'label': 'Kindness'
+                    'prop': 'deep.thinking',
+                    'label': 'Deep thinking'
                 }
             }, [_c('s-select', {
                     attrs: {
-                        'values': [
+                        'options': [
                             'Too much',
                             'Yes',
                             'No'
                         ]
                     },
                     model: {
-                        value: _vm.model.kindness,
+                        value: _vm.model.deep.thinking,
                         callback: function ($$v) {
-                            _vm.model.kindness = $$v;
+                            _vm.model.deep.thinking = $$v;
                         },
-                        expression: 'model.kindness'
+                        expression: 'model.deep.thinking'
                     }
                 })], 1)
         ], 1),

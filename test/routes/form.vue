@@ -31,8 +31,8 @@
 			<s-field prop="firstName" label="First name" info="hand pointer" />
 			<s-field prop="lastName" label="Last name" info="signal" />
 			<s-field prop="deep.reason" label="Deep reason" />
-			<s-field prop="kindness" label="Kindness">
-				<s-select v-model="model.kindness" :values="['Too much', 'Yes', 'No']" />
+			<s-field prop="deep.thinking" label="Deep thinking">
+				<s-select v-model="model.deep.thinking" :options="['Too much', 'Yes', 'No']" />
 			</s-field>
 		</s-form>
 		<div class="ui segment">
@@ -54,22 +54,19 @@ export default class Form extends Vue {
 	getValue(field) {
 		return field.value;
 	}
+	created() { this.reInit(); }
 	reInit() {
 		this.model = {
 			firstName: "",
 			lastName: "",
 			big: false,
-			deep: {reason: '42'},
-			kindness: 'Yes'
+			deep: {
+				reason: '42',
+				thinking: 'Yes'
+			}
 		}
 	}
-	model = {
-		firstName: "",
-		lastName: "",
-		big: false,
-		deep: {reason: '42'},
-		kindness: 'Yes'
-	}
+	model = null
 	schema = {
 		"title": "Person",
 		"type": "object",
