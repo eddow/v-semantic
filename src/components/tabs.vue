@@ -74,7 +74,8 @@ export default class Tabs extends Vue {
 	}
 	panels = []
 	@Watch('panels') initSemantic() {
-		setTimeout(()=>{
+		//setTimeout
+		Vue.nextTick(()=>{
 			//TODO: use $refs instead of .find('.item')
 			//TODO: apply on new tabs only (remove from old tabs??)
 			$(this.$refs.menu).find('.item').tab({

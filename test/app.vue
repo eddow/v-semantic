@@ -63,7 +63,7 @@ export default class App extends Vue {
 			"// nothing";
 	}
 	@Watch('showSource') initCM() {
-		setTimeout(()=> this.$refs.cm.refresh());
+		Vue.nextTick(()=> this.$refs.cm.refresh());
 	}
 }
 </script>

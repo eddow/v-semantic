@@ -619,7 +619,7 @@ var Property = function (_super) {
         enumerable: true,
         configurable: true
     });
-    Property.prototype.errorsChanged = function (scope, value) {
+    Property.prototype.errorsChanged = function (scope) {
         var errors;
         errors = scope.errScope.field;
         scope.errors.splice(0);
@@ -633,10 +633,11 @@ var Property = function (_super) {
     Property.prototype.buildScope = function (model) {
         var _this = this;
         var scope = scope_1.propertyScope(this, model, this.modeled.scope(model));
+        Vue.util.defineReactive(scope, 'errors', []);
         scope.unwatch = this.$watch(function () {
             return scope.errScope.total;
-        }, function (value) {
-            return _this.errorsChanged(scope, value);
+        }, function (errs) {
+            return _this.errorsChanged(scope);
         }, {
             deep: true,
             immediate: true
@@ -832,7 +833,6 @@ function propertyScope(property, model, errScope) {
     return Object.create(property, {
         model: { value: model },
         errScope: { value: errScope },
-        errors: { value: [] },
         value: {
             set: function (value) {
                 if (this.inputError) {
@@ -912,19 +912,29 @@ var Modeled = function (_super) {
         var _this = this;
         var scope = {
             get total() {
-                return this.field = this.specific.concat(this.schema);
+                return this.specific.concat(this.schema);
             }
         };
-        Vue.set(scope, 'schema', []);
-        Vue.set(scope, 'specific', []);
-        scope.unwatch = this.$watch(function () {
-            return model;
-        }, function (value) {
-            return _this.validate(scope, value);
-        }, {
-            deep: true,
-            immediate: true
-        });
+        Vue.util.defineReactive(scope, 'schema', []);
+        Vue.util.defineReactive(scope, 'specific', []);
+        scope.unwatch = [
+            this.$watch(function () {
+                return model;
+            }, function (value) {
+                return _this.validate(scope, value);
+            }, {
+                deep: true,
+                immediate: true
+            }),
+            this.$watch(function () {
+                return scope.total;
+            }, function (errs) {
+                return scope.field = [].concat(errs);
+            }, {
+                deep: true,
+                immediate: true
+            })
+        ];
         return scope;
     };
     Modeled.prototype.destroyScope = function (scope) {
@@ -937,6 +947,7 @@ var Modeled = function (_super) {
         errScope.schema.splice(0);
         if (!valid)
             (_a = errScope.schema).push.apply(_a, this.validation.errors);
+        errScope.field = [].concat(errScope.schema);
         this.$emit('validated', model);
         var _a;
     };
@@ -3515,7 +3526,7 @@ var _v = function (exports) {
         };
         Tabs.prototype.initSemantic = function () {
             var _this = this;
-            setTimeout(function () {
+            Vue.nextTick(function () {
                 shims_1.$(_this.$refs.menu).find('.item').tab({ context: shims_1.$(_this.$refs.context.$el) });
             });
         };
@@ -4181,7 +4192,7 @@ var _v = function (exports) {
         };
         App.prototype.initCM = function () {
             var _this = this;
-            setTimeout(function () {
+            Vue.nextTick(function () {
                 return _this.$refs.cm.refresh();
             });
         };

@@ -28,16 +28,20 @@ export default class Modeled extends Vue {
 	buildScope(model) {
 		var scope: any = {
 			get total() {
-				return this.field = this.specific.concat(this.schema);
+				return this.specific.concat(this.schema);
 			}
 		};
-		Vue.set(scope, 'schema', []);
-		Vue.set(scope, 'specific', []);
-		scope.unwatch = this.$watch(
+		Vue.util.defineReactive(scope, 'schema', []);
+		Vue.util.defineReactive(scope, 'specific', []);
+		scope.unwatch = [this.$watch(
 			()=> model,
 			value=> this.validate(scope, value),
 			{deep:true, immediate:true}
-		)
+		), this.$watch(
+			()=> scope.total,
+			errs=> scope.field = [].concat(errs),
+			{deep:true, immediate:true}
+		)];
 		return scope;
 	}
 	destroyScope(scope) {
@@ -49,6 +53,7 @@ export default class Modeled extends Vue {
 		var valid = this.validation(model)
 		errScope.schema.splice(0);
 		if(!valid) errScope.schema.push(...this.validation.errors);
+		errScope.field = [].concat(errScope.schema);
 		this.$emit('validated', model);
 	}
 

@@ -34,7 +34,6 @@ export function propertyScope(property, model, errScope) {
 		//Beware : these are property descriptors (like in Object.defineProperty)
 		model: {value: model},
 		errScope: {value: errScope},
-		errors: {value: []},
 		value: {
 			set: function(value) {
 				if(this.inputError) {

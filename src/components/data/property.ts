@@ -54,7 +54,7 @@ export default class Property extends Vue {
 	get errorPath() {
 		return this.path ? '.'+this.path : this.name;
 	}
-	errorsChanged(scope, value) {
+	errorsChanged(scope) {
 		//validate & errors
 		var errors;
 		errors = scope.errScope.field;
@@ -66,9 +66,12 @@ export default class Property extends Vue {
 	}
 	buildScope(model) {
 		var scope = propertyScope(this, model, this.modeled.scope(model));
+		
+		Vue.util.defineReactive(scope, 'errors', []);
+
 		scope.unwatch = this.$watch(
 			()=> scope.errScope.total,
-			value=> this.errorsChanged(scope, value),
+			errs=> this.errorsChanged(scope),
 			{deep:true, immediate:true}
 		);
 		return scope;

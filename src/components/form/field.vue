@@ -56,7 +56,7 @@ export default class Field extends Vue {
 	get scoped() {
 		return this.scope(this.modeled.model);
 	}
-
+	
 	@Watch('modeled.model', {immediate:true}) changeModel(model) {
 		this.invalidateScopes([model]);
 	}
