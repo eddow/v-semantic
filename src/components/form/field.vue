@@ -11,7 +11,7 @@
 				</slot>
 				<slot>
 					<slot name="input":model="modeled.model">
-						<input type="text" v-model="value" />
+						<input type="text" v-model="scope(modeled.model).value" />
 					</slot>
 				</slot>
 				<slot name="append">
@@ -52,11 +52,15 @@ export default class Field extends Vue {
 			this.modeled.inline : this.inline;
 	}
 	created() {
+		/*TODO: assertion
 		console.assert(this.modeled && 'Form'=== this.modeled.constructor.name,
-			'Fields cannot be used outside of a Form')
+			'Fields cannot be used outside of a Form');*/
 	}
 	errors = []
 
+	@Watch('modeled.model') changeModel(model) {
+		this.invalidateScopes([model]);
+	}
 	/*
 	@Watch('modeled.errors', {immediate: true})
 	validated() {

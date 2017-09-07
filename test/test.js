@@ -537,6 +537,8 @@ var Property = function (_super) {
     function Property() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.gendName = null;
+        _this.scopes = new WeakMap();
+        _this.scopedModels = [];
         return _this;
     }
     Object.defineProperty(Property.prototype, 'path', {
@@ -570,9 +572,15 @@ var Property = function (_super) {
         enumerable: true,
         configurable: true
     });
+    Property.prototype.invalidateScopes = function (models) {
+        for (var model in this.scopedModels)
+            if (!~models.indexOf(model) && this.scopes.has(model))
+                this.scopes.delete(model);
+        this.scopedModels = [].concat(models);
+    };
     Property.prototype.scope = function (model) {
         var that = this;
-        return Object.create(this, model ? {
+        return this.scopes[model] || (this.scopes[model] = Object.create(this, model ? {
             model: model,
             value: {
                 set: function (value) {
@@ -582,7 +590,7 @@ var Property = function (_super) {
                     return deep.get(model, that.path);
                 }
             }
-        } : {});
+        } : {}));
     };
     Property.prototype.initSlot = function (name, scoped) {
         var _this = this;
@@ -2037,7 +2045,9 @@ var _v = function (exports) {
             configurable: true
         });
         Field.prototype.created = function () {
-            console.assert(this.modeled && 'Form' === this.modeled.constructor.name, 'Fields cannot be used outside of a Form');
+        };
+        Field.prototype.changeModel = function (model) {
+            this.invalidateScopes([model]);
         };
         Object.defineProperty(Field.prototype, 'labelStyle', {
             get: function () {
@@ -2054,6 +2064,12 @@ var _v = function (exports) {
             vue_property_decorator_1.Prop({ default: null }),
             __metadata('design:type', Boolean)
         ], Field.prototype, 'inline', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('modeled.model'),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], Field.prototype, 'changeModel', null);
         Field = __decorate([vue_property_decorator_1.Component({ mixins: [property_1.default] })], Field);
         return Field;
     }(Vue);
@@ -2082,17 +2098,17 @@ _p.render = function render() {
                             directives: [{
                                     name: 'model',
                                     rawName: 'v-model',
-                                    value: _vm.value,
-                                    expression: 'value'
+                                    value: _vm.scope(_vm.modeled.model).value,
+                                    expression: 'scope(modeled.model).value'
                                 }],
                             attrs: { 'type': 'text' },
-                            domProps: { 'value': _vm.value },
+                            domProps: { 'value': _vm.scope(_vm.modeled.model).value },
                             on: {
                                 'input': function ($event) {
                                     if ($event.target.composing) {
                                         return;
                                     }
-                                    _vm.value = $event.target.value;
+                                    _vm.scope(_vm.modeled.model).value = $event.target.value;
                                 }
                             }
                         })], { model: _vm.modeled.model })]),

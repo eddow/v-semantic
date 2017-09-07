@@ -48,7 +48,7 @@ export default class Form extends Command.Commanded {
 	}
 	@Prop({default: ()=>[]}) errors: any[]
 	@Prop({default: ()=>[]}) fieldErrors: any[]
-
+	
 	@Watch('model', {immediate: true, deep: true})
 	validate(model) {
 		if(!this.validation) return;
@@ -58,6 +58,7 @@ export default class Form extends Command.Commanded {
 		this.fieldErrors.splice(0, this.fieldErrors.length, ...this.errors);
 		this.$emit('validated');
 	}
+	
 	get labelStyle() {
 		return this.labelWidth?{width: this.labelWidth}:{};
 	}

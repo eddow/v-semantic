@@ -44,22 +44,30 @@ export default class Property extends Vue {
 	get name() {
 		return this.prop || this.gendName || (this.gendName = genFieldName());
 	}
-
+	scopes: WeakMap<any, any> = new WeakMap()	//model=> scope
+	scopedModels: any[] = []
+	invalidateScopes(models: any[]) {
+		for(let model in this.scopedModels)
+			if(!~models.indexOf(model) && this.scopes.has(model))
+				this.scopes.delete(model);
+		this.scopedModels = [].concat(models);
+	}
 	scope(model) {
 		var that = this;
-		return Object.create(this, model ? {
-			model/*: {
-				value: model
-			}*/,
-			value: {
-				set(value) {
-					deep.set(model, that.path, value);
-				},
-				get() {
-					return deep.get(model, that.path);
+		return this.scopes[model] || (this.scopes[model] = Object.create(this,
+			model ? {
+				model,
+				value: {
+					set(value) {
+						deep.set(model, that.path, value);
+					},
+					get() {
+						return deep.get(model, that.path);
+					}
 				}
-			}
-		} : {});
+			} :
+			{}
+		));
 	}
 	
 	initSlot(name: string, scoped?: boolean) {
