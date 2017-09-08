@@ -49,7 +49,6 @@ export default class Form extends Command.Commanded {
 	@Prop({default: ()=>[]}) errors: any[]
 	@Prop({default: ()=>[]}) fieldErrors: any[]
 	invalidateScopes
-	modelErrors = null
 	@Watch('model', {immediate: true}) changeModel(model) {
 		this.invalidateScopes([model]);
 	}

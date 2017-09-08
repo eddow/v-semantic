@@ -29,9 +29,9 @@ import * as Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {idSpace} from 'lib/utils'
 import * as deep from 'lib/deep'
-import Property from '../data/property'
+import molded from '../data/molded'
 
-@Component({mixins: [Property]})
+@Component({mixins: [molded(['append', 'prepend', 'field', 'input'])]})
 export default class Field extends Vue {
 	//from Property
 	modeled

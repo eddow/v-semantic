@@ -19,25 +19,23 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 import {Ripper} from 'vue-ripper'
 import * as deep from 'lib/deep'
 import table from './index.vue'
-import Property from '../data/property'
+import molded from '../data/molded'
 
 @Component({
 	components: {Ripper},
-	mixins: [table.managedColumn, Property]
+	mixins: [table.managedColumn, molded(['header', 'cell'])]
 })
 export default class Column extends Vue {
-	@Prop() render: (value: any)=> string
-	@Prop() extract: (row: any)=> string
 	@Prop() prop: string
 	@Prop() header: string
 	
+	invalidateScopes
+	@Watch('modeled.rows', {immediate:true, deep: true}) changeModel(rows) {
+		this.invalidateScopes(rows);
+	}
 	get path() { return deep.path(this.prop); }
 	value(row) {
-		return this.extract ?
-			this.extract(row) :
-			this.render ?
-			this.render(deep.get(row, this.prop)) :
-			deep.get(row, this.prop);
+		return deep.get(row, this.prop);
 	}
 }
 </script>

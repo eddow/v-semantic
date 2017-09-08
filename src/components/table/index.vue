@@ -137,7 +137,9 @@ export default class Table extends Vue {
 		return row.__table_row_id;
 	}
 	@Emit('row-click') rowClick(row) {}
+	invalidateScopes
 	@Watch('rows', {deep: true}) rowsUpdate(rows) {
+		this.invalidateScopes(rows);
 		if(!~rows.indexOf(this.current))
 			this.$emit('row-click', null);
 	}

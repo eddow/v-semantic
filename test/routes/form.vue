@@ -60,7 +60,7 @@ export default class Form extends Vue {
 	created() { this.reInit(); }
 	number(string) {
 		var rv = Number(string);
-		if(isNaN(rv)) throw new Error('Bad number');
+		if(isNaN(rv)) throw new Error('bad number');
 		return rv;
 	}
 	reInit() {

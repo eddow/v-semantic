@@ -47,8 +47,9 @@ export function propertyScope(property, model, errScope) {
 				} catch(error) {
 					errScope.specific.push(this.inputError = {
 						message: error.message,
-						exception: error,
-						dataPath: this.errorPath
+						params: error,
+						dataPath: this.errorPath,
+						keyword: 'input'
 					});
 				}
 			},

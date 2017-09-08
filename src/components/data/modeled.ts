@@ -45,7 +45,7 @@ export default class Modeled extends Vue {
 		return scope;
 	}
 	destroyScope(scope) {
-		scope.unwatch();
+		for(let unwatch of scope.unwatch) unwatch();
 	}
 	
 	validate(errScope, model) {
