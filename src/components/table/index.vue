@@ -1,6 +1,6 @@
 <template>
 	<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]">
-		<caption is="pimp" v-model="columns">
+		<caption is="pimp" v-model="pimped">
 			<slot />
 		</caption>
 		<caption v-if="$slots.header">
@@ -118,7 +118,22 @@ export default class Table extends Vue {
 		type: Function,
 		default: (row, field)=> field.edit
 	}) edition: (row: any, field: any)=> boolean
-	columns = null
+	pimped = null
+	get columns() {
+		var rv = Object.create({}, {
+			length: {
+				value: 0,
+				writable: true
+			}
+		}), pimped = this.pimped;
+		if(!pimped || !pimped.length) return pimped;
+		for(let i in pimped)
+			if(pimped[i].initSlots) {
+				rv[i] = pimped[i];
+				++rv.length;
+			}
+		return rv;
+	}
 	@Prop({type: [Number, String]}) bodyHeight: number|string
 	renderCell(h, slot) {
 		var classes = ['vued'], compound = false, browser = slot;
@@ -126,7 +141,7 @@ export default class Table extends Vue {
 			if(1!== browser.length) compound = true;
 			browser = browser[0];
 		}
-		if(compound || browser.tag)
+		if(compound || (browser && browser.tag))
 			classes.push('compound')
 		return h('td', {class:classes}, slot);
 	}
