@@ -84,7 +84,7 @@ require('~/src/lib/module');
 require('~/src/lib/utils');
 require('~/src/lib/deep');
 require('~/src/lib/render');
-require('./components/data/property');
+require('./components/data/molded');
 require('./components/data/modeled');
 });
 ___scope___.file("src/lib/classed.js", function(exports, require, module, __filename, __dirname){
@@ -500,6 +500,362 @@ function updateWrap(wrap) {
 exports.updateWrap = updateWrap;
 //# sourceMappingURL=render.js.map
 });
+___scope___.file("src/components/data/molded.js", function(exports, require, module, __filename, __dirname){
+var __decorate = __fsbx_decorate(arguments)
+'use strict';
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b)
+            if (b.hasOwnProperty(p))
+                d[p] = b[p];
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+        r = Reflect.decorate(decorators, target, key, desc);
+    else
+        for (var i = decorators.length - 1; i >= 0; i--)
+            if (d = decorators[i])
+                r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = this && this.__metadata || function (k, v) {
+    if (typeof Reflect === 'object' && typeof Reflect.metadata === 'function')
+        return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, '__esModule', { value: true });
+var Vue = require('vue/dist/vue.common.js');
+var vue_property_decorator_1 = require('vue-property-decorator');
+var deep = require('~/src/lib/deep');
+var utils_1 = require('~/src/lib/utils');
+var render_1 = require('~/src/lib/render');
+var scope_1 = require('./scope');
+var genFieldName = utils_1.idSpace('fld');
+function molded(slotNames) {
+    var Property = function (_super) {
+        __extends(Property, _super);
+        function Property() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.gendName = null;
+            return _this;
+        }
+        Object.defineProperty(Property.prototype, 'moldRender', {
+            get: function () {
+                return this.moldProp('render') || function (x) {
+                    return x;
+                };
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Property.prototype, 'moldInput', {
+            get: function () {
+                return this.moldProp('input') || function (x) {
+                    return x;
+                };
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Property.prototype, 'moldOutput', {
+            get: function () {
+                return this.moldProp('output') || function (x) {
+                    return x;
+                };
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Property.prototype, 'path', {
+            get: function () {
+                return deep.path(this.prop);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Property.prototype.setFieldProperty = function (prop, oldv) {
+            if (this.modeled) {
+                this.undo(oldv);
+                if (prop) {
+                    console.assert(!this.modeled.fields[prop], 'Field ' + prop + ' appears once in its form');
+                    this.modeled.fields[prop] = this;
+                }
+            }
+        };
+        Property.prototype.undo = function (prop) {
+            if (this.modeled && prop) {
+                delete this.modeled.fields[prop];
+            }
+        };
+        Property.prototype.destroyed = function () {
+            this.undo(this.prop);
+        };
+        Object.defineProperty(Property.prototype, 'name', {
+            get: function () {
+                return this.prop || this.gendName || (this.gendName = genFieldName());
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Property.prototype, 'errorPath', {
+            get: function () {
+                return this.path ? '.' + this.path : this.name;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Property.prototype.errorsChanged = function (scope) {
+            var errors;
+            errors = scope.errScope.field;
+            scope.errors.splice(0);
+            for (var i = 0; i < errors.length;)
+                if (this.errorPath == errors[i].dataPath)
+                    (_a = scope.errors).push.apply(_a, errors.splice(i, 1));
+                else
+                    ++i;
+            var _a;
+        };
+        Property.prototype.buildScope = function (model) {
+            var _this = this;
+            var scope = scope_1.propertyScope(this, model, this.modeled.scope(model));
+            Vue.util.defineReactive(scope, 'errors', []);
+            scope.unwatch = this.$watch(function () {
+                return scope.errScope.total;
+            }, function (errs) {
+                return _this.errorsChanged(scope);
+            }, {
+                deep: true,
+                immediate: true
+            });
+            return scope;
+        };
+        Property.prototype.destroyScope = function (scope) {
+            scope.unwatch();
+        };
+        Property.prototype.moldProp = function (name) {
+            if (this[name])
+                return this[name];
+            for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
+                var mold = _a[_i];
+                if (mold[name])
+                    return mold[name];
+            }
+        };
+        Property.prototype.initSlot = function (name) {
+            var _this = this;
+            var scoped = function (slot) {
+                return function (params) {
+                    return slot(__assign(_this.scope(params.model), params)) || [];
+                };
+            };
+            var vnodeGiven = this.$options._parentVnode.data.scopedSlots;
+            vnodeGiven = vnodeGiven && vnodeGiven[name];
+            if (vnodeGiven)
+                return scoped(vnodeGiven);
+            for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
+                var mold = _a[_i];
+                var slot = mold.$scopedSlots[name];
+                if (slot && (!mold.select || 'function' === typeof mold.select && mold.select(this) || mold.select === this.type))
+                    return scoped(slot);
+            }
+        };
+        Property.prototype.initSlots = function () {
+            if (this.modeled) {
+                var ss = {};
+                for (var _i = 0, slotNames_1 = slotNames; _i < slotNames_1.length; _i++) {
+                    var name = slotNames_1[_i];
+                    var thisSs = this.initSlot(name);
+                    if (thisSs)
+                        ss[name] = thisSs;
+                }
+                var data = this.$options._parentVnode.data;
+                if (Object.isFrozen(this.$scopedSlots))
+                    this.$scopedSlots = {};
+                data.scopedSlots = __assign(this.$scopedSlots, data.scopedSlots, ss);
+            }
+        };
+        Object.defineProperty(Property.prototype, 'schema', {
+            get: function () {
+                if (!this.modeled.schema)
+                    return {};
+                var path = this.path.split('.'), rv = this.modeled.schema, prop;
+                while (prop = path.shift()) {
+                    if ('object' === rv.type)
+                        rv = rv.properties[prop];
+                    else if ('array' === rv.type)
+                        rv = rv.items;
+                    else {
+                        console.error('Error reading schema, ' + prop + ' is expected to be ' + rv.type);
+                    }
+                }
+                return rv;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        __decorate([
+            vue_property_decorator_1.Inject(),
+            __metadata('design:type', Object)
+        ], Property.prototype, 'modeled', void 0);
+        __decorate([
+            vue_property_decorator_1.Inject(),
+            __metadata('design:type', Object)
+        ], Property.prototype, 'group', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], Property.prototype, 'prop', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ default: null }),
+            __metadata('design:type', String)
+        ], Property.prototype, 'info', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], Property.prototype, 'type', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ type: Function }),
+            __metadata('design:type', Function)
+        ], Property.prototype, 'render', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ type: Function }),
+            __metadata('design:type', Object)
+        ], Property.prototype, 'input', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ type: Function }),
+            __metadata('design:type', Object)
+        ], Property.prototype, 'output', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('prop', { immediate: true }),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [
+                Object,
+                Object
+            ]),
+            __metadata('design:returntype', void 0)
+        ], Property.prototype, 'setFieldProperty', null);
+        Property = __decorate([vue_property_decorator_1.Component({
+                mixins: [
+                    render_1.renderWrap('initSlots'),
+                    scope_1.modelScoped
+                ]
+            })], Property);
+        return Property;
+    }(Vue);
+    return Property;
+}
+exports.default = molded;
+});
+___scope___.file("src/components/data/scope.js", function(exports, require, module, __filename, __dirname){
+var __decorate = __fsbx_decorate(arguments)
+'use strict';
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b)
+            if (b.hasOwnProperty(p))
+                d[p] = b[p];
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+        r = Reflect.decorate(decorators, target, key, desc);
+    else
+        for (var i = decorators.length - 1; i >= 0; i--)
+            if (d = decorators[i])
+                r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, '__esModule', { value: true });
+var Vue = require('vue/dist/vue.common.js');
+var deep = require('~/src/lib/deep');
+var vue_property_decorator_1 = require('vue-property-decorator');
+var emptyModel = Object.freeze({});
+var modelScoped = function (_super) {
+    __extends(modelScoped, _super);
+    function modelScoped() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.scopes = new WeakMap();
+        _this.scopedModels = [];
+        return _this;
+    }
+    modelScoped.prototype.buildScope = function (model) {
+        throw new Error('Not implemented');
+    };
+    modelScoped.prototype.destroyScope = function (scope) {
+        throw new Error('Not implemented');
+    };
+    modelScoped.prototype.scope = function (model) {
+        if (!this.scopes.has(model || emptyModel)) {
+            var scope = this.buildScope(model);
+            this.scopes.set(model || emptyModel, scope);
+        }
+        return this.scopes.get(model || emptyModel);
+    };
+    modelScoped.prototype.invalidateScopes = function (models) {
+        for (var _i = 0, _a = this.scopedModels; _i < _a.length; _i++) {
+            var model = _a[_i];
+            if (!~models.indexOf(model) && this.scopes.has(model || emptyModel)) {
+                this.destroyScope(this.scopes.get(model || emptyModel));
+                this.scopes.delete(model || emptyModel);
+            }
+        }
+        this.scopedModels = [].concat(models);
+    };
+    modelScoped = __decorate([vue_property_decorator_1.Component], modelScoped);
+    return modelScoped;
+}(Vue);
+exports.modelScoped = modelScoped;
+function propertyScope(property, model, errScope) {
+    return Object.create(property, {
+        model: { value: model },
+        errScope: { value: errScope },
+        value: {
+            set: function (value) {
+                if (this.inputError) {
+                    var errors = errScope.specific, ndx = errors.indexOf(this.inputError);
+                    if (~ndx)
+                        errors.splice(ndx, 1);
+                    delete this.inputError;
+                }
+                try {
+                    deep.set(model, this.path, this.moldInput(value));
+                } catch (error) {
+                    errScope.specific.push(this.inputError = {
+                        message: error.message,
+                        params: error,
+                        dataPath: this.errorPath,
+                        keyword: 'input'
+                    });
+                }
+            },
+            get: function () {
+                return this.moldOutput(deep.get(model, this.path));
+            }
+        }
+    });
+}
+exports.propertyScope = propertyScope;
+});
 ___scope___.file("src/components/data/modeled.js", function(exports, require, module, __filename, __dirname){
 var __decorate = __fsbx_decorate(arguments)
 'use strict';
@@ -625,106 +981,6 @@ var Modeled = function (_super) {
     return Modeled;
 }(Vue);
 exports.default = Modeled;
-});
-___scope___.file("src/components/data/scope.js", function(exports, require, module, __filename, __dirname){
-var __decorate = __fsbx_decorate(arguments)
-'use strict';
-var __extends = this && this.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b)
-            if (b.hasOwnProperty(p))
-                d[p] = b[p];
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
-        r = Reflect.decorate(decorators, target, key, desc);
-    else
-        for (var i = decorators.length - 1; i >= 0; i--)
-            if (d = decorators[i])
-                r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, '__esModule', { value: true });
-var Vue = require('vue/dist/vue.common.js');
-var deep = require('~/src/lib/deep');
-var vue_property_decorator_1 = require('vue-property-decorator');
-var emptyModel = {};
-var modelScoped = function (_super) {
-    __extends(modelScoped, _super);
-    function modelScoped() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.scopes = new WeakMap();
-        _this.scopedModels = [];
-        return _this;
-    }
-    modelScoped.prototype.buildScope = function (model) {
-        throw new Error('Not implemented');
-    };
-    modelScoped.prototype.destroyScope = function (scope) {
-        throw new Error('Not implemented');
-    };
-    modelScoped.prototype.scope = function (model) {
-        if (!this.scopes.has(model || emptyModel)) {
-            var scope = this.buildScope(model);
-            this.scopes.set(model || emptyModel, scope);
-        }
-        return this.scopes.get(model || emptyModel);
-    };
-    modelScoped.prototype.invalidateScopes = function (models) {
-        for (var _i = 0, _a = this.scopedModels; _i < _a.length; _i++) {
-            var model = _a[_i];
-            if (!~models.indexOf(model) && this.scopes.has(model || emptyModel)) {
-                this.destroyScope(this.scopes.get(model || emptyModel));
-                this.scopes.delete(model || emptyModel);
-            }
-        }
-        this.scopedModels = [].concat(models);
-    };
-    modelScoped = __decorate([vue_property_decorator_1.Component], modelScoped);
-    return modelScoped;
-}(Vue);
-exports.modelScoped = modelScoped;
-function propertyScope(property, model, errScope) {
-    return Object.create(property, {
-        model: { value: model },
-        errScope: { value: errScope },
-        value: {
-            set: function (value) {
-                if (this.inputError) {
-                    var errors = errScope.specific, ndx = errors.indexOf(this.inputError);
-                    if (~ndx)
-                        errors.splice(ndx, 1);
-                    delete this.inputError;
-                }
-                try {
-                    deep.set(model, this.path, this.moldInput(value));
-                } catch (error) {
-                    errScope.specific.push(this.inputError = {
-                        message: error.message,
-                        params: error,
-                        dataPath: this.errorPath,
-                        keyword: 'input'
-                    });
-                }
-            },
-            get: function () {
-                return this.moldOutput(deep.get(model, this.path));
-            }
-        }
-    });
-}
-exports.propertyScope = propertyScope;
 });
 ___scope___.file("src/components.js", function(exports, require, module, __filename, __dirname){
 
@@ -2540,8 +2796,13 @@ var _v = function (exports) {
             return _this;
         }
         Table.prototype.renderCell = function (h, slot) {
-            var classes = ['vued'];
-            if (1 !== slot.length || 1 !== slot[0].length || slot[0][0].tag)
+            var classes = ['vued'], compound = false, browser = slot;
+            while (!compound && browser instanceof Array) {
+                if (1 !== browser.length)
+                    compound = true;
+                browser = browser[0];
+            }
+            if (compound || browser.tag)
                 classes.push('compound');
             return h('td', { class: classes }, slot);
         };
@@ -2586,6 +2847,15 @@ var _v = function (exports) {
             }),
             __metadata('design:type', Function)
         ], Table.prototype, 'rowClass', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({
+                type: Function,
+                default: function (row, field) {
+                    return field.edit;
+                }
+            }),
+            __metadata('design:type', Function)
+        ], Table.prototype, 'edition', void 0);
         __decorate([
             vue_property_decorator_1.Prop({
                 type: [
@@ -2783,15 +3053,16 @@ var _v = function (exports) {
         Column.prototype.changeModel = function (rows) {
             this.invalidateScopes(rows);
         };
-        Object.defineProperty(Column.prototype, 'path', {
-            get: function () {
-                return deep.path(this.prop);
-            },
-            enumerable: true,
-            configurable: true
-        });
+        Column.prototype.created = function () {
+        };
+        Column.prototype.edition = function (row) {
+            return this.modeled.edition(row, this);
+        };
         Column.prototype.value = function (row) {
             return deep.get(row, this.prop);
+        };
+        Column.prototype.setValue = function (row, value) {
+            return deep.set(row, this.prop, value);
         };
         __decorate([
             vue_property_decorator_1.Prop(),
@@ -2801,6 +3072,10 @@ var _v = function (exports) {
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
         ], Column.prototype, 'header', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', Boolean)
+        ], Column.prototype, 'edit', void 0);
         __decorate([
             vue_property_decorator_1.Watch('modeled.rows', {
                 immediate: true,
@@ -2816,7 +3091,8 @@ var _v = function (exports) {
                     index_vue_1.default.managedColumn,
                     molded_1.default([
                         'header',
-                        'cell'
+                        'display',
+                        'input'
                     ])
                 ]
             })], Column);
@@ -2831,10 +3107,25 @@ _p.render = function render() {
     return _c('ripper', {
         scopedSlots: _vm._u([{
                 key: 'default',
-                fn: function (scope) {
-                    return [_vm._t('default', [_vm._v('\n\t\t\t' + _vm._s(_vm.moldRender(_vm.value(scope.row))) + '\n\t\t')], {
-                            model: scope.row,
-                            index: scope.index
+                fn: function (itr) {
+                    return [_vm._t('default', [_vm.edition(_vm.row) ? _vm._t('input', [_c('s-input', {
+                                    attrs: { 'type': 'text' },
+                                    model: {
+                                        value: _vm.scope(itr.row).value,
+                                        callback: function ($$v) {
+                                            _vm.scope(itr.row).value = $$v;
+                                        },
+                                        expression: 'scope(itr.row).value'
+                                    }
+                                })], {
+                                model: itr.row,
+                                index: itr.index
+                            }) : _vm._t('display', [_vm._v('\n\t\t\t\t' + _vm._s(_vm.moldRender(_vm.value(itr.row))) + '\n\t\t\t')], {
+                                model: itr.row,
+                                index: itr.index
+                            })], {
+                            model: itr.row,
+                            index: itr.index
                         })];
                 }
             }])
@@ -5026,22 +5317,9 @@ _p.render = function render() {
                 attrs: {
                     'prop': 'a',
                     'width': '300',
-                    'header': 'a'
-                },
-                scopedSlots: _vm._u([{
-                        key: 'default',
-                        fn: function (scope) {
-                            return [_c('s-input', {
-                                    model: {
-                                        value: scope.model.a,
-                                        callback: function ($$v) {
-                                            scope.model.a = $$v;
-                                        },
-                                        expression: 'scope.model.a'
-                                    }
-                                })];
-                        }
-                    }])
+                    'header': 'a',
+                    'edit': ''
+                }
             }),
             _vm._v(' '),
             _c('s-column', {

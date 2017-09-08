@@ -86,8 +86,13 @@ export default function molded(slotNames) {
 				if(mold[name])
 					return mold[name];
 		}
+		scope
 		initSlot(name: string) {
-			if(this.$scopedSlots[name]) this.$scopedSlots[name];
+			var scoped = slot=> ((params)=> 
+				slot(__assign(this.scope(params.model), params))||[]);	//we keep [] for empty vnodes
+			var vnodeGiven = this.$options._parentVnode.data.scopedSlots;
+			vnodeGiven = vnodeGiven && vnodeGiven[name];
+			if(vnodeGiven) return scoped(vnodeGiven);
 			for(let mold of this.modeled.molds) {
 				let slot = mold.$scopedSlots[name];
 				if(slot && (
@@ -96,8 +101,7 @@ export default function molded(slotNames) {
 					mold.select === this.type)
 				)
 					//return this.$slots[name] = slot(this.scope(this.modeled.model))||[];
-					return this.$scopedSlots[name] = (params)=> 
-						slot(__assign(this.scope(params.model), params))||[];	//we keep [] for empty vnodes
+					return scoped(slot);
 			}
 		}
 		initSlots() {
@@ -108,7 +112,9 @@ export default function molded(slotNames) {
 					if(thisSs) ss[name] = thisSs;
 				}
 				var data = this.$options._parentVnode.data;
-				data.scopedSlots = __assign(ss, data.scopedSlots);
+				// $scopedSlots is defaulted [in Vue] to `emptyObject` that is a frozen empty object
+				if(Object.isFrozen(this.$scopedSlots)) this.$scopedSlots = {};
+				data.scopedSlots = __assign(this.$scopedSlots, data.scopedSlots, ss);
 			}
 		}
 		get schema() {

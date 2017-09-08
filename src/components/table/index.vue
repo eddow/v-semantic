@@ -114,11 +114,19 @@ export default class Table extends Vue {
 	@Prop() rows: any[]
 	@Prop() idProperty: string
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
+	@Prop({
+		type: Function,
+		default: (row, field)=> field.edit
+	}) edition: (row: any, field: any)=> boolean
 	columns = null
 	@Prop({type: [Number, String]}) bodyHeight: number|string
 	renderCell(h, slot) {
-		var classes = ['vued'];
-		if(1!== slot.length || 1!== slot[0].length || slot[0][0].tag)
+		var classes = ['vued'], compound = false, browser = slot;
+		while(!compound && browser instanceof Array) {
+			if(1!== browser.length) compound = true;
+			browser = browser[0];
+		}
+		if(compound || browser.tag)
 			classes.push('compound')
 		return h('td', {class:classes}, slot);
 	}
