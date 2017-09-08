@@ -11,7 +11,7 @@
 			<div slot="header">
 				In-table header
 			</div>
-			<s-checkbox-column :selection="my_selection" width="29" />
+			<s-checkbox-column :selection="my_selection" />
 			<s-column prop="a" width="300" header="a" edit />
 			<s-column header="A">
 				<template scope="scope">
@@ -24,6 +24,7 @@
 				</template>
 			</s-column>
 			<s-column prop="deep.reason" header="Q?" />
+			<s-row-edit-column />
 		</s-table>
 		<div>
 			<p><h3>current-row</h3> {{my_row}}</p>

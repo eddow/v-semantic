@@ -27,9 +27,10 @@ import table from './index.vue'
 	mixins: [table.managedColumn]
 })
 export default class CheckboxColumn extends Vue {
-	@Inject() table
+	@Inject() modeled
 	@Prop({default: 'selected'}) prop: string
 	@Prop() header: string
+	@Prop({type:[Number, String], default: 29}) width
 	defaultv: boolean = null
 	
 	allSelected: boolean = false
@@ -45,7 +46,7 @@ export default class CheckboxColumn extends Vue {
 			});
 	}
 
-	@Watch('table.rows', {deep: true/*, immediate: true*/})
+	@Watch('modeled.rows', {deep: true/*, immediate: true*/})
 	//We don't use `immediate` because the `selection` will be initiated (by `:selection` or `v-model`)
 	rowsChanged(rows) {
 		this.setSelection(rows.filter(x=> {
@@ -60,14 +61,14 @@ export default class CheckboxColumn extends Vue {
 		if(!selection || true=== selection) {
 			this.selectAll(this.defaultv = this.allSelected = !!selection);
 		} else if(selection instanceof Array) {
-			if(selection === this.table.rows) {
+			if(selection === this.modeled.rows) {
 				this.defaultv = true;
 				this.$emit('selection-change', [].concat(selection));
 			}
 			else if(selection !== this.selection)
 				//this case happens when `setSelection` is called from the header slot or from `rowsChanged`
 				this.$emit('selection-change', selection);
-			for(let row of this.table.rows)
+			for(let row of this.modeled.rows)
 				this.setRow(row, !!~selection.indexOf(row));
 			this.computeAll();
 		}
@@ -76,20 +77,20 @@ export default class CheckboxColumn extends Vue {
 
 	selectAll(checked?: boolean) {
 		if('boolean'=== typeof checked) {
-			for(let row of this.table.rows)
+			for(let row of this.modeled.rows)
 				this.setRow(row, checked);
 			let selection = this.selection;
 			if(!(selection instanceof Array))
 				this.$emit('selection-change', selection = []);
-			selection.splice(0, selection.length, ...(checked?this.table.rows:[]));
+			selection.splice(0, selection.length, ...(checked?this.modeled.rows:[]));
 		}
 	}	
 	
 	computeAll() {
 		this.allSelected =
-			0=== this.table.rows.length ? this.defaultv :
+			0=== this.modeled.rows.length ? this.defaultv :
 			0=== this.selection.length ? false :
-			this.table.rows.length === this.selection.length ?
+			this.modeled.rows.length === this.selection.length ?
 				true : null;
 	}
 

@@ -17,6 +17,7 @@ import Option from './components/select/option.vue'
 import Table from './components/table/index.vue'
 import Column from './components/table/column.vue'
 import CheckboxColumn from './components/table/checkbox-column.vue'
+import RowEditColumn from './components/table/row-edit-column.vue'
 
 import Accordion from './components/accordion.vue'
 import Tabs from './components/tabs.vue'
@@ -29,7 +30,7 @@ export {
 	Flag, Button, Icon, Input, Modal, Checkbox, Progress,
 	Form, Field, FieldInput, DataMold,
 	Select, Option,
-	Table, Column, CheckboxColumn,
+	Table, Column, CheckboxColumn, RowEditColumn,
 	Accordion, Tabs, Panel,
 	Dimmer, Dimmable
 }

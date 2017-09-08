@@ -110,16 +110,20 @@ const generateRowId = idSpace('rw');
 })
 export default class Table extends Vue {
 	@Model('row-click') @Prop() current
-	@Provide() table = this
 	@Prop() rows: any[]
 	@Prop() idProperty: string
 	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
-	@Prop({
-		type: Function,
-		default: (row, field)=> field.edit
-	}) edition: (row: any, field: any)=> boolean
+	editionManagers = []
+	edition(row: any, field: any) {
+		var e = field.edit;
+		for(let em of this.editionManagers)
+			e = em(row, field, e);
+		return e;
+	}
 	pimped = null
 	get columns() {
+		// In order for tables to be molded, data-molds are added in the default slot.
+		// These data-mold need to be filtered out to gather only the columns to display 
 		var rv = Object.create({}, {
 			length: {
 				value: 0,
@@ -128,7 +132,7 @@ export default class Table extends Vue {
 		}), pimped = this.pimped;
 		if(!pimped || !pimped.length) return pimped;
 		for(let i in pimped)
-			if(pimped[i].initSlots) {
+			if(pimped[i].isColumn) {
 				rv[i] = pimped[i];
 				++rv.length;
 			}
@@ -173,6 +177,7 @@ Table.managedColumn = {
 	props: {
 		width: {type:[Number, String]},
 		flex: {type:[Number, String]}	//TODO: use flex and make a real column-width management engine
-	}
+	},
+	data: ()=> ({isColumn: true})
 };
 </script>

@@ -7,7 +7,7 @@
 		</template>
 		<template scope="itr">
 			<slot :model="itr.row" :index="itr.index">
-				<slot v-if="edition(row)" name="input" :model="itr.row" :index="itr.index">
+				<slot v-if="edition(itr.row)" name="input" :model="itr.row" :index="itr.index">
 					<s-input type="text" v-model="scope(itr.row).value" />
 				</slot>
 				<slot v-else name="display" :model="itr.row" :index="itr.index">

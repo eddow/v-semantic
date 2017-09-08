@@ -86,7 +86,6 @@ These should work and implement their intended final behaviour, even if details 
 - [table](./docs/components/table.md)
 - [tabs](./docs/components/tabs.md)
 
-[Global implementations](./docs/globals.md) have been done too
 # Concepts
 These have been developped deeper in this library even not completely bound to semantic. It is interwined with semantic though.
 - [form](./docs/concepts/form.md)

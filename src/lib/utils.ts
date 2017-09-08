@@ -24,18 +24,10 @@ export function idSpace(pfx = '_') {
 	}
 }
 
-const CancelError = new Error('Canceled event');
 __assign(Vue.prototype, {
-	$cancelEvent() {
-		throw CancelError;
-	},
 	$cancelable(event, ...args) {
-		try {
-			this.$emit(S(event).dasherize().s, ...args);
-			return true;
-		} catch(x) {
-			if(CancelError!== x) throw x;
-			return false;
-		}
+		var rv = true;
+		this.$emit(S(event).dasherize().s, ...args, (v = false)=> rv = v);
+		return rv;
 	}
 });

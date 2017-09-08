@@ -1017,6 +1017,8 @@ var column_vue_1 = require("./components/table/column.vue");
 exports.Column = column_vue_1.default;
 var checkbox_column_vue_1 = require("./components/table/checkbox-column.vue");
 exports.CheckboxColumn = checkbox_column_vue_1.default;
+var row_edit_column_vue_1 = require("./components/table/row-edit-column.vue");
+exports.RowEditColumn = row_edit_column_vue_1.default;
 var accordion_vue_1 = require("./components/accordion.vue");
 exports.Accordion = accordion_vue_1.default;
 var tabs_vue_1 = require("./components/tabs.vue");
@@ -2791,10 +2793,38 @@ var _v = function (exports) {
         __extends(Table, _super);
         function Table() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.table = _this;
-            _this.columns = null;
+            _this.editionManagers = [];
+            _this.pimped = null;
             return _this;
         }
+        Table.prototype.edition = function (row, field) {
+            var e = field.edit;
+            for (var _i = 0, _a = this.editionManagers; _i < _a.length; _i++) {
+                var em = _a[_i];
+                e = em(row, field, e);
+            }
+            return e;
+        };
+        Object.defineProperty(Table.prototype, 'columns', {
+            get: function () {
+                var rv = Object.create({}, {
+                        length: {
+                            value: 0,
+                            writable: true
+                        }
+                    }), pimped = this.pimped;
+                if (!pimped || !pimped.length)
+                    return pimped;
+                for (var i in pimped)
+                    if (pimped[i].isColumn) {
+                        rv[i] = pimped[i];
+                        ++rv.length;
+                    }
+                return rv;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Table.prototype.renderCell = function (h, slot) {
             var classes = ['vued'], compound = false, browser = slot;
             while (!compound && browser instanceof Array) {
@@ -2802,7 +2832,7 @@ var _v = function (exports) {
                     compound = true;
                 browser = browser[0];
             }
-            if (compound || browser.tag)
+            if (compound || browser && browser.tag)
                 classes.push('compound');
             return h('td', { class: classes }, slot);
         };
@@ -2828,10 +2858,6 @@ var _v = function (exports) {
             __metadata('design:type', Object)
         ], Table.prototype, 'current', void 0);
         __decorate([
-            vue_property_decorator_1.Provide(),
-            __metadata('design:type', Object)
-        ], Table.prototype, 'table', void 0);
-        __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', Array)
         ], Table.prototype, 'rows', void 0);
@@ -2847,15 +2873,6 @@ var _v = function (exports) {
             }),
             __metadata('design:type', Function)
         ], Table.prototype, 'rowClass', void 0);
-        __decorate([
-            vue_property_decorator_1.Prop({
-                type: Function,
-                default: function (row, field) {
-                    return field.edit;
-                }
-            }),
-            __metadata('design:type', Function)
-        ], Table.prototype, 'edition', void 0);
         __decorate([
             vue_property_decorator_1.Prop({
                 type: [
@@ -2917,6 +2934,9 @@ var _v = function (exports) {
                     String
                 ]
             }
+        },
+        data: function () {
+            return { isColumn: true };
         }
     };
 };
@@ -2935,11 +2955,11 @@ _p.render = function render() {
         _c('pimp', {
             tag: 'caption',
             model: {
-                value: _vm.columns,
+                value: _vm.pimped,
                 callback: function ($$v) {
-                    _vm.columns = $$v;
+                    _vm.pimped = $$v;
                 },
-                expression: 'columns'
+                expression: 'pimped'
             }
         }, [_vm._t('default')], 2),
         _vm._v(' '),
@@ -3108,7 +3128,7 @@ _p.render = function render() {
         scopedSlots: _vm._u([{
                 key: 'default',
                 fn: function (itr) {
-                    return [_vm._t('default', [_vm.edition(_vm.row) ? _vm._t('input', [_c('s-input', {
+                    return [_vm._t('default', [_vm.edition(itr.row) ? _vm._t('input', [_c('s-input', {
                                     attrs: { 'type': 'text' },
                                     model: {
                                         value: _vm.scope(itr.row).value,
@@ -3213,12 +3233,12 @@ var _v = function (exports) {
             if (!selection || true === selection) {
                 this.selectAll(this.defaultv = this.allSelected = !!selection);
             } else if (selection instanceof Array) {
-                if (selection === this.table.rows) {
+                if (selection === this.modeled.rows) {
                     this.defaultv = true;
                     this.$emit('selection-change', [].concat(selection));
                 } else if (selection !== this.selection)
                     this.$emit('selection-change', selection);
-                for (var _i = 0, _a = this.table.rows; _i < _a.length; _i++) {
+                for (var _i = 0, _a = this.modeled.rows; _i < _a.length; _i++) {
                     var row = _a[_i];
                     this.setRow(row, !!~selection.indexOf(row));
                 }
@@ -3228,7 +3248,7 @@ var _v = function (exports) {
         };
         CheckboxColumn.prototype.selectAll = function (checked) {
             if ('boolean' === typeof checked) {
-                for (var _i = 0, _a = this.table.rows; _i < _a.length; _i++) {
+                for (var _i = 0, _a = this.modeled.rows; _i < _a.length; _i++) {
                     var row = _a[_i];
                     this.setRow(row, checked);
                 }
@@ -3238,11 +3258,11 @@ var _v = function (exports) {
                 selection.splice.apply(selection, [
                     0,
                     selection.length
-                ].concat(checked ? this.table.rows : []));
+                ].concat(checked ? this.modeled.rows : []));
             }
         };
         CheckboxColumn.prototype.computeAll = function () {
-            this.allSelected = 0 === this.table.rows.length ? this.defaultv : 0 === this.selection.length ? false : this.table.rows.length === this.selection.length ? true : null;
+            this.allSelected = 0 === this.modeled.rows.length ? this.defaultv : 0 === this.selection.length ? false : this.modeled.rows.length === this.selection.length ? true : null;
         };
         CheckboxColumn.prototype.select = function (row) {
             if (this.selection)
@@ -3274,7 +3294,7 @@ var _v = function (exports) {
         __decorate([
             vue_property_decorator_1.Inject(),
             __metadata('design:type', Object)
-        ], CheckboxColumn.prototype, 'table', void 0);
+        ], CheckboxColumn.prototype, 'modeled', void 0);
         __decorate([
             vue_property_decorator_1.Prop({ default: 'selected' }),
             __metadata('design:type', String)
@@ -3283,6 +3303,16 @@ var _v = function (exports) {
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
         ], CheckboxColumn.prototype, 'header', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({
+                type: [
+                    Number,
+                    String
+                ],
+                default: 29
+            }),
+            __metadata('design:type', Object)
+        ], CheckboxColumn.prototype, 'width', void 0);
         __decorate([
             vue_property_decorator_1.Model('selection-change', {
                 type: [
@@ -3293,7 +3323,7 @@ var _v = function (exports) {
             __metadata('design:type', Object)
         ], CheckboxColumn.prototype, 'selection', void 0);
         __decorate([
-            vue_property_decorator_1.Watch('table.rows', { deep: true }),
+            vue_property_decorator_1.Watch('modeled.rows', { deep: true }),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
             __metadata('design:returntype', void 0)
@@ -3356,6 +3386,259 @@ _p.render = function render() {
                 allSelected: _vm.allSelected,
                 setSelection: _vm.setSelection
             })], 2)], 2);
+};
+_p.staticRenderFns = [];
+var _e = {};
+_v(_e);
+Object.assign(_e.default.options || _e.default, _p);
+module.exports = _e;
+});
+___scope___.file("src/components/table/row-edit-column.vue", function(exports, require, module, __filename, __dirname){
+
+var _p = {};
+var _v = function (exports) {
+    'use strict';
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
+    var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata = this && this.__metadata || function (k, v) {
+        if (typeof Reflect === 'object' && typeof Reflect.metadata === 'function')
+            return Reflect.metadata(k, v);
+    };
+    Object.defineProperty(exports, '__esModule', { value: true });
+    var Vue = require('vue/dist/vue.common.js');
+    var vue_property_decorator_1 = require('vue-property-decorator');
+    var button_vue_1 = require('../button.vue');
+    var vue_ripper_1 = require('vue-ripper');
+    var index_vue_1 = require('./index.vue');
+    var RowEditColumn = function (_super) {
+        __extends(RowEditColumn, _super);
+        function RowEditColumn() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.editingRows = [];
+            _this.savedState = [];
+            return _this;
+        }
+        RowEditColumn.prototype.rowsChanged = function (rows) {
+            for (var i = 0; i < this.editingRows.length;) {
+                var ndx = rows.indexOf(this.editingRows[i]);
+                if (~ndx)
+                    ++i;
+                else {
+                    this.$emit('cancel', this.editingRows[i], this.savedState[i], true);
+                    this.editingRows.splice(i, 1);
+                    this.savedState.splice(i, 1);
+                }
+            }
+        };
+        RowEditColumn.prototype.mounted = function () {
+            console.assert(this.modeled.editionManagers, 'Edit-columns must be inside a Table');
+            this.modeled.editionManagers.push(this.isEdited);
+        };
+        RowEditColumn.prototype.destroyed = function () {
+            var ndx = this.modeled.editionManagers.indexOf(this.isEdited);
+            if (~ndx)
+                this.modeled.editionManagers.splice(ndx, 1);
+        };
+        RowEditColumn.prototype.isEdited = function (row, field, e) {
+            return e && ~this.editingRows.indexOf(row);
+        };
+        RowEditColumn.prototype.cancelableAction = function (name, params, action) {
+            if (this.$cancelable.apply(this, [
+                    name,
+                    action
+                ].concat(params)))
+                action();
+        };
+        RowEditColumn.prototype.editRow = function (row) {
+            var _this = this;
+            var stateSave = {};
+            this.cancelableAction('edit', [
+                row,
+                stateSave
+            ], function () {
+                _this.editingRows.push(row);
+                _this.savedState.push(stateSave);
+            });
+        };
+        RowEditColumn.prototype.saveRow = function (row) {
+            var _this = this;
+            var ndx = this.editingRows.indexOf(row);
+            console.assert(!!~ndx, 'Saved row is edited');
+            this.cancelableAction('save', [
+                row,
+                this.savedState[ndx]
+            ], function () {
+                _this.editingRows.splice(ndx, 1);
+                _this.savedState.splice(ndx, 1);
+            });
+        };
+        RowEditColumn.prototype.cancelRow = function (row) {
+            var _this = this;
+            var ndx = this.editingRows.indexOf(row);
+            console.assert(!!~ndx, 'Canceled row is edited');
+            this.cancelableAction('cancel', [
+                row,
+                this.savedState[ndx],
+                false
+            ], function () {
+                _this.editingRows.splice(ndx, 1);
+                _this.savedState.splice(ndx, 1);
+            });
+        };
+        RowEditColumn.prototype.removeRow = function (row) {
+            this.cancelableAction('remove', [row], function () {
+                row.destroy();
+            });
+        };
+        RowEditColumn.prototype.editing = function (row) {
+            return !!~this.editingRows.indexOf(row);
+        };
+        __decorate([
+            vue_property_decorator_1.Inject(),
+            __metadata('design:type', Object)
+        ], RowEditColumn.prototype, 'modeled', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], RowEditColumn.prototype, 'header', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({
+                type: [
+                    Number,
+                    String
+                ],
+                default: 90
+            }),
+            __metadata('design:type', Object)
+        ], RowEditColumn.prototype, 'width', void 0);
+        __decorate([
+            vue_property_decorator_1.Watch('modeled.rows', { deep: true }),
+            __metadata('design:type', Function),
+            __metadata('design:paramtypes', [Object]),
+            __metadata('design:returntype', void 0)
+        ], RowEditColumn.prototype, 'rowsChanged', null);
+        RowEditColumn = __decorate([vue_property_decorator_1.Component({
+                components: {
+                    Ripper: vue_ripper_1.Ripper,
+                    sButton: button_vue_1.default
+                },
+                mixins: [index_vue_1.default.managedColumn]
+            })], RowEditColumn);
+        return RowEditColumn;
+    }(Vue);
+    exports.default = RowEditColumn;
+};
+_p.render = function render() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('ripper', {
+        scopedSlots: _vm._u([{
+                key: 'default',
+                fn: function (scope) {
+                    return [_vm._t('default', [_vm.editing(scope.row) ? _vm._t('editing', [
+                                _c('s-button', {
+                                    attrs: {
+                                        'icon': 'save',
+                                        'positive': ''
+                                    },
+                                    on: {
+                                        'click': function ($event) {
+                                            _vm.saveRow(scope.row);
+                                        }
+                                    }
+                                }),
+                                _vm._v(' '),
+                                _c('s-button', {
+                                    staticClass: 'orange',
+                                    attrs: { 'icon': 'remove' },
+                                    on: {
+                                        'click': function ($event) {
+                                            _vm.cancelRow(scope.row);
+                                        }
+                                    }
+                                })
+                            ], {
+                                row: scope.row,
+                                save: function () {
+                                    return _vm.saveRow(scope.row);
+                                },
+                                cancel: function () {
+                                    return _vm.cancelRow(scope.row);
+                                }
+                            }) : _vm._t('displaying', [
+                                _c('s-button', {
+                                    staticClass: 'blue',
+                                    attrs: { 'icon': 'edit' },
+                                    on: {
+                                        'click': function ($event) {
+                                            _vm.editRow(scope.row);
+                                        }
+                                    }
+                                }),
+                                _vm._v(' '),
+                                _c('s-button', {
+                                    attrs: {
+                                        'icon': 'trash',
+                                        'negative': ''
+                                    },
+                                    on: {
+                                        'click': function ($event) {
+                                            _vm.removeRow(scope.row);
+                                        }
+                                    }
+                                })
+                            ], {
+                                row: scope.row,
+                                edit: function () {
+                                    return _vm.editRow(scope.row);
+                                },
+                                remove: function () {
+                                    return _vm.removeRow(scope.row);
+                                }
+                            })], {
+                            row: scope.row,
+                            edit: function () {
+                                return _vm.editRow(scope.row);
+                            },
+                            remove: function () {
+                                return _vm.removeRow(scope.row);
+                            },
+                            save: function () {
+                                return _vm.saveRow(scope.row);
+                            },
+                            cancel: function () {
+                                return _vm.cancelRow(scope.row);
+                            },
+                            editing: _vm.editing(scope.row)
+                        })];
+                }
+            }])
+    }, [_c('template', { slot: 'header' }, [_vm._t('header', [_vm.header ? [_vm._v(_vm._s(_vm.header))] : _vm._e()])], 2)], 2);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -5306,12 +5589,7 @@ _p.render = function render() {
         }, [
             _c('div', { slot: 'header' }, [_vm._v('\n\t\t\tIn-table header\n\t\t')]),
             _vm._v(' '),
-            _c('s-checkbox-column', {
-                attrs: {
-                    'selection': _vm.my_selection,
-                    'width': '29'
-                }
-            }),
+            _c('s-checkbox-column', { attrs: { 'selection': _vm.my_selection } }),
             _vm._v(' '),
             _c('s-column', {
                 attrs: {
@@ -5339,7 +5617,9 @@ _p.render = function render() {
                     'prop': 'deep.reason',
                     'header': 'Q?'
                 }
-            })
+            }),
+            _vm._v(' '),
+            _c('s-row-edit-column')
         ], 1),
         _vm._v(' '),
         _c('div', [
