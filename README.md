@@ -6,7 +6,7 @@ Integration of [semantic-ui2](https://semantic-ui.com) with [vue.js2](https://vu
 
 The purpose of the integration is to allow some logic-level approach - ex: the tables are defined by column and not by rows - and to integrate the `jQuery` for it to be invisible to the programer. `jQuery` of course still needs to be installed, but there is no need to use it.
 
-The classes specific to a component are set as boolean properties of the component. These two codes are equivalent :
+The css-classes specific to a component are set as boolean properties of the component. These two codes are equivalent :
 ```html
 <button primary>Click me!</button>
 <button class="primary">Click me!</button>
@@ -35,13 +35,9 @@ import {Modal, Command, Button} from 'v-semantic'
 	directives: {Command}
 })
 ```
-Requiring the main library will export each components and a `default` that lets you `Vue.install(...)`.
+Requiring the main library will export each components and directives, and a `default` that lets you `Vue.install(...)`.
 The `prefix` (default `"s"`) option will be used before each name of component for registration ('button' --> `<s-button />`)
 
-## Bundling
-This library integrate a straightforward way bundling with [fuse-box](fuse-box.org). If you make a project with this bundler, it will be straight-forward.
-
- Unfortunately, fuse-box poorly makes universal bundles. To bundle `v-semantic`, you can simply bundle the sources.
 ## Usage
 This library integrate a straightforward way bundling with [fuse-box](fuse-box.org). If you make a project with this bundler, it will be straight-forward.
 
@@ -69,7 +65,6 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 
 # Components
 
-#### beta
 These should work and implement their intended final behaviour, even if details can still change
 - [flag](./docs/components/flag.md)
 - [icon](./docs/components/icon.md)
@@ -82,7 +77,6 @@ These should work and implement their intended final behaviour, even if details 
 - [dimming](./docs/components/dimm.md)
 - [form](./docs/components/form.md)
 - [progress](./docs/components/progress.md)
-#### alpha
 - [table](./docs/components/table.md)
 - [tabs](./docs/components/tabs.md)
 
@@ -96,7 +90,6 @@ These have been developped deeper in this library even not completely bound to s
 - menus
 - radios
 - embed (iframe)
-- progress
 - sidebar
 - search
 - shape
@@ -108,7 +101,7 @@ These have been developped deeper in this library even not completely bound to s
 - messages
 
 ## No plans to implement
-Some of `semantic-ui` functionalities are just classes to add to some `div` that I don't see the point of making a custom control out of.
+Some of `semantic-ui` functionalities are just classes to add to some `div` for which the point of making a custom control out of is discussable.
 - container
 - divider
 - header
@@ -124,7 +117,6 @@ Some of `semantic-ui` functionalities are just classes to add to some `div` that
 ## Things that might perhaps be automated
 - label
 - breadcrumbs (integration with vue-router)
-- forms (validation agains json-schema AND/OR semantic validation system)
 - menu (integration with vue-router)
 - message (toasters? ...?)
 - nag

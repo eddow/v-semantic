@@ -2856,7 +2856,7 @@ var _v = function (exports) {
         Table.prototype.rowsUpdate = function (rows) {
             var _this = this;
             this.invalidateScopes(rows);
-            if (!~rows.indexOf(this.current)) {
+            if (this.current && !~rows.indexOf(this.current)) {
                 var newSelect = null;
                 if (this.idProperty) {
                     var selId_1 = this.current[this.idProperty];
@@ -5412,9 +5412,9 @@ var _v = function (exports) {
     Object.defineProperty(exports, '__esModule', { value: true });
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
-    var Form = function (_super) {
-        __extends(Form, _super);
-        function Form() {
+    var Progress = function (_super) {
+        __extends(Progress, _super);
+        function Progress() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.percent = 0;
             _this.value = 0;
@@ -5424,20 +5424,20 @@ var _v = function (exports) {
             _this.status = null;
             return _this;
         }
-        Form.prototype.mounted = function () {
+        Progress.prototype.mounted = function () {
         };
-        Form.prototype.mm = function ($event) {
+        Progress.prototype.mm = function ($event) {
             this.setValue = Math.round($event.offsetX * 23 / 800);
             this.setPercent = Math.round($event.offsetX / 8);
         };
-        Form.prototype.md = function ($event) {
+        Progress.prototype.md = function ($event) {
             this.percent = this.setPercent;
             this.value = this.setValue;
         };
-        Form = __decorate([vue_property_decorator_1.Component], Form);
-        return Form;
+        Progress = __decorate([vue_property_decorator_1.Component], Progress);
+        return Progress;
     }(Vue);
-    exports.default = Form;
+    exports.default = Progress;
 };
 require('fuse-box-css')('test/routes/progress.vue', '\r\ndiv.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
 _p.render = function render() {
@@ -5615,9 +5615,9 @@ var _v = function (exports) {
             deep: { reason: 42 }
         };
     });
-    var Accordion = function (_super) {
-        __extends(Accordion, _super);
-        function Accordion() {
+    var Table = function (_super) {
+        __extends(Table, _super);
+        function Table() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.copy = deep_1.copy;
             _this.my_row = null;
@@ -5625,7 +5625,7 @@ var _v = function (exports) {
             _this.my_selection = [];
             return _this;
         }
-        Object.defineProperty(Accordion.prototype, 'sum_b', {
+        Object.defineProperty(Table.prototype, 'sum_b', {
             get: function () {
                 return this.my_rows.reduce(function (acc, row) {
                     return acc + row.b;
@@ -5634,10 +5634,10 @@ var _v = function (exports) {
             enumerable: true,
             configurable: true
         });
-        Accordion = __decorate([vue_property_decorator_1.Component], Accordion);
-        return Accordion;
+        Table = __decorate([vue_property_decorator_1.Component], Table);
+        return Table;
     }(Vue);
-    exports.default = Accordion;
+    exports.default = Table;
 };
 _p.render = function render() {
     var _vm = this;

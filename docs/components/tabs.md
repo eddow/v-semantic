@@ -25,10 +25,4 @@ An `tabs` is a [panel](../concepts/panel.md) container, so panels are described 
 - `secondary`
 
 ## Future
-I am quite unhappy of this one component. It is a bunch of copy-paste because the position is tough to generalise; it seems the easier to just re-write a different template for each position (and even this ought to be done better than by v-else-if) It might even just become a `<s-top-tabs>` for instance.
-
-Any idea is of course welcomed.
-
-Also, the horizontal version (`position: 'left'|'right'`) has not been worked at all; the column sizing is still in tests hard-coded values for exemple.
-
-Also, I had no intention to implement the ajax tabs - everything is of course discussable.
+There is no plan to implement the ajax tabs.
