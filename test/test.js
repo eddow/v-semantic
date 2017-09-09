@@ -638,10 +638,20 @@ function molded(slotNames) {
         Property.prototype.destroyScope = function (scope) {
             scope.unwatch();
         };
+        Object.defineProperty(Property.prototype, 'molds', {
+            get: function () {
+                var _this = this;
+                return this.modeled.molds.filter(function (mold) {
+                    return !mold.select || 'function' === typeof mold.select && mold.select(_this) || mold.select === _this.type;
+                });
+            },
+            enumerable: true,
+            configurable: true
+        });
         Property.prototype.moldProp = function (name) {
             if (this[name])
                 return this[name];
-            for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
+            for (var _i = 0, _a = this.molds; _i < _a.length; _i++) {
                 var mold = _a[_i];
                 if (mold[name])
                     return mold[name];
@@ -658,10 +668,10 @@ function molded(slotNames) {
             vnodeGiven = vnodeGiven && vnodeGiven[name];
             if (vnodeGiven)
                 return scoped(vnodeGiven);
-            for (var _i = 0, _a = this.modeled.molds; _i < _a.length; _i++) {
+            for (var _i = 0, _a = this.molds; _i < _a.length; _i++) {
                 var mold = _a[_i];
                 var slot = mold.$scopedSlots[name];
-                if (slot && (!mold.select || 'function' === typeof mold.select && mold.select(this) || mold.select === this.type))
+                if (slot)
                     return scoped(slot);
             }
         };

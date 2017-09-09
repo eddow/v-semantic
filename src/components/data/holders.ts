@@ -9,7 +9,7 @@ export const DataMold = {
 		input: Function,
 		output: Function
 	},
-	mounted: function() {
+	created: function() {
 		this.modeled.molds.push(this);
 	},
 	destroyed: function() {

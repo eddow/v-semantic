@@ -80,9 +80,16 @@ export default function molded(slotNames) {
 		destroyScope(scope) {
 			scope.unwatch();
 		}
+		get molds() {
+			return this.modeled.molds.filter(mold=> 
+					!mold.select ||
+					('function'=== typeof mold.select && mold.select(this)) ||
+					mold.select === this.type);
+		}
+		//@Watch('molds') moldsChanged() { this.$forceUpdate(); }
 		moldProp(name) {
 			if(this[name]) return this[name];
-			for(let mold of this.modeled.molds)
+			for(let mold of this.molds)
 				if(mold[name])
 					return mold[name];
 		}
@@ -93,13 +100,9 @@ export default function molded(slotNames) {
 			var vnodeGiven = this.$options._parentVnode.data.scopedSlots;
 			vnodeGiven = vnodeGiven && vnodeGiven[name];
 			if(vnodeGiven) return scoped(vnodeGiven);
-			for(let mold of this.modeled.molds) {
+			for(let mold of this.molds) {
 				let slot = mold.$scopedSlots[name];
-				if(slot && (
-					!mold.select ||
-					('function'=== typeof mold.select && mold.select(this)) ||
-					mold.select === this.type)
-				)
+				if(slot)
 					//return this.$slots[name] = slot(this.scope(this.modeled.model))||[];
 					return scoped(slot);
 			}
