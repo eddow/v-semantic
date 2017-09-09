@@ -43,7 +43,7 @@ import {routes} from './routes'
 export default class App extends Vue {
 	routes = routes
 	code = null
-	showSource: boolean = false
+	showSource: boolean = true
 	editorOptions = {
 		tabSize: 2,
 		mode: 'text/x-vue',

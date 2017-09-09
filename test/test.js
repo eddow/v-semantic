@@ -2392,7 +2392,7 @@ exports.DataMold = {
         input: Function,
         output: Function
     },
-    mounted: function () {
+    created: function () {
         this.modeled.molds.push(this);
     },
     destroyed: function () {
@@ -4568,7 +4568,7 @@ var _v = function (exports) {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.routes = routes_1.routes;
             _this.code = null;
-            _this.showSource = false;
+            _this.showSource = true;
             _this.editorOptions = {
                 tabSize: 2,
                 mode: 'text/x-vue',
