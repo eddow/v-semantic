@@ -24,7 +24,10 @@
 				</template>
 			</s-column>
 			<s-column prop="deep.reason" header="Q?" />
-			<s-row-edit-column />
+			<s-row-edit-column
+				@edit="(row, state)=> copy(row, state)"
+				@cancel="(row, state)=> copy(state, row)"
+			/>
 		</s-table>
 		<div>
 			<p><h3>current-row</h3> {{my_row}}</p>
@@ -35,6 +38,7 @@
 <script lang="ts">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {copy} from 'lib/deep'
 
 var rows = (new Array(10)).fill().map((x,i)=> ({
 	a: ''+i*2,
@@ -43,6 +47,7 @@ var rows = (new Array(10)).fill().map((x,i)=> ({
 }));
 @Component
 export default class Accordion extends Vue {
+	copy = copy
 	my_row = null
 	my_rows = rows
 	my_selection = []

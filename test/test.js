@@ -337,24 +337,20 @@ function idSpace(pfx) {
     };
 }
 exports.idSpace = idSpace;
-var CancelError = new Error('Canceled event');
 __assign(Vue.prototype, {
-    $cancelEvent: function () {
-        throw CancelError;
-    },
     $cancelable: function (event) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        try {
-            this.$emit.apply(this, [S(event).dasherize().s].concat(args));
-            return true;
-        } catch (x) {
-            if (CancelError !== x)
-                throw x;
-            return false;
-        }
+        var rv = true;
+        this.$emit.apply(this, [S(event).dasherize().s].concat(args, [function (v) {
+                if (v === void 0) {
+                    v = false;
+                }
+                return rv = v;
+            }]));
+        return rv;
     }
 });
 });
@@ -2848,9 +2844,18 @@ var _v = function (exports) {
         Table.prototype.rowClick = function (row) {
         };
         Table.prototype.rowsUpdate = function (rows) {
+            var _this = this;
             this.invalidateScopes(rows);
-            if (!~rows.indexOf(this.current))
-                this.$emit('row-click', null);
+            if (!~rows.indexOf(this.current)) {
+                var newSelect = null;
+                if (this.idProperty) {
+                    var selId_1 = this.current[this.idProperty];
+                    newSelect = rows.find(function (x) {
+                        return x[_this.idProperty] === selId_1;
+                    }) || null;
+                }
+                this.$emit('row-click', newSelect);
+            }
         };
         __decorate([
             vue_property_decorator_1.Model('row-click'),
@@ -3364,7 +3369,7 @@ _p.render = function render() {
                                     }
                                 }
                             })], {
-                            row: scope.row,
+                            model: scope.row,
                             checked: scope.row[_vm.prop],
                             select: _vm.select,
                             unselect: _vm.unselect,
@@ -3414,6 +3419,15 @@ var _v = function (exports) {
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     }();
+    var __assign = this && this.__assign || Object.assign || function (t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s)
+                if (Object.prototype.hasOwnProperty.call(s, p))
+                    t[p] = s[p];
+        }
+        return t;
+    };
     var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === 'object' && typeof Reflect.decorate === 'function')
@@ -3438,17 +3452,25 @@ var _v = function (exports) {
         __extends(RowEditColumn, _super);
         function RowEditColumn() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.editingRows = [];
             _this.savedState = [];
             return _this;
         }
+        RowEditColumn.prototype.setEditing = function (row, editing) {
+            if (this.prop) {
+                var hideProp = !(this.prop in row);
+                Vue.set(row, this.prop, editing);
+                if (hideProp)
+                    Object.defineProperty(row, this.prop, __assign({}, Object.getOwnPropertyDescriptor(row, this.prop), { enumerable: false }));
+            }
+        };
         RowEditColumn.prototype.rowsChanged = function (rows) {
             for (var i = 0; i < this.editingRows.length;) {
                 var ndx = rows.indexOf(this.editingRows[i]);
                 if (~ndx)
                     ++i;
                 else {
-                    this.$emit('cancel', this.editingRows[i], this.savedState[i], true);
+                    this.$emit('cancel', this.editingRows[i], this.savedState[i]);
+                    this.setEditing(this.editingRows[i], true);
                     this.editingRows.splice(i, 1);
                     this.savedState.splice(i, 1);
                 }
@@ -3467,10 +3489,7 @@ var _v = function (exports) {
             return e && ~this.editingRows.indexOf(row);
         };
         RowEditColumn.prototype.cancelableAction = function (name, params, action) {
-            if (this.$cancelable.apply(this, [
-                    name,
-                    action
-                ].concat(params)))
+            if (this.$cancelable.apply(this, [name].concat(params, [action])))
                 action();
         };
         RowEditColumn.prototype.editRow = function (row) {
@@ -3480,6 +3499,7 @@ var _v = function (exports) {
                 row,
                 stateSave
             ], function () {
+                _this.setEditing(row, true);
                 _this.editingRows.push(row);
                 _this.savedState.push(stateSave);
             });
@@ -3492,6 +3512,7 @@ var _v = function (exports) {
                 row,
                 this.savedState[ndx]
             ], function () {
+                _this.setEditing(row, false);
                 _this.editingRows.splice(ndx, 1);
                 _this.savedState.splice(ndx, 1);
             });
@@ -3502,20 +3523,26 @@ var _v = function (exports) {
             console.assert(!!~ndx, 'Canceled row is edited');
             this.cancelableAction('cancel', [
                 row,
-                this.savedState[ndx],
-                false
+                this.savedState[ndx]
             ], function () {
+                _this.setEditing(row, false);
                 _this.editingRows.splice(ndx, 1);
                 _this.savedState.splice(ndx, 1);
             });
         };
         RowEditColumn.prototype.removeRow = function (row) {
+            var _this = this;
+            var ndx = this.modeled.rows.indexOf(row);
+            console.assert(!!~ndx, 'Removed row is in the table rows');
             this.cancelableAction('remove', [row], function () {
-                row.destroy();
+                _this.modeled.rows.splice(ndx, 1);
             });
         };
         RowEditColumn.prototype.editing = function (row) {
             return !!~this.editingRows.indexOf(row);
+        };
+        RowEditColumn.prototype.unsavable = function (row) {
+            return this.hasChanges && !this.hasChanges(row);
         };
         __decorate([
             vue_property_decorator_1.Inject(),
@@ -3526,6 +3553,10 @@ var _v = function (exports) {
             __metadata('design:type', String)
         ], RowEditColumn.prototype, 'header', void 0);
         __decorate([
+            vue_property_decorator_1.Prop(),
+            __metadata('design:type', String)
+        ], RowEditColumn.prototype, 'prop', void 0);
+        __decorate([
             vue_property_decorator_1.Prop({
                 type: [
                     Number,
@@ -3535,6 +3566,35 @@ var _v = function (exports) {
             }),
             __metadata('design:type', Object)
         ], RowEditColumn.prototype, 'width', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ type: Function }),
+            __metadata('design:type', Function)
+        ], RowEditColumn.prototype, 'hasChanges', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ default: 'checkmark' }),
+            __metadata('design:type', String)
+        ], RowEditColumn.prototype, 'saveIcon', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ default: 'remove' }),
+            __metadata('design:type', String)
+        ], RowEditColumn.prototype, 'cancelIcon', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ default: 'edit' }),
+            __metadata('design:type', String)
+        ], RowEditColumn.prototype, 'editIcon', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ default: 'trash' }),
+            __metadata('design:type', String)
+        ], RowEditColumn.prototype, 'removeIcon', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({
+                type: Array,
+                default: function () {
+                    return [];
+                }
+            }),
+            __metadata('design:type', Object)
+        ], RowEditColumn.prototype, 'editingRows', void 0);
         __decorate([
             vue_property_decorator_1.Watch('modeled.rows', { deep: true }),
             __metadata('design:type', Function),
@@ -3563,7 +3623,8 @@ _p.render = function render() {
                     return [_vm._t('default', [_vm.editing(scope.row) ? _vm._t('editing', [
                                 _c('s-button', {
                                     attrs: {
-                                        'icon': 'save',
+                                        'icon': _vm.saveIcon,
+                                        'disabled': _vm.unsavable(scope.row),
                                         'positive': ''
                                     },
                                     on: {
@@ -3575,7 +3636,7 @@ _p.render = function render() {
                                 _vm._v(' '),
                                 _c('s-button', {
                                     staticClass: 'orange',
-                                    attrs: { 'icon': 'remove' },
+                                    attrs: { 'icon': _vm.cancelIcon },
                                     on: {
                                         'click': function ($event) {
                                             _vm.cancelRow(scope.row);
@@ -3593,7 +3654,7 @@ _p.render = function render() {
                             }) : _vm._t('displaying', [
                                 _c('s-button', {
                                     staticClass: 'blue',
-                                    attrs: { 'icon': 'edit' },
+                                    attrs: { 'icon': _vm.editIcon },
                                     on: {
                                         'click': function ($event) {
                                             _vm.editRow(scope.row);
@@ -3603,7 +3664,7 @@ _p.render = function render() {
                                 _vm._v(' '),
                                 _c('s-button', {
                                     attrs: {
-                                        'icon': 'trash',
+                                        'icon': _vm.removeIcon,
                                         'negative': ''
                                     },
                                     on: {
@@ -5536,6 +5597,7 @@ var _v = function (exports) {
     Object.defineProperty(exports, '__esModule', { value: true });
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
+    var deep_1 = require('~/src/lib/deep');
     var rows = new Array(10).fill().map(function (x, i) {
         return {
             a: '' + i * 2,
@@ -5547,6 +5609,7 @@ var _v = function (exports) {
         __extends(Accordion, _super);
         function Accordion() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.copy = deep_1.copy;
             _this.my_row = null;
             _this.my_rows = rows;
             _this.my_selection = [];
@@ -5619,7 +5682,16 @@ _p.render = function render() {
                 }
             }),
             _vm._v(' '),
-            _c('s-row-edit-column')
+            _c('s-row-edit-column', {
+                on: {
+                    'edit': function (row, state) {
+                        return _vm.copy(row, state);
+                    },
+                    'cancel': function (row, state) {
+                        return _vm.copy(state, row);
+                    }
+                }
+            })
         ], 1),
         _vm._v(' '),
         _c('div', [

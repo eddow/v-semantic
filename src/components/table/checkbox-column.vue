@@ -7,7 +7,7 @@
 			</slot>
 		</template>
 		<template scope="scope">
-			<slot :row="scope.row" :checked="scope.row[prop]" :select="select" :unselect="unselect" :toggle="toggle">
+			<slot :model="scope.row" :checked="scope.row[prop]" :select="select" :unselect="unselect" :toggle="toggle">
 				<checkbox :checked="scope.row[prop]" @checked="select(scope.row)" @unchecked="unselect(scope.row)" />
 			</slot>
 		</template>

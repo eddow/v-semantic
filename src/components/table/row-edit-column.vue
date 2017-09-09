@@ -47,6 +47,7 @@ import table from './index.vue'
 export default class RowEditColumn extends Vue {
 	@Inject() modeled
 	@Prop() header: string
+	@Prop() prop: string
 	@Prop({type:[Number, String], default: 90}) width
 	@Prop({type: Function}) hasChanges: (row: any)=> boolean
 
@@ -58,13 +59,26 @@ export default class RowEditColumn extends Vue {
 	@Prop({type: Array, default: ()=>[]}) editingRows
 	savedState = []
 	
+	setEditing(row, editing) {
+		if(this.prop) {
+			var hideProp = !(this.prop in row);
+			Vue.set(row, this.prop, editing);
+			if(hideProp)
+				Object.defineProperty(row, this.prop, {
+					...Object.getOwnPropertyDescriptor(row, this.prop),
+					enumerable: false
+				});
+		}
+	}
+
 	@Watch('modeled.rows', {deep: true})
 	rowsChanged(rows) {
 		for(let i=0; i<this.editingRows.length;) {
 			let ndx = rows.indexOf(this.editingRows[i]);
 			if(~ndx) ++i;
 			else {
-				this.$emit('cancel', this.editingRows[i], this.savedState[i], true);
+				this.$emit('cancel', this.editingRows[i], this.savedState[i]);
+				this.setEditing(this.editingRows[i], true);
 				this.editingRows.splice(i, 1);
 				this.savedState.splice(i, 1);
 			}
@@ -90,6 +104,7 @@ export default class RowEditColumn extends Vue {
 	editRow(row) {
 		var stateSave = {};
 		this.cancelableAction('edit', [row, stateSave], ()=> {
+			this.setEditing(row, true);
 			this.editingRows.push(row);
 			this.savedState.push(stateSave);
 		});
@@ -98,6 +113,7 @@ export default class RowEditColumn extends Vue {
 		var ndx = this.editingRows.indexOf(row);
 		console.assert(!!~ndx, 'Saved row is edited');
 		this.cancelableAction('save', [row, this.savedState[ndx]], ()=> {
+			this.setEditing(row, false);
 			this.editingRows.splice(ndx, 1);
 			this.savedState.splice(ndx, 1);
 		});
@@ -105,7 +121,8 @@ export default class RowEditColumn extends Vue {
 	cancelRow(row) {
 		var ndx = this.editingRows.indexOf(row);
 		console.assert(!!~ndx, 'Canceled row is edited');
-		this.cancelableAction('cancel', [row, this.savedState[ndx], false], ()=> {
+		this.cancelableAction('cancel', [row, this.savedState[ndx]], ()=> {
+			this.setEditing(row, false);
 			this.editingRows.splice(ndx, 1);
 			this.savedState.splice(ndx, 1);
 		});
