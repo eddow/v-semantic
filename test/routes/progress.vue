@@ -53,7 +53,7 @@ import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 
 @Component
-export default class Form extends Vue {
+export default class Progress extends Vue {
 	percent = 0
 	value = 0
 	total = 23

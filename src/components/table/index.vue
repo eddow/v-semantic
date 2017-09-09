@@ -167,7 +167,7 @@ export default class Table extends Vue {
 	invalidateScopes
 	@Watch('rows', {deep: true}) rowsUpdate(rows) {
 		this.invalidateScopes(rows);
-		if(!~rows.indexOf(this.current)) {
+		if(this.current && !~rows.indexOf(this.current)) {
 			var newSelect = null;
 			if(this.idProperty) {
 				let selId = this.current[this.idProperty];

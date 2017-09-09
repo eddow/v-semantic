@@ -46,7 +46,7 @@ var rows = (new Array(10)).fill().map((x,i)=> ({
 	deep: {reason: 42}
 }));
 @Component
-export default class Accordion extends Vue {
+export default class Table extends Vue {
 	copy = copy
 	my_row = null
 	my_rows = rows
