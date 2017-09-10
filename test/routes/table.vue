@@ -7,6 +7,7 @@
 			:rows="my_rows"
 			very-basic
 			:body-height="150"
+			:row-height="42"
 		>
 			<div slot="header">
 				In-table header

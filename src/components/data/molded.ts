@@ -13,7 +13,7 @@ const genFieldName = idSpace('fld');
 
 export default function molded(slotNames) {
 	@Component({
-		mixins: [renderWrap('initSlots'), modelScoped]
+		mixins: [renderWrap('initSlots'), modelScoped.extendOptions]
 	})
 	class Property extends Vue {
 		@Inject() modeled

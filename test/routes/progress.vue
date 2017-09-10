@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="progress-test">
 		<s-progress :percent="percent" v-model="status" />
 		<s-progress :value="value" :total="total" indicating ratio v-model="status">
 			indicating ratio
@@ -42,7 +42,7 @@
 	</div>
 </template>
 <style>
-div.command {
+.progress-test div.command {
 	width: 32px;
 	height: 32px;
 	display: inline-block;

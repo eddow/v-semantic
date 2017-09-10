@@ -31,7 +31,7 @@ import Modeled from '../data/modeled'
 import Command from 'directives/command'
 
 @Component({
-	mixins: [Modeled]
+	mixins: [Modeled.extendOptions]
 })
 export default class Form extends Command.Commanded {
 	@Prop({type: [String, Number]}) labelWidth: number|string

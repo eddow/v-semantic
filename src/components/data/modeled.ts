@@ -11,7 +11,7 @@ import {modelScoped} from './scope'
 			group: this
 		};
 	},
-	mixins: [modelScoped]
+	mixins: [modelScoped.extendOptions]
 })
 export default class Modeled extends Vue {
 	@Prop({default: ()=> ({})}) schema

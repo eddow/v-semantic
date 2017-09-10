@@ -31,7 +31,7 @@ import {idSpace} from 'lib/utils'
 import * as deep from 'lib/deep'
 import molded from '../data/molded'
 
-@Component({mixins: [molded(['append', 'prepend', 'field', 'input'])]})
+@Component({mixins: [molded(['append', 'prepend', 'field', 'input']).extendOptions]})
 export default class Field extends Vue {
 	//from Property
 	modeled

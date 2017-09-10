@@ -28,7 +28,7 @@ import molded from '../data/molded'
 
 @Component({
 	components: {Ripper},
-	mixins: [Table.managedColumn, molded(['header', 'display', 'input'])]
+	mixins: [Table.managedColumn, molded(['header', 'display', 'input']).extendOptions]
 })
 export default class Column extends Vue {
 	@Prop() prop: string

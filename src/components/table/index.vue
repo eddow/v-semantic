@@ -3,10 +3,10 @@
 		<caption is="pimp" v-model="pimped">
 			<slot />
 		</caption>
-		<caption v-if="$slots.header">
+		<caption v-if="$slots.header" :class="widthClass">
 			<slot name="header"/>
 		</caption>
-		<thead class="vued">
+		<thead :class="widthClass">
 			<tr class="vued">
 				<th is="ripped" v-for="(column, uid) in columns" :key="uid"
 					class="vued"
@@ -16,13 +16,18 @@
 				/>
 			</tr>
 		</thead>
-		<tbody class="vued" :style="{height: bodyHeight?bodyHeight+ 'px':undefined}">
+		<tbody class="vued"
+			@scroll="bodyScrollTop = $event.target.scrollTop"
+			:style="{height: bodyHeight?bodyHeight+ 'px':undefined}"
+		>
+			<tr v-if="heightKeeper()" :style="heightKeeper(true)">
+			</tr>
 			<tr
-				v-for="(row, index) in rows"
+				v-for="(row, index) in visibleRows"
 				:key="rowId(row)"
 				class="vued"
 				:class="[
-					rowClass(row, index),
+					rowClass(row, index+visibleIndexes.from),
 					{current: current === row}
 				]"
 				@click="rowClick(row)"
@@ -30,12 +35,14 @@
 				<td is="ripped" v-for="(column, uid) in columns" :key="uid"
 					:style="{width: column.width?column.width+'px':undefined}"
 					:ripper="column"
-					:scope="{row, index}"
+					:scope="{row, index: index+visibleIndexes.from}"
 					:render="renderCell"
 				/>
 			</tr>
+			<tr v-if="heightKeeper()" :style="heightKeeper(false)">
+			</tr>
 		</tbody>
-		<tfoot v-if="$slots.footer" class="vued">
+		<tfoot v-if="$slots.footer" :class="widthClass">
 			<tr class="vued">
 				<td :colspan="columns && columns.length" class="vued">
 					<slot name="footer"/>
@@ -53,9 +60,6 @@ table.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {
 	display: table;
 	width: 100%;
 	table-layout: fixed;
-}
-table.scroll-body > thead.vued {
-	width: calc( 100% - 0.71em );	/*TODO: real width management engine*/
 }
 table.ui.table.vued tbody.vued tr.vued.current > td {
 	background: rgba(192,192,192,0.2);
@@ -106,7 +110,7 @@ const generateRowId = idSpace('rw');
 	compact: Boolean
 }, {
 	components: {Pimp, Ripped},
-	mixins: [Modeled]
+	mixins: [Modeled.extendOptions]
 })
 export default class Table extends Vue {
 	@Model('row-click') @Prop() current
@@ -139,6 +143,7 @@ export default class Table extends Vue {
 		return rv;
 	}
 	@Prop({type: [Number, String]}) bodyHeight: number|string
+	@Prop({type: [Number, String]}) rowHeight: number|string
 	renderCell(h, slot) {
 		var classes = ['vued'], compound = false, browser = slot;
 		while(!compound && browser instanceof Array) {
@@ -175,6 +180,30 @@ export default class Table extends Vue {
 			}
 			this.$emit('row-click', newSelect);
 		}
+	}
+	heightKeeper(pos?) {
+		if(this.rowHeight && this.bodyHeight)
+			return {
+				height: pos?
+					Number(this.rowHeight)*this.visibleIndexes.from + 'px' :
+					Number(this.rowHeight)*(this.rows.length-this.visibleIndexes.to) + 'px'
+			};
+	}
+	bodyScrollTop = 0
+	visibleIndexes = {from: 0, to: 0}
+	get visibleRows() {
+		if(this.rowHeight && this.bodyHeight) {
+			this.visibleIndexes = {
+				from: Math.floor(this.bodyScrollTop/Number(this.rowHeight)),
+				to: Math.ceil((this.bodyScrollTop+Number(this.bodyHeight))/Number(this.rowHeight))
+			};
+			//console.log(indexes.from, indexes.to);
+			return this.rows.slice(this.visibleIndexes.from, this.visibleIndexes.to);
+		}
+		return this.rows;
+	}
+	get widthClass() {
+		return ['vued', this.bodyHeight ? 'paddingSBright' : ''];
 	}
 }
 

@@ -84,6 +84,7 @@ require('~/src/lib/module');
 require('~/src/lib/utils');
 require('~/src/lib/deep');
 require('~/src/lib/render');
+require('~/src/lib/sizes');
 require('./components/data/molded');
 require('./components/data/modeled');
 });
@@ -496,6 +497,42 @@ function updateWrap(wrap) {
 exports.updateWrap = updateWrap;
 //# sourceMappingURL=render.js.map
 });
+___scope___.file("src/lib/sizes.js", function(exports, require, module, __filename, __dirname){
+
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+function css2nbr(el, cls) {
+    return /^(\w*)px$/.exec(el.css(cls))[1];
+}
+function outerWidth(el) {
+    return +css2nbr(el, 'margin-right') + css2nbr(el, 'margin-left') + css2nbr(el, 'border-right-width') + css2nbr(el, 'border-left-width');
+}
+function innerWidth(el) {
+    return +css2nbr(el, 'padding-right') + css2nbr(el, 'padding-left');
+}
+var Vue = require('vue/dist/vue.common.js');
+var scrollDiv = document.createElement('div'), sbWidth, sbHeight;
+__assign(scrollDiv.style, {
+    width: '100px',
+    height: '100px',
+    overflow: 'scroll',
+    position: 'absolute',
+    top: '-200px'
+});
+document.body.appendChild(scrollDiv);
+Vue.set(Vue.prototype, '$scrollBarSize', {
+    width: sbWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth,
+    height: sbHeight = scrollDiv.offsetHeight - scrollDiv.clientHeight
+});
+var head = document.head || document.getElementsByTagName('head')[0], style = document.createElement('style'), css = '/* Generated */\n\t.width100lessSB { width: calc( 100% - ' + sbWidth + 'px ) !important; }\n\t.height100lessSB { height: calc( 100% - ' + sbHeight + 'px ) !important; }\n\t.paddingSBright { padding-right: ' + sbWidth + 'px !important; }\n\t.paddingSBbottom { padding-bottom: ' + sbHeight + 'px !important; }';
+style.type = 'text/css';
+if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+} else {
+    style.appendChild(document.createTextNode(css));
+}
+head.appendChild(style);
+});
 ___scope___.file("src/components/data/molded.js", function(exports, require, module, __filename, __dirname){
 var __decorate = __fsbx_decorate(arguments)
 'use strict';
@@ -753,7 +790,7 @@ function molded(slotNames) {
         Property = __decorate([vue_property_decorator_1.Component({
                 mixins: [
                     render_1.renderWrap('initSlots'),
-                    scope_1.modelScoped
+                    scope_1.modelScoped.extendOptions
                 ]
             })], Property);
         return Property;
@@ -982,7 +1019,7 @@ var Modeled = function (_super) {
                     group: this
                 };
             },
-            mixins: [scope_1.modelScoped]
+            mixins: [scope_1.modelScoped.extendOptions]
         })], Modeled);
     return Modeled;
 }(Vue);
@@ -2202,7 +2239,7 @@ var _v = function (exports) {
             __metadata('design:paramtypes', [Object]),
             __metadata('design:returntype', void 0)
         ], Form.prototype, 'changeModel', null);
-        Form = __decorate([vue_property_decorator_1.Component({ mixins: [modeled_1.default] })], Form);
+        Form = __decorate([vue_property_decorator_1.Component({ mixins: [modeled_1.default.extendOptions] })], Form);
         return Form;
     }(command_1.default.Commanded);
     exports.default = Form;
@@ -2317,7 +2354,7 @@ var _v = function (exports) {
                         'prepend',
                         'field',
                         'input'
-                    ])]
+                    ]).extendOptions]
             })], Field);
         return Field;
     }(Vue);
@@ -2801,6 +2838,11 @@ var _v = function (exports) {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.editionManagers = [];
             _this.pimped = null;
+            _this.bodyScrollTop = 0;
+            _this.visibleIndexes = {
+                from: 0,
+                to: 0
+            };
             return _this;
         }
         Table.prototype.edition = function (row, field) {
@@ -2867,6 +2909,34 @@ var _v = function (exports) {
                 this.$emit('row-click', newSelect);
             }
         };
+        Table.prototype.heightKeeper = function (pos) {
+            if (this.rowHeight && this.bodyHeight)
+                return { height: pos ? Number(this.rowHeight) * this.visibleIndexes.from + 'px' : Number(this.rowHeight) * (this.rows.length - this.visibleIndexes.to) + 'px' };
+        };
+        Object.defineProperty(Table.prototype, 'visibleRows', {
+            get: function () {
+                if (this.rowHeight && this.bodyHeight) {
+                    this.visibleIndexes = {
+                        from: Math.floor(this.bodyScrollTop / Number(this.rowHeight)),
+                        to: Math.ceil((this.bodyScrollTop + Number(this.bodyHeight)) / Number(this.rowHeight))
+                    };
+                    return this.rows.slice(this.visibleIndexes.from, this.visibleIndexes.to);
+                }
+                return this.rows;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Table.prototype, 'widthClass', {
+            get: function () {
+                return [
+                    'vued',
+                    this.bodyHeight ? 'paddingSBright' : ''
+                ];
+            },
+            enumerable: true,
+            configurable: true
+        });
         __decorate([
             vue_property_decorator_1.Model('row-click'),
             vue_property_decorator_1.Prop(),
@@ -2897,6 +2967,15 @@ var _v = function (exports) {
             }),
             __metadata('design:type', Object)
         ], Table.prototype, 'bodyHeight', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({
+                type: [
+                    Number,
+                    String
+                ]
+            }),
+            __metadata('design:type', Object)
+        ], Table.prototype, 'rowHeight', void 0);
         __decorate([
             vue_property_decorator_1.Emit('row-click'),
             __metadata('design:type', Function),
@@ -2930,7 +3009,7 @@ var _v = function (exports) {
                     Pimp: vue_ripper_1.Pimp,
                     Ripped: vue_ripper_1.Ripped
                 },
-                mixins: [modeled_1.default]
+                mixins: [modeled_1.default.extendOptions]
             })], Table);
         return Table;
     }(Vue);
@@ -2955,7 +3034,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.scroll-body > thead.vued {\r\n\twidth: calc( 100% - 0.71em );\t/*TODO: real width management engine*/\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input {\r\n\twidth: 100%;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input input {\r\n\tborder: 0;\r\n\tbackground: transparent;\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input {\r\n\twidth: 100%;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input input {\r\n\tborder: 0;\r\n\tbackground: transparent;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -2978,9 +3057,9 @@ _p.render = function render() {
             }
         }, [_vm._t('default')], 2),
         _vm._v(' '),
-        _vm.$slots.header ? _c('caption', [_vm._t('header')], 2) : _vm._e(),
+        _vm.$slots.header ? _c('caption', { class: _vm.widthClass }, [_vm._t('header')], 2) : _vm._e(),
         _vm._v(' '),
-        _c('thead', { staticClass: 'vued' }, [_c('tr', { staticClass: 'vued' }, _vm._l(_vm.columns, function (column, uid) {
+        _c('thead', { class: _vm.widthClass }, [_c('tr', { staticClass: 'vued' }, _vm._l(_vm.columns, function (column, uid) {
                 return _c('ripped', {
                     key: uid,
                     tag: 'th',
@@ -2995,38 +3074,49 @@ _p.render = function render() {
         _vm._v(' '),
         _c('tbody', {
             staticClass: 'vued',
-            style: { height: _vm.bodyHeight ? _vm.bodyHeight + 'px' : undefined }
-        }, _vm._l(_vm.rows, function (row, index) {
-            return _c('tr', {
-                key: _vm.rowId(row),
-                staticClass: 'vued',
-                class: [
-                    _vm.rowClass(row, index),
-                    { current: _vm.current === row }
-                ],
-                on: {
-                    'click': function ($event) {
-                        _vm.rowClick(row);
-                    }
+            style: { height: _vm.bodyHeight ? _vm.bodyHeight + 'px' : undefined },
+            on: {
+                'scroll': function ($event) {
+                    _vm.bodyScrollTop = $event.target.scrollTop;
                 }
-            }, _vm._l(_vm.columns, function (column, uid) {
-                return _c('ripped', {
-                    key: uid,
-                    tag: 'td',
-                    style: { width: column.width ? column.width + 'px' : undefined },
-                    attrs: {
-                        'ripper': column,
-                        'scope': {
-                            row: row,
-                            index: index
-                        },
-                        'render': _vm.renderCell
+            }
+        }, [
+            _vm.heightKeeper() ? _c('tr', { style: _vm.heightKeeper(true) }) : _vm._e(),
+            _vm._v(' '),
+            _vm._l(_vm.visibleRows, function (row, index) {
+                return _c('tr', {
+                    key: _vm.rowId(row),
+                    staticClass: 'vued',
+                    class: [
+                        _vm.rowClass(row, index + _vm.visibleIndexes.from),
+                        { current: _vm.current === row }
+                    ],
+                    on: {
+                        'click': function ($event) {
+                            _vm.rowClick(row);
+                        }
                     }
-                });
-            }));
-        })),
+                }, _vm._l(_vm.columns, function (column, uid) {
+                    return _c('ripped', {
+                        key: uid,
+                        tag: 'td',
+                        style: { width: column.width ? column.width + 'px' : undefined },
+                        attrs: {
+                            'ripper': column,
+                            'scope': {
+                                row: row,
+                                index: index + _vm.visibleIndexes.from
+                            },
+                            'render': _vm.renderCell
+                        }
+                    });
+                }));
+            }),
+            _vm._v(' '),
+            _vm.heightKeeper() ? _c('tr', { style: _vm.heightKeeper(false) }) : _vm._e()
+        ], 2),
         _vm._v(' '),
-        _vm.$slots.footer ? _c('tfoot', { staticClass: 'vued' }, [_c('tr', { staticClass: 'vued' }, [_c('td', {
+        _vm.$slots.footer ? _c('tfoot', { class: _vm.widthClass }, [_c('tr', { staticClass: 'vued' }, [_c('td', {
                     staticClass: 'vued',
                     attrs: { 'colspan': _vm.columns && _vm.columns.length }
                 }, [_vm._t('footer')], 2)])]) : _vm._e()
@@ -3128,7 +3218,7 @@ var _v = function (exports) {
                         'header',
                         'display',
                         'input'
-                    ])
+                    ]).extendOptions
                 ]
             })], Column);
         return Column;
@@ -5439,12 +5529,12 @@ var _v = function (exports) {
     }(Vue);
     exports.default = Progress;
 };
-require('fuse-box-css')('test/routes/progress.vue', '\r\ndiv.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
+require('fuse-box-css')('test/routes/progress.vue', '\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
-    return _c('div', [
+    return _c('div', { staticClass: 'progress-test' }, [
         _c('s-progress', {
             attrs: { 'percent': _vm.percent },
             model: {
@@ -5650,7 +5740,8 @@ _p.render = function render() {
                 'selectable': '',
                 'rows': _vm.my_rows,
                 'very-basic': '',
-                'body-height': 150
+                'body-height': 150,
+                'row-height': 42
             },
             model: {
                 value: _vm.my_row,
