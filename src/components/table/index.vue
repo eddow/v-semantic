@@ -186,7 +186,7 @@ export default class Table extends Vue {
 			return {
 				height: pos?
 					Number(this.rowHeight)*this.visibleIndexes.from + 'px' :
-					Number(this.rowHeight)*(this.rows.length-this.visibleIndexes.to) + 'px'
+					Number(this.rowHeight)*Math.max(0, this.rows.length-this.visibleIndexes.to) + 'px'
 			};
 	}
 	bodyScrollTop = 0
