@@ -31,6 +31,7 @@ Each column has two slots : `header` and the default scoped slot whose scope con
 ## Proprieties
 - `property` gives the property of the row this column displays. For now, it is just given to retrieve the value when no cell template is provided.
 - `header` gives the text in the header if no template is provided
+- `edit` specifies that the `input` is used instead of the `display` to edit the value
 ## Events
 
 ## Custom columns
