@@ -6,8 +6,7 @@
 			v-model="my_row"
 			:rows="my_rows"
 			very-basic
-			:body-height="150"
-			:row-height="42"
+			:body-height="500"
 		>
 			<div slot="header">
 				In-table header
@@ -29,6 +28,11 @@
 				@edit="(row, state)=> copy(row, state)"
 				@cancel="(row, state)=> copy(state, row)"
 			/>
+			<s-column>
+				<template scope="scope">
+					<div :style="{height: scope.model.rnd+'px'}">&nbsp;</div>
+				</template>
+			</s-column>
 		</s-table>
 		<div>
 			<p><h3>current-row</h3> {{my_row}}</p>
@@ -41,10 +45,11 @@ import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {copy} from 'lib/deep'
 
-var rows = (new Array(10)).fill().map((x,i)=> ({
+var rows = (new Array(100)).fill().map((x,i)=> ({
 	a: ''+i*2,
 	b:i*2+1,
-	deep: {reason: 42}
+	deep: {reason: 42},
+	rnd: Math.random()*60+40
 }));
 @Component
 export default class Table extends Vue {

@@ -1,5 +1,6 @@
 // https://github.com/fuse-box/fuse-box/issues/542
 import 'vue-property-decorator'
+import 'vue-resize-directive'
 import 'vue-ripper'
 import 'ajv'
 import 'lib/classed'
