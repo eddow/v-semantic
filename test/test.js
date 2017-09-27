@@ -77,6 +77,7 @@ ___scope___.file("src/libs.js", function(exports, require, module, __filename, _
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
 require('vue-property-decorator');
+require('vue-resize-directive');
 require('vue-ripper');
 require('ajv');
 require('~/src/lib/classed');
@@ -2831,18 +2832,18 @@ var _v = function (exports) {
     var utils_1 = require('~/src/lib/utils');
     var vue_ripper_1 = require('vue-ripper');
     var modeled_1 = require('../data/modeled');
-    var generateRowId = utils_1.idSpace('rw');
+    var shims_1 = require('~/src/lib/shims');
+    var resize = require('vue-resize-directive');
+    var generateRowId = utils_1.idSpace('rw'), defaultRowHeight = 42;
     var Table = function (_super) {
         __extends(Table, _super);
         function Table() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.editionManagers = [];
             _this.pimped = null;
+            _this.displayedRows = 10;
+            _this.computedRowHeight = null;
             _this.bodyScrollTop = 0;
-            _this.visibleIndexes = {
-                from: 0,
-                to: 0
-            };
             return _this;
         }
         Table.prototype.edition = function (row, field) {
@@ -2909,20 +2910,130 @@ var _v = function (exports) {
                 this.$emit('row-click', newSelect);
             }
         };
-        Table.prototype.heightKeeper = function (pos) {
-            if (this.rowHeight && this.bodyHeight)
-                return { height: pos ? Number(this.rowHeight) * this.visibleIndexes.from + 'px' : Number(this.rowHeight) * (this.rows.length - this.visibleIndexes.to) + 'px' };
+        Table.prototype.computeRowHeight = function () {
+            if (this.rowHeight)
+                return;
+            var calc = this.rowPos();
+            if (!calc)
+                return;
+            var pos = calc.pos, top = calc.top, last = calc.last, bottom = calc.bottom;
+            var newRowHeight = Math.round((bottom - top) / pos.length);
+            if (this.computedRowHeight !== newRowHeight) {
+                var log = {
+                    scroll: this.bodyScrollTop,
+                    avgRowHeight: this.avgRowHeight
+                };
+                this.computedRowHeight = newRowHeight;
+                console.log(top, log, {
+                    scroll: this.bodyScrollTop,
+                    avgRowHeight: this.avgRowHeight
+                });
+            }
+            return this.computedRowHeight;
         };
+        Object.defineProperty(Table.prototype, 'avgRowHeight', {
+            get: function () {
+                return Number(this.rowHeight) || this.computedRowHeight || this.computeRowHeight() || defaultRowHeight;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Table.prototype, 'bodyStyle', {
+            get: function () {
+                if (this.bodyHeight) {
+                    return { height: this.bodyHeight + 'px' };
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Table.prototype, 'heightKeeper', {
+            get: function () {
+                if (this.bodyHeight)
+                    console.log(this.avgRowHeight * this.visibleIndexes.from + 'px', this.avgRowHeight * Math.max(0, this.rows.length - this.visibleIndexes.to) + 'px');
+                return this.bodyHeight ? {
+                    before: { height: this.avgRowHeight * this.visibleIndexes.from + 'px' },
+                    after: { height: this.avgRowHeight * Math.max(0, this.rows.length - this.visibleIndexes.to) + 'px' }
+                } : null;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Table.prototype.mounted = function () {
+            this.computeDisplayedRows();
+            var x = this.$refs.body;
+        };
+        Table.prototype.updated = function () {
+            if ('forceBodyScrollTop' in this) {
+                console.log('force', this.forceBodyScrollTop);
+                shims_1.$(this.$refs.body).scrollTop(this.bodyScrollTop = this.forceBodyScrollTop);
+                delete this.forceBodyScrollTop;
+            }
+            this.computeDisplayedRows();
+        };
+        Table.prototype.rowPos = function () {
+            var rows = this.$refs.displayedRows;
+            if (!this.bodyHeight || !rows || !rows.length || !this.$refs.body)
+                return;
+            var bodyTop = shims_1.$(this.$refs.body).position().top, pos = rows.map(function (x) {
+                    var el = shims_1.$(x);
+                    return {
+                        top: el.position().top - bodyTop,
+                        height: el.height()
+                    };
+                });
+            if (1 >= pos[0].height)
+                return;
+            pos.sort(function (x, y) {
+                return x.top - y.top;
+            });
+            var top = pos[0].top, last = pos[pos.length - 1], bottom = last.top + last.height;
+            if (top > this.bodyHeight || bottom < 0)
+                return;
+            return {
+                pos: pos,
+                top: top,
+                last: last,
+                bottom: bottom
+            };
+        };
+        Table.prototype.computeDisplayedRows = function () {
+            var calc = this.rowPos();
+            if (!calc)
+                return;
+            var pos = calc.pos, top = calc.top, last = calc.last, bottom = calc.bottom;
+            while (last.top > this.bodyHeight) {
+                pos.pop();
+                last = pos[pos.length - 1];
+            }
+            this.displayedRows = pos.length;
+            var emptyGap = Number(this.bodyHeight) - (last.top + last.height);
+            if (0 < emptyGap)
+                this.displayedRows += Math.ceil(emptyGap / this.avgRowHeight);
+        };
+        Table.prototype.scrolled = function () {
+            this.bodyScrollTop = shims_1.$(this.$refs.body).scrollTop();
+            console.log('scroll', this.bodyScrollTop);
+            this.computeDisplayedRows();
+        };
+        Object.defineProperty(Table.prototype, 'visibleIndexes', {
+            get: function () {
+                if (this.bodyHeight) {
+                    var from = this.avgRowHeight && Math.floor(this.bodyScrollTop / this.avgRowHeight) || 0;
+                    console.log('indexes', from, from + this.displayedRows);
+                    return {
+                        from: from,
+                        to: from + this.displayedRows
+                    };
+                }
+                return null;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(Table.prototype, 'visibleRows', {
             get: function () {
-                if (this.rowHeight && this.bodyHeight) {
-                    this.visibleIndexes = {
-                        from: Math.floor(this.bodyScrollTop / Number(this.rowHeight)),
-                        to: Math.ceil((this.bodyScrollTop + Number(this.bodyHeight)) / Number(this.rowHeight))
-                    };
-                    return this.rows.slice(this.visibleIndexes.from, this.visibleIndexes.to);
-                }
-                return this.rows;
+                return this.visibleIndexes ? this.rows.slice(this.visibleIndexes.from, this.visibleIndexes.to) : this.rows;
             },
             enumerable: true,
             configurable: true
@@ -3009,7 +3120,8 @@ var _v = function (exports) {
                     Pimp: vue_ripper_1.Pimp,
                     Ripped: vue_ripper_1.Ripped
                 },
-                mixins: [modeled_1.default.extendOptions]
+                mixins: [modeled_1.default.extendOptions],
+                directives: { resize: resize }
             })], Table);
         return Table;
     }(Vue);
@@ -3034,7 +3146,7 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input {\r\n\twidth: 100%;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input input {\r\n\tborder: 0;\r\n\tbackground: transparent;\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input {\r\n\twidth: 100%;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input input {\r\n\tborder: 0;\r\n\tbackground: transparent;\r\n}\r\ntr.vued.filler {\r\n\tpadding: 0 !important;\r\n\tborder: 0 !important;\r\n\tmargin: 0 !important;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -3073,19 +3185,27 @@ _p.render = function render() {
             }))]),
         _vm._v(' '),
         _c('tbody', {
+            directives: [{
+                    name: 'resize',
+                    rawName: 'v-resize',
+                    value: _vm.computeRowHeight,
+                    expression: 'computeRowHeight'
+                }],
+            ref: 'body',
             staticClass: 'vued',
-            style: { height: _vm.bodyHeight ? _vm.bodyHeight + 'px' : undefined },
-            on: {
-                'scroll': function ($event) {
-                    _vm.bodyScrollTop = $event.target.scrollTop;
-                }
-            }
+            style: _vm.bodyStyle,
+            on: { 'scroll': _vm.scrolled }
         }, [
-            _vm.heightKeeper() ? _c('tr', { style: _vm.heightKeeper(true) }) : _vm._e(),
+            _vm.heightKeeper ? _c('tr', {
+                staticClass: 'vued filler',
+                style: _vm.heightKeeper.before
+            }) : _vm._e(),
             _vm._v(' '),
             _vm._l(_vm.visibleRows, function (row, index) {
                 return _c('tr', {
                     key: _vm.rowId(row),
+                    ref: 'displayedRows',
+                    refInFor: true,
                     staticClass: 'vued',
                     class: [
                         _vm.rowClass(row, index + _vm.visibleIndexes.from),
@@ -3113,7 +3233,10 @@ _p.render = function render() {
                 }));
             }),
             _vm._v(' '),
-            _vm.heightKeeper() ? _c('tr', { style: _vm.heightKeeper(false) }) : _vm._e()
+            _vm.heightKeeper ? _c('tr', {
+                staticClass: 'vued filler',
+                style: _vm.heightKeeper.after
+            }) : _vm._e()
         ], 2),
         _vm._v(' '),
         _vm.$slots.footer ? _c('tfoot', { class: _vm.widthClass }, [_c('tr', { staticClass: 'vued' }, [_c('td', {
@@ -5698,11 +5821,12 @@ var _v = function (exports) {
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
     var deep_1 = require('~/src/lib/deep');
-    var rows = new Array(10).fill().map(function (x, i) {
+    var rows = new Array(100).fill().map(function (x, i) {
         return {
             a: '' + i * 2,
             b: i * 2 + 1,
-            deep: { reason: 42 }
+            deep: { reason: 42 },
+            rnd: Math.random() * 60 + 40
         };
     });
     var Table = function (_super) {
@@ -5740,8 +5864,7 @@ _p.render = function render() {
                 'selectable': '',
                 'rows': _vm.my_rows,
                 'very-basic': '',
-                'body-height': 150,
-                'row-height': 42
+                'body-height': 500
             },
             model: {
                 value: _vm.my_row,
@@ -5792,6 +5915,15 @@ _p.render = function render() {
                         return _vm.copy(state, row);
                     }
                 }
+            }),
+            _vm._v(' '),
+            _c('s-column', {
+                scopedSlots: _vm._u([{
+                        key: 'default',
+                        fn: function (scope) {
+                            return [_c('div', { style: { height: scope.model.rnd + 'px' } }, [_vm._v('\xA0')])];
+                        }
+                    }])
             })
         ], 1),
         _vm._v(' '),
