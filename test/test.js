@@ -2833,8 +2833,8 @@ var _v = function (exports) {
     var vue_ripper_1 = require('vue-ripper');
     var modeled_1 = require('../data/modeled');
     var shims_1 = require('~/src/lib/shims');
-    var vue_resize_directive_1 = require('vue-resize-directive');
-    var generateRowId = utils_1.idSpace('rw');
+    var resize = require('vue-resize-directive');
+    var generateRowId = utils_1.idSpace('rw'), defaultRowHeight = 42;
     var Table = function (_super) {
         __extends(Table, _super);
         function Table() {
@@ -2923,7 +2923,6 @@ var _v = function (exports) {
                     scroll: this.bodyScrollTop,
                     avgRowHeight: this.avgRowHeight
                 };
-                this.forceBodyScrollTop = this.bodyScrollTop = Math.round((this.bodyScrollTop + top) * newRowHeight / this.computedRowHeight - top);
                 this.computedRowHeight = newRowHeight;
                 console.log(top, log, {
                     scroll: this.bodyScrollTop,
@@ -2934,7 +2933,7 @@ var _v = function (exports) {
         };
         Object.defineProperty(Table.prototype, 'avgRowHeight', {
             get: function () {
-                return Number(this.rowHeight) || this.computedRowHeight || this.computeRowHeight() || 42;
+                return Number(this.rowHeight) || this.computedRowHeight || this.computeRowHeight() || defaultRowHeight;
             },
             enumerable: true,
             configurable: true
@@ -3122,7 +3121,7 @@ var _v = function (exports) {
                     Ripped: vue_ripper_1.Ripped
                 },
                 mixins: [modeled_1.default.extendOptions],
-                directives: { resize: vue_resize_directive_1.default }
+                directives: { resize: resize }
             })], Table);
         return Table;
     }(Vue);
@@ -3147,18 +3146,12 @@ var _v = function (exports) {
         }
     };
 };
-require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input {\r\n\twidth: 100%;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input input {\r\n\tborder: 0;\r\n\tbackground: transparent;\r\n}\r\n');
+require('fuse-box-css')('src/components/table/index.vue', '\r\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r\n\toverflow-y: scroll;\r\n}\r\ntable.scroll-body thead.vued, table.scroll-body tbody.vued tr.vued {\r\n\tdisplay: table;\r\n\twidth: 100%;\r\n\ttable-layout: fixed;\r\n}\r\ntable.ui.table.vued tbody.vued tr.vued.current > td {\r\n\tbackground: rgba(192,192,192,0.2);\r\n/*TODO: use theming\r\n@activeColor: @textColor;\r\n@activeBackgroundColor: #E0E0E0;*/\r\n}\r\ntfoot.vued td.vued {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound {\r\n\tpadding: 0;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input {\r\n\twidth: 100%;\r\n}\r\n.ui.table tbody.vued td.vued.compound .ui.input input {\r\n\tborder: 0;\r\n\tbackground: transparent;\r\n}\r\ntr.vued.filler {\r\n\tpadding: 0 !important;\r\n\tborder: 0 !important;\r\n\tmargin: 0 !important;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
     return _c('table', {
-        directives: [{
-                name: 'resize',
-                rawName: 'v-resize',
-                value: _vm.computeRowHeight,
-                expression: 'computeRowHeight'
-            }],
         class: [
             _vm.cls,
             'vued',
@@ -3203,7 +3196,10 @@ _p.render = function render() {
             style: _vm.bodyStyle,
             on: { 'scroll': _vm.scrolled }
         }, [
-            _vm.heightKeeper ? _c('tr', { style: _vm.heightKeeper.before }) : _vm._e(),
+            _vm.heightKeeper ? _c('tr', {
+                staticClass: 'vued filler',
+                style: _vm.heightKeeper.before
+            }) : _vm._e(),
             _vm._v(' '),
             _vm._l(_vm.visibleRows, function (row, index) {
                 return _c('tr', {
@@ -3237,7 +3233,10 @@ _p.render = function render() {
                 }));
             }),
             _vm._v(' '),
-            _vm.heightKeeper ? _c('tr', { style: _vm.heightKeeper.after }) : _vm._e()
+            _vm.heightKeeper ? _c('tr', {
+                staticClass: 'vued filler',
+                style: _vm.heightKeeper.after
+            }) : _vm._e()
         ], 2),
         _vm._v(' '),
         _vm.$slots.footer ? _c('tfoot', { class: _vm.widthClass }, [_c('tr', { staticClass: 'vued' }, [_c('td', {

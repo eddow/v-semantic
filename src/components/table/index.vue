@@ -1,5 +1,5 @@
 <template>
-	<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]" v-resize="computeRowHeight">
+	<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]">
 		<caption is="pimp" v-model="pimped">
 			<slot />
 		</caption>
@@ -22,7 +22,7 @@
 			:style="bodyStyle"
 			v-resize="computeRowHeight"
 		>
-			<tr v-if="heightKeeper" :style="heightKeeper.before"></tr>
+			<tr v-if="heightKeeper" :style="heightKeeper.before" class="vued filler"></tr>
 			<tr
 				ref="displayedRows"
 				v-for="(row, index) in visibleRows"
@@ -41,7 +41,7 @@
 					:render="renderCell"
 				/>
 			</tr>
-			<tr v-if="heightKeeper" :style="heightKeeper.after"></tr>
+			<tr v-if="heightKeeper" :style="heightKeeper.after" class="vued filler"></tr>
 		</tbody>
 		<tfoot v-if="$slots.footer" :class="widthClass">
 			<tr class="vued">
@@ -81,6 +81,11 @@ tfoot.vued td.vued {
 	border: 0;
 	background: transparent;
 }
+tr.vued.filler {
+	padding: 0 !important;
+	border: 0 !important;
+	margin: 0 !important;
+}
 </style>
 <script lang="ts">
 import * as Vue from 'vue'
@@ -90,9 +95,9 @@ import {idSpace} from 'lib/utils'
 import {Pimp, Ripped} from 'vue-ripper'
 import Modeled from '../data/modeled'
 import {$} from 'lib/shims'
-import resize from 'vue-resize-directive'
+import * as resize from 'vue-resize-directive'
 
-const generateRowId = idSpace('rw');
+const generateRowId = idSpace('rw'), defaultRowHeight = 42;
 
 //TODO: cell(th/td) css classes + selecteable cell + top/bottom/left/right/center aligned
 @Semantic('table', {
@@ -200,8 +205,8 @@ export default class Table extends Vue {
 			var log = {
 				scroll: this.bodyScrollTop,
 				avgRowHeight:this.avgRowHeight};
-			this.forceBodyScrollTop = this.bodyScrollTop =
-				Math.round(((this.bodyScrollTop + top) * newRowHeight/this.computedRowHeight)-top);
+			/*this.forceBodyScrollTop = this.bodyScrollTop =
+				Math.round(((this.bodyScrollTop + top) * newRowHeight/(this.computedRowHeight||defaultRowHeight))-top);*/
 			this.computedRowHeight = newRowHeight;
 			
 			console.log(top, log, {
@@ -212,7 +217,7 @@ export default class Table extends Vue {
 		return this.computedRowHeight;
 	}
 	get avgRowHeight() : number {
-		return Number(this.rowHeight) || this.computedRowHeight || this.computeRowHeight() || 42;
+		return Number(this.rowHeight) || this.computedRowHeight || this.computeRowHeight() || defaultRowHeight;
 	}
 	get bodyStyle() {
 		if(this.bodyHeight) {
