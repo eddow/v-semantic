@@ -8,7 +8,7 @@
 					</div>
 				</slot>
 			</div>
-			<slot class="ui form attached fluid segment" />
+			<slot class="ui form attached fluid segment" :model="model" />
 			<div v-if="displayErrors && displayedErrors.length"
 				class="ui ui bottom attached error message"
 			>

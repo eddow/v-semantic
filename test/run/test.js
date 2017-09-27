@@ -1,7 +1,7 @@
 (function(FuseBox){FuseBox.$fuse$=FuseBox;
 var __process_env__ = {"NODE_ENV":"development"};
 FuseBox.pkg("test", {}, function(___scope___){
-___scope___.file("test/src/index.js", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/index.js", function(exports, require, module, __filename, __dirname){
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2513,10 +2513,7 @@ var _v = function (exports) {
                 returnScroll: Boolean,
                 delaySetup: Boolean,
                 transition: String
-            }, [
-                'show',
-                'hide'
-            ])], Modal);
+            }, ['change'])], Modal);
         return Modal;
     }(Vue);
     exports.default = Modal;
@@ -4824,7 +4821,7 @@ function default_1(el, binding, vnode, oldVnode) {
 exports.default = default_1;
 ;
 });
-___scope___.file("test/src/app.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/app.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -4916,7 +4913,7 @@ var _v = function (exports) {
     }(Vue);
     exports.default = App;
 };
-require('fuse-box-css')('test/src/app.vue', '\r\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\r\n}\r\n.work {\r\n\theight: calc(100% - 80px);\r\n}\r\n.work-pane {\r\n\theight: 100%;\r\n\toverflow: auto;\r\n}\r\ndiv.CodeMirror {\r\n\theight: 100%;\r\n}\r\n');
+require('fuse-box-css')('test/app.vue', '\r\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\r\n}\r\n.work {\r\n\theight: calc(100% - 80px);\r\n}\r\n.work-pane {\r\n\theight: 100%;\r\n\toverflow: auto;\r\n}\r\ndiv.CodeMirror {\r\n\theight: 100%;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -4985,7 +4982,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes.js", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes.js", function(exports, require, module, __filename, __dirname){
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -5004,7 +5001,7 @@ for (var i in comps) {
 }
 //# sourceMappingURL=routes.js.map
 });
-___scope___.file("test/src/routes/accordion.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/accordion.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5064,7 +5061,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes/buttons.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/buttons.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5254,7 +5251,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes/form.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/form.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5519,7 +5516,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes/inputs.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/inputs.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5679,7 +5676,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes/progress.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/progress.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5740,7 +5737,7 @@ var _v = function (exports) {
     }(Vue);
     exports.default = Progress;
 };
-require('fuse-box-css')('test/src/routes/progress.vue', '\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
+require('fuse-box-css')('test/routes/progress.vue', '\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -5874,7 +5871,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes/sidebars.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/sidebars.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5934,9 +5931,9 @@ _p.render = function render() {
                 },
                 expression: 'shown'
             }
-        }, [_vm._v('\n\t\tLorem ipsum\n\t\t\n\t')]),
+        }, [_vm._v('\n\t\tLorem ipsum\n\t')]),
         _vm._v(' '),
-        _c('div', { staticClass: 'pusher' }, [_c('s-checkbox', {
+        _c('div', { staticClass: 'pushable' }, [_c('s-checkbox', {
                 attrs: { 'label': 'visible' },
                 model: {
                     value: _vm.shown,
@@ -5954,7 +5951,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes/table.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/table.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -6114,7 +6111,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/src/routes/tabs.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/routes/tabs.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -6253,8 +6250,8 @@ FuseBox.global("__extends", function(d, b) {
 
 FuseBox.target = "universal"
 
-FuseBox.import("test/test/src/index.js");
-FuseBox.main("test/test/src/index.js");
+FuseBox.import("test/test/index.js");
+FuseBox.main("test/test/index.js");
 FuseBox.defaultPackageName = "test";
 })
 ((function(__root__){

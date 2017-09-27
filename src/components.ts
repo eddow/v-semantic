@@ -11,6 +11,8 @@ import Form from './components/form/index.vue'
 import Field from './components/form/field.vue'
 import {DataMold, FieldInput} from './components/data/holders'
 
+import Sidebar from './components/sidebar.vue'
+
 import Select from './components/select/index.vue'
 import Option from './components/select/option.vue'
 
@@ -29,7 +31,7 @@ import Dimmable from './components/dimmable.vue'
 export {
 	Flag, Button, Icon, Input, Modal, Checkbox, Progress,
 	Form, Field, FieldInput, DataMold,
-	Select, Option,
+	Sidebar, Select, Option,
 	Table, Column, CheckboxColumn, RowEditColumn,
 	Accordion, Tabs, Panel,
 	Dimmer, Dimmable

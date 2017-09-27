@@ -301,7 +301,7 @@ export default class Table extends Vue {
 			console.log('indexes', from, from+this.displayedRows);
 			return {from, to: from+this.displayedRows};
 		}
-		return null;
+		return {from: 0, to: this.rows.length};
 	}
 	get visibleRows() {
 		return this.visibleIndexes ? 

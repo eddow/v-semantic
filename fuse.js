@@ -90,9 +90,9 @@ Sparky.task("test", ()=> {
 	});
 
 	const test = fuse.bundle("test")
-	.watch('(test|src)/**(vue|ts|html)')
+		.watch('(test/src|src)/**')
 		//.sourceMaps(true)
-		.instructions('> [test/index.ts] +test/routes/*.vue -*.d.ts');
+		.instructions('> [test/src/index.ts] +test/src/routes/*.vue -*.d.ts');
 		
 	const source = fuseSrc.bundle("source")
 		//.watch('**')
