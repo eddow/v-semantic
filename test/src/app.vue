@@ -58,7 +58,7 @@ export default class App extends Vue {
 	}
 	@Watch('$route', {immediate: true})
 	loadComponent(route) {
-		this.code = route.name ?
+		this.code = route && route.name ?
 			require(`source/${route.name}.vue`) :
 			"// nothing";
 	}

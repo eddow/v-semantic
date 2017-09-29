@@ -25,10 +25,15 @@ import Semantic from 'lib/module'
 	'show',
 	'hide'
 ])
-export default class Modal extends Vue {
+export default class Sidebar extends Vue {
 	@Model('change') visible: boolean
 	@Watch('visible') setVisible(v: boolean) {
 		this.semantic(v?'show': 'hide');
+	}
+	created() {
+		if(this.visible) {	//If initialised with true `visible`
+			//this.$el;//add 'visible(? pushable)'
+		}
 	}
 	configure(config) {
 		config.context = this.$el.parentElement;

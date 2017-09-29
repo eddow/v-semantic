@@ -1,7 +1,7 @@
 (function(FuseBox){FuseBox.$fuse$=FuseBox;
 var __process_env__ = {"NODE_ENV":"development"};
 FuseBox.pkg("test", {}, function(___scope___){
-___scope___.file("test/index.js", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/index.js", function(exports, require, module, __filename, __dirname){
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2470,15 +2470,19 @@ var _v = function (exports) {
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
     var module_1 = require('~/src/lib/module');
-    var Modal = function (_super) {
-        __extends(Modal, _super);
-        function Modal() {
+    var Sidebar = function (_super) {
+        __extends(Sidebar, _super);
+        function Sidebar() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        Modal.prototype.setVisible = function (v) {
+        Sidebar.prototype.setVisible = function (v) {
             this.semantic(v ? 'show' : 'hide');
         };
-        Modal.prototype.configure = function (config) {
+        Sidebar.prototype.created = function () {
+            if (this.visible) {
+            }
+        };
+        Sidebar.prototype.configure = function (config) {
             var _this = this;
             config.context = this.$el.parentElement;
             config.onVisible = function () {
@@ -2493,14 +2497,14 @@ var _v = function (exports) {
         __decorate([
             vue_property_decorator_1.Model('change'),
             __metadata('design:type', Boolean)
-        ], Modal.prototype, 'visible', void 0);
+        ], Sidebar.prototype, 'visible', void 0);
         __decorate([
             vue_property_decorator_1.Watch('visible'),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Boolean]),
             __metadata('design:returntype', void 0)
-        ], Modal.prototype, 'setVisible', null);
-        Modal = __decorate([module_1.default('sidebar', {
+        ], Sidebar.prototype, 'setVisible', null);
+        Sidebar = __decorate([module_1.default('sidebar', {
                 direction: {
                     type: String,
                     required: true
@@ -2513,10 +2517,13 @@ var _v = function (exports) {
                 returnScroll: Boolean,
                 delaySetup: Boolean,
                 transition: String
-            }, ['change'])], Modal);
-        return Modal;
+            }, [
+                'show',
+                'hide'
+            ])], Sidebar);
+        return Sidebar;
     }(Vue);
-    exports.default = Modal;
+    exports.default = Sidebar;
 };
 _p.render = function render() {
     var _vm = this;
@@ -2723,7 +2730,10 @@ var _v = function (exports) {
                 duration: Number,
                 minCharacters: Number,
                 match: String,
-                action: String,
+                action: [
+                    String,
+                    Function
+                ],
                 preserveHTML: Boolean
             }, [
                 'change',
@@ -2914,7 +2924,6 @@ var _v = function (exports) {
     var utils_1 = require('~/src/lib/utils');
     var vue_ripper_1 = require('vue-ripper');
     var modeled_1 = require('../data/modeled');
-    var shims_1 = require('~/src/lib/shims');
     var resize = require('vue-resize-directive');
     var generateRowId = utils_1.idSpace('rw'), defaultRowHeight = 42;
     var Table = function (_super) {
@@ -2923,9 +2932,6 @@ var _v = function (exports) {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.editionManagers = [];
             _this.pimped = null;
-            _this.displayedRows = 10;
-            _this.computedRowHeight = null;
-            _this.bodyScrollTop = 0;
             return _this;
         }
         Table.prototype.edition = function (row, field) {
@@ -2992,133 +2998,11 @@ var _v = function (exports) {
                 this.$emit('row-click', newSelect);
             }
         };
-        Table.prototype.computeRowHeight = function () {
-            if (this.rowHeight)
-                return;
-            var calc = this.rowPos();
-            if (!calc)
-                return;
-            var pos = calc.pos, top = calc.top, last = calc.last, bottom = calc.bottom;
-            var newRowHeight = Math.round((bottom - top) / pos.length);
-            if (this.computedRowHeight !== newRowHeight) {
-                var log = {
-                    scroll: this.bodyScrollTop,
-                    avgRowHeight: this.avgRowHeight
-                };
-                this.computedRowHeight = newRowHeight;
-                console.log(top, log, {
-                    scroll: this.bodyScrollTop,
-                    avgRowHeight: this.avgRowHeight
-                });
-            }
-            return this.computedRowHeight;
-        };
-        Object.defineProperty(Table.prototype, 'avgRowHeight', {
-            get: function () {
-                return Number(this.rowHeight) || this.computedRowHeight || this.computeRowHeight() || defaultRowHeight;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(Table.prototype, 'bodyStyle', {
             get: function () {
                 if (this.bodyHeight) {
                     return { height: this.bodyHeight + 'px' };
                 }
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Table.prototype, 'heightKeeper', {
-            get: function () {
-                if (this.bodyHeight)
-                    console.log(this.avgRowHeight * this.visibleIndexes.from + 'px', this.avgRowHeight * Math.max(0, this.rows.length - this.visibleIndexes.to) + 'px');
-                return this.bodyHeight ? {
-                    before: { height: this.avgRowHeight * this.visibleIndexes.from + 'px' },
-                    after: { height: this.avgRowHeight * Math.max(0, this.rows.length - this.visibleIndexes.to) + 'px' }
-                } : null;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Table.prototype.mounted = function () {
-            this.computeDisplayedRows();
-            var x = this.$refs.body;
-        };
-        Table.prototype.updated = function () {
-            if ('forceBodyScrollTop' in this) {
-                console.log('force', this.forceBodyScrollTop);
-                shims_1.$(this.$refs.body).scrollTop(this.bodyScrollTop = this.forceBodyScrollTop);
-                delete this.forceBodyScrollTop;
-            }
-            this.computeDisplayedRows();
-        };
-        Table.prototype.rowPos = function () {
-            var rows = this.$refs.displayedRows;
-            if (!this.bodyHeight || !rows || !rows.length || !this.$refs.body)
-                return;
-            var bodyTop = shims_1.$(this.$refs.body).position().top, pos = rows.map(function (x) {
-                    var el = shims_1.$(x);
-                    return {
-                        top: el.position().top - bodyTop,
-                        height: el.height()
-                    };
-                });
-            if (1 >= pos[0].height)
-                return;
-            pos.sort(function (x, y) {
-                return x.top - y.top;
-            });
-            var top = pos[0].top, last = pos[pos.length - 1], bottom = last.top + last.height;
-            if (top > this.bodyHeight || bottom < 0)
-                return;
-            return {
-                pos: pos,
-                top: top,
-                last: last,
-                bottom: bottom
-            };
-        };
-        Table.prototype.computeDisplayedRows = function () {
-            var calc = this.rowPos();
-            if (!calc)
-                return;
-            var pos = calc.pos, top = calc.top, last = calc.last, bottom = calc.bottom;
-            while (last.top > this.bodyHeight) {
-                pos.pop();
-                last = pos[pos.length - 1];
-            }
-            this.displayedRows = pos.length;
-            var emptyGap = Number(this.bodyHeight) - (last.top + last.height);
-            if (0 < emptyGap)
-                this.displayedRows += Math.ceil(emptyGap / this.avgRowHeight);
-        };
-        Table.prototype.scrolled = function () {
-            this.bodyScrollTop = shims_1.$(this.$refs.body).scrollTop();
-            console.log('scroll', this.bodyScrollTop);
-            this.computeDisplayedRows();
-        };
-        Object.defineProperty(Table.prototype, 'visibleIndexes', {
-            get: function () {
-                if (this.bodyHeight) {
-                    var from = this.avgRowHeight && Math.floor(this.bodyScrollTop / this.avgRowHeight) || 0;
-                    console.log('indexes', from, from + this.displayedRows);
-                    return {
-                        from: from,
-                        to: from + this.displayedRows
-                    };
-                }
-                return {
-                    from: 0,
-                    to: this.rows.length
-                };
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Table.prototype, 'visibleRows', {
-            get: function () {
-                return this.visibleIndexes ? this.rows.slice(this.visibleIndexes.from, this.visibleIndexes.to) : this.rows;
             },
             enumerable: true,
             configurable: true
@@ -3173,7 +3057,7 @@ var _v = function (exports) {
             __metadata('design:type', Object)
         ], Table.prototype, 'rowHeight', void 0);
         __decorate([
-            vue_property_decorator_1.Emit('row-click'),
+            vue_property_decorator_1.Emit(),
             __metadata('design:type', Function),
             __metadata('design:paramtypes', [Object]),
             __metadata('design:returntype', void 0)
@@ -3270,59 +3154,38 @@ _p.render = function render() {
             }))]),
         _vm._v(' '),
         _c('tbody', {
-            directives: [{
-                    name: 'resize',
-                    rawName: 'v-resize',
-                    value: _vm.computeRowHeight,
-                    expression: 'computeRowHeight'
-                }],
             ref: 'body',
             staticClass: 'vued',
-            style: _vm.bodyStyle,
-            on: { 'scroll': _vm.scrolled }
-        }, [
-            _vm.heightKeeper ? _c('tr', {
-                staticClass: 'vued filler',
-                style: _vm.heightKeeper.before
-            }) : _vm._e(),
-            _vm._v(' '),
-            _vm._l(_vm.visibleRows, function (row, index) {
-                return _c('tr', {
-                    key: _vm.rowId(row),
-                    ref: 'displayedRows',
-                    refInFor: true,
-                    staticClass: 'vued',
-                    class: [
-                        _vm.rowClass(row, index + _vm.visibleIndexes.from),
-                        { current: _vm.current === row }
-                    ],
-                    on: {
-                        'click': function ($event) {
-                            _vm.rowClick(row);
-                        }
+            style: _vm.bodyStyle
+        }, _vm._l(_vm.rows, function (row, index) {
+            return _c('tr', {
+                key: _vm.rowId(row),
+                staticClass: 'vued',
+                class: [
+                    _vm.rowClass(row, index),
+                    { current: _vm.current === row }
+                ],
+                on: {
+                    'click': function ($event) {
+                        _vm.rowClick(row);
                     }
-                }, _vm._l(_vm.columns, function (column, uid) {
-                    return _c('ripped', {
-                        key: uid,
-                        tag: 'td',
-                        style: { width: column.width ? column.width + 'px' : undefined },
-                        attrs: {
-                            'ripper': column,
-                            'scope': {
-                                row: row,
-                                index: index + _vm.visibleIndexes.from
-                            },
-                            'render': _vm.renderCell
-                        }
-                    });
-                }));
-            }),
-            _vm._v(' '),
-            _vm.heightKeeper ? _c('tr', {
-                staticClass: 'vued filler',
-                style: _vm.heightKeeper.after
-            }) : _vm._e()
-        ], 2),
+                }
+            }, _vm._l(_vm.columns, function (column, uid) {
+                return _c('ripped', {
+                    key: uid,
+                    tag: 'td',
+                    style: { width: column.width ? column.width + 'px' : undefined },
+                    attrs: {
+                        'ripper': column,
+                        'scope': {
+                            row: row,
+                            index: index
+                        },
+                        'render': _vm.renderCell
+                    }
+                });
+            }));
+        })),
         _vm._v(' '),
         _vm.$slots.footer ? _c('tfoot', { class: _vm.widthClass }, [_c('tr', { staticClass: 'vued' }, [_c('td', {
                     staticClass: 'vued',
@@ -3462,7 +3325,10 @@ _p.render = function render() {
                         })];
                 }
             }])
-    }, [_c('template', { slot: 'header' }, [_vm._t('header', [_vm._v('\n\t\t\t' + _vm._s(_vm.header) + '\n\t\t')])], 2)], 2);
+    }, [_c('template', {
+            attrs: { 'slot': 'header' },
+            slot: 'header'
+        }, [_vm._t('header', [_vm._v('\n\t\t\t' + _vm._s(_vm.header) + '\n\t\t')])], 2)], 2);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -3685,7 +3551,10 @@ _p.render = function render() {
                         })];
                 }
             }])
-    }, [_c('template', { slot: 'header' }, [_vm._t('header', [_vm.header ? [_vm._v(_vm._s(_vm.header))] : _c('checkbox', {
+    }, [_c('template', {
+            attrs: { 'slot': 'header' },
+            slot: 'header'
+        }, [_vm._t('header', [_vm.header ? [_vm._v(_vm._s(_vm.header))] : _c('checkbox', {
                     attrs: { 'state3': '' },
                     on: { 'input': _vm.selectAll },
                     model: {
@@ -4007,7 +3876,10 @@ _p.render = function render() {
                         })];
                 }
             }])
-    }, [_c('template', { slot: 'header' }, [_vm._t('header', [_vm.header ? [_vm._v(_vm._s(_vm.header))] : _vm._e()])], 2)], 2);
+    }, [_c('template', {
+            attrs: { 'slot': 'header' },
+            slot: 'header'
+        }, [_vm._t('header', [_vm.header ? [_vm._v(_vm._s(_vm.header))] : _vm._e()])], 2)], 2);
 };
 _p.staticRenderFns = [];
 var _e = {};
@@ -4317,6 +4189,7 @@ _p.render = function render() {
         attrs: { 'order': _vm.order }
     }, [
         _c('pimp', {
+            attrs: { 'slot': 'pimp' },
             slot: 'pimp',
             model: {
                 value: _vm.panels,
@@ -4337,6 +4210,7 @@ _p.render = function render() {
                 'attached tabs vued menu'
             ],
             style: _vm.tabsStyle,
+            attrs: { 'slot': 'tabs' },
             slot: 'tabs'
         }, _vm._l(_vm.panels, function (panel, uid) {
             return _c('ripped', {
@@ -4464,7 +4338,10 @@ _p.render = function render() {
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
     return _c('ripper', [
-        _c('template', { slot: 'title' }, [_vm._t('title', [
+        _c('template', {
+            attrs: { 'slot': 'title' },
+            slot: 'title'
+        }, [_vm._t('title', [
                 _vm.usedIcon ? _c('i', {
                     class: [
                         _vm.usedIcon,
@@ -4821,7 +4698,7 @@ function default_1(el, binding, vnode, oldVnode) {
 exports.default = default_1;
 ;
 });
-___scope___.file("test/app.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/app.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -4888,7 +4765,7 @@ var _v = function (exports) {
             return _this;
         }
         App.prototype.loadComponent = function (route) {
-            this.code = route.name ? require('source/' + route.name + '.vue') : '// nothing';
+            this.code = route && route.name ? require('source/' + route.name + '.vue') : '// nothing';
         };
         App.prototype.initCM = function () {
             var _this = this;
@@ -4913,7 +4790,7 @@ var _v = function (exports) {
     }(Vue);
     exports.default = App;
 };
-require('fuse-box-css')('test/app.vue', '\r\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\r\n}\r\n.work {\r\n\theight: calc(100% - 80px);\r\n}\r\n.work-pane {\r\n\theight: 100%;\r\n\toverflow: auto;\r\n}\r\ndiv.CodeMirror {\r\n\theight: 100%;\r\n}\r\n');
+require('fuse-box-css')('test/src/app.vue', '\r\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\r\n}\r\n.work {\r\n\theight: calc(100% - 80px);\r\n}\r\n.work-pane {\r\n\theight: 100%;\r\n\toverflow: auto;\r\n}\r\ndiv.CodeMirror {\r\n\theight: 100%;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -4982,7 +4859,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes.js", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes.js", function(exports, require, module, __filename, __dirname){
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -4992,7 +4869,7 @@ var MenuContainer = {
 var comps = require("./routes/*.vue");
 exports.routes = [];
 for (var i in comps) {
-    var name = /test\/routes\/(.*).vue$/.exec(i)[1];
+    var name = /test\/src\/routes\/(.*).vue$/.exec(i)[1];
     exports.routes.push({
         name: name, path: '/' + name,
         menu: name.substr(0, 1).toUpperCase() + name.substr(1),
@@ -5001,7 +4878,7 @@ for (var i in comps) {
 }
 //# sourceMappingURL=routes.js.map
 });
-___scope___.file("test/routes/accordion.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/accordion.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5061,7 +4938,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes/buttons.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/buttons.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5166,7 +5043,10 @@ _p.render = function render() {
                 }
             }, [
                 _c('s-icon', {
-                    attrs: { 'icon': 'save' },
+                    attrs: {
+                        'slot': 'prepend',
+                        'icon': 'save'
+                    },
                     slot: 'prepend'
                 }),
                 _vm._v('\n\t\t\tblurr\n\t\t')
@@ -5189,7 +5069,10 @@ _p.render = function render() {
                 }
             }, [
                 _c('s-icon', {
-                    attrs: { 'icon': 'minus' },
+                    attrs: {
+                        'slot': 'append',
+                        'icon': 'minus'
+                    },
                     slot: 'append'
                 }),
                 _vm._v('\n\t\t\tloading text\n\t\t')
@@ -5251,7 +5134,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes/form.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/form.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5410,7 +5293,10 @@ _p.render = function render() {
                                         expression: 'field.value'
                                     }
                                 }, [_c('s-icon', {
-                                        attrs: { 'icon': field.info || '' },
+                                        attrs: {
+                                            'slot': 'prepend',
+                                            'icon': field.info || ''
+                                        },
                                         slot: 'prepend'
                                     })], 1)];
                         }
@@ -5516,7 +5402,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes/inputs.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/inputs.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5574,6 +5460,7 @@ _p.render = function render() {
         _c('s-input', [
             _c('s-icon', {
                 attrs: {
+                    'slot': 'prepend',
                     'circular': '',
                     'link': '',
                     'icon': 'search'
@@ -5585,6 +5472,7 @@ _p.render = function render() {
             _c('s-select', {
                 staticClass: 'label',
                 attrs: {
+                    'slot': 'append',
                     'text': 'Gender',
                     'on': 'hover'
                 },
@@ -5663,6 +5551,7 @@ _p.render = function render() {
             }, [_c('s-button', {
                     staticClass: 'input-dimmed',
                     attrs: {
+                        'slot': 'append',
                         'icon': 'minus',
                         'dimmed-part': 'minus'
                     },
@@ -5676,7 +5565,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes/progress.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/progress.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5737,7 +5626,7 @@ var _v = function (exports) {
     }(Vue);
     exports.default = Progress;
 };
-require('fuse-box-css')('test/routes/progress.vue', '\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
+require('fuse-box-css')('test/src/routes/progress.vue', '\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n');
 _p.render = function render() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -5871,7 +5760,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes/sidebars.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/sidebars.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5933,7 +5822,7 @@ _p.render = function render() {
             }
         }, [_vm._v('\n\t\tLorem ipsum\n\t')]),
         _vm._v(' '),
-        _c('div', { staticClass: 'pushable' }, [_c('s-checkbox', {
+        _c('div', { staticClass: 'pusher' }, [_c('s-checkbox', {
                 attrs: { 'label': 'visible' },
                 model: {
                     value: _vm.shown,
@@ -5951,7 +5840,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes/table.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/table.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -5986,12 +5875,11 @@ var _v = function (exports) {
     var Vue = require('vue/dist/vue.common.js');
     var vue_property_decorator_1 = require('vue-property-decorator');
     var deep_1 = require('~/src/lib/deep');
-    var rows = new Array(100).fill().map(function (x, i) {
+    var rows = new Array(20).fill().map(function (x, i) {
         return {
             a: '' + i * 2,
             b: i * 2 + 1,
-            deep: { reason: 42 },
-            rnd: Math.random() * 60 + 40
+            deep: { reason: 42 }
         };
     });
     var Table = function (_super) {
@@ -6039,7 +5927,10 @@ _p.render = function render() {
                 expression: 'my_row'
             }
         }, [
-            _c('div', { slot: 'header' }, [_vm._v('\n\t\t\tIn-table header\n\t\t')]),
+            _c('div', {
+                attrs: { 'slot': 'header' },
+                slot: 'header'
+            }, [_vm._v('\n\t\t\tIn-table header\n\t\t')]),
             _vm._v(' '),
             _c('s-checkbox-column', { attrs: { 'selection': _vm.my_selection } }),
             _vm._v(' '),
@@ -6062,7 +5953,10 @@ _p.render = function render() {
                     }])
             }),
             _vm._v(' '),
-            _c('s-column', { attrs: { 'prop': 'b' } }, [_c('template', { slot: 'header' }, [_vm._v('\n\t\t\t\tB sum=' + _vm._s(_vm.sum_b) + '\n\t\t\t')])], 2),
+            _c('s-column', { attrs: { 'prop': 'b' } }, [_c('template', {
+                    attrs: { 'slot': 'header' },
+                    slot: 'header'
+                }, [_vm._v('\n\t\t\t\tB sum=' + _vm._s(_vm.sum_b) + '\n\t\t\t')])], 2),
             _vm._v(' '),
             _c('s-column', {
                 attrs: {
@@ -6080,15 +5974,6 @@ _p.render = function render() {
                         return _vm.copy(state, row);
                     }
                 }
-            }),
-            _vm._v(' '),
-            _c('s-column', {
-                scopedSlots: _vm._u([{
-                        key: 'default',
-                        fn: function (scope) {
-                            return [_c('div', { style: { height: scope.model.rnd + 'px' } }, [_vm._v('\xA0')])];
-                        }
-                    }])
             })
         ], 1),
         _vm._v(' '),
@@ -6111,7 +5996,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
-___scope___.file("test/routes/tabs.vue", function(exports, require, module, __filename, __dirname){
+___scope___.file("test/src/routes/tabs.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
 var _v = function (exports) {
@@ -6250,8 +6135,8 @@ FuseBox.global("__extends", function(d, b) {
 
 FuseBox.target = "universal"
 
-FuseBox.import("test/test/index.js");
-FuseBox.main("test/test/index.js");
+FuseBox.import("test/test/src/index.js");
+FuseBox.main("test/test/src/index.js");
 FuseBox.defaultPackageName = "test";
 })
 ((function(__root__){

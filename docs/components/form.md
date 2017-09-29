@@ -31,7 +31,7 @@ As noticed here, when scoped, the `input` slot is used instead of the default on
 #TODO:DOC
 ## Slots
 
-- The default slot is the one displayed.
+- The default slot is the one displayed. It can receive a scope that specifies `model` - this is useful as, when no model is selected, the slot will not be shown : so there is no need to test the model before each usage
 - The `empty` slot is displayed when no model is available
 
 ## Properties

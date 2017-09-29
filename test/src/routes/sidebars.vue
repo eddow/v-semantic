@@ -2,7 +2,6 @@
 	<div>
 		<s-sidebar direction="left" v-model="shown">
 			Lorem ipsum
-			
 		</s-sidebar>
 		<div class="pusher">
 			<s-checkbox label="visible" v-model="shown" />
@@ -15,6 +14,6 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 
 @Component
 export default class Sidebars extends Vue {
-	shown: boolean = false
+	shown: boolean = false	//TODO: it fails when initialised at true for now
 }
 </script>

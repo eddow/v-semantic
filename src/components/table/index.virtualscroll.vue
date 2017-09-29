@@ -18,14 +18,18 @@
 		</thead>
 		<tbody class="vued"
 			ref="body"
+			@scroll="scrolled"
 			:style="bodyStyle"
+			v-resize="computeRowHeight"
 		>
+			<tr v-if="heightKeeper" :style="heightKeeper.before" class="vued filler"></tr>
 			<tr
-				v-for="(row, index) in rows"
+				ref="displayedRows"
+				v-for="(row, index) in visibleRows"
 				:key="rowId(row)"
 				class="vued"
 				:class="[
-					rowClass(row, index),
+					rowClass(row, index+visibleIndexes.from),
 					{current: current === row}
 				]"
 				@click="rowClick(row)"
@@ -33,10 +37,11 @@
 				<td is="ripped" v-for="(column, uid) in columns" :key="uid"
 					:style="{width: column.width?column.width+'px':undefined}"
 					:ripper="column"
-					:scope="{row, index: index}"
+					:scope="{row, index: index+visibleIndexes.from}"
 					:render="renderCell"
 				/>
 			</tr>
+			<tr v-if="heightKeeper" :style="heightKeeper.after" class="vued filler"></tr>
 		</tbody>
 		<tfoot v-if="$slots.footer" :class="widthClass">
 			<tr class="vued">
@@ -172,7 +177,7 @@ export default class Table extends Vue {
 			});
 		return row.__table_row_id;
 	}
-	@Emit() rowClick(row) {}
+	@Emit('row-click') rowClick(row) {}
 	invalidateScopes
 	@Watch('rows', {deep: true}) rowsUpdate(rows) {
 		this.invalidateScopes(rows);
@@ -185,12 +190,123 @@ export default class Table extends Vue {
 			this.$emit('row-click', newSelect);
 		}
 	}
+	displayedRows = 10
+	computedRowHeight = null
+	computeRowHeight() {
+		if(this.rowHeight) return;
+	//TODO: call this on resize
+		var calc = this.rowPos();
+		if(!calc) return;
+		var {pos, top, last, bottom} = calc;
+		var newRowHeight = Math.round((bottom-top)/pos.length);
+		if(this.computedRowHeight !== newRowHeight) {
+			//The average row-height is re-calculated, so the fillers (before and after will be resized),
+			// so the scroll-top has to be re-specified to remain on the first displayed row
+			var log = {
+				scroll: this.bodyScrollTop,
+				avgRowHeight:this.avgRowHeight};
+			/*this.forceBodyScrollTop = this.bodyScrollTop =
+				Math.round(((this.bodyScrollTop + top) * newRowHeight/(this.computedRowHeight||defaultRowHeight))-top);*/
+			this.computedRowHeight = newRowHeight;
+			
+			console.log(top, log, {
+				scroll: this.bodyScrollTop,
+				avgRowHeight:this.avgRowHeight})
+			
+		}
+		return this.computedRowHeight;
+	}
+	get avgRowHeight() : number {
+		return Number(this.rowHeight) || this.computedRowHeight || this.computeRowHeight() || defaultRowHeight;
+	}
 	get bodyStyle() {
 		if(this.bodyHeight) {
 			return {
 				height: this.bodyHeight+ 'px'
 			}
 		}
+	}
+	get heightKeeper() {
+		if(this.bodyHeight) console.log(
+			this.avgRowHeight*this.visibleIndexes.from + 'px',
+			this.avgRowHeight*Math.max(0, this.rows.length-this.visibleIndexes.to) + 'px'
+		);
+		return this.bodyHeight ? {
+			before: {height: this.avgRowHeight*this.visibleIndexes.from + 'px'},
+			after: {height: this.avgRowHeight*Math.max(0, this.rows.length-this.visibleIndexes.to) + 'px'}
+		} : null;
+	}
+	mounted() {
+		this.computeDisplayedRows();
+		var x = this.$refs.body;
+	}
+	updated() {
+		//console.log('width', $(this.$refs.body).width());
+		if('forceBodyScrollTop' in this) {
+			console.log('force', this.forceBodyScrollTop);
+			$(this.$refs.body).scrollTop(this.bodyScrollTop = this.forceBodyScrollTop);
+			delete this.forceBodyScrollTop;
+		}
+		this.computeDisplayedRows();
+	}
+	rowPos() {
+		var rows = <HTMLTableRowElement[]>this.$refs.displayedRows;
+		if(!this.bodyHeight || !rows || !rows.length || !this.$refs.body)
+			return;
+		var bodyTop = $(this.$refs.body).position().top,
+			pos = rows.map(x=> {
+				var el = $(x);
+				return {
+					top: el.position().top-bodyTop,
+					height: el.height()
+				}
+			});
+		if(1>= pos[0].height) return;	//So small, it just means it is not displayed
+		pos.sort((x,y)=>x.top-y.top);
+		var top = pos[0].top, last = pos[pos.length-1], bottom = last.top + last.height;
+		if(top > this.bodyHeight || bottom < 0) return;	//It just got updated half : further updates are coming
+		return {pos, top, last, bottom};
+	}
+	computeDisplayedRows() {
+		var calc = this.rowPos();
+		if(!calc) return;
+		var {pos, top, last, bottom} = calc;
+		
+		//remove rows after the bottom
+		while(last.top > this.bodyHeight) {
+			pos.pop();
+			last = pos[pos.length-1];
+		}
+		//re-init displayed-rows (diminished or not, this is useful for both cases)
+		this.displayedRows = pos.length;
+		//add rows if there is an empty gap
+		var emptyGap = Number(this.bodyHeight) - (last.top+last.height);
+		if(0< emptyGap)
+			this.displayedRows += Math.ceil(emptyGap/this.avgRowHeight);
+
+	}
+	forceBodyScrollTop
+	scrolled() {
+		this.bodyScrollTop = $(this.$refs.body).scrollTop();
+		console.log('scroll', this.bodyScrollTop);
+		this.computeDisplayedRows();
+	}
+	bodyScrollTop = 0
+	get visibleIndexes() {
+		if(this.bodyHeight) {
+			var from = //Math.min(
+				this.avgRowHeight && Math.floor(this.bodyScrollTop/this.avgRowHeight) || 0/*,
+				this.$refs.displayedRows ? this.$refs.displayedRows.length-this.displayedRows+1 : 0
+			);*/
+			console.log('indexes', from, from+this.displayedRows);
+			return {from, to: from+this.displayedRows};
+		}
+		return {from: 0, to: this.rows.length};
+	}
+	get visibleRows() {
+		return this.visibleIndexes ? 
+			this.rows.slice(this.visibleIndexes.from, this.visibleIndexes.to) :
+			this.rows;
 	}
 	get widthClass() {
 		return ['vued', this.bodyHeight ? 'paddingSBright' : ''];

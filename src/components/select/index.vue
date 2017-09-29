@@ -59,7 +59,7 @@ const genInputName = idSpace('slct');
 	duration: Number,
 	minCharacters: Number,
 	match: String,	//'both'|'text'|'value'
-	action: String,	//'activate'|'select'|'combo'|'nothing'|'hide'|'command'
+	action: [String, Function],	//'activate'|'select'|'combo'|'nothing'|'hide'|'command'
 	preserveHTML: Boolean
 }, [
 	'change',

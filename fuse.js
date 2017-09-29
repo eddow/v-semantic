@@ -19,6 +19,7 @@ Sparky.task("build", ()=> {
 			QuantumPlugin({
 				bakeApiIntoBundle : 'v-semantic',
 				containedAPI : true,
+				globalRequire: false,
 				target: 'npm'
 			})
 		],
@@ -59,8 +60,8 @@ Sparky.task("build", ()=> {
 });
 Sparky.task("test", ()=> {
 	const fuseSrc = FuseBox.init({
-		homeDir: "test/routes",
-		output: "test/$name.js",
+		homeDir: "test/src/routes",
+		output: "test/run/$name.js",
 		package: 'source',
 		plugins: [
 			RawPlugin('*.vue'),
@@ -69,7 +70,7 @@ Sparky.task("test", ()=> {
 	});
 	const fuse = FuseBox.init({
 		homeDir: ".",
-		output: "test/$name.js",
+		output: "test/run/$name.js",
 		package: 'test',
 		plugins: [
 			TypeScriptHelpers(),
@@ -92,7 +93,7 @@ Sparky.task("test", ()=> {
 	const test = fuse.bundle("test")
 		.watch('(test/src|src)/**')
 		//.sourceMaps(true)
-		.instructions('> [test/src/index.ts] +test/src/routes/*.vue -*.d.ts');
+		.instructions('> [test/src/index.ts] +[test/src/routes/*.vue] -*.d.ts');
 		
 	const source = fuseSrc.bundle("source")
 		//.watch('**')
@@ -107,7 +108,7 @@ Sparky.task("test", ()=> {
 				exports: "$"
 			}
 		})
-		.instructions('~ [test/index.ts] +tslib');
+		.instructions('~[test/src/index.ts] ~[test/src/routes/*.vue] +tslib');
 
 	fuseSrc.run();
 	return fuse.run();
