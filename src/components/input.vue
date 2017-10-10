@@ -2,7 +2,7 @@
 	<div :class="[cls, dynCls, {field: !!form}]">
 		<slot name="prepend" />
 		<slot name="input" :input="_self">
-			<input type="text"
+			<input :type="type"
 				ref="input"
 				:name="name"
 				:placeholder="placeholder"
@@ -29,9 +29,10 @@ import {$} from 'lib/shims'
 	fluid: Boolean
 })
 export default class Input extends Vue {
-	@Model('input') value: string
+	@Model('input', {type: [String, Number]}) value: string|number
 	@Prop() placeholder: string
 	@Prop() name: string
+	@Prop({default: 'text'}) type: string
 	@Emit() input(value) {}
 	model = null
 

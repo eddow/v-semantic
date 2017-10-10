@@ -1,5 +1,5 @@
 <template>
-	<i :class="[Country, 'flag']"></i>
+	<i :class="[country, 'flag']"></i>
 </template>
 
 <script lang="ts">
@@ -8,6 +8,6 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 
 @Component
 export default class Flag extends Vue {
-	@Prop({required: true}) Country: string
+	@Prop({required: true}) country: string
 }
 </script>

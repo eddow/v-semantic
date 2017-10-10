@@ -95,8 +95,14 @@ export default function molded(slotNames) {
 		}
 		scope
 		initSlot(name: string) {
-			var scoped = slot=> ((params)=> 
-				slot(__assign(this.scope(params.model), params))||[]);	//we keep [] for empty vnodes
+			var scoped = slot=> ((params)=> {
+				var org = Object.create(this.scope(params.model));
+				if(Object=== params.constructor)
+					for(let i in params)
+						if('model'!== i)
+							org[i] = params[i];
+				return slot(org)||[];
+			});	//we keep [] for empty vnodes
 			var vnodeGiven = this.$options._parentVnode.data.scopedSlots;
 			vnodeGiven = vnodeGiven && vnodeGiven[name];
 			if(vnodeGiven) return scoped(vnodeGiven);

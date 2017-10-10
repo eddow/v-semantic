@@ -30,7 +30,7 @@ import Semantic from 'lib/classed'
 }, {
 	components: {Dimmer, Icon}
 })
-export default class Dimm extends Vue {
+export default class Dimmable extends Vue {
 	@Prop({default: ''}) variation: 'simple'|'inverted'|''
 	@Prop() closable: 'auto'|boolean
 	@Prop() on: string

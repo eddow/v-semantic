@@ -79,7 +79,7 @@ export default class Modal extends Command.Commanded {
 		} else {
 			if(!this.promise) throw new Error('Modal received a command while not being invoked')
 			if('cancel'!== command)
-				this.promise.accept(params?{command, params}:command);
+				this.promise.accept('undefined'!== typeof params?{command, params}:command);
 			else
 				this.promise.reject();
 				

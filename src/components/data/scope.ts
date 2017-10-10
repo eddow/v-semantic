@@ -29,6 +29,12 @@ export class modelScoped extends Vue {
 	}
 }
 
+/**
+ * Create a property accessor that defines `value` whose get/set access the deep property path in the model
+ * @param property 
+ * @param model 
+ * @param errScope 
+ */
 export function propertyScope(property, model, errScope) {
 	return Object.create(property, {
 		//Beware : these are property descriptors (like in Object.defineProperty)

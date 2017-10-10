@@ -6,6 +6,7 @@ ___scope___.file("test/src/index.js", function(exports, require, module, __filen
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
 require('semantic-ui/dist/semantic.min.css');
+require('semantic-ui/dist/semantic');
 var Vue = require('vue/dist/vue.common.js');
 var v_semantic_1 = require('~/src/index');
 Vue.use(v_semantic_1.default);
@@ -39,9 +40,6 @@ var components = require("./components");
 __export(require("./components"));
 var directives = require("./directives");
 __export(require("./directives"));
-/*import * as lib from 'lib/*'
-export {lib}*/
-require("semantic-ui/dist/semantic");
 exports.default = {
     install: function (Vue, options) {
         var pfx = (options && options.prefix) || 'S';
@@ -680,7 +678,12 @@ function molded(slotNames) {
             var _this = this;
             var scoped = function (slot) {
                 return function (params) {
-                    return slot(__assign(_this.scope(params.model), params)) || [];
+                    var org = Object.create(_this.scope(params.model));
+                    if (Object === params.constructor)
+                        for (var i in params)
+                            if ('model' !== i)
+                                org[i] = params[i];
+                    return slot(org) || [];
                 };
             };
             var vnodeGiven = this.$options._parentVnode.data.scopedSlots;
@@ -1104,7 +1107,7 @@ var _v = function (exports) {
         __decorate([
             vue_property_decorator_1.Prop({ required: true }),
             __metadata('design:type', String)
-        ], Flag.prototype, 'Country', void 0);
+        ], Flag.prototype, 'country', void 0);
         Flag = __decorate([vue_property_decorator_1.Component], Flag);
         return Flag;
     }(Vue);
@@ -1116,7 +1119,7 @@ _p.render = function render() {
     var _c = _vm._self._c || _h;
     return _c('i', {
         class: [
-            _vm.Country,
+            _vm.country,
             'flag'
         ]
     });
@@ -1500,8 +1503,13 @@ var _v = function (exports) {
             configurable: true
         });
         __decorate([
-            vue_property_decorator_1.Model('input'),
-            __metadata('design:type', String)
+            vue_property_decorator_1.Model('input', {
+                type: [
+                    String,
+                    Number
+                ]
+            }),
+            __metadata('design:type', Object)
         ], Input.prototype, 'value', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
@@ -1511,6 +1519,10 @@ var _v = function (exports) {
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
         ], Input.prototype, 'name', void 0);
+        __decorate([
+            vue_property_decorator_1.Prop({ default: 'text' }),
+            __metadata('design:type', String)
+        ], Input.prototype, 'type', void 0);
         __decorate([
             vue_property_decorator_1.Emit(),
             __metadata('design:type', Function),
@@ -1566,7 +1578,7 @@ _p.render = function render() {
                     }],
                 ref: 'input',
                 attrs: {
-                    'type': 'text',
+                    'type': _vm.type,
                     'name': _vm.name,
                     'placeholder': _vm.placeholder
                 },
@@ -1678,7 +1690,7 @@ var _v = function (exports) {
                 if (!this.promise)
                     throw new Error('Modal received a command while not being invoked');
                 if ('cancel' !== command)
-                    this.promise.accept(params ? {
+                    this.promise.accept('undefined' !== typeof params ? {
                         command: command,
                         params: params
                     } : command);
@@ -4500,52 +4512,52 @@ var _v = function (exports) {
     var dimmer_vue_1 = require('./dimmer.vue');
     var icon_vue_1 = require('./icon.vue');
     var classed_1 = require('~/src/lib/classed');
-    var Dimm = function (_super) {
-        __extends(Dimm, _super);
-        function Dimm() {
+    var Dimmable = function (_super) {
+        __extends(Dimmable, _super);
+        function Dimmable() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         __decorate([
             vue_property_decorator_1.Prop({ default: '' }),
             __metadata('design:type', String)
-        ], Dimm.prototype, 'variation', void 0);
+        ], Dimmable.prototype, 'variation', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', Object)
-        ], Dimm.prototype, 'closable', void 0);
+        ], Dimmable.prototype, 'closable', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
-        ], Dimm.prototype, 'on', void 0);
+        ], Dimmable.prototype, 'on', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', Object)
-        ], Dimm.prototype, 'duration', void 0);
+        ], Dimmable.prototype, 'duration', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
-        ], Dimm.prototype, 'transition', void 0);
+        ], Dimmable.prototype, 'transition', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
-        ], Dimm.prototype, 'icon', void 0);
+        ], Dimmable.prototype, 'icon', void 0);
         __decorate([
             vue_property_decorator_1.Prop(),
             __metadata('design:type', String)
-        ], Dimm.prototype, 'message', void 0);
+        ], Dimmable.prototype, 'message', void 0);
         __decorate([
             vue_property_decorator_1.Model('change'),
             __metadata('design:type', Boolean)
-        ], Dimm.prototype, 'visible', void 0);
-        Dimm = __decorate([classed_1.default('dimmable', { blurring: Boolean }, {
+        ], Dimmable.prototype, 'visible', void 0);
+        Dimmable = __decorate([classed_1.default('dimmable', { blurring: Boolean }, {
                 components: {
                     Dimmer: dimmer_vue_1.default,
                     Icon: icon_vue_1.default
                 }
-            })], Dimm);
-        return Dimm;
+            })], Dimmable);
+        return Dimmable;
     }(Vue);
-    exports.default = Dimm;
+    exports.default = Dimmable;
 };
 _p.render = function render() {
     var _vm = this;

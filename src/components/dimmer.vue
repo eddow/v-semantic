@@ -13,7 +13,7 @@ import Semantic from 'lib/module'
 	variation: {default: '', type: String},
 	page: Boolean
 }, {
-	closable: [String,Boolean],
+	closable: [String, Boolean],
 	on: String,
 	duration: Object,
 	transition: String

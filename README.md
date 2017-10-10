@@ -15,8 +15,6 @@ The css-classes specific to a component are set as boolean properties of the com
 There is a [live demo/preview](https://rawgit.com/eddow/v-semantic/master/test/run/index.html)
 
 ## Installation
-Beta stade: 
-
 For usage:
 ```
 npm install v-semantic --save
