@@ -3,7 +3,6 @@
 		<slot name="prepend" />
 		<slot name="input" :input="_self">
 			<input :type="type"
-				ref="input"
 				:name="name"
 				:placeholder="placeholder"
 				v-model="model"

@@ -1576,7 +1576,6 @@ _p.render = function render() {
                         value: _vm.model,
                         expression: 'model'
                     }],
-                ref: 'input',
                 attrs: {
                     'type': _vm.type,
                     'name': _vm.name,
