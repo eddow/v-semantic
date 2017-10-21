@@ -13,7 +13,10 @@ export default {
 			commanded = commanded.$parent;
 		if(!commanded) throw new Error('v-command directive applies only inside an Commanded component.');
 		inst.$on('click', vnode.commandClick = function() {
-			commanded.command(binding.arg, binding.value);
+			var value = binding.value;
+			if('function'=== typeof value) value = value();
+			if(false!== value)
+				commanded.command(binding.arg, true=== value?undefined:value);
 		});
 	},
 	unbind(el, binding, vnode, oldVnode) {

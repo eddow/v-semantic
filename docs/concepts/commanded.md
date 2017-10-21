@@ -32,3 +32,22 @@ Though, this could be done.
 Beside the "cuteness" of `<s-button v-command:shlab />` instead of `<s-button @click="doSomething('shlab')" />`, this is useful when the control describing the button doesn't know what `doSomething` is.
 
 Example : A pannel of buttons with save/reset/export/... to have at the end of each form. The panel can be described in a custom control, then used in each form it is needed into, their button will just specify `v-command:save` etc., then the form in which the panel is included will receive that command.
+
+## Value
+The command value is given as the parameter. If the value is a function, it will be called before the command is effected.
+
+If the return value is `false`, the command will **not** be executed. If it is `undefined` or `true`, the command will be executed without parameter.
+For any other value, the command will be executed with the return value a parameter.
+
+```html
+	<input v-model="myValue" />
+	<s-button command:ok="validateOk" />
+```
+
+```ts
+{
+	validateOk() {
+		return !!this.myValue && this.myValue;
+	}
+}
+```

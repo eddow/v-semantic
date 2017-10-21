@@ -7,8 +7,6 @@ import * as VueRouter from 'vue-router'
 Vue.use(VueRouter);
 import * as VueCodeMirror from 'vue-codemirror'
 Vue.use(VueCodeMirror)
-/*import vgl from 'vue-golden-layout'
-Vue.use(vgl);*/
 
 import App from './app.vue'
 new Vue({

@@ -28,10 +28,11 @@ import Panel from './components/panel.vue'
 import Dimmer from './components/dimmer.vue'
 import Dimmable from './components/dimmable.vue'
 
+var Dropdown = Select;
 export {
 	Flag, Button, Icon, Input, Modal, Checkbox, Progress,
 	Form, Field, FieldInput, DataMold,
-	Sidebar, Select, Option,
+	Sidebar, Select, Option, Dropdown,
 	Table, Column, CheckboxColumn, RowEditColumn,
 	Accordion, Tabs, Panel,
 	Dimmer, Dimmable

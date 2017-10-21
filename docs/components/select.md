@@ -1,5 +1,5 @@
 # [Select](https://semantic-ui.com/modules/dropdown.html)
-
+(alias: `dropdown`)
 ## Slots
 ### default
 The default slot is the menu. It can be filled with `<s-option>` that are basically short-cuts for `<div class="item">` with these two proprieties:

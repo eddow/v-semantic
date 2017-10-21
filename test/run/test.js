@@ -1767,6 +1767,53 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
+___scope___.file("src/directives/command.js", function(exports, require, module, __filename, __dirname){
+
+'use strict';
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b)
+            if (b.hasOwnProperty(p))
+                d[p] = b[p];
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, '__esModule', { value: true });
+var Vue = require('vue/dist/vue.common.js');
+var Commanded = function (_super) {
+    __extends(Commanded, _super);
+    function Commanded() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Commanded;
+}(Vue);
+exports.default = {
+    bind: function (el, binding, vnode, oldVnode) {
+        var inst = vnode.componentInstance, originalClick = inst.click, commanded = inst.$parent;
+        if (!originalClick)
+            throw new Error('v-command directive applies only on component exposing events.');
+        while (commanded && !(commanded instanceof Commanded))
+            commanded = commanded.$parent;
+        if (!commanded)
+            throw new Error('v-command directive applies only inside an Commanded component.');
+        inst.$on('click', vnode.commandClick = function () {
+            commanded.command(binding.arg, binding.value);
+        });
+    },
+    unbind: function (el, binding, vnode, oldVnode) {
+        vnode.componentInstance.$off('click', oldVnode.commandClick);
+    },
+    Commanded: Commanded
+};
+});
 ___scope___.file("src/components/checkbox.vue", function(exports, require, module, __filename, __dirname){
 
 var _p = {};
@@ -4609,53 +4656,6 @@ var dimm_parts_1 = require("./directives/dimm-parts");
 exports.DimmParts = dimm_parts_1.default;
 //# sourceMappingURL=directives.js.map
 });
-___scope___.file("src/directives/command.js", function(exports, require, module, __filename, __dirname){
-
-'use strict';
-var __extends = this && this.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b)
-            if (b.hasOwnProperty(p))
-                d[p] = b[p];
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, '__esModule', { value: true });
-var Vue = require('vue/dist/vue.common.js');
-var Commanded = function (_super) {
-    __extends(Commanded, _super);
-    function Commanded() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Commanded;
-}(Vue);
-exports.default = {
-    bind: function (el, binding, vnode, oldVnode) {
-        var inst = vnode.componentInstance, originalClick = inst.click, commanded = inst.$parent;
-        if (!originalClick)
-            throw new Error('v-command directive applies only on component exposing events.');
-        while (commanded && !(commanded instanceof Commanded))
-            commanded = commanded.$parent;
-        if (!commanded)
-            throw new Error('v-command directive applies only inside an Commanded component.');
-        inst.$on('click', vnode.commandClick = function () {
-            commanded.command(binding.arg, binding.value);
-        });
-    },
-    unbind: function (el, binding, vnode, oldVnode) {
-        vnode.componentInstance.$off('click', oldVnode.commandClick);
-    },
-    Commanded: Commanded
-};
-});
 ___scope___.file("src/directives/loading.js", function(exports, require, module, __filename, __dirname){
 
 'use strict';
@@ -6095,6 +6095,7 @@ _v(_e);
 Object.assign(_e.default.options || _e.default, _p);
 module.exports = _e;
 });
+return ___scope___.entry = "test/src/index.ts";
 });
 FuseBox.global("__assign", function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -6304,6 +6305,10 @@ function $getRef(name, o) {
     if (!file && !wildcard) {
         validPath = $pathJoin(filePath, "/", "index.js");
         file = pkg.f[validPath];
+        if (!file && filePath === ".") {
+            validPath = pkg.s && pkg.s.entry || "index.js";
+            file = pkg.f[validPath];
+        }
         if (!file) {
             validPath = filePath + ".js";
             file = pkg.f[validPath];
