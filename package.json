@@ -34,8 +34,10 @@
     "fuse-box": "^2.3.3",
     "node-sass": "^4.5.3",
     "string": "^3.3.3",
+    "tslib": "^1.8.0",
     "vue": "^2.4.4",
     "vue-hot-reload-api": "^2.2.0",
+    "vue-property-decorator": "^6.0.0",
     "vue-resize-directive": "^1.0.0",
     "vue-ripper": "^1.1.2"
   }

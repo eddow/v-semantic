@@ -1,5 +1,5 @@
 const {
-	Sparky, FuseBox, UglifyJSPlugin, TypeScriptHelpers, CSSPlugin, EnvPlugin, VuePlugin,
+	Sparky, FuseBox, UglifyJSPlugin, CSSPlugin, EnvPlugin, VuePlugin,
 	JSONPlugin, BabelPlugin, HotReloadPlugin, QuantumPlugin, RawPlugin
 } = require('fuse-box');
 let producer;
@@ -11,7 +11,6 @@ Sparky.task("build", ()=> {
 		output: "dist/$name.js",
 		package: 'v-semantic',
 		plugins: [
-			TypeScriptHelpers(),
 			EnvPlugin({NODE_ENV: production ? "production" : "development"}),
 			CSSPlugin(), production && UglifyJSPlugin(),
 			VuePlugin(),
@@ -53,7 +52,7 @@ Sparky.task("build", ()=> {
 	const app = fuse.bundle("v-semantic")
 		//.sourceMaps(true)
 		//.plugin(HotReloadPlugin({port: 4445}))
-    .instructions('> [index.ts] +fuse-box-css - *.d.ts'); // +fuse-box-css
+    .instructions('> [index.ts] +fuse-box-css +tslib - *.d.ts'); // +fuse-box-css
 	//if (!production) app.hmr();
 
 	return fuse.run();
@@ -73,7 +72,6 @@ Sparky.task("test", ()=> {
 		output: "test/run/$name.js",
 		package: 'test',
 		plugins: [
-			TypeScriptHelpers(),
 			EnvPlugin({NODE_ENV: production ? "production" : "development"}),
 			CSSPlugin(), production && UglifyJSPlugin(),
 			VuePlugin(),
@@ -93,7 +91,7 @@ Sparky.task("test", ()=> {
 	const test = fuse.bundle("test")
 		.watch('(test/src|src)/**')
 		//.sourceMaps(true)
-		.instructions('> [test/src/index.ts] +[test/src/routes/*.vue] -*.d.ts');
+		.instructions('> [test/src/index.ts] +[test/src/routes/*.vue] +tslib -*.d.ts');
 		
 	const source = fuseSrc.bundle("source")
 		//.watch('**')
