@@ -1,11 +1,11 @@
 var webpack = require("webpack"),
 	path = require("path"),
-    externals = require('webpack-node-externals'),
-    {default: DtsBundlePlugin} = require('webpack-dts-bundle'),
-    VueLoader = require('vue-loader');
+	externals = require('webpack-node-externals'),
+	{default: DtsBundlePlugin} = require('webpack-dts-bundle'),
+	VueLoader = require('vue-loader');
 
 module.exports = {
-    mode: 'development',    //This is meant to be bundled afterward anyway
+	mode: 'development',	//This is meant to be bundled afterward anyway
 	context: path.resolve(__dirname, 'src'),
 	entry: {
 		'v-semantic': ['./index.ts'],
@@ -13,24 +13,24 @@ module.exports = {
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, "dist"),
-        libraryTarget: 'umd',
-        library: 'v-semantic',
-        umdNamedDefine: true,
-        libraryExport: 'default'
+		libraryTarget: 'umd',
+		library: 'v-semantic',
+		umdNamedDefine: true,
+		libraryExport: 'default'
 	},
 	plugins: [
-        /*new DtsBundlePlugin({
-            name: 'v-semantic',
-            main: 'dist/index.d.ts',
-            out: 'v-semantic.d.ts',
-            removeSource: true
-        }),*/
-        new VueLoader.VueLoaderPlugin()
+		/*new DtsBundlePlugin({
+			name: 'v-semantic',
+			main: 'dist/index.d.ts',
+			out: 'v-semantic.d.ts',
+			removeSource: true
+		}),*/
+		new VueLoader.VueLoaderPlugin()
 	],
-    externals: [
-        externals()
-    ],
-    devtool: 'source-map',
+	externals: [
+		externals()
+	],
+	devtool: 'source-map',
 	module: {
 		rules: [{
 			test: /\.tsx?$/,

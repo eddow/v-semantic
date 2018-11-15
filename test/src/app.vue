@@ -55,7 +55,7 @@ export default class App extends Vue {
 		styleSelectedText: true,
 		highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
 		readOnly: true,
-        selectionPointer: true
+		selectionPointer: true
 	}
 	@Watch('$route', {immediate: true})
 	loadComponent(route) {

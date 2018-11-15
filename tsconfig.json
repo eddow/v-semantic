@@ -1,31 +1,31 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
+	"sourceMap": true,
 	"sourceRoot": "../../src/",
 	"outDir": "../dist/",
 	"inlineSources": true,
-    "noImplicitAny": false,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "target": "es5",
-    "lib": [
+	"noImplicitAny": false,
+	"module": "commonjs",
+	"moduleResolution": "node",
+	"experimentalDecorators": true,
+	"emitDecoratorMetadata": true,
+	"target": "es5",
+	"lib": [
 		"dom",
 		"es6",
 		"es2015.promise"
-    ],
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
+	],
+	"allowSyntheticDefaultImports": true,
+	"allowJs": true,
 	"typeRoots": ["../node_modules/@types"],
 	"baseUrl": ".",
 	"paths": {
-      	"lib/*": ["./src/lib/*"],
-      	"directives/*": ["./src/directives/*"],
+	  	"lib/*": ["./src/lib/*"],
+	  	"directives/*": ["./src/directives/*"],
 		"components/*": ["./src/components/*"],
-      	"v-semantic": ["./dist/v-semantic"]
-    }
-    },
+	  	"v-semantic": ["./dist/v-semantic"]
+	}
+	},
 	"exclude": [
 		"**/*.spec.ts",
 		"**/*.d.ts"

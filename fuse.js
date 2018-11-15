@@ -46,7 +46,7 @@ Sparky.task("build", ()=> {
 	});
 
 	fuse.bundle("v-semantic")
-    	.instructions('> [index.ts] +fuse-box-css - *.d.ts');
+		.instructions('> [index.ts] +fuse-box-css - *.d.ts');
 
 	return fuse.run();
 });

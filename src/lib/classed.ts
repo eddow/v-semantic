@@ -12,13 +12,13 @@ function isDef (v) {
 //---------
 export function stringifyClass (value) {
   if (Array.isArray(value)) {
-    return stringifyArray(value)
+	return stringifyArray(value)
   }
   if (isObject(value)) {
-    return stringifyObject(value)
+	return stringifyObject(value)
   }
   if (typeof value === 'string') {
-    return value
+	return value
   }
   /* istanbul ignore next */
   return ''
@@ -28,10 +28,10 @@ function stringifyArray (value) {
   var res = '';
   var stringified;
   for (var i = 0, l = value.length; i < l; i++) {
-    if (isDef(stringified = stringifyClass(value[i])) && stringified !== '') {
-      if (res) { res += ' '; }
-      res += stringified;
-    }
+	if (isDef(stringified = stringifyClass(value[i])) && stringified !== '') {
+	  if (res) { res += ' '; }
+	  res += stringified;
+	}
   }
   return res
 }
@@ -39,10 +39,10 @@ function stringifyArray (value) {
 function stringifyObject (value) {
   var res = '';
   for (var key in value) {
-    if (value[key]) {
-      if (res) { res += ' '; }
-      res += key;
-    }
+	if (value[key]) {
+	  if (res) { res += ' '; }
+	  res += key;
+	}
   }
   return res
 }

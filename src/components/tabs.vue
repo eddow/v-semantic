@@ -68,7 +68,7 @@ export default class Tabs extends Vue {
 		return h('div', {class: 'tabs'=== name?this.tabClmn:this.pnlClmn}, slot);
 	}*/
 	@Watch('active') setTab(name) {
-    //this.semantic('change tab', name);
+	//this.semantic('change tab', name);
 		//+ onVisible	tabPath
 	}
 	panels = []

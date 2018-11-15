@@ -5,18 +5,18 @@ These can simply be used "manually".
 ```html
 <div class="ui form">
   <div class="three fields">
-    <div class="field">
-      <label>First name</label>
-      <input type="text" placeholder="First Name" v-model="person.firstName">
-    </div>
-    <div class="field">
-      <label>Middle name</label>
-      <input type="text" placeholder="Middle Name" v-model="person.middleName">
-    </div>
-    <div class="field">
-      <label>Last name</label>
-      <input type="text" placeholder="Last Name" v-model="person.lastName">
-    </div>
+	<div class="field">
+	  <label>First name</label>
+	  <input type="text" placeholder="First Name" v-model="person.firstName">
+	</div>
+	<div class="field">
+	  <label>Middle name</label>
+	  <input type="text" placeholder="Middle Name" v-model="person.middleName">
+	</div>
+	<div class="field">
+	  <label>Last name</label>
+	  <input type="text" placeholder="Last Name" v-model="person.lastName">
+	</div>
   </div>
 </div>
 ```
