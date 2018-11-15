@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import {Component} from 'vue-property-decorator'
 import * as classed from './classed'
 import Vue, {ComponentOptions} from 'vue'

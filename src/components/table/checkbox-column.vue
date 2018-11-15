@@ -21,12 +21,13 @@ import column from './column.vue'
 import checkbox from '../checkbox.vue'
 import {Ripper} from 'vue-ripper'
 import table from './index.vue'
+import { VueSemantic } from 'lib/module'
 
 @Component({
 	components: {Ripper, checkbox},
 	mixins: [table.managedColumn]
 })
-export default class CheckboxColumn extends Vue {
+export default class CheckboxColumn extends VueSemantic {
 	@Inject() modeled
 	@Prop({default: 'selected'}) prop: string
 	@Prop() header: string

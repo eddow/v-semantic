@@ -25,6 +25,9 @@ module.exports = {
 			out: 'v-semantic.d.ts',
 			removeSource: true
 		}),*/
+		new webpack.ProvidePlugin({
+			$: 'jquery'
+		}),
 		new VueLoader.VueLoaderPlugin()
 	],
 	externals: [

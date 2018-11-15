@@ -39,6 +39,7 @@
 import Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {Pimp, Ripped, Depot} from 'vue-ripper'
+import $ from 'jquery'
 
 var orders = {
 	tabsFirst: ['pimp', 'tabs', 'default'],

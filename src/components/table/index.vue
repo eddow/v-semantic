@@ -112,7 +112,7 @@ const generateRowId = idSpace('rw'), defaultRowHeight = 42;
 	compact: Boolean
 }, {
 	components: {Pimp, Ripped},
-	mixins: [Modeled.extendOptions],
+	mixins: [(<any>Modeled).extendOptions],
 	directives: {resize}
 })
 export default class Table extends Vue {

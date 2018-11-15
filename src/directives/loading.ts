@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 export default {
 	bind(el, binding, vnode, oldVnode) {
 		var modifiers = Object.keys(binding.modifiers).join(' '),
@@ -10,14 +12,9 @@ export default {
 			if(binding.modifiers.blurring) dimmable.addClass('blurring');
 	},
 	update(el, binding, vnode, oldVnode) {
-		if('string'=== typeof binding.value)
-			$(el).data('dimmel')
-				.addClass('text')
-				.text(binding.value);
-		else
-			$(el).data('dimmel')
-				.removeClass('text')
-				.text('');
+		$(el).data('dimmel')
+			.addClass('text')
+			.text('string'=== typeof binding.value ? binding.value : '');
 		$(el).dimmer(binding.value?'show':'hide');
 	}
 };

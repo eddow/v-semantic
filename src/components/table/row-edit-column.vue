@@ -39,12 +39,13 @@ import column from './column.vue'
 import sButton from '../button.vue'
 import {Ripper} from 'vue-ripper'
 import table from './index.vue'
+import { VueSemantic } from 'lib/module'
 
 @Component({
 	components: {Ripper, sButton},
 	mixins: [table.managedColumn]
 })
-export default class RowEditColumn extends Vue {
+export default class RowEditColumn extends VueSemantic {
 	@Inject() modeled
 	@Prop() header: string
 	@Prop() prop: string

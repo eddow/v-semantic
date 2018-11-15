@@ -65,7 +65,7 @@ export default class Modal extends Command.Commanded {
 	//command(command: string)
 	//command(command: string, params: any)
 	//command(resolve: function, reject: function)
-	command(command?: string|function, params?: any|function) {
+	command(command?: string|((v:any)=> any), params?: any|((v:any)=> any)) {
 		if('string'!== typeof command) {
 			if(this.promise) throw new Error('Modal invoked while being opened already')
 

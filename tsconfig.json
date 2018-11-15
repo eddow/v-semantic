@@ -23,7 +23,7 @@
 	  	"lib/*": ["./src/lib/*"],
 	  	"directives/*": ["./src/directives/*"],
 		"components/*": ["./src/components/*"],
-	  	"v-semantic": ["./dist/v-semantic"]
+	  	"v-semantic": ["./src/v-semantic"]
 	}
 	},
 	"exclude": [
