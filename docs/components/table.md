@@ -24,7 +24,7 @@ Each column has two slots : `header` and the default scoped slot whose scope con
 ```html
 <s-column>
 	<template slot="header">My property</template>
-	<template scope="scope">{{scope.row.myProp}}</template>
+	<template slot-scope="scope">{{scope.row.myProp}}</template>
 </s-column>
 ```
 

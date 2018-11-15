@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/module'
+import Semantic, { VueSemantic } from 'lib/module'
 
 @Semantic('checkbox', {
 	disabled: Boolean,
@@ -26,7 +26,7 @@ import Semantic from 'lib/module'
 	'enable',
 	'disable'
 ])
-export default class Checkbox extends Vue {
+export default class Checkbox extends VueSemantic {
 	@Prop() label: string
 	@Prop() state3: boolean
 	@Prop() name: string

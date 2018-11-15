@@ -1,9 +1,9 @@
 import 'semantic-ui/dist/semantic.min.css'
 import 'semantic-ui/dist/semantic'
-import * as Vue from 'vue'
+import Vue from 'vue'
 import semanticVue from 'v-semantic'
 Vue.use(semanticVue);
-import * as VueRouter from 'vue-router'
+import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 import * as VueCodeMirror from 'vue-codemirror'
 Vue.use(VueCodeMirror)

@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/module'
 import Command from 'directives/command'

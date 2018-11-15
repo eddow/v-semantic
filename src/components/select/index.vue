@@ -24,9 +24,9 @@
 </style>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/module'
+import Semantic, { VueSemantic } from 'lib/module'
 import {idSpace} from 'lib/utils'
 import {equals} from 'lib/deep'
 
@@ -70,7 +70,7 @@ const genInputName = idSpace('slct');
 	'hide'
 ])
 //TODO: finish and test `multiple`
-export default class Select extends Vue {
+export default class Select extends VueSemantic {
 	@Model('change') @Prop() value: string
 	@Prop({default: 'dropdown'}) icon: string
 	@Prop() placeholder: string

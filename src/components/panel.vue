@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {Ripper} from 'vue-ripper'
 import {idSpace} from 'lib/utils'

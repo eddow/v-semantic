@@ -5,7 +5,7 @@
 				{{header}}
 			</slot>
 		</template>
-		<template scope="itr">
+		<template slot-scope="itr">
 			<slot :model="itr.row" :index="itr.index">
 				<slot v-if="edition(itr.row)" name="input" :model="itr.row" :index="itr.index">
 					<s-input type="text" v-model="scope(itr.row).value" />
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {Ripper} from 'vue-ripper'
 import * as deep from 'lib/deep'
@@ -28,7 +28,7 @@ import molded from '../data/molded'
 
 @Component({
 	components: {Ripper},
-	mixins: [Table.managedColumn, molded(['header', 'display', 'input']).extendOptions]
+	mixins: [Table.managedColumn, molded(['header', 'display', 'input'])]
 })
 export default class Column extends Vue {
 	@Prop() prop: string

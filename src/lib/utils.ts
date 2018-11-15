@@ -1,5 +1,4 @@
-import * as S from 'string'
-import * as Vue from 'vue'
+import {__assign} from 'tslib'
 
 var base37 = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 //Little-Endian Base37
@@ -23,11 +22,3 @@ export function idSpace(pfx = '_') {
 		return pfx+(cpt = nextLEB37(cpt))+post;
 	}
 }
-
-__assign(Vue.prototype, {
-	$cancelable(event, ...args) {
-		var rv = true;
-		this.$emit(S(event).dasherize().s, ...args, (v = false)=> rv = v);
-		return rv;
-	}
-});

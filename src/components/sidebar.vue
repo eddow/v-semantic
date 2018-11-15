@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/module'
+import Semantic, { VueSemantic } from 'lib/module'
 
 @Semantic('sidebar',
 {
@@ -25,7 +25,7 @@ import Semantic from 'lib/module'
 	'show',
 	'hide'
 ])
-export default class Sidebar extends Vue {
+export default class Sidebar extends VueSemantic {
 	@Model('change') visible: boolean
 	@Watch('visible') setVisible(v: boolean) {
 		this.semantic(v?'show': 'hide');

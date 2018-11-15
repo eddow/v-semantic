@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-		"sourceRoot": "../../src/",
-		"outDir": "../dist/",
-		"inlineSources": true,
+	"sourceRoot": "../../src/",
+	"outDir": "../dist/",
+	"inlineSources": true,
     "noImplicitAny": false,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -11,17 +11,19 @@
     "emitDecoratorMetadata": true,
     "target": "es5",
     "lib": [
-      "dom",
-      "es5",
-      "es2015.promise"
+		"dom",
+		"es6",
+		"es2015.promise"
     ],
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-		"typeRoots": ["../node_modules/@types"],
-		"baseUrl": ".",
-		"paths": {
-      "lib/*": ["./src/lib/*"]
-    }
+	"typeRoots": ["../node_modules/@types"],
+	"baseUrl": ".",
+	"paths": {
+		"lib/*": ["./src/lib/*"],
+		"components/*": ["./src/components/*"],
+		"directives/*": ["./src/directives/*"]
+    },
   },
 	"exclude": [
 		"**/*.spec.ts",
@@ -29,6 +31,6 @@
 	],
 	"include": [
 		"./**/*.ts",
-		"./**/*.vue"
+		"./**/*.vue", "src/webpack.config.js"
 	]
 }

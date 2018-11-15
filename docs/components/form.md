@@ -18,7 +18,7 @@ All these slots can be scope-less or can be provided using a scope containing on
 ```html
 <s-form :model="selected && selected.somthing && selected.something.model">
 	<s-field>
-		<template for="input" scope="scope">
+		<template for="input" slot-scope="scope">
 			<s-input :value="scope.model.computeStuff()">
 ```
 This won't be displayed and raise no error, and is far shorter than :

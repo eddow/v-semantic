@@ -641,7 +641,7 @@ function molded(slotNames) {
         Property.prototype.buildScope = function (model) {
             var _this = this;
             var scope = scope_1.propertyScope(this, model, this.modeled.scope(model));
-            Vue.util.defineReactive(scope, 'errors', []);
+            Vue.set(scope, 'errors', []);
             scope.unwatch = this.$watch(function () {
                 return scope.errScope.total;
             }, function (errs) {
@@ -940,8 +940,8 @@ var Modeled = function (_super) {
                 return this.specific.concat(this.schema);
             }
         };
-        Vue.util.defineReactive(scope, 'schema', []);
-        Vue.util.defineReactive(scope, 'specific', []);
+        Vue.set(scope, 'schema', []);
+        Vue.set(scope, 'specific', []);
         scope.unwatch = [
             this.$watch(function () {
                 return model;

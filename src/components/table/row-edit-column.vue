@@ -5,7 +5,7 @@
 				<template v-if="header">{{header}}</template>
 			</slot>
 		</template>
-		<template scope="scope">
+		<template slot-scope="scope">
 			<slot :row="scope.row"
 				:edit="()=> editRow(scope.row)"
 				:remove="()=> removeRow(scope.row)"
@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import column from './column.vue'
 import sButton from '../button.vue'

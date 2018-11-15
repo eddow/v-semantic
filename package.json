@@ -3,9 +3,6 @@
   "version": "1.0.1",
   "description": "Semantic-ui2 + vue2",
   "main": "dist/v-semantic.js",
-  "scripts": {
-    "test": "node fuse test"
-  },
   "keywords": [
     "semantic",
     "semantic-ui",
@@ -20,22 +17,34 @@
   "bugs": {
     "url": "https://github.com/eddow/v-semantic/issues"
   },
+  "scripts": {
+    "prepack": "webpack",
+    "test": "webpack-dev-server --config test/webpack.config.js"
+  },
   "homepage": "https://github.com/eddow/v-semantic#readme",
   "devDependencies": {
-    "semantic-ui": "^2.2.13",
-    "typescript": "^2.5.3",
-    "vue-codemirror": "^3.1.6",
-    "vue-property-decorator": "file:.yalc/vue-property-decorator",
-    "vue-router": "^2.7.0",
-    "vue-template-compiler": "^2.4.4",
-    "vue-template-es2015-compiler": "^1.5.3"
+    "css-loader": "^1.0.1",
+    "semantic-ui": "^2.3.1",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^5.3.0",
+    "typescript": "^2.9.2",
+    "vue-codemirror": "^4.0.4",
+    "vue-loader": "^15.4.2",
+    "vue-property-decorator": "^6.0.0",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.16",
+    "vue-template-es2015-compiler": "^1.6.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dts-bundle": "0.0.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "ajv": "^5.2.3",
-    "fuse-box": "^2.2.31",
+    "ajv": "^6.4.0",
     "string": "^3.3.3",
-    "vue": "^2.4.4",
-    "vue-resize-directive": "^1.0.0",
+    "vue": "^2.5.16",
+    "vue-resize-directive": "^1.0.1",
     "vue-ripper": "^1.1.2"
   }
 }

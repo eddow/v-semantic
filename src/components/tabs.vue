@@ -36,7 +36,7 @@
 }
 </style>
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {Pimp, Ripped, Depot} from 'vue-ripper'
 import {$} from 'lib/shims'
@@ -79,7 +79,7 @@ export default class Tabs extends Vue {
 			//TODO: use $refs instead of .find('.item')
 			//TODO: apply on new tabs only (remove from old tabs??)
 			$(this.$refs.menu).find('.item').tab({
-				context: $(this.$refs.context.$el)
+				context: $((<any>this.$refs.context).$el)
 			});
 		});
 	}

@@ -83,7 +83,7 @@ tr.vued.filler {
 }
 </style>
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Provide, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic from 'lib/classed'
 import {idSpace} from 'lib/utils'
@@ -117,6 +117,16 @@ const generateRowId = idSpace('rw'), defaultRowHeight = 42;
 	directives: {resize}
 })
 export default class Table extends Vue {
+
+//This has to be available from v-semantic users => we cannot export from this file
+	static managedColumn = {
+		props: {
+			width: {type:[Number, String]},
+			flex: {type:[Number, String]}	//TODO: use flex and make a real column-width management engine
+		},
+		data: ()=> ({isColumn: true})
+	};
+
 	@Model('row-click') @Prop() current
 	@Prop() rows: any[]
 	@Prop() idProperty: string
@@ -196,14 +206,5 @@ export default class Table extends Vue {
 		return ['vued', this.bodyHeight ? 'paddingSBright' : ''];
 	}
 }
-
-//This has to be available from v-semantic users => we cannot export from this file
-Table.managedColumn = {
-	props: {
-		width: {type:[Number, String]},
-		flex: {type:[Number, String]}	//TODO: use flex and make a real column-width management engine
-	},
-	data: ()=> ({isColumn: true})
-};
 //TODO: `v-resize="computeRowHeight"` creates a `div` in the `tbody`... :-/
 </script>

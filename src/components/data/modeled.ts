@@ -1,6 +1,5 @@
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Command from 'directives/command'
 import * as Ajv from 'ajv'
 import {modelScoped} from './scope'
 
@@ -11,7 +10,7 @@ import {modelScoped} from './scope'
 			group: this
 		};
 	},
-	mixins: [modelScoped.extendOptions]
+	mixins: [(<any>modelScoped).extendOptions]
 })
 export default class Modeled extends Vue {
 	@Prop({default: ()=> ({})}) schema
@@ -31,8 +30,8 @@ export default class Modeled extends Vue {
 				return this.specific.concat(this.schema);
 			}
 		};
-		Vue.util.defineReactive(scope, 'schema', []);
-		Vue.util.defineReactive(scope, 'specific', []);
+		Vue.set(scope, 'schema', []);
+		Vue.set(scope, 'specific', []);
 		scope.unwatch = [this.$watch(
 			()=> model,
 			value=> this.validate(scope, value),

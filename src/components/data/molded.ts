@@ -1,11 +1,10 @@
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Command from 'directives/command'
 import * as deep from 'lib/deep'
-import * as Ajv from 'ajv'
 import {idSpace} from 'lib/utils'
 import {renderWrap} from 'lib/render'
 import {modelScoped, propertyScope} from './scope'
+import {__assign} from 'tslib'
 
 const genFieldName = idSpace('fld');
 
@@ -13,7 +12,7 @@ const genFieldName = idSpace('fld');
 
 export default function molded(slotNames) {
 	@Component({
-		mixins: [renderWrap('initSlots'), modelScoped.extendOptions]
+		mixins: [renderWrap('initSlots'), (<any>modelScoped).extendOptions]
 	})
 	class Property extends Vue {
 		@Inject() modeled
@@ -68,7 +67,7 @@ export default function molded(slotNames) {
 		buildScope(model) {
 			var scope = propertyScope(this, model, this.modeled.scope(model));
 			
-			Vue.util.defineReactive(scope, 'errors', []);
+			Vue.set(scope, 'errors', []);
 
 			scope.unwatch = this.$watch(
 				()=> scope.errScope.total,
@@ -103,7 +102,7 @@ export default function molded(slotNames) {
 							org[i] = params[i];
 				return slot(org)||[];
 			});	//we keep [] for empty vnodes
-			var vnodeGiven = this.$options._parentVnode.data.scopedSlots;
+			var vnodeGiven = (<any>this.$options)._parentVnode.data.scopedSlots;
 			vnodeGiven = vnodeGiven && vnodeGiven[name];
 			if(vnodeGiven) return scoped(vnodeGiven);
 			for(let mold of this.molds) {
@@ -120,9 +119,9 @@ export default function molded(slotNames) {
 					let thisSs = this.initSlot(name);
 					if(thisSs) ss[name] = thisSs;
 				}
-				var data = this.$options._parentVnode.data;
+				var data = (<any>this.$options)._parentVnode.data;
 				// $scopedSlots is defaulted [in Vue] to `emptyObject` that is a frozen empty object
-				if(Object.isFrozen(this.$scopedSlots)) this.$scopedSlots = {};
+				if(Object.isFrozen(this.$scopedSlots)) (<any>this).$scopedSlots = {};
 				data.scopedSlots = __assign(this.$scopedSlots, data.scopedSlots, ss);
 			}
 		}
@@ -140,5 +139,5 @@ export default function molded(slotNames) {
 			return rv;
 		}
 	}
-	return Property;
+	return (<any>Property).extendOptions;
 }
