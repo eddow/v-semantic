@@ -1,4 +1,5 @@
 import 'semantic-ui/dist/semantic.min.css'
+import 'jquery'
 import 'semantic-ui/dist/semantic'
 import Vue from 'vue'
 import semanticVue from 'v-semantic'

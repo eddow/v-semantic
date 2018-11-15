@@ -1,0 +1,35 @@
+{
+	"compilerOptions": {
+		"sourceMap": true,
+		"declaration": false,
+		"sourceRoot": "src",
+		"outDir": "run",
+		"inlineSources": true,
+		"noImplicitAny": false,
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"target": "es5",
+		"lib": [
+			"dom",
+			"es5",
+			"es6",
+			"es2015.promise"
+		],
+		"allowSyntheticDefaultImports": true,
+		"typeRoots": ["../node_modules/@types"],
+		"baseUrl": ".",
+		"paths": {
+			"v-semantic": ["../src/v-semantic"]
+		}
+	},
+	"exclude": [
+		"**/*.spec.ts",
+		"**/*.d.ts"
+	],
+	"include": [
+		"./src/**/*.ts",
+		"./src/**/*.vue"
+	]
+}

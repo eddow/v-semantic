@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
 	"sourceMap": true,
-	"sourceRoot": "../../src/",
-	"outDir": "../dist/",
+	"declaration": true,
+	"sourceRoot": "src",
+	"outDir": "dist",
 	"inlineSources": true,
 	"noImplicitAny": false,
 	"module": "commonjs",
@@ -12,18 +13,17 @@
 	"target": "es5",
 	"lib": [
 		"dom",
+		"es5",
 		"es6",
 		"es2015.promise"
 	],
 	"allowSyntheticDefaultImports": true,
-	"allowJs": true,
 	"typeRoots": ["../node_modules/@types"],
 	"baseUrl": ".",
 	"paths": {
 	  	"lib/*": ["./src/lib/*"],
 	  	"directives/*": ["./src/directives/*"],
-		"components/*": ["./src/components/*"],
-	  	"v-semantic": ["./src/v-semantic"]
+		"components/*": ["./src/components/*"]
 	}
 	},
 	"exclude": [
@@ -31,7 +31,7 @@
 		"**/*.d.ts"
 	],
 	"include": [
-		"./**/*.ts",
-		"./**/*.vue", "src/webpack.config.js"
+		"./src/**/*.ts",
+		"./src/**/*.vue"
 	]
 }
