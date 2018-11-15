@@ -6,7 +6,7 @@
 				<checkbox v-else v-model="allSelected" @input="selectAll" state3 />
 			</slot>
 		</template>
-		<template scope="scope">
+		<template slot-scope="scope">
 			<slot :model="scope.row" :checked="scope.row[prop]" :select="select" :unselect="unselect" :toggle="toggle">
 				<checkbox :checked="scope.row[prop]" @checked="select(scope.row)" @unchecked="unselect(scope.row)" />
 			</slot>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import column from './column.vue'
 import checkbox from '../checkbox.vue'

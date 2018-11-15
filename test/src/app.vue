@@ -34,8 +34,8 @@ div.CodeMirror {
 	height: 100%;
 }
 </style>
-<script lang="js">
-import * as Vue from 'vue'
+<script lang="ts">
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import routes from './routes'
 

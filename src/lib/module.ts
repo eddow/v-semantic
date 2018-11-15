@@ -1,5 +1,7 @@
 import {Component} from 'vue-property-decorator'
 import * as classed from './classed'
+import Vue, {ComponentOptions} from 'vue'
+import * as S from 'string'
 
 function onEvent(evt) {
 	return 'on'+evt[0].toUpperCase()+evt.substr(1);
@@ -48,14 +50,23 @@ export function mixin(
 	return rv;
 }
 
-export default function(
+export default function<V extends Vue>(
 	type: string,
 	classes: any = {},
 	inits: any = {},
 	events: string[] = [],
-	options: ComponentOptions = {}
+	options: ComponentOptions<V> = {}
 ) {
 	options = {mixins: [], ...options};
 	options.mixins.push(mixin(type, classes, inits, events));
 	return Component(options);
+}
+
+export class VueSemantic extends Vue {
+	$cancelable(event, ...args) {
+		var rv = true;
+		this.$emit(S(event).dasherize().s, ...args, (v = false)=> rv = v);
+		return rv;
+	}
+	semantic(...args: any[]):any|string|boolean|number { throw "Not implemented in a mixin"; }
 }

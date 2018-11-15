@@ -1,6 +1,6 @@
 import 'semantic-ui/dist/semantic.min.css'
 import 'semantic-ui/dist/semantic'
-import * as Vue from 'vue'
+import Vue from 'vue'
 import semanticVue from 'v-semantic'
 Vue.use(semanticVue);
 import VueRouter from 'vue-router'

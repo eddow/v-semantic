@@ -15,7 +15,7 @@
 </style>
 <script lang="ts">
 //TODO: manage labels as we manage icons
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic, {stringifyClass} from 'lib/classed'
 import icon from './icon.vue'

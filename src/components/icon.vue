@@ -4,7 +4,7 @@
 	</i>
 </template>
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic, {stringifyClass} from 'lib/classed'
 
@@ -27,7 +27,7 @@ export default class Icon extends Vue {
 		return stringifyClass(this.icon);
 	}
 	get iconAnalysis() {
-		var str = this.iconString;
+		var str:string|string[] = this.iconString;
 		if(~str.indexOf('+')) {
 			str = str.split('+');
 			return {

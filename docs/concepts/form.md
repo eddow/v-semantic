@@ -63,7 +63,7 @@ Now, let's imagine we wish to use a `fancy-label`for each input, we could do thi
 ```html
 <s-form :model="person">
 	<s-data-mold>
-		<template slot="prepend" scope="field">
+		<template slot="prepend" slot-scope="field">
 			<fancy-label :for="field.name" :style="field.labelStyle">
 				{{field.label}}
 			</fancy-label>

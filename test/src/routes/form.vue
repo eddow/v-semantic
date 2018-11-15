@@ -8,20 +8,20 @@
 			class="ui segment"
 		>
 			<s-data-mold select="bool">
-				<template slot="prepend" scope="field">
+				<template slot="prepend" slot-scope="field">
 					<label :style="field.labelStyle" />
 				</template>
-				<template slot="input" scope="field">
+				<template slot="input" slot-scope="field">
 					<s-checkbox :label="field.label" v-model="field.value" />
 				</template>
 			</s-data-mold>
 			<s-data-mold>
-				<template slot="prepend" scope="field">
+				<template slot="prepend" slot-scope="field">
 					<label :for="field.name" class="ui label" :style="field.labelStyle">
 						<h3>{{field.label}}</h3>
 					</label>
 				</template>
-				<template slot="input" scope="field">
+				<template slot="input" slot-scope="field">
 					<s-input :name="field.name" v-model="field.value">
 						<s-icon slot="prepend" :icon="field.info || ''" />
 					</s-input>
@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 
 @Component

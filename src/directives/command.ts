@@ -1,6 +1,6 @@
-import * as Vue from 'vue'
+import { VueSemantic } from 'lib/module'
 
-abstract class Commanded extends Vue {
+abstract class Commanded extends VueSemantic {
 	abstract command(name: string, params: any);
 }
 

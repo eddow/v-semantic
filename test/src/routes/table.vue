@@ -14,7 +14,7 @@
 			<s-checkbox-column :selection="my_selection" />
 			<s-column prop="a" width="300" header="a" edit />
 			<s-column header="A">
-				<template scope="scope">
+				<template slot-scope="scope">
 					a{{scope.model.a}}-b{{scope.model.b}}
 				</template>
 			</s-column>
@@ -36,7 +36,7 @@
 	</div>
 </template>
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {copy} from 'lib/deep'
 

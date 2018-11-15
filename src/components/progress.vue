@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/module'
+import Semantic, { VueSemantic } from 'lib/module'
 
 const texts = ['active', 'error', 'success', 'warning', 'percent', 'ratio'],
 	stati = ['active', 'warning', 'success', 'error'];
@@ -34,7 +34,7 @@ const texts = ['active', 'error', 'success', 'warning', 'percent', 'ratio'],
 		return acc;
 	}, {})
 })
-export default class Progress extends Vue {
+export default class Progress extends VueSemantic {
 	@Prop() label: string
 	@Watch('label') changeLabel(v) { this.semantic('set label', v); }
 	/*@Prop() barLabel: string
@@ -57,7 +57,7 @@ export default class Progress extends Vue {
 		if(this.status) this.changeStatus(this.status);
 	}
 	configure(config) {
-		var text = {ratio: this.progressText||'{value}/{total}'}, that = this;
+		var text: {[item: string]: string} = {ratio: this.progressText||'{value}/{total}'}, that = this;
 		for(let k of stati)
 			if(this[k+'Text'])
 				text[k] = this[k+'Text'];

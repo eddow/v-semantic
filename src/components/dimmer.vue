@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic from 'lib/module'
+import Semantic, { VueSemantic } from 'lib/module'
 
 @Semantic('dimmer', {
 	variation: {default: '', type: String},
@@ -20,7 +20,7 @@ import Semantic from 'lib/module'
 }, [
 ], {
 })
-export default class Dimm extends Vue {
+export default class Dimm extends VueSemantic {
 	@Model('change') visible: boolean
 
 	configure(config) {

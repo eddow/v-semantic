@@ -12,9 +12,8 @@
 			<div v-if="displayErrors && displayedErrors.length"
 				class="ui ui bottom attached error message"
 			>
-					<div v-for="error in displayedErrors" :key="error.schemaPath">
-						{{error.dataPath}}: {{error.message}}
-					</div>
+				<div v-for="error in displayedErrors" :key="error.schemaPath">
+					{{error.dataPath}}: {{error.message}}
 				</div>
 			</div>
 		</template>
@@ -25,13 +24,13 @@
 </template>
 
 <script lang="ts">
-import * as Vue from 'vue'
+import Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Modeled from '../data/modeled'
 import Command from 'directives/command'
 
 @Component({
-	mixins: [Modeled.extendOptions]
+	mixins: [(<any>Modeled).extendOptions]
 })
 export default class Form extends Command.Commanded {
 	@Prop({type: [String, Number]}) labelWidth: number|string

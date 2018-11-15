@@ -1,5 +1,5 @@
 import './libs'
-import * as Vue from 'vue'
+import Vue from 'vue'
 import * as components from './components'
 export * from './components'
 import * as directives from './directives'

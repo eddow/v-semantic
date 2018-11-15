@@ -1,5 +1,6 @@
 import {Component} from 'vue-property-decorator'
 import * as S from 'string'
+import Vue, {ComponentOptions} from 'vue'
 
 //<c-p src="vue.js">
 function isObject (obj) {
@@ -76,7 +77,7 @@ export function mixin(type: string|(()=> string), classes: any = {}) {
 		}
 	};
 }
-export default function classed(type: string, classes: any = {}, options: ComponentOptions = {}) {
+export default function classed<V extends Vue>(type: string, classes: any = {}, options: ComponentOptions<V> = {}) {
 	options = {mixins: [], ...options};
 	options.mixins.push(mixin(type, classes));
 	return Component(options);
