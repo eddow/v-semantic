@@ -17,10 +17,12 @@
     ],
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-		"typeRoots": ["../node_modules/@types"],
-		"baseUrl": ".",
-		"paths": {
-      "lib/*": ["./src/lib/*"]
+	"typeRoots": ["../node_modules/@types"],
+	"baseUrl": ".",
+	"paths": {
+      	"lib/*": ["./src/lib/*"],
+      	"directives/*": ["./src/directives/*"],
+      	"v-semantic": ["./dist/v-semantic"]
     }
   },
 	"exclude": [

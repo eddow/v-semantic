@@ -2,14 +2,12 @@ const {
 	Sparky, FuseBox, UglifyJSPlugin, CSSPlugin, EnvPlugin, VuePlugin,
 	JSONPlugin, BabelPlugin, HotReloadPlugin, QuantumPlugin, RawPlugin
 } = require('fuse-box');
-let producer;
 let production = false;
 
 Sparky.task("build", ()=> {
 	const fuse = FuseBox.init({
 		homeDir: "src",
 		output: "dist/$name.js",
-		package: 'v-semantic',
 		plugins: [
 			EnvPlugin({NODE_ENV: production ? "production" : "development"}),
 			CSSPlugin(), production && UglifyJSPlugin(),
@@ -24,10 +22,14 @@ Sparky.task("build", ()=> {
 		],
 		hash: production,
 		//hmr: true,
-		//sourceMaps: {project: true, vendor: false},
+		sourceMaps: {project: true, vendor: false},
 		//cache: false,
 		cache: !production,
-		debug: !production, log: !production,
+		debug: !production,
+		log: !production && {
+			showBundledFiles: false, // Don't list all the bundled files every time we bundle
+			clearTerminalOnBundle: true, // Clear the terminal window every time we bundle
+		},
 		package: {
 			name: "v-semantic",
 			main: 'index.ts'
@@ -40,20 +42,11 @@ Sparky.task("build", ()=> {
 		},
 		globals: {
 			'v-semantic': '*'
-		}/*,
-		shim: {
-			jquery: {
-				source: "node_modules/jquery/dist/jquery.js",
-				exports: "$",
-			}
-		}*/
+		}
 	});
 
-	const app = fuse.bundle("v-semantic")
-		//.sourceMaps(true)
-		//.plugin(HotReloadPlugin({port: 4445}))
-    .instructions('> [index.ts] +fuse-box-css +tslib - *.d.ts'); // +fuse-box-css
-	//if (!production) app.hmr();
+	fuse.bundle("v-semantic")
+    	.instructions('> [index.ts] +fuse-box-css - *.d.ts');
 
 	return fuse.run();
 });
@@ -78,7 +71,11 @@ Sparky.task("test", ()=> {
 			JSONPlugin()
 		],
 		cache: false,
-		debug: true, log: true,
+		debug: true,
+		log: {
+			showBundledFiles: false, // Don't list all the bundled files every time we bundle
+			clearTerminalOnBundle: true, // Clear the terminal window every time we bundle
+		},
 		alias: {
 			vue: 'vue/dist/vue.common.js',
 			'v-semantic': '~/src/index',
@@ -88,17 +85,17 @@ Sparky.task("test", ()=> {
 		}
 	});
 
-	const test = fuse.bundle("test")
+	fuse.bundle("test")
 		.watch('(test/src|src)/**')
 		//.sourceMaps(true)
 		.instructions('> [test/src/index.ts] +[test/src/routes/*.vue] +tslib -*.d.ts');
 		
-	const source = fuseSrc.bundle("source")
+	fuseSrc.bundle("source")
 		//.watch('**')
 		.plugin()
 		.instructions('!>[*.vue]');
 	
-	const vendor = fuse.bundle("vendor")
+	fuse.bundle("vendor")
 		//.sourceMaps(true)
 		.shim({
 			jquery: {

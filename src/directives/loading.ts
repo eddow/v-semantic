@@ -1,5 +1,3 @@
-import {$} from 'lib/shims'
-
 export default {
 	bind(el, binding, vnode, oldVnode) {
 		var modifiers = Object.keys(binding.modifiers).join(' '),

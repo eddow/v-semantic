@@ -1,5 +1,3 @@
-import {$} from 'lib/shims'
-
 export default function(el, binding, vnode, oldVnode) {
 	if(!('mouseIn' in vnode)) vnode.mouseIn = !!oldVnode.mouseIn;
 	el = $(el);

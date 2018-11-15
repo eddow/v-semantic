@@ -89,7 +89,6 @@ import Semantic from 'lib/classed'
 import {idSpace} from 'lib/utils'
 import {Pimp, Ripped} from 'vue-ripper'
 import Modeled from '../data/modeled'
-import {$} from 'lib/shims'
 import * as resize from 'vue-resize-directive'
 
 const generateRowId = idSpace('rw'), defaultRowHeight = 42;

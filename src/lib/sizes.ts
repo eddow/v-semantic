@@ -1,6 +1,6 @@
 //unused file with procedures that might end up useful for table-column width mgt
 import * as onResize from 'resize-event'
-import {$} from 'lib/shims'
+import {__assign} from 'tslib'
 
 function css2nbr(el, cls) {
 	return /^(\w*)px$/.exec(el.css(cls))[1];	//On bad value: /watch?v=VLJf_Mp03to

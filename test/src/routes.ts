@@ -3,7 +3,7 @@ const MenuContainer = {
   template: `<router-view></router-view>`
 };	//used for route-group, menu groups
 import * as comps from './routes/*.vue'
-export const routes = [];
+const routes = [];
 for(let i in comps) {
 	let name = /test\/src\/routes\/(.*).vue$/.exec(i)[1];
 	routes.push({
@@ -12,3 +12,4 @@ for(let i in comps) {
 		component: comps[i].default
 	});
 }
+export default routes;

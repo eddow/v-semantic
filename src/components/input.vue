@@ -18,7 +18,6 @@ import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic, {stringifyClass} from 'lib/classed'
 import icon from './icon.vue'
 import button from './button.vue'
-import {$} from 'lib/shims'
 
 @Semantic('input', {
 	loading: Boolean,

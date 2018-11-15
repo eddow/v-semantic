@@ -37,7 +37,7 @@ div.CodeMirror {
 <script lang="js">
 import * as Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import {routes} from './routes'
+import routes from './routes'
 
 @Component
 export default class App extends Vue {
@@ -46,7 +46,7 @@ export default class App extends Vue {
 	showSource: boolean = true
 	editorOptions = {
 		tabSize: 2,
-		mode: 'text/x-vue',
+		mode: {name: 'vue'},
 		theme: 'base16-dark',
 		lineNumbers: true,
 		line: true,
@@ -54,7 +54,8 @@ export default class App extends Vue {
 		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 		styleSelectedText: true,
 		highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
-		readOnly: true
+		readOnly: true,
+        selectionPointer: true
 	}
 	@Watch('$route', {immediate: true})
 	loadComponent(route) {

@@ -30,8 +30,8 @@
 			/>
 		</s-table>
 		<div>
-			<p><h3>current-row</h3> {{my_row}}</p>
-			<p><h3>selection</h3> {{my_selection}}</p>
+			<p><h3>current-row</h3> {{my_row}} </p>
+			<p><h3>selection</h3> {{my_selection}} </p>
 		</div>
 	</div>
 </template>

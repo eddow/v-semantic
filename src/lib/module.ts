@@ -1,6 +1,5 @@
 import {Component} from 'vue-property-decorator'
 import * as classed from './classed'
-import {$} from 'lib/shims'
 
 function onEvent(evt) {
 	return 'on'+evt[0].toUpperCase()+evt.substr(1);
