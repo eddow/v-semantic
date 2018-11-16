@@ -67,9 +67,6 @@ class Person {
 
 @Component
 export default class Form extends Vue {
-	getValue(field) {
-		return field.value;
-	}
 	created() { this.reInit(); }
 	number(string) {
 		var rv = Number(string);

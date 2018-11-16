@@ -60273,7 +60273,7 @@ var CheckboxColumn = /** @class */ (function (_super) {
     }
     CheckboxColumn.prototype.setRow = function (row, checked) {
         var hideProp = !(this.prop in row);
-        vue_1.default.util.defineReactive(row, this.prop, checked);
+        vue_1.default.set(row, this.prop, checked);
         if (hideProp)
             Object.defineProperty(row, this.prop, __assign({}, Object.getOwnPropertyDescriptor(row, this.prop), { enumerable: false }));
     };
@@ -61325,9 +61325,6 @@ var Form = /** @class */ (function (_super) {
         _this.schema = Person.schema;
         return _this;
     }
-    Form.prototype.getValue = function (field) {
-        return field.value;
-    };
     Form.prototype.created = function () { this.reInit(); };
     Form.prototype.number = function (string) {
         var rv = Number(string);
