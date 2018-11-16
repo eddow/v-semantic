@@ -68,10 +68,12 @@ export default function molded(slotNames) {
 					scope.errors.push(...errors.splice(i, 1));
 				else ++i;
 		}
+		unwatch?: ()=> void
+		errScope?: any
 		buildScope(model) {
-			var scope = propertyScope(this, model, this.modeled.scope(model));
+			var scope: Property = propertyScope<Property>(this, model, this.modeled.scope(model));
 			
-			if(!scope.errors) Vue.set(scope, 'errors', []);
+			if(!scope.errors) Vue.util.defineReactive(scope, 'errors', []);
 
 			scope.unwatch = this.$watch(
 				()=> scope.errScope.total,

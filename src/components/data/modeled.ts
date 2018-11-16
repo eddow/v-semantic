@@ -30,8 +30,8 @@ export default class Modeled extends Vue {
 				return this.specific.concat(this.schema);
 			}
 		};
-		Vue.set(scope, 'schema', []);
-		Vue.set(scope, 'specific', []);
+		Vue.util.defineReactive(scope, 'schema', []);
+		Vue.util.defineReactive(scope, 'specific', []);
 		scope.unwatch = [this.$watch(
 			()=> model,
 			value=> this.validate(scope, value),

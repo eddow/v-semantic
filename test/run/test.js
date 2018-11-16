@@ -21817,7 +21817,7 @@ module.exports = function (data, opts) {
 
 /***/ }),
 
-/***/ "../../node_modules/jquery/dist/jquery.js?c0bd":
+/***/ "../../node_modules/jquery/dist/jquery.js":
 /*!************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/jquery/dist/jquery.js ***!
   \************************************************************/
@@ -32193,14 +32193,14 @@ return jQuery;
 
 /***/ }),
 
-/***/ "../../node_modules/jquery/dist/jquery.js?e8a3":
-/*!************************************************************!*\
-  !*** C:/dev/v-semantic/node_modules/jquery/dist/jquery.js ***!
-  \************************************************************/
+/***/ "../../node_modules/jquery/dist/jquery.js-exposed":
+/*!********************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/jquery/dist/jquery.js-exposed ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["jQuery"] = __webpack_require__(/*! -!./jquery.js */ "../../node_modules/jquery/dist/jquery.js?c0bd");
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["jQuery"] = __webpack_require__(/*! -!./jquery.js */ "../../node_modules/jquery/dist/jquery.js");
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "../../node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -57626,6 +57626,566 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "../../node_modules/ts-json-schema-decorator/dist/ts-json-schema-decorator.js":
+/*!************************************************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/ts-json-schema-decorator/dist/ts-json-schema-decorator.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./index.ts":
+/*!******************!*\
+  !*** ./index.ts ***!
+  \******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+// http://json-schema.org/latest/json-schema-validation.html
+tslib_1.__exportStar(__webpack_require__(/*! ./model */ "./model.ts"), exports);
+tslib_1.__exportStar(__webpack_require__(/*! ./property */ "./property.ts"), exports);
+tslib_1.__exportStar(__webpack_require__(/*! ./utils */ "./utils.ts"), exports);
+
+
+/***/ }),
+
+/***/ "./model.ts":
+/*!******************!*\
+  !*** ./model.ts ***!
+  \******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var utils_1 = __webpack_require__(/*! ./utils */ "./utils.ts");
+function src(code) {
+    //TODO: add sourceMap
+    return [eval][0](code);
+}
+/**
+ *
+ * @param model
+ * @param options {}: raw means no wrapper is used
+ */
+function modelFactory(model, options) {
+    if (options === void 0) { options = {}; }
+    var rex = /this.([^\s]*) = ([^;]*);/g, string = model.toString(), descr, used, name = model.name;
+    //console.assert(/^class /.test(string), `${name}: Models are described by TypeScript class`);
+    if (/^class /.test(string)) {
+        while (descr = rex.exec(string)) {
+            //The value is an expression
+            //The value - if object or array - has to be re-evaluated for each initialisation
+            //Usually, initialisation allow the use of `this` keyword
+            Object.defineProperty(utils_1.getPropertyDescriptor(model.prototype, descr[1]), 'default', {
+                get: (function (init) { return function () { return src('(' + init + ')'); }; })(descr[2]),
+                enumerable: true
+            });
+        }
+    }
+    else {
+        //TODO: read defaults from function() syntax
+    }
+    descr = model.schema.properties;
+    for (var i in descr) {
+        if (descr[i].$ref)
+            descr[i] = { $ref: descr[i].$ref }; //removes all other properties than $ref
+        else if (descr[i].type instanceof Array) {
+            descr[i].anyOf = descr[i].type;
+            delete descr[i].type;
+        }
+    }
+    descr = Object.assign({}, model.schema.definitions || {}); //the given definitions
+    used = model.defined; //the used definitions
+    // Remove unused definitions and check the presence of used ones
+    if (used) {
+        for (var i in used)
+            if (!descr[i])
+                console.error("Unknown definition '" + i + " used in " + model.name + " for " + used[i].join(', ') + ".");
+        var keys = Object.keys(descr);
+        for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+            var i = keys_1[_i];
+            if (!used[i])
+                delete descr[i];
+        }
+        model.schema.definitions = descr;
+    }
+    else
+        delete model.schema.definitions;
+    model.schema.type = 'object';
+    function ctor() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var rv, i, schema = model.schema.properties;
+        rv = new (csuper.bind.apply(csuper, [void 0].concat(args)))();
+        Object.setPrototypeOf(rv, model.prototype);
+        for (i in schema)
+            if (undefined === rv[i])
+                rv[i] = schema[i].default;
+        return rv;
+    }
+    if (false === options.raw) {
+        /*
+            The wrapper is used to :
+            - Have each property initialized to its default (or undefined)
+            - initialize the properties after the parent classes has been called for the initialisation not to override constructor given values
+        */
+        var csuper = Object.getPrototypeOf(model.prototype).constructor, wrapper;
+        //TODO: https://github.com/substack/vm-browserify or similar
+        wrapper = ctor; //src(`(function ${model.name}(){ return ctor.apply(this, arguments); })`);
+        Object.assign(wrapper, model);
+        wrapper.prototype = model.prototype;
+        model = wrapper;
+    }
+    function defaults(rv) {
+        if (rv === void 0) { rv = {}; }
+        var i, schema = model.schema.properties;
+        rv || (rv = {});
+        for (i in schema)
+            if (undefined === rv[i])
+                rv[i] = schema[i].default;
+        return rv;
+    }
+    model.schema = Object.assign({}, model.schema, { model: model, defaults: defaults }); //These are not serialized but can be useful for schema's users
+    return Object.assign(model, options);
+}
+function Definitions() {
+    var defs = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        defs[_i] = arguments[_i];
+    }
+    return function (model) {
+        for (var _i = 0, defs_1 = defs; _i < defs_1.length; _i++) {
+            var def = defs_1[_i];
+            if ('function' === typeof def && def.schema)
+                def = def.schema.properties;
+            utils_1.option(def, model.prototype, 'schema.definitions');
+        }
+    };
+}
+exports.Definitions = Definitions;
+function Model(options) {
+    if (options === void 0) { options = {}; }
+    if (typeof options === 'function') {
+        return modelFactory(options);
+    }
+    return function (model) {
+        return modelFactory(model, options);
+    };
+}
+exports.Model = Model;
+
+
+/***/ }),
+
+/***/ "./property.ts":
+/*!*********************!*\
+  !*** ./property.ts ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var utils_1 = __webpack_require__(/*! ./utils */ "./utils.ts");
+/**
+ * Validate that this value is specified
+ * @param {boolean} required Validation fails if unspecified (null/undefined)
+ */
+function Required(required) {
+    if (required === void 0) { required = true; }
+    return function (model, key) {
+        utils_1.getPropertyDescriptor(model, key); //touch
+        if (required)
+            utils_1.option([], model, 'schema.required').push(key);
+    };
+}
+exports.Required = Required;
+/**
+ * TODO
+ * @param dependency
+ */
+function Dependency(dependency) {
+    return function (model, key) {
+        utils_1.getPropertyDescriptor(model, key); //touch
+        utils_1.option(dependency, model, 'schema.dependencies', key);
+    };
+}
+exports.Dependency = Dependency;
+/**
+ * Declare this a property and give custom options
+ * TODO: option list fron js-data json schema
+ * @param {hash} opts List of options to give
+ */
+function Property(opts) {
+    if (opts === void 0) { opts = {}; }
+    return utils_1.createPropertyDecorator(opts);
+}
+exports.Property = Property;
+/**
+ * TODO
+ * @param definition
+ */
+function Defined(definition) {
+    return function (model, key) {
+        utils_1.option({ $ref: "#/definitions/" + definition }, model, 'schema.properties', key);
+        utils_1.option([], model, 'defined', definition).push(key);
+    };
+}
+exports.Defined = Defined;
+/**
+ * Declare the unitary type of a property
+ * @param {function} type Constructor
+ */
+function Type(type) { return utils_1.createPropertyDecorator(function (model, key) { return utils_1.makeType(type, model, key); }); }
+exports.Type = Type;
+/**
+ * Gives the value to give to the property if it is not specified
+ * @param {any} value Value given to the property if not specified
+ */
+function Default(value) { return utils_1.createPropertyDecorator({ 'default': value }); }
+exports.Default = Default;
+/**
+ * List the possible values of this property
+ * @param {array(any)} values List of accepted valued
+ */
+function Enum() {
+    var values = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        values[_i] = arguments[_i];
+    }
+    return utils_1.createPropertyDecorator({ 'enum': values });
+}
+exports.Enum = Enum;
+/**
+ * TODO
+ * @param format
+ */
+function Format(format) { return utils_1.createPropertyDecorator({ format: format }); }
+exports.Format = Format;
+/**
+ * TODO
+ * @param additionalProperties
+ */
+function AdditionalProperties(additionalProperties) {
+    return utils_1.createPropertyDecorator({ additionalProperties: additionalProperties }, 'object');
+}
+exports.AdditionalProperties = AdditionalProperties;
+/**
+ * TODO
+ * @param patternProperties
+ */
+function PatternProperties(patternProperties) {
+    return utils_1.createPropertyDecorator({ patternProperties: patternProperties }, 'object');
+}
+exports.PatternProperties = PatternProperties;
+/**
+ * Specifies the validation pattern of the string
+ * @param {regexp} pattern Validation reg-exp
+ */
+function Pattern(pattern) { return utils_1.createPropertyDecorator({ pattern: pattern }, 'string'); }
+exports.Pattern = Pattern;
+/**
+ * Gives a minimum length of the string
+ * @param {number} minLength The minimum number of characters in the string
+ */
+function MinLength(minLength) {
+    if (minLength === void 0) { minLength = 1; }
+    return utils_1.createPropertyDecorator({ minLength: minLength }, 'string');
+}
+exports.MinLength = MinLength;
+/**
+ * Gives a maximum length of the string
+ * @param {number} maxLength The maximum number of characters in the string
+ */
+function MaxLength(maxLength) { return utils_1.createPropertyDecorator({ maxLength: maxLength }, 'string'); }
+exports.MaxLength = MaxLength;
+/**
+ * Specify there is no fractional part to this number
+ */
+exports.Integer = utils_1.createPropertyDecorator({ type: 'integer' }, 'number');
+/**
+ * Gives a minimum value of a number
+ * @param {number} minimum The minimum value of the property
+ */
+function Minimum(minimum, exclusiveMinimum) {
+    if (minimum === void 0) { minimum = 0; }
+    if (exclusiveMinimum === void 0) { exclusiveMinimum = false; }
+    return utils_1.createPropertyDecorator({ minimum: minimum, exclusiveMinimum: exclusiveMinimum }, 'number');
+}
+exports.Minimum = Minimum;
+/**
+ * Gives a maximum value of a number
+ * @param {number} maximum The maximum value of the property
+ */
+function Maximum(maximum, exclusiveMaximum) {
+    if (exclusiveMaximum === void 0) { exclusiveMaximum = false; }
+    return utils_1.createPropertyDecorator({ maximum: maximum, exclusiveMaximum: exclusiveMaximum }, 'number');
+}
+exports.Maximum = Maximum;
+/**
+ * Explicit the possible type(s) of the array items
+ * @param {array(function)} items List of constructors of accepted types
+ * @param uniqueItems TODO
+ * @example @Items([Number, 'boolean', Address, {$ref: 'name'}])
+ * @example @Items(String)
+ */
+function Items(items, uniqueItems) {
+    if (uniqueItems === void 0) { uniqueItems = false; }
+    if (items instanceof Array)
+        items;
+    return utils_1.createPropertyDecorator(function (model, key) { return ({
+        items: items instanceof Array ?
+            items.map(function (item) { return utils_1.makeType(item, model, key); }) :
+            utils_1.makeType(items, model, key),
+        uniqueItems: uniqueItems
+    }); }, 'array');
+}
+exports.Items = Items;
+/**
+ * Gives a minimum number of items for an array
+ * @param {number} minItems The minimum number of items to validate an array
+ */
+function MinItems(minItems) { return utils_1.createPropertyDecorator({ minItems: minItems }, 'array'); }
+exports.MinItems = MinItems;
+/**
+ * Gives a maximum number of items for an array
+ * @param {number} maxItems The maximum number of items to validate an array
+ */
+function MaxItems(maxItems) { return utils_1.createPropertyDecorator({ maxItems: maxItems }, 'array'); }
+exports.MaxItems = MaxItems;
+
+
+/***/ }),
+
+/***/ "./utils.ts":
+/*!******************!*\
+  !*** ./utils.ts ***!
+  \******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(/*! reflect-metadata */ "reflect-metadata");
+exports.factories = {
+    makeType: []
+};
+exports.jsdTypes = {
+    Array: 'array',
+    String: 'string',
+    Number: 'number',
+    Boolean: 'boolean',
+    Object: 'object'
+};
+function option(value, model) {
+    var path = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        path[_i - 2] = arguments[_i];
+    }
+    for (var i = 0; i < path.length; ++i) {
+        path.splice.apply(path, [i, 1].concat(path[i].split('.')));
+    }
+    if ('function' !== typeof model)
+        path.unshift('constructor');
+    while (1 < path.length) {
+        var prop_1 = path.shift();
+        model = model[prop_1] || (model[prop_1] = {});
+    }
+    var prop = path[0];
+    if (model.hasOwnProperty(prop)) {
+        if (Object === value.constructor)
+            model[prop] = Object.assign({}, model[prop], value);
+        return model[prop];
+    }
+    return model[prop] = value;
+}
+exports.option = option;
+function getPropertyDescriptor(model, key) {
+    var props = option({}, model, 'schema.properties', key);
+    if (!props.type && !props.$ref) {
+        var type = Reflect.getMetadata('design:type', model, key);
+        if (type)
+            Object.assign(props, makeType(type, model, key));
+    }
+    return props;
+}
+exports.getPropertyDescriptor = getPropertyDescriptor;
+function createPropertyDecorator(descriptor, restriction) {
+    //TODO3: restriction is a type name ('string', 'number', ...) that must restrict the appliable types
+    return function (model, key) {
+        var propDescr = getPropertyDescriptor(model, key);
+        Object.assign(propDescr, 'function' === typeof descriptor ? descriptor(model, key) : descriptor);
+    };
+}
+exports.createPropertyDecorator = createPropertyDecorator;
+function makeType(type, model, property) {
+    for (var _i = 0, _a = exports.factories.makeType; _i < _a.length; _i++) {
+        var factory = _a[_i];
+        var trial = factory(type, model, property);
+        if (trial)
+            return trial;
+    }
+    if (Object === type.constructor)
+        return type;
+    if ('function' === typeof type) {
+        if (type.schema)
+            type = Object.assign({ type: 'object' }, type.schema);
+        else {
+            //console.assert(jsdTypes[type.name], `Type must have a schema or be a basic js-data type : ${type}`)
+            type = { type: exports.jsdTypes[type.name] || 'object' };
+        }
+    }
+    else if ('string' === typeof type)
+        type = { type: type };
+    return type;
+}
+exports.makeType = makeType;
+
+
+/***/ }),
+
+/***/ 0:
+/*!************************!*\
+  !*** multi ./index.ts ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./index.ts */"./index.ts");
+
+
+/***/ }),
+
+/***/ "reflect-metadata":
+/*!***********************************!*\
+  !*** external "reflect-metadata" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __webpack_require__(/*! reflect-metadata */ "../../node_modules/reflect-metadata/Reflect.js");
+
+/***/ }),
+
+/***/ "tslib":
+/*!************************!*\
+  !*** external "tslib" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+
+/***/ })
+
+/******/ });
+});
+//# sourceMappingURL=ts-json-schema-decorator.js.map
+
+/***/ }),
+
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/accordion.vue?vue&type=script&lang=ts&":
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!C:/dev/v-semantic/src/components/accordion.vue?vue&type=script&lang=ts& ***!
@@ -59399,7 +59959,7 @@ var CheckboxColumn = /** @class */ (function (_super) {
     }
     CheckboxColumn.prototype.setRow = function (row, checked) {
         var hideProp = !(this.prop in row);
-        vue_1.default.set(row, this.prop, checked);
+        vue_1.default.util.defineReactive(row, this.prop, checked);
         if (hideProp)
             Object.defineProperty(row, this.prop, __assign({}, Object.getOwnPropertyDescriptor(row, this.prop), { enumerable: false }));
     };
@@ -59881,7 +60441,7 @@ var RowEditColumn = /** @class */ (function (_super) {
     RowEditColumn.prototype.setEditing = function (row, editing) {
         if (this.prop) {
             var hideProp = !(this.prop in row);
-            vue_1.default.set(row, this.prop, editing);
+            vue_1.default.util.defineReactive(row, this.prop, editing);
             if (hideProp)
                 Object.defineProperty(row, this.prop, __assign({}, Object.getOwnPropertyDescriptor(row, this.prop), { enumerable: false }));
         }
@@ -60170,7 +60730,7 @@ var Tabs = /** @class */ (function (_super) {
 }(vue_1.default));
 exports.default = Tabs;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js?e8a3")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js-exposed")))
 
 /***/ }),
 
@@ -60232,13 +60792,12 @@ var App = /** @class */ (function (_super) {
         return _this;
     }
     App.prototype.loadComponent = function (route) {
-        debugger;
         if (route && route.name) {
             var path = "source/" + route.name + ".vue";
             /*import(path).then(x=> {
                 this.code = "loaded";
             });*/
-            this.code = __webpack_require__("./ sync recursive")(path);
+            //this.code = require(path);
         }
         else
             this.code = "// nothing";
@@ -60405,38 +60964,55 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
+var ts_json_schema_decorator_1 = __webpack_require__(/*! ts-json-schema-decorator */ "../../node_modules/ts-json-schema-decorator/dist/ts-json-schema-decorator.js");
+var Deep = /** @class */ (function () {
+    function Deep() {
+    }
+    __decorate([
+        ts_json_schema_decorator_1.Property(),
+        __metadata("design:type", Number)
+    ], Deep.prototype, "reason", void 0);
+    __decorate([
+        ts_json_schema_decorator_1.Enum('Yes', 'No'),
+        __metadata("design:type", String)
+    ], Deep.prototype, "thinking", void 0);
+    Deep = __decorate([
+        ts_json_schema_decorator_1.Model()
+    ], Deep);
+    return Deep;
+}());
+var Person = /** @class */ (function () {
+    function Person() {
+    }
+    __decorate([
+        ts_json_schema_decorator_1.MinLength(),
+        __metadata("design:type", String)
+    ], Person.prototype, "firstName", void 0);
+    __decorate([
+        ts_json_schema_decorator_1.Property(),
+        __metadata("design:type", String)
+    ], Person.prototype, "lastName", void 0);
+    __decorate([
+        ts_json_schema_decorator_1.Property(),
+        __metadata("design:type", Deep)
+    ], Person.prototype, "deep", void 0);
+    Person = __decorate([
+        ts_json_schema_decorator_1.Model()
+    ], Person);
+    return Person;
+}());
 var Form = /** @class */ (function (_super) {
     __extends(Form, _super);
     function Form() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = null;
-        _this.schema = {
-            "title": "Person",
-            "type": "object",
-            "properties": {
-                "firstName": {
-                    "type": "string",
-                    "minLength": 1
-                },
-                "lastName": {
-                    "description": "Familly name",
-                    "type": "string"
-                },
-                "deep": {
-                    "description": "Deep property",
-                    "type": "object",
-                    "properties": {
-                        "reason": {
-                            "type": "number"
-                        }
-                    }
-                }
-            },
-            "required": ["firstName", "lastName"]
-        };
+        _this.schema = Person.schema;
         return _this;
     }
     Form.prototype.getValue = function (field) {
@@ -60739,6 +61315,224 @@ var Tabs = /** @class */ (function (_super) {
     return Tabs;
 }(vue_1.default));
 exports.default = Tabs;
+
+
+/***/ }),
+
+/***/ "../../node_modules/tslib/tslib.es6.js":
+/*!*********************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/tslib/tslib.es6.js ***!
+  \*********************************************************/
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncGenerator", function() { return __asyncGenerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncDelegator", function() { return __asyncDelegator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncValues", function() { return __asyncValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+function __exportStar(m, exports) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+
+function __values(o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
 
 
 /***/ }),
@@ -76629,8 +77423,8 @@ var Modeled = /** @class */ (function (_super) {
                 return this.specific.concat(this.schema);
             }
         };
-        vue_1.default.set(scope, 'schema', []);
-        vue_1.default.set(scope, 'specific', []);
+        vue_1.default.util.defineReactive(scope, 'schema', []);
+        vue_1.default.util.defineReactive(scope, 'specific', []);
         scope.unwatch = [this.$watch(function () { return model; }, function (value) { return _this.validate(scope, value); }, { deep: true, immediate: true }), this.$watch(function () { return scope.total; }, function (errs) { return scope.field = [].concat(errs); }, { deep: true, immediate: true })];
         return scope;
     };
@@ -76803,7 +77597,7 @@ function molded(slotNames) {
             var _this = this;
             var scope = scope_1.propertyScope(this, model, this.modeled.scope(model));
             if (!scope.errors)
-                vue_1.default.set(scope, 'errors', []);
+                vue_1.default.util.defineReactive(scope, 'errors', []);
             scope.unwatch = this.$watch(function () { return scope.errScope.total; }, function (errs) { return _this.errorsChanged(scope); }, { deep: true, immediate: true });
             return scope;
         };
@@ -78521,7 +79315,7 @@ function default_1(elm, binding, vnode, oldVnode) {
 exports.default = default_1;
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js?e8a3")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js-exposed")))
 
 /***/ }),
 
@@ -78556,7 +79350,7 @@ exports.default = {
     }
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js?e8a3")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js-exposed")))
 
 /***/ }),
 
@@ -78569,10 +79363,15 @@ exports.default = {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 var components = __webpack_require__(/*! ./components */ "../../src/components.ts");
+__export(__webpack_require__(/*! ./components */ "../../src/components.ts"));
 var directives = __webpack_require__(/*! ./directives */ "../../src/directives.ts");
-var exp = {
+__export(__webpack_require__(/*! ./directives */ "../../src/directives.ts"));
+exports.default = {
     install: function (Vue, options) {
         var pfx = (options && options.prefix) || 'S';
         for (var i in components)
@@ -78581,8 +79380,11 @@ var exp = {
             Vue.directive(i, directives[i]);
     }
 };
-Object.assign(exp, directives, components);
-exports.default = exp;
+/*TODO: Idea, directive `field-value` :
+<s-select v-field-value :options="['Too much', 'Yes', 'No']" />
+instead of
+<s-select v-model="model.deep.thinking" :options="['Too much', 'Yes', 'No']" />
+*/ 
 
 
 /***/ }),
@@ -78931,7 +79733,7 @@ var VueSemantic = /** @class */ (function (_super) {
 }(vue_1.default));
 exports.VueSemantic = VueSemantic;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js?e8a3")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js-exposed")))
 
 /***/ }),
 
@@ -79085,25 +79887,6 @@ Object.assign(vue_1.default.prototype, {
 
 /***/ }),
 
-/***/ "./ sync recursive":
-/*!**************!*\
-  !*** . sync ***!
-  \**************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = "./ sync recursive";
-
-/***/ }),
-
 /***/ "./app.vue":
 /*!*****************!*\
   !*** ./app.vue ***!
@@ -79205,7 +79988,7 @@ __webpack_require__.r(__webpack_exports__);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(/*! semantic-ui/dist/semantic.min.css */ "../../node_modules/semantic-ui/dist/semantic.min.css");
-__webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js?e8a3");
+__webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js-exposed");
 __webpack_require__(/*! semantic-ui/dist/semantic */ "../../node_modules/semantic-ui/dist/semantic.js");
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var v_semantic_1 = __webpack_require__(/*! v-semantic */ "../../src/index.ts");

@@ -15,8 +15,7 @@ module.exports = {
 		path: path.resolve(__dirname, "dist"),
 		libraryTarget: 'umd',
 		library: 'v-semantic',
-		umdNamedDefine: true,
-		libraryExport: 'default'
+		umdNamedDefine: true
 	},
 	plugins: [
 		new DtsBundlePlugin({

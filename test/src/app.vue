@@ -59,14 +59,12 @@ export default class App extends Vue {
 	}
 	@Watch('$route', {immediate: true})
 	loadComponent(route) {
-		debugger;
-
 		if(route && route.name) {
 			var path = `source/${route.name}.vue`;
 			/*import(path).then(x=> {
 				this.code = "loaded";
 			});*/
-			this.code = require(path);
+			//this.code = require(path);
 		} else
 			this.code = "// nothing";
 	}

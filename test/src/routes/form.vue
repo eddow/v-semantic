@@ -50,7 +50,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'
+import { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'
+
+@DataModel()
+class Deep {
+	@Property() reason: number
+	@Enum('Yes', 'No') thinking: string
+}
+@DataModel()
+class Person {
+	@MinLength() firstName: string
+	@Property() lastName: string
+	@Property() deep: Deep
+}
 
 @Component
 export default class Form extends Vue {
@@ -75,29 +88,6 @@ export default class Form extends Vue {
 		}
 	}
 	model = null
-	schema = {
-		"title": "Person",
-		"type": "object",
-		"properties": {
-			"firstName": {
-				"type": "string",
-				"minLength": 1
-			},
-			"lastName": {
-				"description": "Familly name",
-				"type": "string"
-			},
-			"deep": {
-				"description": "Deep property",
-				"type": "object",
-				"properties": {
-					"reason": {
-						"type": "number"
-					}
-				}
-			}
-		},
-		"required": ["firstName", "lastName"]
-	}
+	schema = (<any>Person).schema
 }
 </script>

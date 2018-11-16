@@ -63,7 +63,7 @@ export default class RowEditColumn extends VueSemantic {
 	setEditing(row, editing) {
 		if(this.prop) {
 			var hideProp = !(this.prop in row);
-			Vue.set(row, this.prop, editing);
+			Vue.util.defineReactive(row, this.prop, editing);
 			if(hideProp)
 				Object.defineProperty(row, this.prop, {
 					...Object.getOwnPropertyDescriptor(row, this.prop),

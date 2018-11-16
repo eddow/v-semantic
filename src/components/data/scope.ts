@@ -4,6 +4,12 @@ import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property
 
 const emptyModel = Object.freeze({});
 
+declare module 'vue/types/vue' {
+	interface VueConstructor {
+		util: any;
+	}
+}
+
 @Component
 export class modelScoped extends Vue {
 	// To be overriden
@@ -35,7 +41,7 @@ export class modelScoped extends Vue {
  * @param model 
  * @param errScope 
  */
-export function propertyScope(property: any, model, errScope) {
+export function propertyScope<T extends Vue>(property: T, model, errScope): T {
 	return Object.create(property, {
 		//Beware : these are property descriptors (like in Object.defineProperty)
 		model: {value: model},

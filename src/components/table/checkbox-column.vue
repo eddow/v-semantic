@@ -39,7 +39,7 @@ export default class CheckboxColumn extends VueSemantic {
 
 	setRow(row, checked) {
 		var hideProp = !(this.prop in row);
-		Vue.set(row, this.prop, checked);
+		Vue.util.defineReactive(row, this.prop, checked);
 		if(hideProp)
 			Object.defineProperty(row, this.prop, {
 				...Object.getOwnPropertyDescriptor(row, this.prop),
