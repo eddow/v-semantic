@@ -7,6 +7,7 @@
 	"scripts": {
 		"start": "webpack --watch",
 		"test": "webpack --watch --config test/webpack.config.js",
+		"sources": "webpack --config test/webpack.sources.js",
 		"prepack": "webpack",
 		"lint": "eslint src"
 	},
@@ -49,6 +50,7 @@
 		"file-loader": "^2.0.0",
 		"fuse-box": "^3.6.0",
 		"jquery": "^3.3.1",
+		"raw-loader": "^0.5.1",
 		"semantic-ui": "^2.3.1",
 		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.1",

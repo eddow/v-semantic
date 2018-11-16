@@ -40,7 +40,7 @@ import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {copy} from 'lib/deep'
 
-var rows = (new Array(20)).map((x,i)=> ({
+var rows = (new Array(20)).fill(null).map((x,i)=> ({
 	a: ''+i*2,
 	b:i*2+1,
 	deep: {reason: 42}

@@ -58214,9 +58214,8 @@ var Field = /** @class */ (function (_super) {
         configurable: true
     });
     Field.prototype.created = function () {
-        /*TODO: assertion
-        console.assert(this.modeled && 'Form'=== this.modeled.constructor.name,
-            'Fields cannot be used outside of a Form');*/
+        /*TODO: assertion*/
+        console.assert(this.modeled && 'Form' === this.modeled.constructor.name, 'Fields cannot be used outside of a Form');
     };
     Object.defineProperty(Field.prototype, "scoped", {
         get: function () {
@@ -58235,6 +58234,10 @@ var Field = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        vue_property_decorator_1.Provide('form'),
+        __metadata("design:type", Object)
+    ], Field.prototype, "modeled", void 0);
     __decorate([
         vue_property_decorator_1.Prop(),
         __metadata("design:type", String)
@@ -58581,6 +58584,10 @@ var Input = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
     ], Input.prototype, "input", null);
+    __decorate([
+        vue_property_decorator_1.Inject({ default: null }),
+        __metadata("design:type", Object)
+    ], Input.prototype, "form", void 0);
     __decorate([
         vue_property_decorator_1.Prop(),
         __metadata("design:type", Boolean)
@@ -60225,13 +60232,16 @@ var App = /** @class */ (function (_super) {
         return _this;
     }
     App.prototype.loadComponent = function (route) {
-        /* TODO: webpack version
-        if(route && route.name)
-            import(`source/${route.name}.vue`).then(x=> {
+        debugger;
+        if (route && route.name) {
+            var path = "source/" + route.name + ".vue";
+            /*import(path).then(x=> {
                 this.code = "loaded";
-            });
+            });*/
+            this.code = __webpack_require__("./ sync recursive")(path);
+        }
         else
-            this.code = "// nothing";*/
+            this.code = "// nothing";
     };
     App.prototype.initCM = function () {
         var _this = this;
@@ -60655,7 +60665,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var deep_1 = __webpack_require__(/*! lib/deep */ "../../src/lib/deep.ts");
-var rows = (new Array(20)).map(function (x, i) { return ({
+var rows = (new Array(20)).fill(null).map(function (x, i) { return ({
     a: '' + i * 2,
     b: i * 2 + 1,
     deep: { reason: 42 }
@@ -76719,6 +76729,7 @@ function molded(slotNames) {
         function Property() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.gendName = null;
+            _this.errors = [];
             return _this;
         }
         Object.defineProperty(Property.prototype, "moldRender", {
@@ -76791,7 +76802,8 @@ function molded(slotNames) {
         Property.prototype.buildScope = function (model) {
             var _this = this;
             var scope = scope_1.propertyScope(this, model, this.modeled.scope(model));
-            vue_1.default.set(scope, 'errors', []);
+            if (!scope.errors)
+                vue_1.default.set(scope, 'errors', []);
             scope.unwatch = this.$watch(function () { return scope.errScope.total; }, function (errs) { return _this.errorsChanged(scope); }, { deep: true, immediate: true });
             return scope;
         };
@@ -79070,6 +79082,25 @@ Object.assign(vue_1.default.prototype, {
     }
 });
 
+
+/***/ }),
+
+/***/ "./ sync recursive":
+/*!**************!*\
+  !*** . sync ***!
+  \**************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function webpackEmptyContext(req) {
+	var e = new Error("Cannot find module '" + req + "'");
+	e.code = 'MODULE_NOT_FOUND';
+	throw e;
+}
+webpackEmptyContext.keys = function() { return []; };
+webpackEmptyContext.resolve = webpackEmptyContext;
+module.exports = webpackEmptyContext;
+webpackEmptyContext.id = "./ sync recursive";
 
 /***/ }),
 

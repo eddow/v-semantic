@@ -59,13 +59,16 @@ export default class App extends Vue {
 	}
 	@Watch('$route', {immediate: true})
 	loadComponent(route) {
-		/* TODO: webpack version
-		if(route && route.name)
-			import(`source/${route.name}.vue`).then(x=> {
+		debugger;
+
+		if(route && route.name) {
+			var path = `source/${route.name}.vue`;
+			/*import(path).then(x=> {
 				this.code = "loaded";
-			});
-		else
-			this.code = "// nothing";*/
+			});*/
+			this.code = require(path);
+		} else
+			this.code = "// nothing";
 	}
 	@Watch('showSource') initCM() {
 		Vue.nextTick(()=> (<any>this.$refs.cm).refresh());

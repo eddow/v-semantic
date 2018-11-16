@@ -34,7 +34,7 @@ import molded from '../data/molded'
 @Component({mixins: [molded(['append', 'prepend', 'field', 'input'])]})
 export default class Field extends Vue {
 	//from Property
-	modeled
+	@Provide('form') modeled
 	prop
 	scope
 	invalidateScopes
@@ -48,9 +48,9 @@ export default class Field extends Vue {
 			this.modeled.inline : this.inline;
 	}
 	created() {
-		/*TODO: assertion
+		/*TODO: assertion*/
 		console.assert(this.modeled && 'Form'=== this.modeled.constructor.name,
-			'Fields cannot be used outside of a Form');*/
+			'Fields cannot be used outside of a Form');
 	}
 	
 	get scoped() {

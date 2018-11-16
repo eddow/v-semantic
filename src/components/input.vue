@@ -32,6 +32,7 @@ export default class Input extends Vue {
 	@Prop() name: string
 	@Prop({default: 'text'}) type: string
 	@Emit() input(value) {}
+	@Inject({default: null}) form
 	model = null
 
 	@Prop() dimmPost: boolean

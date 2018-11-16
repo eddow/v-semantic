@@ -57,6 +57,7 @@ export default function molded(slotNames) {
 		get errorPath() {
 			return this.path ? '.'+this.path : this.name;
 		}
+		errors = []
 		errorsChanged(scope) {
 			//validate & errors
 			var errors;
@@ -70,7 +71,7 @@ export default function molded(slotNames) {
 		buildScope(model) {
 			var scope = propertyScope(this, model, this.modeled.scope(model));
 			
-			Vue.set(scope, 'errors', []);
+			if(!scope.errors) Vue.set(scope, 'errors', []);
 
 			scope.unwatch = this.$watch(
 				()=> scope.errScope.total,
