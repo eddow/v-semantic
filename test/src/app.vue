@@ -38,6 +38,7 @@ div.CodeMirror {
 import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import routes from './routes'
+import * as sources from '../run/sources'
 
 @Component
 export default class App extends Vue {
@@ -59,15 +60,11 @@ export default class App extends Vue {
 	}
 	@Watch('$route', {immediate: true})
 	loadComponent(route) {
-		if(route && route.name) {
-			var path = `source/${route.name}.vue`;
-			/*import(path).then(x=> {
-				this.code = "loaded";
-			});*/
-			//this.code = require(path);
-		} else
+		if(route && route.name)
+			this.code = sources[route.name];
+		else
 			this.code = "// nothing";
-	}
+	} 
 	@Watch('showSource') initCM() {
 		Vue.nextTick(()=> (<any>this.$refs.cm).refresh());
 	}

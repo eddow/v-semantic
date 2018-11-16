@@ -7,6 +7,7 @@ abstract class Commanded extends VueSemantic {
 
 declare module 'vue/types/vnode' {
 	interface VNode {
+		mouseIn: boolean;	//this is for dimm-parts : separating them makes dts-bundle bug
 		commandClick: ()=> void;
 	}
 }

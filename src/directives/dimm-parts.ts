@@ -1,12 +1,6 @@
 /// <reference types="jquery" />
 import {VNode, VNodeDirective} from 'vue'
 
-declare module 'vue/types/vnode' {
-	interface VNode {
-		mouseIn: boolean;
-	}
-}
-
 export default function(elm: HTMLElement, binding: VNodeDirective, vnode: VNode, oldVnode: VNode) {
 	if(!('mouseIn' in (<any>vnode))) vnode.mouseIn = !!(oldVnode.mouseIn);
 	var el = $(elm);

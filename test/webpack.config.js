@@ -1,6 +1,7 @@
 var webpack = require("webpack"),
 	path = require("path"),
-	VueLoader = require('vue-loader');
+	VueLoader = require('vue-loader'),
+	bundleSources = require('./bundle-sources');
 
 module.exports = {
 	mode: 'development',	//This is meant to be bundled afterward anyway
@@ -14,6 +15,7 @@ module.exports = {
 		chunkFilename: "[chunkhash].js"
 	},
 	plugins: [
+		bundleSources,
 		new webpack.ProvidePlugin({
 			$: 'jquery'
 		}),
@@ -70,6 +72,9 @@ module.exports = {
 			directives: path.resolve(__dirname, '../src/directives/'),
 			'v-semantic': path.resolve(__dirname, '../src/')
 		},
-		extensions: [".ts", ".js", '.html', '.vue']
+		extensions: [".ts", '.js', '.vue']
+	},
+	watchOptions: {
+		ignored: /\/run\//
 	}
 };
