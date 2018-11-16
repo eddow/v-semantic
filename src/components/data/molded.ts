@@ -4,7 +4,6 @@ import * as deep from 'lib/deep'
 import {idSpace} from 'lib/utils'
 import {renderWrap} from 'lib/render'
 import {modelScoped, propertyScope} from './scope'
-import {__assign} from 'tslib'
 
 const genFieldName = idSpace('fld');
 
@@ -122,7 +121,7 @@ export default function molded(slotNames) {
 				var data = (<any>this.$options)._parentVnode.data;
 				// $scopedSlots is defaulted [in Vue] to `emptyObject` that is a frozen empty object
 				if(Object.isFrozen(this.$scopedSlots)) (<any>this).$scopedSlots = {};
-				data.scopedSlots = __assign(this.$scopedSlots, data.scopedSlots, ss);
+				data.scopedSlots = Object.assign(this.$scopedSlots, data.scopedSlots, ss);
 			}
 		}
 		get schema() {

@@ -1,4 +1,4 @@
-import $ from 'jquery'
+/// <reference types="jquery" />
 
 export default function(el, binding, vnode, oldVnode) {
 	if(!('mouseIn' in vnode)) vnode.mouseIn = !!oldVnode.mouseIn;

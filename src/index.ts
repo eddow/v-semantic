@@ -1,11 +1,9 @@
 import './libs'
 import Vue from 'vue'
 import * as components from './components'
-export * from './components'
 import * as directives from './directives'
-export * from './directives'
 
-export default {
+const exp = {
 	install(Vue, options) {
 		var pfx = (options && options.prefix) || 'S';
 		for(let i in components)
@@ -14,3 +12,7 @@ export default {
 			Vue.directive(i, directives[i]);
 	}
 };
+
+Object.assign(exp, directives, components);
+
+export default exp;

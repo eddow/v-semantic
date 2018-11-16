@@ -1,5 +1,3 @@
-import {__assign} from 'tslib'
-
 var base37 = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 //Little-Endian Base37
 function nextLEB37(s) {

@@ -1,4 +1,5 @@
-import $ from 'jquery'
+/// <reference types="semantic-ui" />
+/// <reference types="jquery" />
 
 export default {
 	bind(el, binding, vnode, oldVnode) {
@@ -15,6 +16,9 @@ export default {
 		$(el).data('dimmel')
 			.addClass('text')
 			.text('string'=== typeof binding.value ? binding.value : '');
-		$(el).dimmer(binding.value?'show':'hide');
+		if(binding.value)	//TODO: Transform this in a ternary operator ( ...?'show':'hide') without typescript going berzerk
+			$(el).dimmer('show');
+		else
+			$(el).dimmer('hide');
 	}
 };

@@ -1,5 +1,4 @@
 import {Ripper} from 'vue-ripper'
-
 export const DataMold = {
 	mixins: [Ripper],
 	inject: ['modeled'],

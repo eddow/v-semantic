@@ -1,6 +1,5 @@
 var webpack = require("webpack"),
 	path = require("path"),
-	{default: DtsBundlePlugin} = require('webpack-dts-bundle'),
 	VueLoader = require('vue-loader');
 
 module.exports = {
