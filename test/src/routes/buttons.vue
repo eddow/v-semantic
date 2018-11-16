@@ -48,6 +48,7 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 export default class Buttons extends Vue {
 	blurred: boolean = false
 	loading: boolean = false
+	modal1 = null
 	test() {
 		debugger;
 		/*$(this.$refs.button)

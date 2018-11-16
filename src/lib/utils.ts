@@ -1,3 +1,6 @@
+import Vue from 'vue'
+import {dasherize} from 'lib/string'
+
 var base37 = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 //Little-Endian Base37
 function nextLEB37(s) {
@@ -20,3 +23,17 @@ export function idSpace(pfx = '_') {
 		return pfx+(cpt = nextLEB37(cpt))+post;
 	}
 }
+
+declare module 'vue/types/vue' {
+	interface Vue {
+		$cancelable(event: string, ...args: any[]): this;
+	}
+}
+
+Object.assign(Vue.prototype, {
+	$cancelable(event, ...args) {
+		var rv = true;
+		this.$emit(dasherize(event), ...args, (v = false)=> rv = v);
+		return rv;
+	}
+});

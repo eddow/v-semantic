@@ -1,13 +1,18 @@
+import Vue, { VNode, RenderContext } from 'vue'
+
 export const rendered = {
 	props: {render: {required: true}},
-	render(h) { return this.render(h); }
+	render(this: Vue, h: typeof Vue.prototype.$createElement, context: RenderContext): VNode {
+		return (<any>this).render(h, context);
+	}
 };
 
 // Call the original render with the arguments you wish or not - return `undefined` and the original renderer will be invoked
-export function renderWrap(wrap: string | ((h, orgRender)=> any)) {
+export function renderWrap(wrap: string | ((h: typeof Vue.prototype.$createElement, orgRender: (h: typeof Vue.prototype.$createElement)=> VNode)=> any)) {
 	return {
 		created() {
-			var originalRender, newRender = 'string'!== typeof wrap ? wrap : this[wrap],
+			var originalRender: (h: typeof Vue.prototype.$createElement)=> VNode,
+			newRender = 'string'!== typeof wrap ? wrap : this[wrap],
 				that = this;
 			originalRender = this._render;
 			this._render = function(h) {

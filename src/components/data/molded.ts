@@ -27,7 +27,11 @@ export default function molded(slotNames) {
 		@Prop({type: Function}) output
 		get moldOutput() { return this.moldProp('output') || (x=>x); }
 
-		get path() { return deep.path(this.prop); }
+		get path(): string {
+			var rv = deep.path(this.prop);
+			console.assert(!!rv, 'Property path is defined');
+			return <string>rv;
+		}
 		
 		@Watch('prop', {immediate: true}) setFieldProperty(prop, oldv) {
 			if(this.modeled) {

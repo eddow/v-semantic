@@ -17,7 +17,7 @@ for(let i in comps) {
 	routes.push({
 		name, path: '/'+name,
 		menu: i,
-		component: comps[i].default
+		component: comps[i]
 	});
 }
 export default routes;

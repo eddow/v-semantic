@@ -35,7 +35,7 @@ export class modelScoped extends Vue {
  * @param model 
  * @param errScope 
  */
-export function propertyScope(property, model, errScope) {
+export function propertyScope(property: any, model, errScope) {
 	return Object.create(property, {
 		//Beware : these are property descriptors (like in Object.defineProperty)
 		model: {value: model},

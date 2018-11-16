@@ -5,9 +5,9 @@
 	"main": "dist/v-semantic.js",
 	"ts:main": "src/index.ts",
 	"scripts": {
-		"start": "webpack",
-		"test": "webpack --config test/webpack.config.js",
-		"prepack": "",
+		"start": "webpack --watch",
+		"test": "webpack --watch --config test/webpack.config.js",
+		"prepack": "webpack",
 		"lint": "eslint src"
 	},
 	"keywords": [
@@ -70,7 +70,6 @@
 	"dependencies": {
 		"ajv": "^6.5.5",
 		"node-sass": "^4.5.3",
-		"string": "^3.3.3",
 		"tslib": "^1.9.3",
 		"vue-resize-directive": "^1.1.4",
 		"vue-ripper": "^1.1.6"

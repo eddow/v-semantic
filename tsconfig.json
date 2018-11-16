@@ -18,7 +18,6 @@
 		"es2015.promise"
 	],
 	"allowSyntheticDefaultImports": true,
-	"typeRoots": ["../node_modules/@types"],
 	"baseUrl": ".",
 	"paths": {
 	  	"lib/*": ["./src/lib/*"],

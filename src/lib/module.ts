@@ -1,9 +1,8 @@
 import {Component} from 'vue-property-decorator'
 import * as classed from './classed'
 import Vue, {ComponentOptions} from 'vue'
-import * as S from 'string'
 
-function onEvent(evt) {
+function onEvent(evt: string) {
 	return 'on'+evt[0].toUpperCase()+evt.substr(1);
 }
 
@@ -13,14 +12,14 @@ export function mixin(
 	inits: any = {},
 	events: string[] = []
 ) {
-	function forwarder(scope, evt) {
-		return function(...args) {
+	function forwarder(scope: Vue, evt: string) {
+		return function(...args: any[]) {
 			return scope.$cancelable(evt, ...args);
 		};
 	}
-	function watcher(prop) {
+	function watcher(prop: string) {
 		//TODO: test property change
-		return function(value) {
+		return function(this: VueSemantic, value: any) {
 			this.semantic('setting', prop, value);
 		};
 	}
@@ -33,8 +32,8 @@ export function mixin(
 	for(let i in inits)
 		rv.watch[i] = watcher(i);
 	rv.methods = {
-		semantic(...args) { return $(this.$el)[type](...args); },
-		configure(config) {},
+		semantic(...args: any[]) { return $(this.$el)[type](...args); },
+		configure(config: any) {},
 		init() {
 			var config: any = {};
 			for(let props in inits)
@@ -58,15 +57,10 @@ export default function<V extends Vue>(
 	options: ComponentOptions<V> = {}
 ) {
 	options = {mixins: [], ...options};
-	options.mixins.push(mixin(type, classes, inits, events));
+	options.mixins!.push(mixin(type, classes, inits, events));
 	return Component(options);
 }
 
 export class VueSemantic extends Vue {
-	$cancelable(event, ...args) {
-		var rv = true;
-		this.$emit(S(event).dasherize().s, ...args, (v = false)=> rv = v);
-		return rv;
-	}
 	semantic(...args: any[]):any|string|boolean|number { throw "Not implemented in a mixin"; }
 }

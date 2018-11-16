@@ -35,6 +35,7 @@ import Command from 'directives/command'
 export default class Form extends Command.Commanded {
 	@Prop({type: [String, Number]}) labelWidth: number|string
 	@Prop() model: any
+	@Prop() header: string
 	@Prop() displayErrors: boolean
 	@Prop() inline: boolean
 	@Prop({type: String, default: 'fields'}) errorPanel: 'all'|'fields'

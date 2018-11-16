@@ -1,15 +1,15 @@
-export function path(name) {
+export function path(name: string): string|void {
 	if(!name) return;
 	var keys = [];
 	for(let key of name.split('.')) {
 		let subs = /^(.*?)(\[.*\])?$/.exec(key);
-		keys.push(subs[1]);
-		if(subs[2]) keys.push(...subs[2].split(']['));
+		keys.push(subs![1]);
+		if(subs![2]) keys.push(...subs![2].split(']['));
 	}
 	return keys.join('.');
 }
 
-function recur(obj, path) {
+function recur(obj: any, path: string): any {
 	if(!obj || !path) return;
 	var keys = path.split('.'), lvalue;
 	lvalue = keys.pop();
@@ -17,19 +17,19 @@ function recur(obj, path) {
 	return {obj, key: lvalue};
 }
 
-export function set(obj, path, value) {
+export function set(obj: any, path: string, value: any): boolean {
 	var lv = recur(obj, path);
 	if(!lv) return false;
 	if(undefined=== value) delete lv.obj[lv.key];
 	else lv.obj[lv.key] = value;
 	return true;
 }
-export function get(obj, path) {
+export function get(obj: any, path: string): any {
 	var lv = recur(obj, path);
 	return lv && lv.obj[lv.key];
 }
 // https://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects/16788517#16788517
-export function equals(x, y) {
+export function equals(x: any, y: any): boolean {
 	if (x === null || x === undefined || y === null || y === undefined) { return x === y; }
 	// after this just checking type of one would be enough
 	if (x.constructor !== y.constructor) { return false; }
@@ -54,9 +54,9 @@ export function equals(x, y) {
 }
 
 //Can be used for deep cloning
-export function copy(src: any, dst?) {
+export function copy(src: any|any[], dst?: any|any[]): any {
 	if(src instanceof Array)
-		return [].concat(src).map(x=> copy(x));
+		return [].concat(<any>src).map((x: any)=> copy(x));
 	if(!src || !src.constructor || Object!== src.constructor)
 		return src;
 	if(!dst || !dst.constructor || Object!== dst.constructor)

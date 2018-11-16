@@ -1,8 +1,15 @@
 /// <reference types="jquery" />
+import {VNode, VNodeDirective} from 'vue'
 
-export default function(el, binding, vnode, oldVnode) {
-	if(!('mouseIn' in vnode)) vnode.mouseIn = !!oldVnode.mouseIn;
-	el = $(el);
+declare module 'vue/types/vnode' {
+	interface VNode {
+		mouseIn: boolean;
+	}
+}
+
+export default function(elm: HTMLElement, binding: VNodeDirective, vnode: VNode, oldVnode: VNode) {
+	if(!('mouseIn' in (<any>vnode))) vnode.mouseIn = !!(oldVnode.mouseIn);
+	var el = $(elm);
 	if(!el.data('dimmPart_'+(binding.arg||''))) {
 		el.mouseenter(()=> dimm(true));
 		el.mouseleave(()=> dimm(false));
@@ -21,7 +28,8 @@ export default function(el, binding, vnode, oldVnode) {
 	function dimm(show) {
 		if(vnode.mouseIn !== show) {
 			if(undefined!== show) vnode.mouseIn = show;
-			els.dimmer(vnode.mouseIn?'hide':'show');
+			if(vnode.mouseIn) els.dimmer('hide');	//TODO: ternary operator w/ typescript
+			else els.dimmer('show');
 		}
 	}
 };

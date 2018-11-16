@@ -1,8 +1,9 @@
 /// <reference types="semantic-ui" />
 /// <reference types="jquery" />
+import {VNode, VNodeDirective} from 'vue'
 
 export default {
-	bind(el, binding, vnode, oldVnode) {
+	bind(el: HTMLElement, binding: VNodeDirective, vnode: VNode, oldVnode: VNode): void {
 		var modifiers = Object.keys(binding.modifiers).join(' '),
 			dimmer = $(`<div class="ui ${modifiers} loader">ldng</div>`),
 			dimmable = $(el)
@@ -12,7 +13,7 @@ export default {
 				.dimmer('create');
 			if(binding.modifiers.blurring) dimmable.addClass('blurring');
 	},
-	update(el, binding, vnode, oldVnode) {
+	update(el: HTMLElement, binding: VNodeDirective, vnode: VNode, oldVnode: VNode): void {
 		$(el).data('dimmel')
 			.addClass('text')
 			.text('string'=== typeof binding.value ? binding.value : '');
