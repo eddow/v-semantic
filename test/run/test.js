@@ -61018,7 +61018,7 @@ var Form = /** @class */ (function (_super) {
     Form.prototype.number = function (string) {
         var rv = Number(string);
         if (isNaN(rv))
-            throw new Error('bad number');
+            throw new Error('Bad number');
         return rv;
     };
     Form.prototype.reInit = function () {
@@ -77520,6 +77520,7 @@ function molded(slotNames) {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.gendName = null;
             _this.errors = [];
+            _this.inputError = null;
             return _this;
         }
         Object.defineProperty(Property.prototype, "moldRender", {
@@ -77592,8 +77593,6 @@ function molded(slotNames) {
         Property.prototype.buildScope = function (model) {
             var _this = this;
             var scope = scope_1.propertyScope(this, model, this.modeled.scope(model));
-            if (!scope.errors)
-                vue_1.default.util.defineReactive(scope, 'errors', []);
             scope.unwatch = this.$watch(function () { return scope.errScope.total; }, function (errs) { return _this.errorsChanged(scope); }, { deep: true, immediate: true });
             return scope;
         };
