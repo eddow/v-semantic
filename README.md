@@ -65,6 +65,7 @@ There is no plan to have one-source-file-per-component, it's not a huge library.
 
 These should work and implement their intended final behaviour, even if details can still change
 - [flag](./docs/components/flag.md)
+- [breadcrumbs](./docs/components/breadcrumbs.md)
 - [icon](./docs/components/icon.md)
 - [button](./docs/components/button.md)
 - [input](./docs/components/input.md)
