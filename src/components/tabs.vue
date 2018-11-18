@@ -13,7 +13,7 @@
 			/>
 		</div>
 		<div :class="['ui segment panels vued', opposite, 'attached']">
-			<div is="ripped" v-for="(panel, uid) in panels" :key="uid"
+			<div is="ripped" v-for="(panel, uid) in panels" :key="panel._uid"
 				:class="['ui', 'tab']"
 				:ripper="panel"
 				:data-tab="panel.name"

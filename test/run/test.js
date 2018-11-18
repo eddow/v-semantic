@@ -58508,7 +58508,7 @@ module.exports = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tsli
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function($) {
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -58532,10 +58532,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var module_1 = __webpack_require__(/*! lib/module */ "../../src/lib/module.ts");
 var vue_ripper_1 = __webpack_require__(/*! vue-ripper */ "../../node_modules/vue-ripper/dist/vue-ripper.js");
+//TODO: test model mgt when exclusive=false
 var Accordion = /** @class */ (function (_super) {
     __extends(Accordion, _super);
     function Accordion() {
@@ -58544,6 +58544,66 @@ var Accordion = /** @class */ (function (_super) {
         _this.panels = [];
         return _this;
     }
+    Accordion.prototype.changed = function (opened) { };
+    Accordion.prototype.setOpened = function (opened) {
+        if (false !== this.exclusive) {
+            console.assert(!opened || 'string' === typeof opened, 'Exclusive accordion\' model is a string');
+            if (!opened) {
+                for (var i in this.panels)
+                    this.semantic('close', i);
+            }
+            else {
+                var index = this.panels.findIndex(function (panel) { return panel.name === opened; });
+                console.assert(~index, "Panel '" + opened + "' in the collection");
+                this.semantic('open', index);
+            }
+        }
+        else if (!opened)
+            this.changed({});
+        else {
+            console.assert('object' === typeof opened, 'Non-exclusive accordion\' model is a {string: boolean} or a string[]');
+            var openedObject = opened;
+            if (opened instanceof Array) {
+                openedObject = {};
+                for (var _i = 0, opened_1 = opened; _i < opened_1.length; _i++) {
+                    var name_1 = opened_1[_i];
+                    openedObject[name_1] = true;
+                }
+            }
+            for (var pIndex in this.panels)
+                this.semantic(openedObject[this.panels[pIndex].name] ? 'open' : 'close', pIndex);
+        }
+    };
+    Accordion.prototype.childIndex = function (el) {
+        return $(el).index() / 2 - 1;
+    };
+    Accordion.prototype.configure = function (config) {
+        var me = this;
+        config.onOpening = function opening() {
+            var index = me.childIndex(this), name = me.panels[index].name;
+            if (false !== me.exclusive)
+                me.changed(name);
+            else if (this.opened instanceof Array)
+                this.opened.push(name);
+            else
+                this.opened[name] = true;
+        };
+        config.onClosing = function closing() {
+            var index = me.childIndex(this);
+            if (false !== this.exclusive)
+                me.changed(null);
+            else {
+                var name = me.panels[index].name;
+                if (this.opened instanceof Array) {
+                    var indexInOpnd = this.opened.indexOf(name);
+                    console.assert(~indexInOpnd, 'Closed panel name exist in `opened` collection');
+                    this.opened.splice(indexInOpnd, 1);
+                }
+                else
+                    this.opened[this.opened] = false;
+            }
+        };
+    };
     __decorate([
         vue_property_decorator_1.Provide(),
         __metadata("design:type", Object)
@@ -58552,6 +58612,22 @@ var Accordion = /** @class */ (function (_super) {
         vue_property_decorator_1.Prop({ default: 'dropdown' }),
         __metadata("design:type", String)
     ], Accordion.prototype, "defaultIcon", void 0);
+    __decorate([
+        vue_property_decorator_1.Model('changed', { type: [String, Object], default: null }),
+        __metadata("design:type", Object)
+    ], Accordion.prototype, "opened", void 0);
+    __decorate([
+        vue_property_decorator_1.Emit(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], Accordion.prototype, "changed", null);
+    __decorate([
+        vue_property_decorator_1.Watch('opened', { deep: true }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], Accordion.prototype, "setOpened", null);
     Accordion = __decorate([
         module_1.default('accordion', {
             styled: { type: Boolean, default: true }
@@ -58563,9 +58639,7 @@ var Accordion = /** @class */ (function (_super) {
             collapsible: Boolean,
             duration: Number
         }, [
-            'opening',
             'open',
-            'closing',
             'close',
             'change'
         ], {
@@ -58573,9 +58647,10 @@ var Accordion = /** @class */ (function (_super) {
         })
     ], Accordion);
     return Accordion;
-}(vue_1.default));
+}(module_1.VueSemantic));
 exports.default = Accordion;
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js-exposed")))
 
 /***/ }),
 
@@ -61254,52 +61329,6 @@ exports.default = App;
 
 /***/ }),
 
-/***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/accordion.vue?vue&type=script&lang=ts&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!./routes/accordion.vue?vue&type=script&lang=ts& ***!
-  \***************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
-var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
-var Accordion = /** @class */ (function (_super) {
-    __extends(Accordion, _super);
-    function Accordion() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Accordion = __decorate([
-        vue_property_decorator_1.Component
-    ], Accordion);
-    return Accordion;
-}(vue_1.default));
-exports.default = Accordion;
-
-
-/***/ }),
-
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/buttons.vue?vue&type=script&lang=ts&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!./routes/buttons.vue?vue&type=script&lang=ts& ***!
@@ -61521,6 +61550,54 @@ exports.default = Inputs;
 
 /***/ }),
 
+/***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/panels.vue?vue&type=script&lang=ts&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!./routes/panels.vue?vue&type=script&lang=ts& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
+var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
+var Tabs = /** @class */ (function (_super) {
+    __extends(Tabs, _super);
+    function Tabs() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.selected = null;
+        return _this;
+    }
+    Tabs = __decorate([
+        vue_property_decorator_1.Component
+    ], Tabs);
+    return Tabs;
+}(vue_1.default));
+exports.default = Tabs;
+
+
+/***/ }),
+
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/progress.vue?vue&type=script&lang=ts&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!./routes/progress.vue?vue&type=script&lang=ts& ***!
@@ -61708,54 +61785,6 @@ var Table = /** @class */ (function (_super) {
     return Table;
 }(vue_1.default));
 exports.default = Table;
-
-
-/***/ }),
-
-/***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/tabs.vue?vue&type=script&lang=ts&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!./routes/tabs.vue?vue&type=script&lang=ts& ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
-var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
-var Tabs = /** @class */ (function (_super) {
-    __extends(Tabs, _super);
-    function Tabs() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.selected = null;
-        return _this;
-    }
-    Tabs = __decorate([
-        vue_property_decorator_1.Component
-    ], Tabs);
-    return Tabs;
-}(vue_1.default));
-exports.default = Tabs;
 
 
 /***/ }),
@@ -63703,20 +63732,20 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _vm._l(_vm.panels, function(panel, uid) {
+      _vm._l(_vm.panels, function(panel, index) {
         return [
           _c("ripped", {
-            key: "t" + uid,
+            key: "t" + panel._uid,
             tag: "div",
             staticClass: "title",
             attrs: { template: "title", ripper: panel }
           }),
           _vm._v(" "),
           _c("ripped", {
-            key: "c" + uid,
+            key: "c" + panel._uid,
             tag: "div",
             staticClass: "content",
-            attrs: { ripper: panel }
+            attrs: { ripper: panel, "data-name": panel.name }
           })
         ]
       })
@@ -64813,7 +64842,7 @@ var render = function() {
           { staticClass: "vued" },
           _vm._l(_vm.columns, function(column, uid) {
             return _c("ripped", {
-              key: uid,
+              key: column._uid,
               tag: "th",
               staticClass: "vued",
               style: { width: column.width ? column.width + "px" : undefined },
@@ -64844,7 +64873,7 @@ var render = function() {
             },
             _vm._l(_vm.columns, function(column, uid) {
               return _c("ripped", {
-                key: uid,
+                key: column._uid,
                 tag: "td",
                 style: {
                   width: column.width ? column.width + "px" : undefined
@@ -65095,7 +65124,7 @@ var render = function() {
         { class: ["ui segment panels vued", _vm.opposite, "attached"] },
         _vm._l(_vm.panels, function(panel, uid) {
           return _c("ripped", {
-            key: uid,
+            key: panel._uid,
             tag: "div",
             class: ["ui", "tab"],
             attrs: { ripper: panel, "data-tab": panel.name }
@@ -65210,50 +65239,6 @@ var render = function() {
       1
     )
   ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/accordion.vue?vue&type=template&id=09689ad1&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/accordion.vue?vue&type=template&id=09689ad1& ***!
-  \***************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "s-accordion",
-    [
-      _c("s-panel", { attrs: { title: "What is a dog?" } }, [
-        _c("p", [
-          _vm._v(
-            "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("s-panel", { attrs: { title: "What kinds of dogs are there?" } }, [
-        _c("p", [
-          _vm._v(
-            "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
-          )
-        ])
-      ])
-    ],
-    1
-  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -65814,6 +65799,282 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/panels.vue?vue&type=template&id=94d8be94&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/panels.vue?vue&type=template&id=94d8be94& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "s-accordion",
+        {
+          model: {
+            value: _vm.selected,
+            callback: function($$v) {
+              _vm.selected = $$v
+            },
+            expression: "selected"
+          }
+        },
+        [
+          _c(
+            "s-panel",
+            { attrs: { title: "What is a dog?", name: "whatIs" } },
+            [
+              _c("p", [
+                _vm._v(
+                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "s-panel",
+            {
+              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
+            },
+            [
+              _c("p", [
+                _vm._v(
+                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
+            _c("p", [
+              _vm._v(
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+              )
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "s-tabs",
+        {
+          model: {
+            value: _vm.selected,
+            callback: function($$v) {
+              _vm.selected = $$v
+            },
+            expression: "selected"
+          }
+        },
+        [
+          _c(
+            "s-panel",
+            { attrs: { title: "What is a dog?", name: "whatIs" } },
+            [
+              _c("p", [
+                _vm._v(
+                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "s-panel",
+            {
+              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
+            },
+            [
+              _c("p", [
+                _vm._v(
+                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
+            _c("p", [
+              _vm._v(
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+              )
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "s-tabs",
+        {
+          attrs: { position: "bottom" },
+          model: {
+            value: _vm.selected,
+            callback: function($$v) {
+              _vm.selected = $$v
+            },
+            expression: "selected"
+          }
+        },
+        [
+          _c(
+            "s-panel",
+            { attrs: { title: "What is a dog?", name: "whatIs" } },
+            [
+              _c("p", [
+                _vm._v(
+                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "s-panel",
+            {
+              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
+            },
+            [
+              _c("p", [
+                _vm._v(
+                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
+            _c("p", [
+              _vm._v(
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+              )
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "s-tabs",
+        {
+          attrs: { position: "left" },
+          model: {
+            value: _vm.selected,
+            callback: function($$v) {
+              _vm.selected = $$v
+            },
+            expression: "selected"
+          }
+        },
+        [
+          _c(
+            "s-panel",
+            { attrs: { title: "What is a dog?", name: "whatIs" } },
+            [
+              _c("p", [
+                _vm._v(
+                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "s-panel",
+            {
+              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
+            },
+            [
+              _c("p", [
+                _vm._v(
+                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
+            _c("p", [
+              _vm._v(
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+              )
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "s-tabs",
+        {
+          attrs: { position: "right" },
+          model: {
+            value: _vm.selected,
+            callback: function($$v) {
+              _vm.selected = $$v
+            },
+            expression: "selected"
+          }
+        },
+        [
+          _c(
+            "s-panel",
+            { attrs: { title: "What is a dog?", name: "whatIs" } },
+            [
+              _c("p", [
+                _vm._v(
+                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "s-panel",
+            {
+              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
+            },
+            [
+              _c("p", [
+                _vm._v(
+                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
+            _c("p", [
+              _vm._v(
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+              )
+            ])
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/progress.vue?vue&type=template&id=c1572598&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/progress.vue?vue&type=template&id=c1572598& ***!
@@ -66167,233 +66428,6 @@ var render = function() {
         _vm._v(" " + _vm._s(_vm.my_selection) + " "),
         _c("p")
       ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/tabs.vue?vue&type=template&id=ad9cc4f6&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/tabs.vue?vue&type=template&id=ad9cc4f6& ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "s-tabs",
-        {
-          model: {
-            value: _vm.selected,
-            callback: function($$v) {
-              _vm.selected = $$v
-            },
-            expression: "selected"
-          }
-        },
-        [
-          _c(
-            "s-panel",
-            { attrs: { title: "What is a dog?", name: "whatIs" } },
-            [
-              _c("p", [
-                _vm._v(
-                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "s-panel",
-            {
-              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
-            },
-            [
-              _c("p", [
-                _vm._v(
-                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
-            _c("p", [
-              _vm._v(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-              )
-            ])
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "s-tabs",
-        {
-          attrs: { position: "bottom" },
-          model: {
-            value: _vm.selected,
-            callback: function($$v) {
-              _vm.selected = $$v
-            },
-            expression: "selected"
-          }
-        },
-        [
-          _c(
-            "s-panel",
-            { attrs: { title: "What is a dog?", name: "whatIs" } },
-            [
-              _c("p", [
-                _vm._v(
-                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "s-panel",
-            {
-              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
-            },
-            [
-              _c("p", [
-                _vm._v(
-                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
-            _c("p", [
-              _vm._v(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-              )
-            ])
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "s-tabs",
-        {
-          attrs: { position: "left" },
-          model: {
-            value: _vm.selected,
-            callback: function($$v) {
-              _vm.selected = $$v
-            },
-            expression: "selected"
-          }
-        },
-        [
-          _c(
-            "s-panel",
-            { attrs: { title: "What is a dog?", name: "whatIs" } },
-            [
-              _c("p", [
-                _vm._v(
-                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "s-panel",
-            {
-              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
-            },
-            [
-              _c("p", [
-                _vm._v(
-                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
-            _c("p", [
-              _vm._v(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-              )
-            ])
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "s-tabs",
-        {
-          attrs: { position: "right" },
-          model: {
-            value: _vm.selected,
-            callback: function($$v) {
-              _vm.selected = $$v
-            },
-            expression: "selected"
-          }
-        },
-        [
-          _c(
-            "s-panel",
-            { attrs: { title: "What is a dog?", name: "whatIs" } },
-            [
-              _c("p", [
-                _vm._v(
-                  "A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "s-panel",
-            {
-              attrs: { title: "What kinds of dogs are there?", name: "whatAre" }
-            },
-            [
-              _c("p", [
-                _vm._v(
-                  "There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion."
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("s-panel", { attrs: { title: "And...", name: "and" } }, [
-            _c("p", [
-              _vm._v(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-              )
-            ])
-          ])
-        ],
-        1
-      )
     ],
     1
   )
@@ -66791,13 +66825,7 @@ exports.Pimp = {
         },
         give: function (items) {
             this.oldSlots = items;
-            var slots = {};
-            for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
-                var item = items_1[_i];
-                slots[item._uid] = item;
-            }
-            Object.defineProperty(slots, 'length', { value: items.length });
-            this.$emit('items', slots);
+            this.$emit('items', items);
         }
     },
     props: ['items'],
@@ -80574,7 +80602,7 @@ Object.assign(vue_1.default.prototype, {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = {"accordion":"<template>\r\n\t<s-accordion>\r\n\t\t<s-panel title=\"What is a dog?\">\r\n\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t</s-panel>\r\n\t\t<s-panel title=\"What kinds of dogs are there?\">\r\n\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t</s-panel>\r\n\t</s-accordion>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Accordion extends Vue {\r\n}\r\n</script>","buttons":"<template>\r\n\t<div>\r\n\t\t<div>\r\n\t\t\t<s-modal v-model=\"modal1\" closable header=\"\">\r\n\t\t\t\tBlah Blah\r\n\t\t\t\t<s-button v-command:cancel>Cancel</s-button>\r\n\t\t\t\t<s-button v-command:ok>Ok</s-button>\r\n\t\t\t</s-modal>\r\n\t\t\t<s-button @click=\"modal1(()=> loading='This is ok...')\">\r\n\t\t\t\tmodal\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"blurred = !blurred\">\r\n\t\t\t\t<s-icon icon=\"save\" slot=\"prepend\" />\r\n\t\t\t\tblurr\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"+plus+red dont\" @click=\"loading = !loading\">\r\n\t\t\t\tloading\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"loading = !loading && 'loading!'\">\r\n\t\t\t\t<s-icon icon=\"minus\" slot=\"append\" />\r\n\t\t\t\tloading text\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"test\" ref=\"button\">\r\n\t\t\t\t<s-icon icon=\"add circle\" />\r\n\t\t\t\t<div class=\"ui special popup\">\r\n\t\t\t\t\t<div class=\"header\">Custom Header</div>\r\n\t\t\t\t\t<div class=\"ui button\">Click Me</div>\r\n\t\t\t\t</div>\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"add square\" />\r\n\t\t</div>\r\n\r\n\t\t<div>\r\n\t\t\t<s-dimmable blurring v-model=\"blurred\" icon=\"heart\" message=\"Dimmed Message!\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</s-dimmable>\r\n\t\t\t<div v-loading.indeterminate=\"loading\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Buttons extends Vue {\r\n\tblurred: boolean = false\r\n\tloading: boolean = false\r\n\tmodal1 = null\r\n\ttest() {\r\n\t\tdebugger;\r\n\t\t/*$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\ttitle   : 'Popup Title',\r\n\t\t\t\tcontent : 'Hello I am a popup'\r\n\t\t\t});\r\n\t\t$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\tinline: true\r\n\t\t\t});*/\r\n\t}\r\n}\r\n</script>","form":"<template>\r\n\t<div class=\"ui segments\">\r\n\t\t<s-form :model=\"model\"\r\n\t\t\t:schema=\"schema\"\r\n\t\t\tdisplay-errors\r\n\t\t\tlabel-width=\"200px\"\r\n\t\t\tinline\r\n\t\t\tclass=\"ui segment\"\r\n\t\t>\r\n\t\t\t<s-data-mold select=\"bool\">\r\n\t\t\t\t<template slot=\"prepend\" slot-scope=\"field\">\r\n\t\t\t\t\t<label :style=\"field.labelStyle\" />\r\n\t\t\t\t</template>\r\n\t\t\t\t<template slot=\"input\" slot-scope=\"field\">\r\n\t\t\t\t\t<s-checkbox :label=\"field.label\" v-model=\"field.value\" />\r\n\t\t\t\t</template>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-data-mold>\r\n\t\t\t\t<template slot=\"prepend\" slot-scope=\"field\">\r\n\t\t\t\t\t<label :for=\"field.name\" class=\"ui label\" :style=\"field.labelStyle\">\r\n\t\t\t\t\t\t<h3>{{field.label}}</h3>\r\n\t\t\t\t\t</label>\r\n\t\t\t\t</template>\r\n\t\t\t\t<template slot=\"input\" slot-scope=\"field\">\r\n\t\t\t\t\t<s-input :name=\"field.name\" v-model=\"field.value\">\r\n\t\t\t\t\t\t<s-icon slot=\"prepend\" :icon=\"field.info || ''\" />\r\n\t\t\t\t\t</s-input>\r\n\t\t\t\t</template>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-field inline prop=\"big\" label=\"Big\" type=\"bool\" />\r\n\t\t\t<s-field prop=\"firstName\" label=\"First name\" info=\"hand pointer\" />\r\n\t\t\t<s-field prop=\"lastName\" label=\"Last name\" info=\"signal\" />\r\n\t\t\t<s-field prop=\"deep.reason\" label=\"Deep reason\"\r\n\t\t\t\t:input=\"number\"\r\n\t\t\t\t:output=\"x=> ''+ x\"\r\n\t\t\t/>\r\n\t\t\t<s-field prop=\"deep.thinking\" label=\"Deep thinking\">\r\n\t\t\t\t<s-select v-model=\"model.deep.thinking\" :options=\"['Too much', 'Yes', 'No']\" />\r\n\t\t\t</s-field>\r\n\t\t</s-form>\r\n\t\t<div class=\"ui segment\">\r\n\t\t\t<h1>Out of the form</h1>\r\n\t\t\t<s-checkbox style=\"display: block;\" v-model=\"model.big\" label=\"model.big\" />\r\n\t\t\t<s-input style=\"display: block;\" v-model=\"model.firstName\" />\r\n\t\t\t{{model}}\r\n\t\t\t<s-button style=\"display: block;\" @click=\"reInit\">Re-init</s-button>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'\r\nimport { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'\r\n\r\n@DataModel()\r\nclass Deep {\r\n\t@Property() reason: number\r\n\t@Enum('Yes', 'No') thinking: string\r\n}\r\n@DataModel()\r\nclass Person {\r\n\t@MinLength() firstName: string\r\n\t@Property() lastName: string\r\n\t@Property() deep: Deep\r\n}\r\n\r\n@Component\r\nexport default class Form extends Vue {\r\n\tcreated() { this.reInit(); }\r\n\tnumber(string) {\r\n\t\tvar rv = Number(string);\r\n\t\tif(isNaN(rv)) throw new Error('Bad number');\r\n\t\treturn rv;\r\n\t}\r\n\treInit() {\r\n\t\tthis.model = {\r\n\t\t\tfirstName: \"\",\r\n\t\t\tlastName: \"\",\r\n\t\t\tbig: false,\r\n\t\t\tdeep: {\r\n\t\t\t\treason: 42,\r\n\t\t\t\tthinking: 'Yes'\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tmodel = null\r\n\tschema = (<any>Person).schema\r\n}\r\n</script>","inputs":"<template>\r\n\t<div>\r\n\t\t<s-input>\r\n\t\t\t<s-icon slot=\"prepend\" circular link icon=\"search\" @click=\"testme\" />\r\n\t\t\t<s-select class=\"label\" slot=\"append\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t\t</s-select>\r\n\t\t</s-input>\r\n\t\t<div>\r\n\t\t\t<label>Drop down:</label>\r\n\t\t\t{{ddn}}\r\n\t\t</div>\r\n\t\t<s-select name=\"extSelect\" style=\"display: block;\" inline action=\"select\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t</s-select>\r\n\t\t<s-checkbox name=\"checkyes\" label=\"Yes!\" v-model=\"tchk\" />\r\n\t\t<div>\r\n\t\t\t<label>Checked:</label>\r\n\t\t\t{{tchk}}\r\n\t\t</div>\r\n\t\t<div>\r\n\t\t\t<s-input name=\"dimmedMinus\" inline v-dimm-parts:minus.inverted>\r\n\t\t\t\t<s-button slot=\"append\" class=\"input-dimmed\" icon=\"minus\" dimmed-part=\"minus\" />\r\n\t\t\t</s-input>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Inputs extends Vue {\r\n\tddn = ''\r\n\ttchk: boolean = true\r\n\ttestme() {\r\n\t\tconsole.log('icon click');\r\n\t}\r\n}\r\n</script>","progress":"<template>\r\n\t<div class=\"progress-test\">\r\n\t\t<s-progress :percent=\"percent\" v-model=\"status\" />\r\n\t\t<s-progress :value=\"value\" :total=\"total\" indicating ratio v-model=\"status\">\r\n\t\t\tindicating ratio\r\n\t\t</s-progress>\r\n\t\t<div class=\"ui inverted segment\">\r\n\t\t\t<s-progress :percent=\"percent\" inverted v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{percent}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left}% to go...\"\r\n\t\t\t\tsuccess-text=\"{percent}% done\"\r\n\t\t\t/>\r\n\t\t\t<s-progress inverted indicating :value=\"value\" :total=\"total\" ratio v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{value}/{total}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left} to go...\"\r\n\t\t\t\tsuccess-text=\"{value} done\"\r\n\t\t\t/>\r\n\t\t</div>\r\n\r\n\t\t<s-select v-model=\"status\" placeholder=\"status\">\r\n\t\t\t<s-option value=\"active\" />\r\n\t\t\t<s-option value=\"warning\" />\r\n\t\t\t<s-option value=\"success\" />\r\n\t\t\t<s-option value=\"error\" />\r\n\t\t</s-select>\r\n\t\t<div @mousedown=\"md\">\r\n\t\t\tClick here :\r\n\t\t\t<div class=\"command\" style=\"background: black;\" @mousemove=\"mm({offsetX: 0})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: grey; width: 800px;\" @mousemove=\"mm\">\r\n\t\t\t\t{{setValue}}/{{total}} -- {{setPercent}}%\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: green;\" @mousemove=\"mm({offsetX: 800})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<style>\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n</style>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Progress extends Vue {\r\n\tpercent = 0\r\n\tvalue = 0\r\n\ttotal = 23\r\n\tsetValue = 0\r\n\tsetPercent = 0\r\n\tstatus = null\r\n\tmounted() {\r\n\r\n\t}\r\n\tmm($event) {\r\n\t\tthis.setValue = Math.round($event.offsetX*23/800);\r\n\t\tthis.setPercent = Math.round($event.offsetX/8);\r\n\t}\r\n\tmd($event) {\r\n\t\tthis.percent = this.setPercent;\r\n\t\tthis.value = this.setValue;\r\n\t}\r\n}\r\n</script>","sidebars":"<template>\r\n\t<div>\r\n\t\t<s-sidebar direction=\"left\" v-model=\"shown\">\r\n\t\t\tLorem ipsum\r\n\t\t</s-sidebar>\r\n\t\t<div class=\"pusher\">\r\n\t\t\t<s-checkbox label=\"visible\" v-model=\"shown\" />\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Sidebars extends Vue {\r\n\tshown: boolean = false\t//TODO: it fails when initialised at true for now\r\n}\r\n</script>","table":"<template>\r\n\t<div>\r\n\t\t<s-table\r\n\t\t\tcelled\r\n\t\t\tselectable\r\n\t\t\tv-model=\"my_row\"\r\n\t\t\t:rows=\"my_rows\"\r\n\t\t\tvery-basic\r\n\t\t\t:body-height=\"500\"\r\n\t\t>\r\n\t\t\t<div slot=\"header\">\r\n\t\t\t\tIn-table header\r\n\t\t\t</div>\r\n\t\t\t<s-checkbox-column :selection=\"my_selection\" />\r\n\t\t\t<s-column prop=\"a\" width=\"300\" header=\"a\" edit />\r\n\t\t\t<s-column header=\"A\">\r\n\t\t\t\t<template slot-scope=\"scope\">\r\n\t\t\t\t\ta{{scope.model.a}}-b{{scope.model.b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"b\">\r\n\t\t\t\t<template slot=\"header\">\r\n\t\t\t\t\tB sum={{sum_b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"deep.reason\" header=\"Q?\" edit />\r\n\t\t\t<s-row-edit-column\r\n\t\t\t\t@edit=\"(row, state)=> copy(row, state)\"\r\n\t\t\t\t@cancel=\"(row, state)=> copy(state, row)\"\r\n\t\t\t/>\r\n\t\t</s-table>\r\n\t\t<div>\r\n\t\t\t<p><h3>current-row</h3> {{my_row}} </p>\r\n\t\t\t<p><h3>selection</h3> {{my_selection}} </p>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\nimport {copy} from 'lib/deep'\r\n\r\nvar rows = (new Array(20)).fill(null).map((x,i)=> ({\r\n\ta: ''+i*2,\r\n\tb:i*2+1,\r\n\tdeep: {reason: 42}\r\n}));\r\n@Component\r\nexport default class Table extends Vue {\r\n\tcopy = copy\r\n\tmy_row = null\r\n\tmy_rows = rows\r\n\tmy_selection = []\r\n\tget sum_b() {\r\n\t\treturn this.my_rows.reduce((acc, row)=> acc + row.b, 0);\r\n\t}\r\n}\r\n</script>","tabs":"<template>\r\n\t<div>\r\n\t\t<s-tabs v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"bottom\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"left\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"right\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Tabs extends Vue {\r\n\tselected: string = null\r\n}\r\n</script>"};
+module.exports = {"buttons":"<template>\r\n\t<div>\r\n\t\t<div>\r\n\t\t\t<s-modal v-model=\"modal1\" closable header=\"\">\r\n\t\t\t\tBlah Blah\r\n\t\t\t\t<s-button v-command:cancel>Cancel</s-button>\r\n\t\t\t\t<s-button v-command:ok>Ok</s-button>\r\n\t\t\t</s-modal>\r\n\t\t\t<s-button @click=\"modal1(()=> loading='This is ok...')\">\r\n\t\t\t\tmodal\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"blurred = !blurred\">\r\n\t\t\t\t<s-icon icon=\"save\" slot=\"prepend\" />\r\n\t\t\t\tblurr\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"+plus+red dont\" @click=\"loading = !loading\">\r\n\t\t\t\tloading\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"loading = !loading && 'loading!'\">\r\n\t\t\t\t<s-icon icon=\"minus\" slot=\"append\" />\r\n\t\t\t\tloading text\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"test\" ref=\"button\">\r\n\t\t\t\t<s-icon icon=\"add circle\" />\r\n\t\t\t\t<div class=\"ui special popup\">\r\n\t\t\t\t\t<div class=\"header\">Custom Header</div>\r\n\t\t\t\t\t<div class=\"ui button\">Click Me</div>\r\n\t\t\t\t</div>\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"add square\" />\r\n\t\t</div>\r\n\r\n\t\t<div>\r\n\t\t\t<s-dimmable blurring v-model=\"blurred\" icon=\"heart\" message=\"Dimmed Message!\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</s-dimmable>\r\n\t\t\t<div v-loading.indeterminate=\"loading\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Buttons extends Vue {\r\n\tblurred: boolean = false\r\n\tloading: boolean = false\r\n\tmodal1 = null\r\n\ttest() {\r\n\t\tdebugger;\r\n\t\t/*$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\ttitle   : 'Popup Title',\r\n\t\t\t\tcontent : 'Hello I am a popup'\r\n\t\t\t});\r\n\t\t$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\tinline: true\r\n\t\t\t});*/\r\n\t}\r\n}\r\n</script>","form":"<template>\r\n\t<div class=\"ui segments\">\r\n\t\t<s-form :model=\"model\"\r\n\t\t\t:schema=\"schema\"\r\n\t\t\tdisplay-errors\r\n\t\t\tlabel-width=\"200px\"\r\n\t\t\tinline\r\n\t\t\tclass=\"ui segment\"\r\n\t\t>\r\n\t\t\t<s-data-mold select=\"bool\">\r\n\t\t\t\t<template slot=\"prepend\" slot-scope=\"field\">\r\n\t\t\t\t\t<label :style=\"field.labelStyle\" />\r\n\t\t\t\t</template>\r\n\t\t\t\t<template slot=\"input\" slot-scope=\"field\">\r\n\t\t\t\t\t<s-checkbox :label=\"field.label\" v-model=\"field.value\" />\r\n\t\t\t\t</template>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-data-mold>\r\n\t\t\t\t<template slot=\"prepend\" slot-scope=\"field\">\r\n\t\t\t\t\t<label :for=\"field.name\" class=\"ui label\" :style=\"field.labelStyle\">\r\n\t\t\t\t\t\t<h3>{{field.label}}</h3>\r\n\t\t\t\t\t</label>\r\n\t\t\t\t</template>\r\n\t\t\t\t<template slot=\"input\" slot-scope=\"field\">\r\n\t\t\t\t\t<s-input :name=\"field.name\" v-model=\"field.value\">\r\n\t\t\t\t\t\t<s-icon slot=\"prepend\" :icon=\"field.info || ''\" />\r\n\t\t\t\t\t</s-input>\r\n\t\t\t\t</template>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-field inline prop=\"big\" label=\"Big\" type=\"bool\" />\r\n\t\t\t<s-field prop=\"firstName\" label=\"First name\" info=\"hand pointer\" />\r\n\t\t\t<s-field prop=\"lastName\" label=\"Last name\" info=\"signal\" />\r\n\t\t\t<s-field prop=\"deep.reason\" label=\"Deep reason\"\r\n\t\t\t\t:input=\"number\"\r\n\t\t\t\t:output=\"x=> ''+ x\"\r\n\t\t\t/>\r\n\t\t\t<s-field prop=\"deep.thinking\" label=\"Deep thinking\">\r\n\t\t\t\t<s-select v-model=\"model.deep.thinking\" :options=\"['Too much', 'Yes', 'No']\" />\r\n\t\t\t</s-field>\r\n\t\t</s-form>\r\n\t\t<div class=\"ui segment\">\r\n\t\t\t<h1>Out of the form</h1>\r\n\t\t\t<s-checkbox style=\"display: block;\" v-model=\"model.big\" label=\"model.big\" />\r\n\t\t\t<s-input style=\"display: block;\" v-model=\"model.firstName\" />\r\n\t\t\t{{model}}\r\n\t\t\t<s-button style=\"display: block;\" @click=\"reInit\">Re-init</s-button>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'\r\nimport { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'\r\n\r\n@DataModel()\r\nclass Deep {\r\n\t@Property() reason: number\r\n\t@Enum('Yes', 'No') thinking: string\r\n}\r\n@DataModel()\r\nclass Person {\r\n\t@MinLength() firstName: string\r\n\t@Property() lastName: string\r\n\t@Property() deep: Deep\r\n}\r\n\r\n@Component\r\nexport default class Form extends Vue {\r\n\tcreated() { this.reInit(); }\r\n\tnumber(string) {\r\n\t\tvar rv = Number(string);\r\n\t\tif(isNaN(rv)) throw new Error('Bad number');\r\n\t\treturn rv;\r\n\t}\r\n\treInit() {\r\n\t\tthis.model = {\r\n\t\t\tfirstName: \"\",\r\n\t\t\tlastName: \"\",\r\n\t\t\tbig: false,\r\n\t\t\tdeep: {\r\n\t\t\t\treason: 42,\r\n\t\t\t\tthinking: 'Yes'\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tmodel = null\r\n\tschema = (<any>Person).schema\r\n}\r\n</script>","inputs":"<template>\r\n\t<div>\r\n\t\t<s-input>\r\n\t\t\t<s-icon slot=\"prepend\" circular link icon=\"search\" @click=\"testme\" />\r\n\t\t\t<s-select class=\"label\" slot=\"append\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t\t</s-select>\r\n\t\t</s-input>\r\n\t\t<div>\r\n\t\t\t<label>Drop down:</label>\r\n\t\t\t{{ddn}}\r\n\t\t</div>\r\n\t\t<s-select name=\"extSelect\" style=\"display: block;\" inline action=\"select\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t</s-select>\r\n\t\t<s-checkbox name=\"checkyes\" label=\"Yes!\" v-model=\"tchk\" />\r\n\t\t<div>\r\n\t\t\t<label>Checked:</label>\r\n\t\t\t{{tchk}}\r\n\t\t</div>\r\n\t\t<div>\r\n\t\t\t<s-input name=\"dimmedMinus\" inline v-dimm-parts:minus.inverted>\r\n\t\t\t\t<s-button slot=\"append\" class=\"input-dimmed\" icon=\"minus\" dimmed-part=\"minus\" />\r\n\t\t\t</s-input>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Inputs extends Vue {\r\n\tddn = ''\r\n\ttchk: boolean = true\r\n\ttestme() {\r\n\t\tconsole.log('icon click');\r\n\t}\r\n}\r\n</script>","panels":"<template>\r\n\t<div>\r\n\t\t<s-accordion v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-accordion>\r\n\t\t<s-tabs v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"bottom\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"left\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"right\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Tabs extends Vue {\r\n\tselected: string = null\r\n}\r\n</script>","progress":"<template>\r\n\t<div class=\"progress-test\">\r\n\t\t<s-breadcrumbs :crumbs=\"crumbs\" />\r\n\t\t<s-progress :percent=\"percent\" v-model=\"status\" />\r\n\t\t<s-progress :value=\"value\" :total=\"total\" indicating ratio v-model=\"status\">\r\n\t\t\tindicating ratio\r\n\t\t</s-progress>\r\n\t\t<div class=\"ui inverted segment\">\r\n\t\t\t<s-progress :percent=\"percent\" inverted v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{percent}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left}% to go...\"\r\n\t\t\t\tsuccess-text=\"{percent}% done\"\r\n\t\t\t/>\r\n\t\t\t<s-progress inverted indicating :value=\"value\" :total=\"total\" ratio v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{value}/{total}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left} to go...\"\r\n\t\t\t\tsuccess-text=\"{value} done\"\r\n\t\t\t/>\r\n\t\t</div>\r\n\r\n\t\t<s-select v-model=\"status\" placeholder=\"status\">\r\n\t\t\t<s-option value=\"active\" />\r\n\t\t\t<s-option value=\"warning\" />\r\n\t\t\t<s-option value=\"success\" />\r\n\t\t\t<s-option value=\"error\" />\r\n\t\t</s-select>\r\n\t\t<div @mousedown=\"md\">\r\n\t\t\tClick here :\r\n\t\t\t<div class=\"command\" style=\"background: black;\" @mousemove=\"mm({offsetX: 0})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: grey; width: 400px;\" @mousemove=\"mm\">\r\n\t\t\t\t{{setValue}}/{{total}} -- {{setPercent}}%\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: green;\" @mousemove=\"mm({offsetX: 400})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<style>\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n</style>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Progress extends Vue {\r\n\tcrumbs = [{\r\n\t\ttext: 'Accordion',\r\n\t\tname: 'accordion'\r\n\t}, {\r\n\t\ttext: 'Buttons',\r\n\t\tname: 'buttons'\r\n\t}, {\r\n\t\ttext: 'Form',\r\n\t\tname: 'form'\r\n\t}, {\r\n\t\ttext: 'Inputs',\r\n\t\tname: 'inputs'\r\n\t}, {\r\n\t\ttext: 'Progress',\r\n\t\tname: 'progress'\r\n\t}]\r\n\tpercent = 0\r\n\tvalue = 0\r\n\ttotal = 23\r\n\tsetValue = 0\r\n\tsetPercent = 0\r\n\tstatus = null\r\n\tmounted() {\r\n\r\n\t}\r\n\tmm($event) {\r\n\t\tthis.setValue = Math.round($event.offsetX*23/400);\r\n\t\tthis.setPercent = Math.round($event.offsetX/8);\r\n\t}\r\n\tmd($event) {\r\n\t\tthis.percent = this.setPercent;\r\n\t\tthis.value = this.setValue;\r\n\t}\r\n}\r\n</script>","sidebars":"<template>\r\n\t<div>\r\n\t\t<s-sidebar direction=\"left\" v-model=\"shown\">\r\n\t\t\tLorem ipsum\r\n\t\t</s-sidebar>\r\n\t\t<div class=\"pusher\">\r\n\t\t\t<s-checkbox label=\"visible\" v-model=\"shown\" />\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Sidebars extends Vue {\r\n\tshown: boolean = false\t//TODO: it fails when initialised at true for now\r\n}\r\n</script>","table":"<template>\r\n\t<div>\r\n\t\t<s-table\r\n\t\t\tcelled\r\n\t\t\tselectable\r\n\t\t\tv-model=\"my_row\"\r\n\t\t\t:rows=\"my_rows\"\r\n\t\t\tvery-basic\r\n\t\t\t:body-height=\"500\"\r\n\t\t>\r\n\t\t\t<div slot=\"header\">\r\n\t\t\t\tIn-table header\r\n\t\t\t</div>\r\n\t\t\t<s-checkbox-column :selection=\"my_selection\" />\r\n\t\t\t<s-column prop=\"a\" width=\"300\" header=\"a\" edit />\r\n\t\t\t<s-column header=\"A\">\r\n\t\t\t\t<template slot-scope=\"scope\">\r\n\t\t\t\t\ta{{scope.model.a}}-b{{scope.model.b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"b\">\r\n\t\t\t\t<template slot=\"header\">\r\n\t\t\t\t\tB sum={{sum_b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"deep.reason\" header=\"Q?\" edit />\r\n\t\t\t<s-row-edit-column\r\n\t\t\t\t@edit=\"(row, state)=> copy(row, state)\"\r\n\t\t\t\t@cancel=\"(row, state)=> copy(state, row)\"\r\n\t\t\t/>\r\n\t\t</s-table>\r\n\t\t<div>\r\n\t\t\t<p><h3>current-row</h3> {{my_row}} </p>\r\n\t\t\t<p><h3>selection</h3> {{my_selection}} </p>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\nimport {copy} from 'lib/deep'\r\n\r\nvar rows = (new Array(20)).fill(null).map((x,i)=> ({\r\n\ta: ''+i*2,\r\n\tb:i*2+1,\r\n\tdeep: {reason: 42}\r\n}));\r\n@Component\r\nexport default class Table extends Vue {\r\n\tcopy = copy\r\n\tmy_row = null\r\n\tmy_rows = rows\r\n\tmy_selection = []\r\n\tget sum_b() {\r\n\t\treturn this.my_rows.reduce((acc, row)=> acc + row.b, 0);\r\n\t}\r\n}\r\n</script>"};
 
 /***/ }),
 
@@ -80727,15 +80755,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var MenuContainer = {
     template: "<router-view></router-view>"
 }; //used for route-group, menu groups
-var accordion_vue_1 = __webpack_require__(/*! ./routes/accordion.vue */ "./routes/accordion.vue");
+var panels_vue_1 = __webpack_require__(/*! ./routes/panels.vue */ "./routes/panels.vue");
 var buttons_vue_1 = __webpack_require__(/*! ./routes/buttons.vue */ "./routes/buttons.vue");
 var form_vue_1 = __webpack_require__(/*! ./routes/form.vue */ "./routes/form.vue");
 var inputs_vue_1 = __webpack_require__(/*! ./routes/inputs.vue */ "./routes/inputs.vue");
 var progress_vue_1 = __webpack_require__(/*! ./routes/progress.vue */ "./routes/progress.vue");
 var sidebars_vue_1 = __webpack_require__(/*! ./routes/sidebars.vue */ "./routes/sidebars.vue");
 var table_vue_1 = __webpack_require__(/*! ./routes/table.vue */ "./routes/table.vue");
-var tabs_vue_1 = __webpack_require__(/*! ./routes/tabs.vue */ "./routes/tabs.vue");
-var comps = { Accordion: accordion_vue_1.default, Buttons: buttons_vue_1.default, Form: form_vue_1.default, Inputs: inputs_vue_1.default, Progress: progress_vue_1.default, Sidebars: sidebars_vue_1.default, Table: table_vue_1.default, Tabs: tabs_vue_1.default };
+var comps = { Panels: panels_vue_1.default, Buttons: buttons_vue_1.default, Form: form_vue_1.default, Inputs: inputs_vue_1.default, Progress: progress_vue_1.default, Sidebars: sidebars_vue_1.default, Table: table_vue_1.default };
 var routes = [];
 for (var i in comps) {
     var name_1 = i.toLowerCase();
@@ -80746,78 +80773,6 @@ for (var i in comps) {
     });
 }
 exports.default = routes;
-
-
-/***/ }),
-
-/***/ "./routes/accordion.vue":
-/*!******************************!*\
-  !*** ./routes/accordion.vue ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _accordion_vue_vue_type_template_id_09689ad1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accordion.vue?vue&type=template&id=09689ad1& */ "./routes/accordion.vue?vue&type=template&id=09689ad1&");
-/* harmony import */ var _accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./accordion.vue?vue&type=script&lang=ts& */ "./routes/accordion.vue?vue&type=script&lang=ts&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _accordion_vue_vue_type_template_id_09689ad1___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _accordion_vue_vue_type_template_id_09689ad1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "routes/accordion.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./routes/accordion.vue?vue&type=script&lang=ts&":
-/*!*******************************************************!*\
-  !*** ./routes/accordion.vue?vue&type=script&lang=ts& ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/ts-loader??ref--0!../../../node_modules/vue-loader/lib??vue-loader-options!../../../node_modules/source-map-loader!./accordion.vue?vue&type=script&lang=ts& */ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/accordion.vue?vue&type=script&lang=ts&");
-/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_accordion_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./routes/accordion.vue?vue&type=template&id=09689ad1&":
-/*!*************************************************************!*\
-  !*** ./routes/accordion.vue?vue&type=template&id=09689ad1& ***!
-  \*************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_accordion_vue_vue_type_template_id_09689ad1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./accordion.vue?vue&type=template&id=09689ad1& */ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/accordion.vue?vue&type=template&id=09689ad1&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_accordion_vue_vue_type_template_id_09689ad1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_accordion_vue_vue_type_template_id_09689ad1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
 
 
 /***/ }),
@@ -81033,6 +80988,78 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_inputs_vue_vue_type_template_id_8a5002a0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_inputs_vue_vue_type_template_id_8a5002a0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./routes/panels.vue":
+/*!***************************!*\
+  !*** ./routes/panels.vue ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _panels_vue_vue_type_template_id_94d8be94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./panels.vue?vue&type=template&id=94d8be94& */ "./routes/panels.vue?vue&type=template&id=94d8be94&");
+/* harmony import */ var _panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./panels.vue?vue&type=script&lang=ts& */ "./routes/panels.vue?vue&type=script&lang=ts&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _panels_vue_vue_type_template_id_94d8be94___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _panels_vue_vue_type_template_id_94d8be94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "routes/panels.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./routes/panels.vue?vue&type=script&lang=ts&":
+/*!****************************************************!*\
+  !*** ./routes/panels.vue?vue&type=script&lang=ts& ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/ts-loader??ref--0!../../../node_modules/vue-loader/lib??vue-loader-options!../../../node_modules/source-map-loader!./panels.vue?vue&type=script&lang=ts& */ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/panels.vue?vue&type=script&lang=ts&");
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_panels_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./routes/panels.vue?vue&type=template&id=94d8be94&":
+/*!**********************************************************!*\
+  !*** ./routes/panels.vue?vue&type=template&id=94d8be94& ***!
+  \**********************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_panels_vue_vue_type_template_id_94d8be94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./panels.vue?vue&type=template&id=94d8be94& */ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/panels.vue?vue&type=template&id=94d8be94&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_panels_vue_vue_type_template_id_94d8be94___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_panels_vue_vue_type_template_id_94d8be94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -81267,78 +81294,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_73f67ed7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_73f67ed7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./routes/tabs.vue":
-/*!*************************!*\
-  !*** ./routes/tabs.vue ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tabs_vue_vue_type_template_id_ad9cc4f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.vue?vue&type=template&id=ad9cc4f6& */ "./routes/tabs.vue?vue&type=template&id=ad9cc4f6&");
-/* harmony import */ var _tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.vue?vue&type=script&lang=ts& */ "./routes/tabs.vue?vue&type=script&lang=ts&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _tabs_vue_vue_type_template_id_ad9cc4f6___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _tabs_vue_vue_type_template_id_ad9cc4f6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "routes/tabs.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./routes/tabs.vue?vue&type=script&lang=ts&":
-/*!**************************************************!*\
-  !*** ./routes/tabs.vue?vue&type=script&lang=ts& ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/ts-loader??ref--0!../../../node_modules/vue-loader/lib??vue-loader-options!../../../node_modules/source-map-loader!./tabs.vue?vue&type=script&lang=ts& */ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/tabs.vue?vue&type=script&lang=ts&");
-/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_tabs_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./routes/tabs.vue?vue&type=template&id=ad9cc4f6&":
-/*!********************************************************!*\
-  !*** ./routes/tabs.vue?vue&type=template&id=ad9cc4f6& ***!
-  \********************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabs_vue_vue_type_template_id_ad9cc4f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./tabs.vue?vue&type=template&id=ad9cc4f6& */ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/tabs.vue?vue&type=template&id=ad9cc4f6&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabs_vue_vue_type_template_id_ad9cc4f6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabs_vue_vue_type_template_id_ad9cc4f6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

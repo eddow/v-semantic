@@ -24,5 +24,8 @@ An `tabs` is a [panel](../concepts/panel.md) container, so panels are described 
 - `primary`
 - `secondary`
 
+### Model
+The `{string}` model is the name of the selected tab.
+
 ## Future
 There is no plan to implement the ajax tabs.

@@ -26,7 +26,16 @@ An `accordion` is a [panel](../concepts/panel.md) container, so panels are descr
 - `closeNested`: boolean
 - `collapsible`: boolean
 - `duration`: number
-
+### Model
+The model type depends on the `exclusive` configuration
+#### Exclusive = `true`/`undefined`
+By default, accordions are exclusive (one panel shown at a time). In this case, the model is the `{string}` name of the displayed panel or null for none.
+#### Exclusive = `false`
+In case of multi-opened accordions, the model can be a list or a hash, depending of what value is provided. Anything provided here won't be replaced but modified internally.
+##### Array
+If an array is provided, that array is a `string[]` providing the name of the opened panels.
+##### Hash
+If a `{[panelName: string]: boolean}` hash is provided, it will indicate with `true` or `false` whether a panel is opened by name. Note, as an input, tru-ish and fals-ish values are accepted.
 ## Events
 These events happen without arguments. Also, the events about closing only happen when a panel is explicitely closed, not when another one is exclusively opened
 - `opening`

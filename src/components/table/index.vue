@@ -8,7 +8,7 @@
 		</caption>
 		<thead :class="widthClass">
 			<tr class="vued">
-				<th is="ripped" v-for="(column, uid) in columns" :key="uid"
+				<th is="ripped" v-for="(column, uid) in columns" :key="column._uid"
 					class="vued"
 					:style="{width: column.width?column.width+'px':undefined}"
 					template="header"
@@ -30,7 +30,7 @@
 				]"
 				@click="rowClick(row)"
 			>
-				<td is="ripped" v-for="(column, uid) in columns" :key="uid"
+				<td is="ripped" v-for="(column, uid) in columns" :key="column._uid"
 					:style="{width: column.width?column.width+'px':undefined}"
 					:ripper="column"
 					:scope="{row, index: index}"
