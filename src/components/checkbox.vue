@@ -21,8 +21,15 @@ import Semantic, { VueSemantic } from 'lib/module'
 	toggle: Boolean,
 	slider: Boolean
 }, {
-	//uncheckable: Boolean
+	uncheckable: Boolean,
+	fireOnInit: Boolean
 }, [
+	'change',
+	'determinate',
+	'before-checked',
+	'before-indeterminate',
+	'before-determinate',
+	'before-unchecked',
 	'enable',
 	'disable'
 ])

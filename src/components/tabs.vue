@@ -64,33 +64,47 @@ export default class Tabs extends Vue {
 			orders.tabsFirst : orders.tabsLast;
 	}
 	get horizontal() { return !!~['left', 'right'].indexOf(this.position); }
+	@Emit() tabChange(name) {}
 	/*conditionalWrap(name, slot, h) {
 		if(!this.horizontal || 'pimp'=== name) return slot;
 		return h('div', {class: 'tabs'=== name?this.tabClmn:this.pnlClmn}, slot);
 	}*/
 	@Watch('active') setTab(name) {
-	//this.semantic('change tab', name);
+		this.tab('change tab', name);
 		//+ onVisible	tabPath
+	}
+	get tab() {
+		var els = $(this.$refs.menu).find('.item');
+		return els.tab.bind(els);
+	}
+	config: any = {}
+	created() {
+		this.config.onVisible = this.tabChange.bind(this);
 	}
 	panels = []
 	@Watch('panels') initSemantic() {
-		//setTimeout
+		/*
+	'first-load',
+	'load',
+	'request'
+		 */
 		Vue.nextTick(()=>{
 			//TODO: use $refs instead of .find('.item')
 			//TODO: apply on new tabs only (remove from old tabs??)
-			$(this.$refs.menu).find('.item').tab({
+			this.tab({
+				...this.config,
 				context: $((<any>this.$refs.context).$el)
 			});
 		});
 	}
 	get opposite() {
 		return {
-				top: 'bottom',
-				bottom: 'top',
-				//semantic has some `.ui.tabular.menu+.attached:not(.top).segment`
-				left: 'top right',
-				right: 'left'
-			}[this.position];
+			top: 'bottom',
+			bottom: 'top',
+			//semantic has some `.ui.tabular.menu+.attached:not(.top).segment`
+			left: 'top right',
+			right: 'left'
+		}[this.position];
 	}
 	get tabsStyle() {
 		return [

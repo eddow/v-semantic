@@ -1,9 +1,10 @@
 import {Component} from 'vue-property-decorator'
+import {camelize} from 'lib/string'
 import * as classed from './classed'
 import Vue, {ComponentOptions} from 'vue'
 
 function onEvent(evt: string) {
-	return 'on'+evt[0].toUpperCase()+evt.substr(1);
+	return 'on'+camelize(evt);
 }
 
 export function mixin(

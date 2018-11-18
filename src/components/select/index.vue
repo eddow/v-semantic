@@ -32,6 +32,7 @@ import {equals} from 'lib/deep'
 
 const genInputName = idSpace('slct');
 
+//TODO: clearable
 //TODO: manage messages (ex errors, ...)
 @Semantic('dropdown', {
 	selection: Boolean,

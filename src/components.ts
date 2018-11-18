@@ -6,6 +6,7 @@ import Input from './components/input.vue'
 import Modal from './components/modal.vue'
 import Checkbox from './components/checkbox.vue'
 import Progress from './components/progress.vue'
+import Breadcrumbs from './components/breadcrumbs.vue'
 
 import Form from './components/form/index.vue'
 import Field from './components/form/field.vue'
@@ -30,7 +31,7 @@ import Dimmable from './components/dimmable.vue'
 
 var Dropdown = Select;
 export {
-	Flag, Button, Icon, Input, Modal, Checkbox, Progress,
+	Flag, Button, Icon, Input, Modal, Checkbox, Progress, Breadcrumbs,
 	Form, Field, FieldInput, DataMold,
 	Sidebar, Select, Option, Dropdown,
 	Table, Column, CheckboxColumn, RowEditColumn,

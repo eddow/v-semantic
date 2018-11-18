@@ -4,6 +4,7 @@
 	"description": "Semantic-ui2 + vue2",
 	"main": "dist/v-semantic.js",
 	"ts:main": "src/index.ts",
+	"sideEffects": false,
 	"typescript": {
 		"definition": "dist/v-semantic.d.ts"
 	},
@@ -53,7 +54,7 @@
 		"fuse-box": "^3.6.0",
 		"jquery": "^3.3.1",
 		"raw-loader": "^0.5.1",
-		"semantic-ui": "^2.3.1",
+		"semantic-ui": "^2.4.2",
 		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.1",
 		"ts-json-schema-decorator": "^1.2.4",
@@ -80,7 +81,7 @@
 		"vue-ripper": "^1.1.6"
 	},
 	"peerDependencies": {
-		"semantic-ui": "^2.3.1",
+		"semantic-ui": "^2.4",
 		"vue": "^2.5.17"
 	}
 }

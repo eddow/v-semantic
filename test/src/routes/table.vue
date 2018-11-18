@@ -23,7 +23,7 @@
 					B sum={{sum_b}}
 				</template>
 			</s-column>
-			<s-column prop="deep.reason" header="Q?" />
+			<s-column prop="deep.reason" header="Q?" edit />
 			<s-row-edit-column
 				@edit="(row, state)=> copy(row, state)"
 				@cancel="(row, state)=> copy(state, row)"

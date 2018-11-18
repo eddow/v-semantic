@@ -19,3 +19,7 @@ export default {
 instead of
 <s-select v-model="model.deep.thinking" :options="['Too much', 'Yes', 'No']" />
 */
+//TODO: tabs event + accordion v-model
+//TODO: breadcrumbs
+//TODO: Menu?
+//TODO: Message?
