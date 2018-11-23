@@ -44,6 +44,10 @@ This was possible because all the fields needed an `<input type="text" />`. Now,
 	</s-field>
 </s-form>
 ```
+Also, the slot beeing scoped, the input could be re-written like this to avoid repeating `optIn` (even if not very useful here):
+```html
+		<input type="checkbox" slot-scope="{field}" v-model="field.value" />
+```
 
 ### Field-modifying form slot
 Labels and errors are displayed in the field object, in so-called `prepend` and `append` slots. The last example was equivalent to this:

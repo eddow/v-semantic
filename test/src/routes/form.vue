@@ -8,34 +8,30 @@
 			class="ui segment"
 		>
 			<s-data-mold select="bool">
-				<template slot="prepend" slot-scope="field">
-					<label :style="field.labelStyle" />
-				</template>
-				<template slot="input" slot-scope="field">
-					<s-checkbox :label="field.label" v-model="field.value" />
-				</template>
+				<label slot="prepend" slot-scope="field" :style="field.labelStyle" />
+				<s-checkbox slot-scope="field" :label="field.label" v-model="field.value" />
 			</s-data-mold>
 			<s-data-mold>
-				<template slot="prepend" slot-scope="field">
-					<label :for="field.name" class="ui label" :style="field.labelStyle">
-						<h3>{{field.label}}</h3>
-					</label>
-				</template>
-				<template slot="input" slot-scope="field">
-					<s-input :name="field.name" v-model="field.value">
-						<s-icon slot="prepend" :icon="field.info || ''" />
-					</s-input>
-				</template>
+				<label slot="prepend" slot-scope="field"
+						:for="field.name" class="ui label" :style="field.labelStyle">
+					<h3>{{field.label}}</h3>
+				</label>
+				<s-input slot-scope="field" :name="field.name" v-model="field.value">
+					<s-icon slot="prepend" :icon="field.info || ''" />
+				</s-input>
 			</s-data-mold>
 			<s-field inline prop="big" label="Big" type="bool" />
 			<s-field prop="firstName" label="First name" info="hand pointer" />
 			<s-field prop="lastName" label="Last name" info="signal" />
 			<s-field prop="deep.reason" label="Deep reason"
-				:input="number"
+				:input="checkNumber"
 				:output="x=> ''+ x"
 			/>
 			<s-field prop="deep.thinking" label="Deep thinking">
-				<s-select v-model="model.deep.thinking" :options="['Too much', 'Yes', 'No']" />
+				<s-select
+					slot-scope="field"
+					v-model="field.value"
+					:options="['Too much'].concat(field.schema.enum)" />
 			</s-field>
 		</s-form>
 		<div class="ui segment">
@@ -60,6 +56,7 @@ class Deep {
 }
 @DataModel()
 class Person {
+	@Property() big: boolean
 	@MinLength() firstName: string
 	@Property() lastName: string
 	@Property() deep: Deep
@@ -68,7 +65,7 @@ class Person {
 @Component
 export default class Form extends Vue {
 	created() { this.reInit(); }
-	number(string) {
+	checkNumber(string) {
 		var rv = Number(string);
 		if(isNaN(rv)) throw new Error('Bad number');
 		return rv;
@@ -84,7 +81,7 @@ export default class Form extends Vue {
 			}
 		}
 	}
-	model = null
+	model: Person = null
 	schema = (<any>Person).schema
 }
 </script>

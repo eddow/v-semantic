@@ -1,7 +1,7 @@
 <template>
 	<div :class="[cls, dynCls, {field: !!form}]">
 		<slot name="prepend" />
-		<slot name="input" :input="_self">
+		<slot :input="_self">
 			<input :type="type"
 				:name="name"
 				:placeholder="placeholder"

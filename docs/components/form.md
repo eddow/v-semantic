@@ -18,12 +18,12 @@ All these slots can be scope-less or can be provided using a scope containing on
 ```html
 <s-form :model="selected && selected.somthing && selected.something.model">
 	<s-field>
-		<template for="input" slot-scope="scope">
+		<template slot-scope="scope">
 			<s-input :value="scope.model.computeStuff()">
 ```
 This won't be displayed and raise no error, and is far shorter than :
 ```html
-			<s-input :value="selected && selected.somthing && selected.something.model && selected.something.model.computeStuff()">
+<s-input :value="selected && selected.somthing && selected.something.model && selected.something.model.computeStuff()">
 ```
 
 As noticed here, when scoped, the `input` slot is used instead of the default one.

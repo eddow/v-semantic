@@ -6,20 +6,18 @@
 					{{label}}
 				</label>
 			</slot>
-		</slot>
-		<slot>
-			<slot name="input" :model="modeled.model">
+			<slot :model="modeled.model" :value="scoped.value">
 				<input type="text" v-model="scoped.value" />
 			</slot>
-		</slot>
-		<slot name="append" :model="modeled.model">
-			<div v-if="scoped.errors.length && modeled.displayErrors && 'fields'=== this.modeled.errorPanel"
-				:class="['ui', isInline&&'left', 'pointing red basic error label']"
-			>
-				<div v-for="error in scoped.errors" :key="error.schemaPath">
-					{{error.message}}
+			<slot name="append" :model="modeled.model">
+				<div v-if="scoped.errors.length && modeled.displayErrors && 'fields'=== this.modeled.errorPanel"
+					:class="['ui', isInline&&'left', 'pointing red basic error label']"
+				>
+					<div v-for="error in scoped.errors" :key="error.schemaPath">
+						{{error.message}}
+					</div>
 				</div>
-			</div>
+			</slot>
 		</slot>
 	</div>
 </template>
@@ -31,7 +29,7 @@ import {idSpace} from 'lib/utils'
 import * as deep from 'lib/deep'
 import molded from '../data/molded'
 
-@Component({mixins: [molded(['append', 'prepend', 'field', 'input'])]})
+@Component({mixins: [molded(['append', 'prepend', 'field', 'default'])]})
 export default class Field extends Vue {
 	//from Property
 	@Provide('form') modeled

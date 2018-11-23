@@ -22,6 +22,6 @@ export const FieldInput = {
 	inject: ['field'],
 	props: {tag: {type: String, default: 'span'}},
 	render(h) {
-		return h(this.tag, this.field.$slots.input || this.$slots.default)
+		return h(this.tag, this.field.$slots.default || this.$slots.default)
 	}
 }

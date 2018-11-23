@@ -21,7 +21,7 @@
 Buttons have two slots (`prepend` and `append`) where an `icon` can be used.
 
 ## Properties
-- `icon`: Specifying an icon here is a shortcut to introducing in the button `<icon type="given-value" slot="left" />`
+- `icon`: Specifying an icon here is a shortcut to introducing in the button `<icon type="given-value" slot="prepend" />`
 - `native-type`: `<button :type="nativeType" ...`
 ### Forwarded as classes
 - `attached: String`
