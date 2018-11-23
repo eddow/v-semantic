@@ -1,51 +1,49 @@
 <template>
-	<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]">
-		<caption is="pimp" v-model="pimped">
-			<slot />
-		</caption>
-		<caption v-if="$slots.header" :class="widthClass">
-			<slot name="header"/>
-		</caption>
-		<thead :class="widthClass">
-			<tr class="vued">
-				<th is="ripped" v-for="(column, uid) in columns" :key="column._uid"
-					class="vued"
-					:style="{width: column.width?column.width+'px':undefined}"
-					template="header"
-					:ripper="column"
-				/>
-			</tr>
-		</thead>
-		<tbody class="vued"
-			ref="body"
-			:style="bodyStyle"
-		>
-			<tr
-				v-for="(row, index) in rows"
-				:key="rowId(row)"
-				class="vued"
-				:class="[
-					rowClass(row, index),
-					{current: current === row}
-				]"
-				@click="rowClick(row)"
+	<div v-resize:debounce="resizeHeader">
+		<table :class="[cls, 'vued', {'scroll-body': !!bodyHeight}]">
+			<caption is="pimp" v-model="pimped">
+				<slot />
+			</caption>
+			<caption v-if="$slots.header" :class="widthClass">
+				<slot name="header"/>
+			</caption>
+			<thead :class="widthClass" :style="{width: bodyWidth+'px'}">
+				<tr class="vued">
+					<th is="ripped" v-for="(column, uid) in columns" :key="column._uid"
+						class="vued"
+						:style="{width: column.width?column.width+'px':undefined}"
+						template="header"
+						:ripper="column"
+					/>
+				</tr>
+			</thead>
+			<tbody class="vued"
+				ref="body"
+				:style="bodyStyle"
 			>
-				<td is="ripped" v-for="(column, uid) in columns" :key="column._uid"
-					:style="{width: column.width?column.width+'px':undefined}"
-					:ripper="column"
-					:scope="{row, index: index}"
-					:render="renderCell"
-				/>
-			</tr>
-		</tbody>
-		<tfoot v-if="$slots.footer" :class="widthClass">
-			<tr class="vued">
-				<td :colspan="columns && columns.length" class="vued">
-					<slot name="footer"/>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+				<tr
+					v-for="(row, index) in rows"
+					:key="rowId(row)"
+					class="vued"
+					:class="[
+						rowClass(row, index),
+						{current: current === row}
+					]"
+					@click="rowClick(row)"
+				>
+					<td is="ripped" v-for="(column, uid) in columns" :key="column._uid"
+						:style="{width: column.width?column.width+'px':undefined}"
+						:ripper="column"
+						:scope="{row, index: index}"
+						:render="renderCell"
+					/>
+				</tr>
+			</tbody>
+			<caption v-if="$slots.footer" :class="widthClass">
+				<slot name="footer"/>
+			</caption>
+		</table>
+	</div>
 </template>
 <style>
 table.scroll-body tbody.vued {
@@ -138,7 +136,7 @@ export default class Table extends Vue {
 		return e;
 	}
 	pimped = null
-	get columns() {
+	get columns(): any[] {
 		// In order for tables to be molded, data-molds are added in the default slot.
 		// These data-mold need to be filtered out to gather only the columns to display 
 		var rv = Object.create({}, {
@@ -204,6 +202,15 @@ export default class Table extends Vue {
 	get widthClass() {
 		return ['vued', this.bodyHeight ? 'paddingSBright' : ''];
 	}
+	bodyWidth: number = 0
+	resizeHeader() {
+		const bodyEl = <HTMLElement>this.$refs.body;
+		if(bodyEl) {
+			var aRow = $(bodyEl).find('tr')[0];
+			if(aRow) this.bodyWidth = $(aRow).width();
+		}
+	}
+	mounted() { this.resizeHeader(); }
+	updated() { this.resizeHeader(); }
 }
-//TODO: `v-resize="computeRowHeight"` creates a `div` in the `tbody`... :-/
 </script>

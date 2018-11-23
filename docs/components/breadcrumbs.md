@@ -1,7 +1,7 @@
 # [Bread-crumbs](https://semantic-ui.com/collections/breadcrumb.html)
 Regular breadcrumb semantic-ui control
 
-##Functionment
+## Functionment
 These breadcrumbs are supposed to work with `vue-router`. They are provided with an array of crumbs and display them.
 
 A `Crumb` is a vue-router `Location` that has a `text` property. The location can provide a `name` for a named route, or a `fullPath` or whatever helps retrieve the route.

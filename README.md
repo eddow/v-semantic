@@ -117,7 +117,6 @@ Some of `semantic-ui` functionalities are just classes to add to some `div` for 
 
 ## Things that might perhaps be automated
 - label
-- breadcrumbs (integration with vue-router)
 - menu (integration with vue-router)
 - message (toasters? ...?)
 - nag

@@ -35,10 +35,8 @@ module.exports = {
 			loader: "style-loader!css-loader"
 		}, {
 			enforce: 'pre',
-			test: /\.tsx?$/,
-			exclude: [
-				path.join(__dirname, '../node_modules')
-			],
+			test: /\.[jt]sx?$/,
+			exclude: /node_modules/,
 			use: "source-map-loader"
 		}, {
 			test: /\.vue$/,

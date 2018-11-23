@@ -43,13 +43,9 @@
 			</tr>
 			<tr v-if="heightKeeper" :style="heightKeeper.after" class="vued filler"></tr>
 		</tbody>
-		<tfoot v-if="$slots.footer" :class="widthClass">
-			<tr class="vued">
-				<td :colspan="columns && columns.length" class="vued">
-					<slot name="footer"/>
-				</td>
-			</tr>
-		</tfoot>
+		<caption v-if="$slots.footer" :class="widthClass">
+			<slot name="footer"/>
+		</caption>
 	</table>
 </template>
 <style>
