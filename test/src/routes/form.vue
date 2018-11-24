@@ -9,14 +9,14 @@
 		>
 			<s-data-mold select="bool">
 				<label slot="prepend" slot-scope="field" :style="field.labelStyle" />
-				<s-checkbox slot-scope="field" :label="field.label" v-model="field.value" />
+				<s-checkbox slot="input" slot-scope="field" :label="field.label" v-model="field.value" />
 			</s-data-mold>
 			<s-data-mold>
 				<label slot="prepend" slot-scope="field"
 						:for="field.name" class="ui label" :style="field.labelStyle">
 					<h3>{{field.label}}</h3>
 				</label>
-				<s-input slot-scope="field" :name="field.name" v-model="field.value">
+				<s-input slot="input" slot-scope="field" :name="field.name" v-model="field.value">
 					<s-icon slot="prepend" :icon="field.info || ''" />
 				</s-input>
 			</s-data-mold>

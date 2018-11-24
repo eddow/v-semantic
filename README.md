@@ -36,28 +36,14 @@ import {Modal, Command, Button} from 'v-semantic'
 Requiring the main library will export each components and directives, and a `default` that lets you `Vue.install(...)`.
 The `prefix` (default `"s"`) option will be used before each name of component for registration ('button' --> `<s-button />`)
 
-## Usage
-This library integrate a straightforward way bundling with [fuse-box](fuse-box.org). If you make a project with this bundler, it will be straight-forward.
-
-```javascript
-import vs from 'v-semantic'
-Vue.use(vs);
-```
-Unfortunately, fuse-box poorly makes universal bundles. To bundle `v-semantic`, you can simply bundle the sources.
-The sources entry point is in `v-semantic/src/index.ts`
-```javascript
-import vs from 'v-semantic/src'
-Vue.use(vs);
-```
 ### For development
 
 ```
 git clone
-node fuse
+npm test
 ```
-Beware of [yalc](https://www.npmjs.com/package/yalc) : it happens that in order to develop `v-semantic`, some libraries `v-semantic` uses need to be PR-ed. Therefore, the new libraries are used as they are modified - localy. If you end up with a yalc reference in your `package.json` (this occurs only for deployment) ask for the correct version and PR to download to be up-to-date at that moment.
 
-This will produce `dist/v-semantic.js`
+This will produce `test/run/test.js` and therefore, the file `test/run/index.html` will be usable directly in the browser. To compile the library only, use `npm run prepack`
 
 There is no plan to have one-source-file-per-component, it's not a huge library.
 

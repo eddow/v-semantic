@@ -6,12 +6,16 @@
 			</slot>
 		</template>
 		<template slot-scope="itr">
-			<slot :model="itr.row" :index="itr.index">
-				<slot v-if="edition(itr.row)" name="input" :model="itr.row" :index="itr.index">
-					<s-input type="text" v-model="scope(itr.row).value" />
+			<slot name="cell" :model="itr.row" :index="itr.index" :field="scope(itr.row)" :edition="edition(itr.row)">
+				<slot v-if="edition(itr.row)" name="cell-input" :model="itr.row" :index="itr.index" :field="scope(itr.row)">
+					<slot name="input" :model="itr.row" :index="itr.index" :field="scope(itr.row)">
+						<s-input type="text" v-model="scope(itr.row).value" />
+					</slot>
 				</slot>
-				<slot v-else name="display" :model="itr.row" :index="itr.index">
-					{{moldRender(value(itr.row))}}
+				<slot v-else name="cell-display" :model="itr.row" :index="itr.index">
+					<slot name="display" :model="itr.row" :index="itr.index">
+						{{moldRender(value(itr.row))}}
+					</slot>
 				</slot>
 			</slot>
 		</template>
@@ -28,7 +32,7 @@ import molded from '../data/molded'
 
 @Component({
 	components: {Ripper},
-	mixins: [Table.managedColumn, molded(['header', 'display', 'input'])]
+	mixins: [Table.managedColumn, molded(['header', 'display', 'input', 'cell', 'cell-input', 'cell-display'])]
 })
 export default class Column extends Vue {
 	@Prop() prop: string

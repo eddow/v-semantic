@@ -33,20 +33,20 @@ Taking the example above, it could be rewritten like this:
 	<s-field name="lastName" label="Last name" />
 </s-form>
 ```
-#### `field` default slot
+#### `field` input slot
 This was possible because all the fields needed an `<input type="text" />`. Now, let's imagine a check-box input :
 
 ```html
 <s-form :model="person">
 	...
 	<s-field name="optIn" label="Opted in">
-		<input type="checkbox" v-model="user.optIn" />
+		<input type="checkbox" slot="input" v-model="user.optIn" />
 	</s-field>
 </s-form>
 ```
 Also, the slot beeing scoped, the input could be re-written like this to avoid repeating `optIn` (even if not very useful here):
 ```html
-		<input type="checkbox" slot-scope="{field}" v-model="field.value" />
+		<input type="checkbox" slot="input" slot-scope="{field}" v-model="field.value" />
 ```
 
 ### Field-modifying form slot
@@ -84,7 +84,7 @@ Now, let's imagine we wish to use a `fancy-label`for each input, we could do thi
 
 First of all, **all** the fields will be affected by the template here given **except** if they have a specific `prepend` slot.
 
-In general, the scoped slot of the form is the static slot of the field. This works for `prepend`, `append`, `input` (this is the default field slot) and `field` that override the whole, even prepend, append and default/input.
+In general, the scoped slot of the form is the static slot of the field. This works for `prepend`, `append`, `input` and `field` that override the whole, even prepend, append and input.
 
 The scope is always the `field: VueComponent` object. It gives the programmer acces to valuable information like
 - `label`

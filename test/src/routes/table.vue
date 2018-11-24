@@ -11,10 +11,10 @@
 			<div slot="header">
 				In-table header
 			</div>
-			<s-checkbox-column :selection="my_selection" />
+			<s-checkbox-column v-model="my_selection" />
 			<s-column prop="a" width="300" header="a" edit />
 			<s-column header="A">
-				<template slot-scope="scope">
+				<template slot="cell" slot-scope="scope">
 					a{{scope.model.a}}-b{{scope.model.b}}
 				</template>
 			</s-column>

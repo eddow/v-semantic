@@ -6,8 +6,15 @@
 					{{label}}
 				</label>
 			</slot>
-			<slot :model="modeled.model" :value="scoped.value">
-				<input type="text" v-model="scoped.value" />
+			<slot v-if="edit" name="field-input" :model="modeled.model" :value="scoped.value">
+				<slot name="input" :model="modeled.model" :value="scoped.value">
+					<input type="text" v-model="scoped.value" />
+				</slot>
+			</slot>
+			<slot v-else name="field-display" :model="modeled.model" :value="scoped.value">
+				<slot name="display" :model="modeled.model" :value="scoped.value">
+						{{moldRender(value(modeled.model))}}
+				</slot>
 			</slot>
 			<slot name="append" :model="modeled.model">
 				<div v-if="scoped.errors.length && modeled.displayErrors && 'fields'=== this.modeled.errorPanel"
@@ -29,10 +36,11 @@ import {idSpace} from 'lib/utils'
 import * as deep from 'lib/deep'
 import molded from '../data/molded'
 
-@Component({mixins: [molded(['append', 'prepend', 'field', 'default'])]})
+@Component({mixins: [molded(['append', 'prepend', 'field', 'input', 'field-input', 'display', 'field-display'])]})
 export default class Field extends Vue {
 	//from Property
 	@Provide('form') modeled
+	@Prop({default: true}) edit: boolean = true
 	prop
 	scope
 	invalidateScopes

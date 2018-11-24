@@ -5,8 +5,8 @@ The default slot contains the columns to display.
 ## Proprieties
 The `v-model` is the current row : the one the user clicked on. One can set it to another row with an affectation or bind to it. (note: the current row is an item from the provided `rows`)
 
-Vue's magic is that : if `v-model` is not used, no row will be marked current. If you care about the current row, it will be marked as such. For ui consistency, it is advised to use the attribute `selectable` that basically just shows `:hover` and add a dynamic side.
-- `rows: any[]` is the list of item to display
+Vue's magic is that : if `v-model` is not used, no row will be marked current. If you care about the current row, it will be marked as such. For ui consistency, it is advised to use the attribute `selectable` on the row that basically just shows `:hover` and add a dynamic side.
+- `rows: any[]` is the list of items to display (models)
 - `row-class: (row: any)=> string` Gather the classes that apply to `row`
 - `id-property: string` allows the table to retrieve the id of a row
 - `body-height: number` specifies the height of the body in pixel. *Once specified* a lot of things happen (in the css) - this is meant to allow a scroll-bar under the column headers - some css/js skill is still needed for the 2-pixel difference between columns.
@@ -16,20 +16,24 @@ Vue's magic is that : if `v-model` is not used, no row will be marked current. I
 
 # Columns
 ## Slots
-Each column has two slots : `header` and the default scoped slot whose scope contains:
-- `row` is the object mapped to this row (from `table.rows`)
+Each column has two slots : `header` and beside a default, `display` and `input` scoped slot whose scope contains:
+- `model` is the object mapped to this row (from `table.rows`)
 - `index` is the numeric index of the row
-- `value` is the value extracted and rendered from `row.property`
-- `input` is the function `(value)=> void` that has to be called to change the value in the row
+- `field` that gives all informations like the value and the schema
+If a default slot is specified, it is used all the time. If not, the `display` will be used until an `input` is specified *and*  the row is in edit mode. The default slot also has a boolean `edition` in its scope.
 ```html
 <s-column>
-	<template slot="header">My property</template>
-	<template slot-scope="scope">{{scope.row.myProp}}</template>
+	<template slot="header">My property A</template>
+	<template slot-scope="scope">{{scope.model.myPropA}}</template>
+</s-column>
+<s-column>
+	<template slot="header" prop="myPropB">My property B</template>
+	<template slot-scope="{field}">{{field.value}}</template>
 </s-column>
 ```
 
 ## Proprieties
-- `property` gives the property of the row this column displays. For now, it is just given to retrieve the value when no cell template is provided.
+- `prop` gives the property of the row this column displays. For now, it is just given to retrieve the value when no cell template is provided.
 - `header` gives the text in the header if no template is provided
 - `edit` specifies that the `input` is used instead of the `display` to edit the value
 ## Events
@@ -63,6 +67,7 @@ The default slot allows to replace the checkbox by another component. If used it
 - `checked` is bound to the boolean value (checked or not) for this cell
 - `select`, `unselect` and `toggle` are three callbacks that take the row as an argument to (de)select the row.
 #### Properties
+
 - `header` can be specified if a `header` slot is not given
 - `property` is the boolean property in the row to access. Default to `selected`
 
