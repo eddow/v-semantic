@@ -1,4 +1,5 @@
 # [Table](https://semantic-ui.com/collections/table.html)
+Note: Forms can use the principle of [`data-molds`](./data-mold.md)
 ## Slots
 The default slot contains the columns to display.
 `header` and `footer` are table-wide headers and footers

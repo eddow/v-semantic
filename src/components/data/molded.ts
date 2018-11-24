@@ -32,24 +32,6 @@ export default function molded(slotNames) {
 			console.assert(!!rv, 'Property path is defined');
 			return <string>rv;
 		}
-		
-		@Watch('prop', {immediate: true}) setFieldProperty(prop, oldv) {
-			if(this.modeled) {
-				this.undo(oldv);
-				if(prop) {
-					console.assert(!this.modeled.fields[prop], `Field ${prop} appears once in its form`);
-					this.modeled.fields[prop] = this;
-				}
-			}
-		}
-		undo(prop) {
-			if(this.modeled && prop) {
-				delete this.modeled.fields[prop];
-			}
-		}
-		destroyed() {
-			this.undo(this.prop);
-		}
 		gendName = null;
 		get name() {
 			return this.prop || this.gendName || (this.gendName = genFieldName());

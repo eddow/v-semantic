@@ -13,7 +13,7 @@
 			</slot>
 			<slot v-else name="field-display" :model="modeled.model" :value="scoped.value">
 				<slot name="display" :model="modeled.model" :value="scoped.value">
-						{{moldRender(value(modeled.model))}}
+					{{moldRender(scoped.value)}}
 				</slot>
 			</slot>
 			<slot name="append" :model="modeled.model">
@@ -40,7 +40,7 @@ import molded from '../data/molded'
 export default class Field extends Vue {
 	//from Property
 	@Provide('form') modeled
-	@Prop({default: true}) edit: boolean = true
+	@Prop({default: true}) edit: boolean
 	prop
 	scope
 	invalidateScopes

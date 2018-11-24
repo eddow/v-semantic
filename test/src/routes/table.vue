@@ -8,6 +8,7 @@
 			very-basic
 			:body-height="500"
 		>
+			<mold3 />
 			<div slot="header">
 				In-table header
 			</div>
@@ -24,6 +25,7 @@
 				</template>
 			</s-column>
 			<s-column prop="deep.reason" header="Q?" edit />
+			<s-column prop="light" header="" edit type="3clr" />
 			<s-row-edit-column
 				@edit="(row, state)=> copy(row, state)"
 				@cancel="(row, state)=> copy(state, row)"
@@ -39,13 +41,15 @@
 import Vue from 'vue'
 import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import {copy} from 'lib/deep'
+import mold3 from '../3clr/mold.vue'
 
 var rows = (new Array(20)).fill(null).map((x,i)=> ({
 	a: ''+i*2,
 	b:i*2+1,
+	light: '',
 	deep: {reason: 42}
 }));
-@Component
+@Component({components:{mold3}})
 export default class Table extends Vue {
 	copy = copy
 	my_row = null

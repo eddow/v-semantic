@@ -1,6 +1,8 @@
 # [Form](https://semantic-ui.com/collections/form.html)
 
-Forms use a bit of semantic for shaping and much internal management. For examlpe, the validation occurs through [json-schema](http://json-schema.org/) validation. and the error display is completely customizable.
+Note: Forms can use the principle of [`data-molds`](./data-mold.md)
+
+Forms use a bit of semantic for shaping and much internal management. For example, the validation occurs through [json-schema](http://json-schema.org/) validation. and the error display is completely customizable.
 
 There is a whole [concept](../concepts/form.md) to read about it to understand the API docs. There is much more complexity than what expressed here but here is the standard usage - that can be redundant but fast to grab without learning slope.
 ## Internal management
@@ -28,7 +30,6 @@ This won't be displayed and raise no error, and is far shorter than :
 
 As noticed here, when scoped, the `input` slot is used instead of the default one.
 
-#TODO:DOC
 ## Slots
 
 - The default slot is the one displayed. It can receive a scope that specifies `model` - this is useful as, when no model is selected, the slot will not be shown : so there is no need to test the model before each usage

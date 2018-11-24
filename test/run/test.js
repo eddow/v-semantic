@@ -21908,6 +21908,26 @@ exports.push([module.i, "\n.vued.tabs.horizontal {\r\n\tdisplay: flex;\r\n\t-web
 
 /***/ }),
 
+/***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/css-loader!C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(/*! ../../../node_modules/css-loader/lib/url/escape.js */ "../../node_modules/css-loader/lib/url/escape.js");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "../../node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.clr3 {\r\n\tdisplay: inline-block;\n}\n.clr3.plain {\r\n\twidth: 55px;\r\n\theight: 25px;\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./3clrthree.png */ "./3clr/3clrthree.png")) + ");\n}\n.clr3.plain.red {\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./3clrthreeR.png */ "./3clr/3clrthreeR.png")) + ");\n}\n.clr3.plain.orange {\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./3clrthreeO.png */ "./3clr/3clrthreeO.png")) + ");\n}\n.clr3.plain.green {\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./3clrthreeG.png */ "./3clr/3clrthreeG.png")) + ");\n}\n.clr3.single {\r\n\twidth: 15px;\r\n\theight: 15px;\r\n\tbackground: url(" + escape(__webpack_require__(/*! ./3clrone.png */ "./3clr/3clrone.png")) + ") no-repeat;\n}\n.clr3.single.red {\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./3clroneR.png */ "./3clr/3clroneR.png")) + ");\n}\n.clr3.single.orange {\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./3clroneO.png */ "./3clr/3clroneO.png")) + ");\n}\n.clr3.single.green {\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./3clroneG.png */ "./3clr/3clroneG.png")) + ");\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./app.vue?vue&type=style&index=0&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/css-loader!C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=style&index=0&lang=css& ***!
@@ -57296,6 +57316,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/style-loader!C:/dev/v-semantic/node_modules/css-loader!C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/vue-loader/lib??vue-loader-options!./mold.vue?vue&type=style&index=0&lang=css& */ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "../../node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./app.vue?vue&type=style&index=0&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/style-loader!C:/dev/v-semantic/node_modules/css-loader!C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=style&index=0&lang=css& ***!
@@ -59235,9 +59285,7 @@ var molded_1 = __webpack_require__(/*! ../data/molded */ "../../src/components/d
 var Field = /** @class */ (function (_super) {
     __extends(Field, _super);
     function Field() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.edit = true;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Object.defineProperty(Field.prototype, "isInline", {
         get: function () {
@@ -61220,6 +61268,63 @@ exports.default = Tabs;
 
 /***/ }),
 
+/***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./3clr/mold.vue?vue&type=script&lang=ts&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!./3clr/mold.vue?vue&type=script&lang=ts& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
+var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
+var firstThird = 55 / 3;
+var secondThird = 55 * 2 / 3;
+var Mold = /** @class */ (function (_super) {
+    __extends(Mold, _super);
+    function Mold() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Mold.prototype.mousedown = function (field, mouseEvent) {
+        var x = mouseEvent.offsetX;
+        if (x < firstThird)
+            field.value = 'red';
+        else if (x > secondThird)
+            field.value = 'green';
+        else
+            field.value = 'orange';
+    };
+    Mold = __decorate([
+        vue_property_decorator_1.Component
+    ], Mold);
+    return Mold;
+}(vue_1.default));
+exports.default = Mold;
+
+
+/***/ }),
+
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./app.vue?vue&type=script&lang=ts&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/ts-loader??ref--0!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/v-semantic/node_modules/source-map-loader!./app.vue?vue&type=script&lang=ts& ***!
@@ -61407,6 +61512,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var ts_json_schema_decorator_1 = __webpack_require__(/*! ts-json-schema-decorator */ "../../node_modules/ts-json-schema-decorator/dist/ts-json-schema-decorator.js");
+var mold_vue_1 = __webpack_require__(/*! ../3clr/mold.vue */ "./3clr/mold.vue");
 var Deep = /** @class */ (function () {
     function Deep() {
     }
@@ -61439,6 +61545,10 @@ var Person = /** @class */ (function () {
         __metadata("design:type", String)
     ], Person.prototype, "lastName", void 0);
     __decorate([
+        ts_json_schema_decorator_1.Enum('red', 'orange', 'green'),
+        __metadata("design:type", String)
+    ], Person.prototype, "light", void 0);
+    __decorate([
         ts_json_schema_decorator_1.Property(),
         __metadata("design:type", Deep)
     ], Person.prototype, "deep", void 0);
@@ -61467,6 +61577,7 @@ var Form = /** @class */ (function (_super) {
             firstName: "",
             lastName: "",
             big: false,
+            light: "",
             deep: {
                 reason: 42,
                 thinking: 'Yes'
@@ -61474,7 +61585,7 @@ var Form = /** @class */ (function (_super) {
         };
     };
     Form = __decorate([
-        vue_property_decorator_1.Component
+        vue_property_decorator_1.Component({ components: { mold3: mold_vue_1.default } })
     ], Form);
     return Form;
 }(vue_1.default));
@@ -61742,9 +61853,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var deep_1 = __webpack_require__(/*! lib/deep */ "../../src/lib/deep.ts");
+var mold_vue_1 = __webpack_require__(/*! ../3clr/mold.vue */ "./3clr/mold.vue");
 var rows = (new Array(20)).fill(null).map(function (x, i) { return ({
     a: '' + i * 2,
     b: i * 2 + 1,
+    light: '',
     deep: { reason: 42 }
 }); });
 var Table = /** @class */ (function (_super) {
@@ -61765,7 +61878,7 @@ var Table = /** @class */ (function (_super) {
         configurable: true
     });
     Table = __decorate([
-        vue_property_decorator_1.Component
+        vue_property_decorator_1.Component({ components: { mold3: mold_vue_1.default } })
     ], Table);
     return Table;
 }(vue_1.default));
@@ -64083,8 +64196,8 @@ var render = function() {
                     "display",
                     [
                       _vm._v(
-                        "\n\t\t\t\t\t" +
-                          _vm._s(_vm.moldRender(_vm.value(_vm.modeled.model))) +
+                        "\n\t\t\t\t" +
+                          _vm._s(_vm.moldRender(_vm.scoped.value)) +
                           "\n\t\t\t"
                       )
                     ],
@@ -65186,6 +65299,59 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=template&id=dc50e456&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=template&id=dc50e456& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("s-data-mold", {
+    attrs: { select: "3clr" },
+    scopedSlots: _vm._u([
+      {
+        key: "input",
+        fn: function(field) {
+          return _c(
+            "span",
+            {
+              class: ["clr3", "plain", field.value],
+              on: {
+                mousedown: function($event) {
+                  _vm.mousedown(field, $event)
+                }
+              }
+            },
+            [_vm._v(" ")]
+          )
+        }
+      },
+      {
+        key: "display",
+        fn: function(field) {
+          return _c("span", { class: ["clr3", "single", field.value] }, [
+            _vm._v(" ")
+          ])
+        }
+      }
+    ])
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./app.vue?vue&type=template&id=381730fa&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** C:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=template&id=381730fa& ***!
@@ -65527,6 +65693,8 @@ var render = function() {
           }
         },
         [
+          _c("mold3"),
+          _vm._v(" "),
           _c("s-data-mold", {
             attrs: { select: "bool" },
             scopedSlots: _vm._u([
@@ -65629,7 +65797,7 @@ var render = function() {
             attrs: { prop: "deep.thinking", label: "Deep thinking" },
             scopedSlots: _vm._u([
               {
-                key: "default",
+                key: "input",
                 fn: function(field) {
                   return _c("s-select", {
                     attrs: { options: ["Too much"].concat(field.schema.enum) },
@@ -65644,6 +65812,19 @@ var render = function() {
                 }
               }
             ])
+          }),
+          _vm._v(" "),
+          _c("s-field", {
+            attrs: { prop: "light", label: "Light", type: "3clr" }
+          }),
+          _vm._v(" "),
+          _c("s-field", {
+            attrs: {
+              prop: "light",
+              label: "[repeated]",
+              type: "3clr",
+              edit: false
+            }
           })
         ],
         1
@@ -66399,6 +66580,8 @@ var render = function() {
           }
         },
         [
+          _c("mold3"),
+          _vm._v(" "),
           _c("div", { attrs: { slot: "header" }, slot: "header" }, [
             _vm._v("\n\t\t\tIn-table header\n\t\t")
           ]),
@@ -66450,6 +66633,10 @@ var render = function() {
           _vm._v(" "),
           _c("s-column", {
             attrs: { prop: "deep.reason", header: "Q?", edit: "" }
+          }),
+          _vm._v(" "),
+          _c("s-column", {
+            attrs: { prop: "light", header: "", edit: "", type: "3clr" }
           }),
           _vm._v(" "),
           _c("s-row-edit-column", {
@@ -78126,7 +78313,6 @@ var Modeled = /** @class */ (function (_super) {
     function Modeled() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.molds = [];
-        _this.fields = {};
         return _this;
     }
     Modeled.prototype.beforeCreate = function () {
@@ -78270,23 +78456,6 @@ function molded(slotNames) {
             enumerable: true,
             configurable: true
         });
-        Property.prototype.setFieldProperty = function (prop, oldv) {
-            if (this.modeled) {
-                this.undo(oldv);
-                if (prop) {
-                    console.assert(!this.modeled.fields[prop], "Field " + prop + " appears once in its form");
-                    this.modeled.fields[prop] = this;
-                }
-            }
-        };
-        Property.prototype.undo = function (prop) {
-            if (this.modeled && prop) {
-                delete this.modeled.fields[prop];
-            }
-        };
-        Property.prototype.destroyed = function () {
-            this.undo(this.prop);
-        };
         Object.defineProperty(Property.prototype, "name", {
             get: function () {
                 return this.prop || this.gendName || (this.gendName = genFieldName());
@@ -78433,12 +78602,6 @@ function molded(slotNames) {
             vue_property_decorator_1.Prop({ type: Function }),
             __metadata("design:type", Object)
         ], Property.prototype, "output", void 0);
-        __decorate([
-            vue_property_decorator_1.Watch('prop', { immediate: true }),
-            __metadata("design:type", Function),
-            __metadata("design:paramtypes", [Object, Object]),
-            __metadata("design:returntype", void 0)
-        ], Property.prototype, "setFieldProperty", null);
         Property = __decorate([
             vue_property_decorator_1.Component({
                 mixins: [render_1.renderWrap('initSlots'), scope_1.modelScoped.extendOptions]
@@ -80651,7 +80814,185 @@ Object.assign(vue_1.default.prototype, {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = {"buttons":"<template>\r\n\t<div>\r\n\t\t<div>\r\n\t\t\t<s-modal v-model=\"modal1\" closable header=\"\">\r\n\t\t\t\tBlah Blah\r\n\t\t\t\t<s-button v-command:cancel>Cancel</s-button>\r\n\t\t\t\t<s-button v-command:ok>Ok</s-button>\r\n\t\t\t</s-modal>\r\n\t\t\t<s-button @click=\"modal1(()=> loading='This is ok...')\">\r\n\t\t\t\tmodal\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"blurred = !blurred\">\r\n\t\t\t\t<s-icon icon=\"save\" slot=\"prepend\" />\r\n\t\t\t\tblurr\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"+plus+red dont\" @click=\"loading = !loading\">\r\n\t\t\t\tloading\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"loading = !loading && 'loading!'\">\r\n\t\t\t\t<s-icon icon=\"minus\" slot=\"append\" />\r\n\t\t\t\tloading text\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"test\" ref=\"button\">\r\n\t\t\t\t<s-icon icon=\"add circle\" />\r\n\t\t\t\t<div class=\"ui special popup\">\r\n\t\t\t\t\t<div class=\"header\">Custom Header</div>\r\n\t\t\t\t\t<div class=\"ui button\">Click Me</div>\r\n\t\t\t\t</div>\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"add square\" />\r\n\t\t</div>\r\n\r\n\t\t<div>\r\n\t\t\t<s-dimmable blurring v-model=\"blurred\" icon=\"heart\" message=\"Dimmed Message!\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</s-dimmable>\r\n\t\t\t<div v-loading.indeterminate=\"loading\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Buttons extends Vue {\r\n\tblurred: boolean = false\r\n\tloading: boolean = false\r\n\tmodal1 = null\r\n\ttest() {\r\n\t\tdebugger;\r\n\t\t/*$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\ttitle   : 'Popup Title',\r\n\t\t\t\tcontent : 'Hello I am a popup'\r\n\t\t\t});\r\n\t\t$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\tinline: true\r\n\t\t\t});*/\r\n\t}\r\n}\r\n</script>","form":"<template>\r\n\t<div class=\"ui segments\">\r\n\t\t<s-form :model=\"model\"\r\n\t\t\t:schema=\"schema\"\r\n\t\t\tdisplay-errors\r\n\t\t\tlabel-width=\"200px\"\r\n\t\t\tinline\r\n\t\t\tclass=\"ui segment\"\r\n\t\t>\r\n\t\t\t<s-data-mold select=\"bool\">\r\n\t\t\t\t<label slot=\"prepend\" slot-scope=\"field\" :style=\"field.labelStyle\" />\r\n\t\t\t\t<s-checkbox slot-scope=\"field\" :label=\"field.label\" v-model=\"field.value\" />\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-data-mold>\r\n\t\t\t\t<label slot=\"prepend\" slot-scope=\"field\"\r\n\t\t\t\t\t\t:for=\"field.name\" class=\"ui label\" :style=\"field.labelStyle\">\r\n\t\t\t\t\t<h3>{{field.label}}</h3>\r\n\t\t\t\t</label>\r\n\t\t\t\t<s-input slot-scope=\"field\" :name=\"field.name\" v-model=\"field.value\">\r\n\t\t\t\t\t<s-icon slot=\"prepend\" :icon=\"field.info || ''\" />\r\n\t\t\t\t</s-input>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-field inline prop=\"big\" label=\"Big\" type=\"bool\" />\r\n\t\t\t<s-field prop=\"firstName\" label=\"First name\" info=\"hand pointer\" />\r\n\t\t\t<s-field prop=\"lastName\" label=\"Last name\" info=\"signal\" />\r\n\t\t\t<s-field prop=\"deep.reason\" label=\"Deep reason\"\r\n\t\t\t\t:input=\"checkNumber\"\r\n\t\t\t\t:output=\"x=> ''+ x\"\r\n\t\t\t/>\r\n\t\t\t<s-field prop=\"deep.thinking\" label=\"Deep thinking\">\r\n\t\t\t\t<s-select\r\n\t\t\t\t\tslot-scope=\"field\"\r\n\t\t\t\t\tv-model=\"field.value\"\r\n\t\t\t\t\t:options=\"['Too much'].concat(field.schema.enum)\" />\r\n\t\t\t</s-field>\r\n\t\t</s-form>\r\n\t\t<div class=\"ui segment\">\r\n\t\t\t<h1>Out of the form</h1>\r\n\t\t\t<s-checkbox style=\"display: block;\" v-model=\"model.big\" label=\"model.big\" />\r\n\t\t\t<s-input style=\"display: block;\" v-model=\"model.firstName\" />\r\n\t\t\t{{model}}\r\n\t\t\t<s-button style=\"display: block;\" @click=\"reInit\">Re-init</s-button>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'\r\nimport { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'\r\n\r\n@DataModel()\r\nclass Deep {\r\n\t@Property() reason: number\r\n\t@Enum('Yes', 'No') thinking: string\r\n}\r\n@DataModel()\r\nclass Person {\r\n\t@Property() big: boolean\r\n\t@MinLength() firstName: string\r\n\t@Property() lastName: string\r\n\t@Property() deep: Deep\r\n}\r\n\r\n@Component\r\nexport default class Form extends Vue {\r\n\tcreated() { this.reInit(); }\r\n\tcheckNumber(string) {\r\n\t\tvar rv = Number(string);\r\n\t\tif(isNaN(rv)) throw new Error('Bad number');\r\n\t\treturn rv;\r\n\t}\r\n\treInit() {\r\n\t\tthis.model = {\r\n\t\t\tfirstName: \"\",\r\n\t\t\tlastName: \"\",\r\n\t\t\tbig: false,\r\n\t\t\tdeep: {\r\n\t\t\t\treason: 42,\r\n\t\t\t\tthinking: 'Yes'\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tmodel: Person = null\r\n\tschema = (<any>Person).schema\r\n}\r\n</script>","inputs":"<template>\r\n\t<div>\r\n\t\t<s-input>\r\n\t\t\t<s-icon slot=\"prepend\" circular link icon=\"search\" @click=\"testme\" />\r\n\t\t\t<s-select class=\"label\" slot=\"append\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t\t</s-select>\r\n\t\t</s-input>\r\n\t\t<div>\r\n\t\t\t<label>Drop down:</label>\r\n\t\t\t{{ddn}}\r\n\t\t</div>\r\n\t\t<s-select name=\"extSelect\" style=\"display: block;\" inline action=\"select\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t</s-select>\r\n\t\t<s-checkbox name=\"checkyes\" label=\"Yes!\" v-model=\"tchk\" />\r\n\t\t<div>\r\n\t\t\t<label>Checked:</label>\r\n\t\t\t{{tchk}}\r\n\t\t</div>\r\n\t\t<div>\r\n\t\t\t<s-input name=\"dimmedMinus\" inline v-dimm-parts:minus.inverted>\r\n\t\t\t\t<s-button slot=\"append\" class=\"input-dimmed\" icon=\"minus\" dimmed-part=\"minus\" />\r\n\t\t\t</s-input>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Inputs extends Vue {\r\n\tddn = ''\r\n\ttchk: boolean = true\r\n\ttestme() {\r\n\t\tconsole.log('icon click');\r\n\t}\r\n}\r\n</script>","panels":"<template>\r\n\t<div>\r\n\t\t<s-accordion v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-accordion>\r\n\t\t<s-tabs v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"bottom\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"left\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"right\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Tabs extends Vue {\r\n\tselected: string = null\r\n}\r\n</script>","progress":"<template>\r\n\t<div class=\"progress-test\">\r\n\t\t<s-breadcrumbs :crumbs=\"crumbs\" />\r\n\t\t<s-progress :percent=\"percent\" v-model=\"status\" />\r\n\t\t<s-progress :value=\"value\" :total=\"total\" indicating ratio v-model=\"status\">\r\n\t\t\tindicating ratio\r\n\t\t</s-progress>\r\n\t\t<div class=\"ui inverted segment\">\r\n\t\t\t<s-progress :percent=\"percent\" inverted v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{percent}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left}% to go...\"\r\n\t\t\t\tsuccess-text=\"{percent}% done\"\r\n\t\t\t/>\r\n\t\t\t<s-progress inverted indicating :value=\"value\" :total=\"total\" ratio v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{value}/{total}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left} to go...\"\r\n\t\t\t\tsuccess-text=\"{value} done\"\r\n\t\t\t/>\r\n\t\t</div>\r\n\r\n\t\t<s-select v-model=\"status\" placeholder=\"status\">\r\n\t\t\t<s-option value=\"active\" />\r\n\t\t\t<s-option value=\"warning\" />\r\n\t\t\t<s-option value=\"success\" />\r\n\t\t\t<s-option value=\"error\" />\r\n\t\t</s-select>\r\n\t\t<div @mousedown=\"md\">\r\n\t\t\tClick here :\r\n\t\t\t<div class=\"command\" style=\"background: black;\" @mousemove=\"mm({offsetX: 0})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: grey; width: 400px;\" @mousemove=\"mm\">\r\n\t\t\t\t{{setValue}}/{{total}} -- {{setPercent}}%\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: green;\" @mousemove=\"mm({offsetX: 400})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<style>\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n</style>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Progress extends Vue {\r\n\tcrumbs = [{\r\n\t\ttext: 'Accordion',\r\n\t\tname: 'accordion'\r\n\t}, {\r\n\t\ttext: 'Buttons',\r\n\t\tname: 'buttons'\r\n\t}, {\r\n\t\ttext: 'Form',\r\n\t\tname: 'form'\r\n\t}, {\r\n\t\ttext: 'Inputs',\r\n\t\tname: 'inputs'\r\n\t}, {\r\n\t\ttext: 'Progress',\r\n\t\tname: 'progress'\r\n\t}]\r\n\tpercent = 0\r\n\tvalue = 0\r\n\ttotal = 23\r\n\tsetValue = 0\r\n\tsetPercent = 0\r\n\tstatus = null\r\n\tmounted() {\r\n\r\n\t}\r\n\tmm($event) {\r\n\t\tthis.setValue = Math.round($event.offsetX*23/400);\r\n\t\tthis.setPercent = Math.round($event.offsetX/8);\r\n\t}\r\n\tmd($event) {\r\n\t\tthis.percent = this.setPercent;\r\n\t\tthis.value = this.setValue;\r\n\t}\r\n}\r\n</script>","sidebars":"<template>\r\n\t<div>\r\n\t\t<s-sidebar direction=\"left\" v-model=\"shown\">\r\n\t\t\tLorem ipsum\r\n\t\t</s-sidebar>\r\n\t\t<div class=\"pusher\">\r\n\t\t\t<s-checkbox label=\"visible\" v-model=\"shown\" />\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Sidebars extends Vue {\r\n\tshown: boolean = false\t//TODO: it fails when initialised at true for now\r\n}\r\n</script>","table":"<template>\r\n\t<div>\r\n\t\t<s-table\r\n\t\t\tcelled\r\n\t\t\tselectable\r\n\t\t\tv-model=\"my_row\"\r\n\t\t\t:rows=\"my_rows\"\r\n\t\t\tvery-basic\r\n\t\t\t:body-height=\"500\"\r\n\t\t>\r\n\t\t\t<div slot=\"header\">\r\n\t\t\t\tIn-table header\r\n\t\t\t</div>\r\n\t\t\t<s-checkbox-column :selection=\"my_selection\" />\r\n\t\t\t<s-column prop=\"a\" width=\"300\" header=\"a\" edit />\r\n\t\t\t<s-column header=\"A\">\r\n\t\t\t\t<template slot=\"cell\" slot-scope=\"scope\">\r\n\t\t\t\t\ta{{scope.model.a}}-b{{scope.model.b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"b\">\r\n\t\t\t\t<template slot=\"header\">\r\n\t\t\t\t\tB sum={{sum_b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"deep.reason\" header=\"Q?\" edit />\r\n\t\t\t<s-row-edit-column\r\n\t\t\t\t@edit=\"(row, state)=> copy(row, state)\"\r\n\t\t\t\t@cancel=\"(row, state)=> copy(state, row)\"\r\n\t\t\t/>\r\n\t\t</s-table>\r\n\t\t<div>\r\n\t\t\t<p><h3>current-row</h3> {{my_row}} </p>\r\n\t\t\t<p><h3>selection</h3> {{my_selection}} </p>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\nimport {copy} from 'lib/deep'\r\n\r\nvar rows = (new Array(20)).fill(null).map((x,i)=> ({\r\n\ta: ''+i*2,\r\n\tb:i*2+1,\r\n\tdeep: {reason: 42}\r\n}));\r\n@Component\r\nexport default class Table extends Vue {\r\n\tcopy = copy\r\n\tmy_row = null\r\n\tmy_rows = rows\r\n\tmy_selection = []\r\n\tget sum_b() {\r\n\t\treturn this.my_rows.reduce((acc, row)=> acc + row.b, 0);\r\n\t}\r\n}\r\n</script>"};
+module.exports = {"buttons":"<template>\r\n\t<div>\r\n\t\t<div>\r\n\t\t\t<s-modal v-model=\"modal1\" closable header=\"\">\r\n\t\t\t\tBlah Blah\r\n\t\t\t\t<s-button v-command:cancel>Cancel</s-button>\r\n\t\t\t\t<s-button v-command:ok>Ok</s-button>\r\n\t\t\t</s-modal>\r\n\t\t\t<s-button @click=\"modal1(()=> loading='This is ok...')\">\r\n\t\t\t\tmodal\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"blurred = !blurred\">\r\n\t\t\t\t<s-icon icon=\"save\" slot=\"prepend\" />\r\n\t\t\t\tblurr\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"+plus+red dont\" @click=\"loading = !loading\">\r\n\t\t\t\tloading\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"loading = !loading && 'loading!'\">\r\n\t\t\t\t<s-icon icon=\"minus\" slot=\"append\" />\r\n\t\t\t\tloading text\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"test\" ref=\"button\">\r\n\t\t\t\t<s-icon icon=\"add circle\" />\r\n\t\t\t\t<div class=\"ui special popup\">\r\n\t\t\t\t\t<div class=\"header\">Custom Header</div>\r\n\t\t\t\t\t<div class=\"ui button\">Click Me</div>\r\n\t\t\t\t</div>\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"add square\" />\r\n\t\t</div>\r\n\r\n\t\t<div>\r\n\t\t\t<s-dimmable blurring v-model=\"blurred\" icon=\"heart\" message=\"Dimmed Message!\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</s-dimmable>\r\n\t\t\t<div v-loading.indeterminate=\"loading\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Buttons extends Vue {\r\n\tblurred: boolean = false\r\n\tloading: boolean = false\r\n\tmodal1 = null\r\n\ttest() {\r\n\t\tdebugger;\r\n\t\t/*$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\ttitle   : 'Popup Title',\r\n\t\t\t\tcontent : 'Hello I am a popup'\r\n\t\t\t});\r\n\t\t$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\tinline: true\r\n\t\t\t});*/\r\n\t}\r\n}\r\n</script>","form":"<template>\r\n\t<div class=\"ui segments\">\r\n\t\t<s-form :model=\"model\"\r\n\t\t\t:schema=\"schema\"\r\n\t\t\tdisplay-errors\r\n\t\t\tlabel-width=\"200px\"\r\n\t\t\tinline\r\n\t\t\tclass=\"ui segment\"\r\n\t\t>\r\n\t\t\t<mold3 />\r\n\t\t\t<s-data-mold select=\"bool\">\r\n\t\t\t\t<label slot=\"prepend\" slot-scope=\"field\" :style=\"field.labelStyle\" />\r\n\t\t\t\t<s-checkbox slot=\"input\" slot-scope=\"field\" :label=\"field.label\" v-model=\"field.value\" />\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-data-mold>\r\n\t\t\t\t<label slot=\"prepend\" slot-scope=\"field\"\r\n\t\t\t\t\t\t:for=\"field.name\" class=\"ui label\" :style=\"field.labelStyle\">\r\n\t\t\t\t\t<h3>{{field.label}}</h3>\r\n\t\t\t\t</label>\r\n\t\t\t\t<s-input slot=\"input\" slot-scope=\"field\" :name=\"field.name\" v-model=\"field.value\">\r\n\t\t\t\t\t<s-icon slot=\"prepend\" :icon=\"field.info || ''\" />\r\n\t\t\t\t</s-input>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-field inline prop=\"big\" label=\"Big\" type=\"bool\" />\r\n\t\t\t<s-field prop=\"firstName\" label=\"First name\" info=\"hand pointer\" />\r\n\t\t\t<s-field prop=\"lastName\" label=\"Last name\" info=\"signal\" />\r\n\t\t\t<s-field prop=\"deep.reason\" label=\"Deep reason\"\r\n\t\t\t\t:input=\"checkNumber\"\r\n\t\t\t\t:output=\"x=> ''+ x\"\r\n\t\t\t/>\r\n\t\t\t<s-field prop=\"deep.thinking\" label=\"Deep thinking\">\r\n\t\t\t\t<s-select\r\n\t\t\t\t\tslot-scope=\"field\"\r\n\t\t\t\t\tv-model=\"field.value\"\r\n\t\t\t\t\t:options=\"['Too much'].concat(field.schema.enum)\" />\r\n\t\t\t</s-field>\r\n\t\t\t<s-field prop=\"light\" label=\"Light\" type=\"3clr\" />\r\n\t\t\t<s-field prop=\"light\" label=\"[repeated]\" type=\"3clr\" :edit=\"false\" />\r\n\t\t</s-form>\r\n\t\t<div class=\"ui segment\">\r\n\t\t\t<h1>Out of the form</h1>\r\n\t\t\t<s-checkbox style=\"display: block;\" v-model=\"model.big\" label=\"model.big\" />\r\n\t\t\t<s-input style=\"display: block;\" v-model=\"model.firstName\" />\r\n\t\t\t{{model}}\r\n\t\t\t<s-button style=\"display: block;\" @click=\"reInit\">Re-init</s-button>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'\r\nimport { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'\r\nimport mold3 from '../3clr/mold.vue'\r\n\r\n@DataModel()\r\nclass Deep {\r\n\t@Property() reason: number\r\n\t@Enum('Yes', 'No') thinking: string\r\n}\r\n@DataModel()\r\nclass Person {\r\n\t@Property() big: boolean\r\n\t@MinLength() firstName: string\r\n\t@Property() lastName: string\r\n\t@Enum('red', 'orange', 'green') light: string\r\n\t@Property() deep: Deep\r\n}\r\n\r\n@Component({components:{mold3}})\r\nexport default class Form extends Vue {\r\n\tcreated() { this.reInit(); }\r\n\tcheckNumber(string) {\r\n\t\tvar rv = Number(string);\r\n\t\tif(isNaN(rv)) throw new Error('Bad number');\r\n\t\treturn rv;\r\n\t}\r\n\treInit() {\r\n\t\tthis.model = {\r\n\t\t\tfirstName: \"\",\r\n\t\t\tlastName: \"\",\r\n\t\t\tbig: false,\r\n\t\t\tlight: \"\",\r\n\t\t\tdeep: {\r\n\t\t\t\treason: 42,\r\n\t\t\t\tthinking: 'Yes'\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tmodel: Person = null\r\n\tschema = (<any>Person).schema\r\n}\r\n</script>","inputs":"<template>\r\n\t<div>\r\n\t\t<s-input>\r\n\t\t\t<s-icon slot=\"prepend\" circular link icon=\"search\" @click=\"testme\" />\r\n\t\t\t<s-select class=\"label\" slot=\"append\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t\t</s-select>\r\n\t\t</s-input>\r\n\t\t<div>\r\n\t\t\t<label>Drop down:</label>\r\n\t\t\t{{ddn}}\r\n\t\t</div>\r\n\t\t<s-select name=\"extSelect\" style=\"display: block;\" inline action=\"select\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t</s-select>\r\n\t\t<s-checkbox name=\"checkyes\" label=\"Yes!\" v-model=\"tchk\" />\r\n\t\t<div>\r\n\t\t\t<label>Checked:</label>\r\n\t\t\t{{tchk}}\r\n\t\t</div>\r\n\t\t<div>\r\n\t\t\t<s-input name=\"dimmedMinus\" inline v-dimm-parts:minus.inverted>\r\n\t\t\t\t<s-button slot=\"append\" class=\"input-dimmed\" icon=\"minus\" dimmed-part=\"minus\" />\r\n\t\t\t</s-input>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Inputs extends Vue {\r\n\tddn = ''\r\n\ttchk: boolean = true\r\n\ttestme() {\r\n\t\tconsole.log('icon click');\r\n\t}\r\n}\r\n</script>","panels":"<template>\r\n\t<div>\r\n\t\t<s-accordion v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-accordion>\r\n\t\t<s-tabs v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"bottom\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"left\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"right\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Tabs extends Vue {\r\n\tselected: string = null\r\n}\r\n</script>","progress":"<template>\r\n\t<div class=\"progress-test\">\r\n\t\t<s-breadcrumbs :crumbs=\"crumbs\" />\r\n\t\t<s-progress :percent=\"percent\" v-model=\"status\" />\r\n\t\t<s-progress :value=\"value\" :total=\"total\" indicating ratio v-model=\"status\">\r\n\t\t\tindicating ratio\r\n\t\t</s-progress>\r\n\t\t<div class=\"ui inverted segment\">\r\n\t\t\t<s-progress :percent=\"percent\" inverted v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{percent}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left}% to go...\"\r\n\t\t\t\tsuccess-text=\"{percent}% done\"\r\n\t\t\t/>\r\n\t\t\t<s-progress inverted indicating :value=\"value\" :total=\"total\" ratio v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{value}/{total}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left} to go...\"\r\n\t\t\t\tsuccess-text=\"{value} done\"\r\n\t\t\t/>\r\n\t\t</div>\r\n\r\n\t\t<s-select v-model=\"status\" placeholder=\"status\">\r\n\t\t\t<s-option value=\"active\" />\r\n\t\t\t<s-option value=\"warning\" />\r\n\t\t\t<s-option value=\"success\" />\r\n\t\t\t<s-option value=\"error\" />\r\n\t\t</s-select>\r\n\t\t<div @mousedown=\"md\">\r\n\t\t\tClick here :\r\n\t\t\t<div class=\"command\" style=\"background: black;\" @mousemove=\"mm({offsetX: 0})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: grey; width: 400px;\" @mousemove=\"mm\">\r\n\t\t\t\t{{setValue}}/{{total}} -- {{setPercent}}%\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: green;\" @mousemove=\"mm({offsetX: 400})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<style>\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n</style>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Progress extends Vue {\r\n\tcrumbs = [{\r\n\t\ttext: 'Accordion',\r\n\t\tname: 'accordion'\r\n\t}, {\r\n\t\ttext: 'Buttons',\r\n\t\tname: 'buttons'\r\n\t}, {\r\n\t\ttext: 'Form',\r\n\t\tname: 'form'\r\n\t}, {\r\n\t\ttext: 'Inputs',\r\n\t\tname: 'inputs'\r\n\t}, {\r\n\t\ttext: 'Progress',\r\n\t\tname: 'progress'\r\n\t}]\r\n\tpercent = 0\r\n\tvalue = 0\r\n\ttotal = 23\r\n\tsetValue = 0\r\n\tsetPercent = 0\r\n\tstatus = null\r\n\tmounted() {\r\n\r\n\t}\r\n\tmm($event) {\r\n\t\tthis.setValue = Math.round($event.offsetX*23/400);\r\n\t\tthis.setPercent = Math.round($event.offsetX/8);\r\n\t}\r\n\tmd($event) {\r\n\t\tthis.percent = this.setPercent;\r\n\t\tthis.value = this.setValue;\r\n\t}\r\n}\r\n</script>","sidebars":"<template>\r\n\t<div>\r\n\t\t<s-sidebar direction=\"left\" v-model=\"shown\">\r\n\t\t\tLorem ipsum\r\n\t\t</s-sidebar>\r\n\t\t<div class=\"pusher\">\r\n\t\t\t<s-checkbox label=\"visible\" v-model=\"shown\" />\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Sidebars extends Vue {\r\n\tshown: boolean = false\t//TODO: it fails when initialised at true for now\r\n}\r\n</script>","table":"<template>\r\n\t<div>\r\n\t\t<s-table\r\n\t\t\tcelled\r\n\t\t\tselectable\r\n\t\t\tv-model=\"my_row\"\r\n\t\t\t:rows=\"my_rows\"\r\n\t\t\tvery-basic\r\n\t\t\t:body-height=\"500\"\r\n\t\t>\r\n\t\t\t<mold3 />\r\n\t\t\t<div slot=\"header\">\r\n\t\t\t\tIn-table header\r\n\t\t\t</div>\r\n\t\t\t<s-checkbox-column v-model=\"my_selection\" />\r\n\t\t\t<s-column prop=\"a\" width=\"300\" header=\"a\" edit />\r\n\t\t\t<s-column header=\"A\">\r\n\t\t\t\t<template slot=\"cell\" slot-scope=\"scope\">\r\n\t\t\t\t\ta{{scope.model.a}}-b{{scope.model.b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"b\">\r\n\t\t\t\t<template slot=\"header\">\r\n\t\t\t\t\tB sum={{sum_b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"deep.reason\" header=\"Q?\" edit />\r\n\t\t\t<s-column prop=\"light\" header=\"\" edit type=\"3clr\" />\r\n\t\t\t<s-row-edit-column\r\n\t\t\t\t@edit=\"(row, state)=> copy(row, state)\"\r\n\t\t\t\t@cancel=\"(row, state)=> copy(state, row)\"\r\n\t\t\t/>\r\n\t\t</s-table>\r\n\t\t<div>\r\n\t\t\t<p><h3>current-row</h3> {{my_row}} </p>\r\n\t\t\t<p><h3>selection</h3> {{my_selection}} </p>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\nimport {copy} from 'lib/deep'\r\nimport mold3 from '../3clr/mold.vue'\r\n\r\nvar rows = (new Array(20)).fill(null).map((x,i)=> ({\r\n\ta: ''+i*2,\r\n\tb:i*2+1,\r\n\tlight: '',\r\n\tdeep: {reason: 42}\r\n}));\r\n@Component({components:{mold3}})\r\nexport default class Table extends Vue {\r\n\tcopy = copy\r\n\tmy_row = null\r\n\tmy_rows = rows\r\n\tmy_selection = []\r\n\tget sum_b() {\r\n\t\treturn this.my_rows.reduce((acc, row)=> acc + row.b, 0);\r\n\t}\r\n}\r\n</script>"};
+
+/***/ }),
+
+/***/ "./3clr/3clrone.png":
+/*!**************************!*\
+  !*** ./3clr/3clrone.png ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "5b01d3b1a0ae8a3302fd9146e428e3e5.png";
+
+/***/ }),
+
+/***/ "./3clr/3clroneG.png":
+/*!***************************!*\
+  !*** ./3clr/3clroneG.png ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "0be9138ffca119770ea4d88fa3c14e78.png";
+
+/***/ }),
+
+/***/ "./3clr/3clroneO.png":
+/*!***************************!*\
+  !*** ./3clr/3clroneO.png ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "0119e84767402e0f4c67f4a8c1a9fa5a.png";
+
+/***/ }),
+
+/***/ "./3clr/3clroneR.png":
+/*!***************************!*\
+  !*** ./3clr/3clroneR.png ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "eeccccc747d48a22cf19f6de7a0daddc.png";
+
+/***/ }),
+
+/***/ "./3clr/3clrthree.png":
+/*!****************************!*\
+  !*** ./3clr/3clrthree.png ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "68ce42df0168c8fad040711ef9d96d25.png";
+
+/***/ }),
+
+/***/ "./3clr/3clrthreeG.png":
+/*!*****************************!*\
+  !*** ./3clr/3clrthreeG.png ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ad8b54f478a1957d1a6718d1be05b4e9.png";
+
+/***/ }),
+
+/***/ "./3clr/3clrthreeO.png":
+/*!*****************************!*\
+  !*** ./3clr/3clrthreeO.png ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "23e53d522d67f377540d0ec73a4650ff.png";
+
+/***/ }),
+
+/***/ "./3clr/3clrthreeR.png":
+/*!*****************************!*\
+  !*** ./3clr/3clrthreeR.png ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "400928101cd0d527bc7d8ea6c2b006fe.png";
+
+/***/ }),
+
+/***/ "./3clr/mold.vue":
+/*!***********************!*\
+  !*** ./3clr/mold.vue ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mold_vue_vue_type_template_id_dc50e456___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mold.vue?vue&type=template&id=dc50e456& */ "./3clr/mold.vue?vue&type=template&id=dc50e456&");
+/* harmony import */ var _mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mold.vue?vue&type=script&lang=ts& */ "./3clr/mold.vue?vue&type=script&lang=ts&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _mold_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mold.vue?vue&type=style&index=0&lang=css& */ "./3clr/mold.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _mold_vue_vue_type_template_id_dc50e456___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _mold_vue_vue_type_template_id_dc50e456___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "3clr/mold.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./3clr/mold.vue?vue&type=script&lang=ts&":
+/*!************************************************!*\
+  !*** ./3clr/mold.vue?vue&type=script&lang=ts& ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/ts-loader??ref--0!../../../node_modules/vue-loader/lib??vue-loader-options!../../../node_modules/source-map-loader!./mold.vue?vue&type=script&lang=ts& */ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./3clr/mold.vue?vue&type=script&lang=ts&");
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_index_js_mold_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./3clr/mold.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************!*\
+  !*** ./3clr/mold.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/vue-loader/lib??vue-loader-options!./mold.vue?vue&type=style&index=0&lang=css& */ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./3clr/mold.vue?vue&type=template&id=dc50e456&":
+/*!******************************************************!*\
+  !*** ./3clr/mold.vue?vue&type=template&id=dc50e456& ***!
+  \******************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_template_id_dc50e456___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./mold.vue?vue&type=template&id=dc50e456& */ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=template&id=dc50e456&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_template_id_dc50e456___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mold_vue_vue_type_template_id_dc50e456___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

@@ -1,5 +1,7 @@
 # Forms
 
+Note: this is a specific use case of [`data-molds`](./data-mold.md)
+
 Forms are much more developped than `semantic` did. Indeed, there is no intelligence behind semantic's form beside validation.
 These can simply be used "manually".
 ```html

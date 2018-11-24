@@ -7,6 +7,7 @@
 			inline
 			class="ui segment"
 		>
+			<mold3 />
 			<s-data-mold select="bool">
 				<label slot="prepend" slot-scope="field" :style="field.labelStyle" />
 				<s-checkbox slot="input" slot-scope="field" :label="field.label" v-model="field.value" />
@@ -28,11 +29,13 @@
 				:output="x=> ''+ x"
 			/>
 			<s-field prop="deep.thinking" label="Deep thinking">
-				<s-select
+				<s-select slot="input"
 					slot-scope="field"
 					v-model="field.value"
 					:options="['Too much'].concat(field.schema.enum)" />
 			</s-field>
+			<s-field prop="light" label="Light" type="3clr" />
+			<s-field prop="light" label="[repeated]" type="3clr" :edit="false" />
 		</s-form>
 		<div class="ui segment">
 			<h1>Out of the form</h1>
@@ -48,6 +51,7 @@
 import Vue from 'vue'
 import { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'
 import { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'
+import mold3 from '../3clr/mold.vue'
 
 @DataModel()
 class Deep {
@@ -59,10 +63,11 @@ class Person {
 	@Property() big: boolean
 	@MinLength() firstName: string
 	@Property() lastName: string
+	@Enum('red', 'orange', 'green') light: string
 	@Property() deep: Deep
 }
 
-@Component
+@Component({components:{mold3}})
 export default class Form extends Vue {
 	created() { this.reInit(); }
 	checkNumber(string) {
@@ -75,6 +80,7 @@ export default class Form extends Vue {
 			firstName: "",
 			lastName: "",
 			big: false,
+			light: "",
 			deep: {
 				reason: 42,
 				thinking: 'Yes'

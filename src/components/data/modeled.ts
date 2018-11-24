@@ -15,7 +15,6 @@ import {modelScoped} from './scope'
 export default class Modeled extends Vue {
 	@Prop({default: ()=> ({})}) schema
 	molds = []
-	fields = {}
 	ajv
 	beforeCreate() {
 		//TODO: add ajv options
