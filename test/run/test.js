@@ -60401,17 +60401,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60422,7 +60411,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var checkbox_vue_1 = __webpack_require__(/*! ../checkbox.vue */ "../../src/components/checkbox.vue");
 var vue_ripper_1 = __webpack_require__(/*! vue-ripper */ "../../node_modules/vue-ripper/dist/vue-ripper.js");
@@ -60432,41 +60420,28 @@ var CheckboxColumn = /** @class */ (function (_super) {
     __extends(CheckboxColumn, _super);
     function CheckboxColumn() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.defaultv = null;
         _this.allSelected = false;
         return _this;
     }
-    CheckboxColumn.prototype.setRow = function (row, checked) {
-        var hideProp = !(this.prop in row);
-        vue_1.default.set(row, this.prop, checked);
-        if (hideProp)
-            Object.defineProperty(row, this.prop, __assign({}, Object.getOwnPropertyDescriptor(row, this.prop), { enumerable: false }));
+    CheckboxColumn.prototype.isSelected = function (row) {
+        return !!~this.selection.indexOf(row);
     };
     //We don't use `immediate` because the `selection` will be initiated (by `:selection` or `v-model`)
     CheckboxColumn.prototype.rowsChanged = function (rows) {
         var _this = this;
-        this.setSelection(rows.filter(function (x) {
-            if (null !== _this.defaultv && !(_this.prop in x))
-                _this.setRow(x, _this.defaultv);
-            return x[_this.prop];
-        }));
+        this.setSelection(rows.filter(function (row) { return _this.isSelected(row); }));
     };
     CheckboxColumn.prototype.setSelection = function (selection) {
         if (!selection || true === selection) {
-            this.selectAll(this.defaultv = this.allSelected = !!selection);
+            this.selectAll(this.allSelected = !!selection);
         }
         else if (selection instanceof Array) {
             if (selection === this.modeled.rows) {
-                this.defaultv = true;
                 this.$emit('selection-change', [].concat(selection));
             }
             else if (selection !== this.selection)
                 //this case happens when `setSelection` is called from the header slot or from `rowsChanged`
                 this.$emit('selection-change', selection);
-            for (var _i = 0, _a = this.modeled.rows; _i < _a.length; _i++) {
-                var row = _a[_i];
-                this.setRow(row, !!~selection.indexOf(row));
-            }
             this.computeAll();
         }
         else
@@ -60474,10 +60449,6 @@ var CheckboxColumn = /** @class */ (function (_super) {
     };
     CheckboxColumn.prototype.selectAll = function (checked) {
         if ('boolean' === typeof checked) {
-            for (var _i = 0, _a = this.modeled.rows; _i < _a.length; _i++) {
-                var row = _a[_i];
-                this.setRow(row, checked);
-            }
             var selection = this.selection;
             if (!(selection instanceof Array))
                 this.$emit('selection-change', selection = []);
@@ -60486,34 +60457,31 @@ var CheckboxColumn = /** @class */ (function (_super) {
     };
     CheckboxColumn.prototype.computeAll = function () {
         this.allSelected =
-            0 === this.modeled.rows.length ? this.defaultv :
-                0 === this.selection.length ? false :
-                    this.modeled.rows.length === this.selection.length ?
-                        true : null;
+            0 === this.selection.length ? false :
+                this.modeled.rows.length === this.selection.length ?
+                    true : null;
     };
     CheckboxColumn.prototype.select = function (row) {
-        if (this.selection)
-            console.assert(!~this.selection.indexOf(row), 'A row cannot be selected twice');
         if (this.$cancelable('select', row)) {
-            this.setRow(row, true);
+            if (this.selection)
+                console.assert(!~this.selection.indexOf(row), 'A row cannot be selected twice');
             if (this.selection)
                 this.selection.push(row);
             this.computeAll();
         }
     };
     CheckboxColumn.prototype.unselect = function (row) {
-        var index = this.selection && this.selection.indexOf(row);
-        if (this.selection)
-            console.assert(!!~index, 'An unselected row cannot be unselected');
         if (this.$cancelable('unselect', row)) {
-            this.setRow(row, true);
+            var index = this.selection && this.selection.indexOf(row);
+            if (this.selection)
+                console.assert(!!~index, 'An unselected row cannot be unselected');
             if (this.selection)
                 this.selection.splice(index, 1);
             this.computeAll();
         }
     };
     CheckboxColumn.prototype.toggle = function (row) {
-        return row[this.prop] ? this.unselect(row) : this.select(row);
+        return this.isSelected(row) ? this.unselect(row) : this.select(row);
     };
     CheckboxColumn.prototype.rowClick = function (row) {
         console.log('click!');
@@ -60522,10 +60490,6 @@ var CheckboxColumn = /** @class */ (function (_super) {
         vue_property_decorator_1.Inject(),
         __metadata("design:type", Object)
     ], CheckboxColumn.prototype, "modeled", void 0);
-    __decorate([
-        vue_property_decorator_1.Prop({ default: 'selected' }),
-        __metadata("design:type", String)
-    ], CheckboxColumn.prototype, "prop", void 0);
     __decorate([
         vue_property_decorator_1.Prop(),
         __metadata("design:type", String)
@@ -64698,7 +64662,7 @@ var render = function() {
                 "default",
                 [
                   _c("checkbox", {
-                    attrs: { checked: scope.row[_vm.prop] },
+                    attrs: { checked: _vm.isSelected(scope.row) },
                     on: {
                       checked: function($event) {
                         _vm.select(scope.row)
@@ -64711,7 +64675,7 @@ var render = function() {
                 ],
                 {
                   model: scope.row,
-                  checked: scope.row[_vm.prop],
+                  checked: _vm.isSelected(scope.row),
                   select: _vm.select,
                   unselect: _vm.unselect,
                   toggle: _vm.toggle

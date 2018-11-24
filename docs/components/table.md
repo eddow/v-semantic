@@ -69,16 +69,10 @@ The default slot allows to replace the checkbox by another component. If used it
 #### Properties
 
 - `header` can be specified if a `header` slot is not given
-- `property` is the boolean property in the row to access. Default to `selected`
-
-Note that a special care is taken to make the property non-enumerable if it didn't exist previously, and for it to be observed by Vue.
-
-With this, the selection can be found by `rows.filter(x=>x.selected)`. Though, the selection is also kept beside by the component.
 
 - `selection` is the model (emitting the event `selection-change`) and can be watched deeply : if the parent doesn't change it, it will remain the same `Array` that will be modified.
 
-The parent can also set the `selection` to a non-array value. In this case, the model will be immediately updated to the effective array of selection. Also, in one of the following case, the column default value that will be used when the boolean is not specified in a row will be updated, so that each now row added has its selection value is set accordingly.
-  - If set to a falsy value, the selection will become "none" `[]`
-	- If set to `true`, the selection will become "all"
-	- If set to the array `table.rows`, all will be selected and the selection object will be cloned (so that "select all" can be 	written `selection = rows;`)
+The parent can also set the `selection` to a non-array value. In this case, the model will be immediately updated to the effective array of selection.
+- If set to a falsy value, the selection will become "none" `[]`
+- If set to `true` or to the array `table.rows`, the selection will become "all"
 	
