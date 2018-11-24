@@ -6,8 +6,8 @@
 					{{label}}
 				</label>
 			</slot>
-			<slot v-if="edit" name="field-input" :model="modeled.model" :value="scoped.value">
-				<slot name="input" :model="modeled.model" :value="scoped.value">
+			<slot v-if="edit" name="field-input" :model="modeled.model">
+				<slot name="input" :model="modeled.model">
 					<input type="text" v-model="scoped.value" />
 				</slot>
 			</slot>

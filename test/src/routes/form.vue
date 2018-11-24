@@ -39,8 +39,11 @@
 		</s-form>
 		<div class="ui segment">
 			<h1>Out of the form</h1>
-			<s-checkbox style="display: block;" v-model="model.big" label="model.big" />
-			<s-input style="display: block;" v-model="model.firstName" />
+			<div>
+				<s-checkbox style="display: block;" v-model="model.big" label="model.big" />
+				<s-input style="display: block;" v-model="model.firstName" />
+				<s-select v-model="model.light" :options="['red', 'orange', 'green']" />
+			</div>
 			{{model}}
 			<s-button style="display: block;" @click="reInit">Re-init</s-button>
 		</div>
