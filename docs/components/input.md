@@ -1,7 +1,7 @@
 # [Input](https://semantic-ui.com/elements/input.html)
 
 ## Slots
-Buttons have two slots (`prepend` and `append`) where an `icon`, a `button` or something with the class `label` can be used.
+Inputs have two slots (`prepend` and `append`) where an `icon`, a `button` or something with the class `label` can be used.
 
 The `input` slot can also be given to replace the `<input type="text">` used by default.
 

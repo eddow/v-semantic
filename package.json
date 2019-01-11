@@ -24,7 +24,7 @@
 		"url": "git+https://github.com/eddow/v-semantic.git"
 	},
 	"author": "fmdm",
-	"license": "MIT",
+	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/eddow/v-semantic/issues"
 	},

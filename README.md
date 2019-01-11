@@ -12,11 +12,11 @@ The css-classes specific to a component are set as boolean properties of the com
 <button class="primary">Click me!</button>
 ```
 
-There is a [live demo/preview](https://rawgit.com/eddow/v-semantic/master/test/run/index.html)
+There is a [live demo/preview](http://emedware.tech/v-semantic/)
 
 ## Installation
 For usage:
-```
+```sh
 npm install v-semantic --save
 ```
 ```typescript

@@ -6,3 +6,4 @@ dist
 package-lock.*
 *.lock
 semantic/*
+test/run/*
