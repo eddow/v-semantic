@@ -1,4 +1,3 @@
-/// Transforms `a.b[2].c` into a.b.2.c
 export function path(name: string): string|void {
 	if(!name) return;
 	var keys = [];
@@ -18,44 +17,39 @@ function recur(obj: any, path: string): any {
 	return {obj, key: lvalue};
 }
 
-/// Set a value of an object considering its path - return true in case of successful affectation
 export function set(obj: any, path: string, value: any): boolean {
 	var lv = recur(obj, path);
 	if(!lv) return false;
-	lv.obj[lv.key] = value;
+	if(undefined=== value) delete lv.obj[lv.key];
+	else lv.obj[lv.key] = value;
 	return true;
 }
-
-/// Delete a value of an object considering its path - return true in case of successful affectation
-export function del(obj: any, path: string): boolean {
-	var lv = recur(obj, path);
-	if(!lv) return false;
-	delete lv.obj[lv.key];
-	return true;
-}
-
-/// Get a value of an object considering its path - return `undefined` if a property was missing along the path
 export function get(obj: any, path: string): any {
 	var lv = recur(obj, path);
 	return lv && lv.obj[lv.key];
 }
-
-/// Deeply compare `Objects` even if their references are different
+// https://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects/16788517#16788517
 export function equals(x: any, y: any): boolean {
-	if(x===y) return true;
-	if(!x || !y || 'object'!== typeof x || 'object'!== typeof y ||
-		x.constructor !== y.constructor ||
-		x instanceof Function || y instanceof Function ||
-		x instanceof RegExp || y instanceof RegExp ||
-		((Array.isArray(x) || Array.isArray(y)) && x.length !== y.length)
-	)
-		return false;
+	if (x === null || x === undefined || y === null || y === undefined) { return x === y; }
+	// after this just checking type of one would be enough
+	if (x.constructor !== y.constructor) { return false; }
+	// if they are functions, they should exactly refer to same one (because of closures)
+	if (x instanceof Function) { return x === y; }
+	// if they are regexps, they should exactly refer to same one (it is hard to better equality check on current ES)
+	if (x instanceof RegExp) { return x === y; }
+	if (x === y || x.valueOf() === y.valueOf()) { return true; }
+	if (Array.isArray(x) && x.length !== y.length) { return false; }
 
-	if(x instanceof Date || y instanceof Date)
-		return x instanceof Date && y instanceof Date && x.valueOf() == y.valueOf();
+	// if they are dates, they must had equal valueOf
+	if (x instanceof Date) { return false; }
 
+	// if they are strictly equal, they both need to be object at least
+	if (!(x instanceof Object)) { return false; }
+	if (!(y instanceof Object)) { return false; }
+
+	// recursive object equality check
 	var p = Object.keys(x);
-	return Object.keys(y).every(function (i) { return !~p.indexOf(i); }) &&
+	return Object.keys(y).every(function (i) { return p.indexOf(i) !== -1; }) &&
 			p.every(function (i) { return equals(x[i], y[i]); });
 }
 
