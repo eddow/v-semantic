@@ -46,7 +46,7 @@ export function equals(x: any, y: any): boolean {
 	if(!x || !y || 'object'!== typeof x || 'object'!== typeof y ||
 		x.constructor !== y.constructor ||
 		x instanceof Function || y instanceof Function ||
-		x instanceof RegExp || Y instanceof RegExp ||
+		x instanceof RegExp || y instanceof RegExp ||
 		((Array.isArray(x) || Array.isArray(y)) && x.length !== y.length)
 	)
 		return false;
