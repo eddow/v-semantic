@@ -10,6 +10,7 @@
 	},
 	"directories": {
 		"example": "demo",
+		"doc": "docs",
 		"lib": "dist"
 	},
 	"scripts": {

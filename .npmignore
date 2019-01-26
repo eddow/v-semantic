@@ -2,12 +2,11 @@ node_modules
 npm-debug.log
 demo
 docs
-src
-.fusebox
+.*
 yalc.lock
-.vscode
 package-lock.*
 *.lock
 semantic
 fuse.*
-.gitignore
+/*.json
+webpack.*
