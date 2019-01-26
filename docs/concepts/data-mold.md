@@ -8,7 +8,7 @@ It is desirable therefore to write once for all the `data-mold` for that `"MySpe
 
 A `data-mold` can even be written as a user-component, as it just needs to be included in a `modeled` (ie. `Form` or `Table`) to be available for usage.
 
-An example has been given in the `test/3clr` folder - and is used in the `Form` and `Table` examples.
+An example has been given in the `demo/3clr` folder - and is used in the `Form` and `Table` examples.
 
 ## The slots of a data-mold
 First of all, each slot is optionally given. If a slot is not given, it will fall back to the more general mold until the default hard-coded value of `v-semantic`

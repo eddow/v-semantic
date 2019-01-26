@@ -40,10 +40,10 @@ The `prefix` (default `"s"`) option will be used before each name of component f
 
 ```
 git clone
-npm test
+npm run demo
 ```
 
-This will produce `test/run/test.js` and therefore, the file `test/run/index.html` will be usable directly in the browser. To compile the library only, use `npm run prepack`
+This will produce `demo/run/app.js` and therefore, the file `demo/run/index.html` will be usable directly in the browser. To compile the library only, use `npm run prepack`
 
 There is no plan to have one-source-file-per-component, it's not a huge library.
 

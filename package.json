@@ -8,9 +8,13 @@
 	"typescript": {
 		"definition": "dist/v-semantic.d.ts"
 	},
+	"directories": {
+		"example": "demo",
+		"lib": "dist"
+	},
 	"scripts": {
 		"start": "webpack --watch",
-		"test": "webpack --watch --config test/webpack.config.js",
+		"demo": "webpack --watch --config demo/webpack.config.js",
 		"prepack": "webpack",
 		"lint": "eslint src"
 	},
@@ -19,10 +23,7 @@
 		"semantic-ui",
 		"vue"
 	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/eddow/v-semantic.git"
-	},
+	"repository": "github:eddow/v-semantic.git",
 	"author": "fmdm",
 	"license": "ISC",
 	"bugs": {

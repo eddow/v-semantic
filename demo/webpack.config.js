@@ -7,7 +7,7 @@ module.exports = {
 	mode: 'development',	//This is meant to be bundled afterward anyway
 	context: path.resolve(__dirname, 'src'),
 	entry: {
-		test: ['./index.ts'],
+		app: ['./index.ts'],
 	},
 	output: {
 		filename: '[name].js',

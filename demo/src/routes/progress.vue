@@ -1,5 +1,6 @@
 <template>
 	<div class="progress-test">
+		Fake crumbs:
 		<s-breadcrumbs :crumbs="crumbs" />
 		<s-progress :percent="percent" v-model="status" />
 		<s-progress :value="value" :total="total" indicating ratio v-model="status">
@@ -33,10 +34,10 @@
 			<div class="command" style="background: black;" @mousemove="mm({offsetX: 0})">
 				&nbsp;
 			</div>
-			<div class="command" style="background: grey; width: 400px;" @mousemove="mm">
+			<div class="command" :style="{background: 'grey', width: width+'px'}" @mousemove="mm">
 				{{setValue}}/{{total}} -- {{setPercent}}%
 			</div>
-			<div class="command" style="background: green;" @mousemove="mm({offsetX: 400})">
+			<div class="command" style="background: green;" @mousemove="mm({offsetX: width})">
 				&nbsp;
 			</div>
 		</div>
@@ -56,8 +57,8 @@ import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorato
 @Component
 export default class Progress extends Vue {
 	crumbs = [{
-		text: 'Accordion',
-		name: 'accordion'
+		text: 'Panels',
+		name: 'panels'
 	}, {
 		text: 'Buttons',
 		name: 'buttons'
@@ -71,6 +72,7 @@ export default class Progress extends Vue {
 		text: 'Progress',
 		name: 'progress'
 	}]
+	width = 400
 	percent = 0
 	value = 0
 	total = 23
@@ -81,8 +83,8 @@ export default class Progress extends Vue {
 
 	}
 	mm($event) {
-		this.setValue = Math.round($event.offsetX*23/400);
-		this.setPercent = Math.round($event.offsetX/8);
+		this.setValue = Math.round($event.offsetX*this.total/this.width);
+		this.setPercent = Math.round($event.offsetX*100/this.width);
 	}
 	md($event) {
 		this.percent = this.setPercent;
