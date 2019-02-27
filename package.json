@@ -1,6 +1,6 @@
 {
 	"name": "v-semantic",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Semantic-ui2 + vue2",
 	"main": "dist/v-semantic.js",
 	"ts:main": "src/index.ts",
@@ -54,7 +54,6 @@
 		"expose-loader": "^0.7.5",
 		"file-loader": "^2.0.0",
 		"fuse-box": "^3.6.0",
-		"jquery": "^3.3.1",
 		"raw-loader": "^0.5.1",
 		"semantic-ui": "^2.4.2",
 		"source-map-loader": "^0.2.4",
@@ -67,7 +66,6 @@
 		"vue-hot-reload-api": "^2.2.0",
 		"vue-loader": "^15.4.2",
 		"vue-property-decorator": "^6.1.0",
-		"vue-ripper": "^1.1.7",
 		"vue-router": "^3.0.1",
 		"vue-template-compiler": "^2.5.17",
 		"vue-template-es2015-compiler": "^1.6.0",
@@ -80,9 +78,11 @@
 		"ajv": "^6.5.5",
 		"node-sass": "^4.5.3",
 		"tslib": "^1.9.3",
-		"vue-resize-directive": "^1.1.4"
+		"vue-resize-directive": "^1.1.4",
+		"vue-ripper": "^1.1.7"
 	},
 	"peerDependencies": {
+		"jquery": "^3.3.1",
 		"semantic-ui": "^2.4",
 		"vue": "^2.5.17"
 	}
