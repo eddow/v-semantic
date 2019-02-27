@@ -21,10 +21,10 @@ npm install v-semantic --save
 ```
 ```typescript
 import vs from 'v-semantic'
-Vue.install(vs);
+Vue.use(vs);
 //- or -
 import vs from 'v-semantic'
-Vue.install(vs, {prefix: 'x'});
+Vue.use(vs, {prefix: 'x'});
 //- or -
 import {Modal, Command, Button} from 'v-semantic'
 
