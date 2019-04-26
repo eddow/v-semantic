@@ -9,18 +9,20 @@
 			:body-height="500"
 		>
 			<mold3 />
-			<div slot="header">
-				In-table header
-			</div>
+			<template v-slot:header>
+				<div>
+					In-table header
+				</div>
+			</template>
 			<s-checkbox-column v-model="my_selection" />
 			<s-column prop="a" width="300" header="a" edit />
 			<s-column header="A">
-				<template slot="cell" slot-scope="scope">
+				<template v-slot:cell="scope">
 					a{{scope.model.a}}-b{{scope.model.b}}
 				</template>
 			</s-column>
 			<s-column prop="b">
-				<template slot="header">
+				<template v-slot:header>
 					B sum={{sum_b}}
 				</template>
 			</s-column>

@@ -1,12 +1,13 @@
 <template>
 	<s-data-mold select="3clr">
-		<span slot="input" slot-scope="field"
-			:class="['clr3', 'plain', field.value]"
-			@mousedown="mousedown(field, $event)"
-		>&nbsp;</span>
-		<span slot="display" slot-scope="field"
-			:class="['clr3', 'single', field.value]"
-		>&nbsp;</span>
+		<template v-slot:input="field">
+			<span :class="['clr3', 'plain', field.value]"
+				@mousedown="mousedown(field, $event)"
+			>&nbsp;</span>
+		</template>
+		<template v-slot:display="field">
+			<span :class="['clr3', 'single', field.value]">&nbsp;</span>
+		</template>
 	</s-data-mold>
 </template>
 <style>

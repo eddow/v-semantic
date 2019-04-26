@@ -1,6 +1,6 @@
 <template>
 	<ripper>
-		<template slot="header">
+		<template v-slot:header>
 			<slot name="header">
 				{{header}}
 			</slot>

@@ -1,6 +1,6 @@
 <template>
 	<ripper>
-		<template slot="title">
+		<template v-slot:title>
 			<slot name="title" class="title">
 				<i v-if="usedIcon" :class="[usedIcon, 'icon']"></i>
 				{{title}}

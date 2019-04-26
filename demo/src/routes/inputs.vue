@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<s-input>
-			<s-icon slot="prepend" circular link icon="search" @click="testme" />
-			<s-select class="label" slot="append" v-model="ddn" text="Gender" on="hover">
+			<s-icon v-slot:prepend circular link icon="search" @click="testme" />
+			<s-select class="label" v-slot:append v-model="ddn" text="Gender" on="hover">
 				<s-option value="M">Male</s-option>
 				<s-option value="F">Female</s-option>
 			</s-select>
@@ -22,7 +22,7 @@
 		</div>
 		<div>
 			<s-input name="dimmedMinus" inline v-dimm-parts:minus.inverted>
-				<s-button slot="append" class="input-dimmed" icon="minus" dimmed-part="minus" />
+				<s-button v-slot:append class="input-dimmed" icon="minus" dimmed-part="minus" />
 			</s-input>
 		</div>
 	</div>

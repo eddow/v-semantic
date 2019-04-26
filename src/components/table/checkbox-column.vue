@@ -1,6 +1,6 @@
 <template>
 	<ripper>
-		<template slot="header">
+		<template v-slot:header>
 			<slot name="header" :allSelected="allSelected" :setSelection="setSelection">
 				<template v-if="header">{{header}}</template>
 				<checkbox v-else v-model="allSelected" @input="selectAll" state3 />

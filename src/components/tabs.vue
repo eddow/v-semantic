@@ -1,17 +1,19 @@
 <template>
 	<depot ref="context" :class="['vued tabs', horizontal?'horizontal':'vertical']" :order="order">
-		<pimp slot="pimp" v-model="panels"><slot /></pimp>
-		<div slot="tabs" ref="menu"
-			:class="['ui', type, horizontal && 'vertical', position, 'attached tabs vued menu']"
-			:style="tabsStyle"
-		>
-			<a is="ripped" v-for="(panel, uid) in panels" :key="uid"
-				class="item"
-				template="title"
-				:ripper="panel"
-				:data-tab="panel.name"
-			/>
-		</div>
+		<pimp v-slot:pimp v-model="panels"><slot /></pimp>
+		<template v-slots:tabs>
+			<div ref="menu"
+				:class="['ui', type, horizontal && 'vertical', position, 'attached tabs vued menu']"
+				:style="tabsStyle"
+			>
+				<a is="ripped" v-for="(panel, uid) in panels" :key="uid"
+					class="item"
+					template="title"
+					:ripper="panel"
+					:data-tab="panel.name"
+				/>
+			</div>
+		</template>
 		<div :class="['ui segment panels vued', opposite, 'attached']">
 			<div is="ripped" v-for="(panel, uid) in panels" :key="panel._uid"
 				:class="['ui', 'tab']"

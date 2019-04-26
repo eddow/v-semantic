@@ -9,16 +9,19 @@
 		>
 			<mold3 />
 			<s-data-mold select="bool">
-				<label slot="prepend" slot-scope="field" :style="field.labelStyle" />
-				<s-checkbox slot="input" slot-scope="field" :label="field.label" v-model="field.value" />
+				<template v-slot:prepend="field">
+					<label :style="field.labelStyle" />
+				</template>
+				<s-checkbox v-slot:input="field" :label="field.label" v-model="field.value" />
 			</s-data-mold>
 			<s-data-mold>
-				<label slot="prepend" slot-scope="field"
-						:for="field.name" class="ui label" :style="field.labelStyle">
-					<h3>{{field.label}}</h3>
-				</label>
-				<s-input slot="input" slot-scope="field" :name="field.name" v-model="field.value">
-					<s-icon slot="prepend" :icon="field.info || ''" />
+				<template v-slot:prepend="field">
+					<label :for="field.name" class="ui label" :style="field.labelStyle">
+						<h3>{{field.label}}</h3>
+					</label>
+				</template>
+				<s-input v-slot:input="field" :name="field.name" v-model="field.value">
+					<s-icon v-slot:prepend :icon="field.info || ''" />
 				</s-input>
 			</s-data-mold>
 			<s-field inline prop="big" label="Big" type="bool" />
@@ -29,8 +32,7 @@
 				:output="x=> ''+ x"
 			/>
 			<s-field prop="deep.thinking" label="Deep thinking">
-				<s-select slot="input"
-					slot-scope="field"
+				<s-select v-slot;input="field"
 					v-model="field.value"
 					:options="['Too much'].concat(field.schema.enum)" />
 			</s-field>

@@ -4,6 +4,8 @@
 
 Integration of [semantic-ui2](https://semantic-ui.com) with [vue.js2](https://vuejs.org/)
 
+> To use a version of `Vue` <2.6.0, use `v-semantic` version 1
+
 The purpose of the integration is to allow some logic-level approach - ex: the tables are defined by column and not by rows - and to integrate the `jQuery` for it to be invisible to the programer. `jQuery` of course still needs to be installed, but there is no need to use it.
 
 The css-classes specific to a component are set as boolean properties of the component. These two codes are equivalent :
