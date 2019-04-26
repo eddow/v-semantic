@@ -1,11 +1,13 @@
 <template>
 	<div>
 		<s-input>
-			<s-icon v-slot:prepend circular link icon="search" @click="testme" />
-			<s-select class="label" v-slot:append v-model="ddn" text="Gender" on="hover">
-				<s-option value="M">Male</s-option>
-				<s-option value="F">Female</s-option>
-			</s-select>
+			<template v-slot:prepend><s-icon circular link icon="search" @click="testme" /></template>
+			<template v-slot:append>
+				<s-select class="label" v-model="ddn" text="Gender" on="hover">
+					<s-option value="M">Male</s-option>
+					<s-option value="F">Female</s-option>
+				</s-select>
+			</template>
 		</s-input>
 		<div>
 			<label>Drop down:</label>
@@ -22,7 +24,7 @@
 		</div>
 		<div>
 			<s-input name="dimmedMinus" inline v-dimm-parts:minus.inverted>
-				<s-button v-slot:append class="input-dimmed" icon="minus" dimmed-part="minus" />
+				<template v-slot:append><s-button class="input-dimmed" icon="minus" dimmed-part="minus" /></template>
 			</s-input>
 		</div>
 	</div>

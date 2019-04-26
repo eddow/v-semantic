@@ -1,7 +1,7 @@
 <template>
 	<div :class="[cls, dynCls, {field: !!form}]">
 		<slot name="prepend" />
-		<slot :input="_self">
+		<slot>
 			<input :type="type"
 				:name="name"
 				:placeholder="placeholder"
@@ -34,8 +34,6 @@ export default class Input extends Vue {
 	@Emit() input(value) {}
 	@Inject({default: null}) form
 	model = null
-
-	@Prop() dimmPost: boolean
 	
 	@Watch('model')
 	modelChanged(value) {

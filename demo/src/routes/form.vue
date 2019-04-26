@@ -12,7 +12,9 @@
 				<template v-slot:prepend="field">
 					<label :style="field.labelStyle" />
 				</template>
-				<s-checkbox v-slot:input="field" :label="field.label" v-model="field.value" />
+				<template v-slot:input="field">
+					<s-checkbox :label="field.label" v-model="field.value" />
+				</template>
 			</s-data-mold>
 			<s-data-mold>
 				<template v-slot:prepend="field">
@@ -20,9 +22,13 @@
 						<h3>{{field.label}}</h3>
 					</label>
 				</template>
-				<s-input v-slot:input="field" :name="field.name" v-model="field.value">
-					<s-icon v-slot:prepend :icon="field.info || ''" />
-				</s-input>
+				<template v-slot:input="field">
+					<s-input :name="field.name" v-model="field.value">
+						<template v-slot:prepend>
+							<s-icon :icon="field.info || ''" />
+						</template>
+					</s-input>
+				</template>
 			</s-data-mold>
 			<s-field inline prop="big" label="Big" type="bool" />
 			<s-field prop="firstName" label="First name" info="hand pointer" />
@@ -32,9 +38,10 @@
 				:output="x=> ''+ x"
 			/>
 			<s-field prop="deep.thinking" label="Deep thinking">
-				<s-select v-slot;input="field"
-					v-model="field.value"
-					:options="['Too much'].concat(field.schema.enum)" />
+				<template v-slot:input="field">
+					<s-select v-model="field.value"
+						:options="['Too much'].concat(field.schema.enum)" />
+				</template>
 			</s-field>
 			<s-field prop="light" label="Light" type="3clr" />
 			<s-field prop="light" label="[repeated]" type="3clr" :edit="false" />

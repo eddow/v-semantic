@@ -1,6 +1,6 @@
 <template>
 	<depot ref="context" :class="['vued tabs', horizontal?'horizontal':'vertical']" :order="order">
-		<pimp v-slot:pimp v-model="panels"><slot /></pimp>
+		<template v-slot:pimp><pimp v-model="panels"><slot /></pimp></template>
 		<template v-slots:tabs>
 			<div ref="menu"
 				:class="['ui', type, horizontal && 'vertical', position, 'attached tabs vued menu']"

@@ -10,14 +10,14 @@
 				modal
 			</s-button>
 			<s-button @click="blurred = !blurred">
-				<s-icon icon="save" v-slot:prepend />
+				<template v-slot:prepend><s-icon icon="save" /></template>
 				blurr
 			</s-button>
 			<s-button icon="+plus+red dont" @click="loading = !loading">
 				loading
 			</s-button>
 			<s-button @click="loading = !loading && 'loading!'">
-				<s-icon icon="minus" v-slot:append />
+				<template v-slot:append><s-icon icon="minus" /></template>
 				loading text
 			</s-button>
 			<s-button @click="test" ref="button">

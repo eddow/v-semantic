@@ -21,7 +21,7 @@ export function stringifyClass (value: any|any[]|string): string {
 	return value
   }
   /* istanbul ignore next */
-  return ''
+  return '';
 }
 
 function stringifyArray (value: any[]) {
