@@ -26,7 +26,7 @@
 					:key="rowId(row)"
 					class="vued"
 					:class="[
-						rowClass(row, index),
+						rowClass && rowClass(row, index),
 						{current: current === row}
 					]"
 					@click="rowClick(row)"
@@ -127,7 +127,7 @@ export default class Table extends Vue {
 	@Model('row-click') @Prop() current
 	@Prop() rows: any[]
 	@Prop() idProperty: string
-	@Prop({default: ()=> ''}) rowClass : (any, number)=> string
+	@Prop() rowClass : (any, number)=> string
 	editionManagers = []
 	edition(row: any, field: any) {
 		var e = field.edit;

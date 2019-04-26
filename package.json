@@ -1,6 +1,6 @@
 {
 	"name": "v-semantic",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Semantic-ui2 + vue2",
 	"main": "dist/v-semantic.js",
 	"ts:main": "src/index.ts",
@@ -79,7 +79,7 @@
 		"node-sass": "^4.5.3",
 		"tslib": "^1.9.3",
 		"vue-resize-directive": "^1.1.4",
-		"vue-ripper": "^1.1.7"
+		"vue-ripper": "^1.1.9"
 	},
 	"peerDependencies": {
 		"jquery": "^3.3.1",
