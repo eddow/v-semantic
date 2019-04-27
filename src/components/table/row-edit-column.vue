@@ -103,7 +103,7 @@ export default class RowEditColumn extends VueSemantic {
 			action();
 	}
 	editRow(row) {
-		var stateSave = {};
+		var stateSave = Object.create(row.constructor.prototype);
 		this.cancelableAction('edit', [row, stateSave], ()=> {
 			this.setEditing(row, true);
 			this.editingRows.push(row);

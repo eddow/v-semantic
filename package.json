@@ -1,6 +1,6 @@
 {
 	"name": "v-semantic",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Semantic-ui2 + vue2",
 	"main": "dist/v-semantic.js",
 	"ts:main": "src/index.ts",

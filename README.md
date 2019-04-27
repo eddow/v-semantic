@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/v-semantic.svg)](https://www.npmjs.com/package/v-semantic)
-
 # v-semantic
+
+[![npm](https://img.shields.io/npm/v/v-semantic.svg)](https://www.npmjs.com/package/v-semantic)
 
 Integration of [semantic-ui2](https://semantic-ui.com) with [vue.js2](https://vuejs.org/)
 
@@ -9,6 +9,7 @@ Integration of [semantic-ui2](https://semantic-ui.com) with [vue.js2](https://vu
 The purpose of the integration is to allow some logic-level approach - ex: the tables are defined by column and not by rows - and to integrate the `jQuery` for it to be invisible to the programer. `jQuery` of course still needs to be installed, but there is no need to use it.
 
 The css-classes specific to a component are set as boolean properties of the component. These two codes are equivalent :
+
 ```html
 <button primary>Click me!</button>
 <button class="primary">Click me!</button>
@@ -17,10 +18,13 @@ The css-classes specific to a component are set as boolean properties of the com
 There is a [live demo/preview](http://emedware.tech/v-semantic/)
 
 ## Installation
+
 For usage:
+
 ```sh
 npm install v-semantic --save
 ```
+
 ```typescript
 import vs from 'v-semantic'
 Vue.use(vs);
@@ -31,16 +35,17 @@ Vue.use(vs, {prefix: 'x'});
 import {Modal, Command, Button} from 'v-semantic'
 
 @Component({
-	components: {Modal, Button},
-	directives: {Command}
+    components: {Modal, Button},
+    directives: {Command}
 })
 ```
+
 Requiring the main library will export each components and directives, and a `default` that lets you `Vue.install(...)`.
 The `prefix` (default `"s"`) option will be used before each name of component for registration ('button' --> `<s-button />`)
 
 ### For development
 
-```
+```sh
 git clone
 npm run demo
 ```
@@ -49,9 +54,10 @@ This will produce `demo/run/app.js` and therefore, the file `demo/run/index.html
 
 There is no plan to have one-source-file-per-component, it's not a huge library.
 
-# Components
+## Components
 
 These should work and implement their intended final behaviour, even if details can still change
+
 - [flag](./docs/components/flag.md)
 - [breadcrumbs](./docs/components/breadcrumbs.md)
 - [icon](./docs/components/icon.md)
@@ -67,15 +73,22 @@ These should work and implement their intended final behaviour, even if details 
 - [table](./docs/components/table.md)
 - [tabs](./docs/components/tabs.md)
 
-# Globals helpers
+## Globals helpers
+
 - [scroll-bar sizes](./docs/globals/scrollbar.md)
-# Concepts
+
+## Concepts
+
 These have been developped deeper in this library even not completely bound to semantic. It is interwined with semantic though.
+
 - [form](./docs/concepts/form.md)
 - [commanded](./docs/concepts/commanded.md)
 - [panel](./docs/concepts/panel.md)
-# Not implemented yet
-## Components
+
+## Not implemented yet
+
+### NIY - Components
+
 - menus
 - radios
 - embed (iframe)
@@ -84,13 +97,17 @@ These have been developped deeper in this library even not completely bound to s
 - shape
 - rating
 - reveal?
-## Directives
+
+### NIY - Directives
+
 - popup
 - visibility
 - messages
 
-## No plans to implement
+### No plans to implement
+
 Some of `semantic-ui` functionalities are just classes to add to some `div` for which the point of making a custom control out of is discussable.
+
 - container
 - divider
 - header
@@ -103,7 +120,8 @@ Some of `semantic-ui` functionalities are just classes to add to some `div` for 
 - card
 - transitions (Vue has it)
 
-## Things that might perhaps be automated
+### Things that might perhaps be automated
+
 - label
 - menu (integration with vue-router)
 - message (toasters? ...?)
@@ -119,6 +137,7 @@ Some of `semantic-ui` functionalities are just classes to add to some `div` for 
   - steps
 
 ## Support development
+
 If you wanna help, please do.
 
 If you are interested in the development of a component, please leave a comment.
