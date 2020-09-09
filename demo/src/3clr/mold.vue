@@ -46,7 +46,7 @@
 </style>
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Component} from 'vue-property-decorator'
 
 const firstThird = 55/3;
 const secondThird = 55*2/3;

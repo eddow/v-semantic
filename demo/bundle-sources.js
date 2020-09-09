@@ -1,5 +1,5 @@
 var fs = require("fs"),
-	path = require('path')
+	path = require('path'),
 	glob= require('glob');
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 		compiler.hooks.compile.tap('bundle-source', function bundle() {
 			console.log('Bundling sources.');
 			var sourcesPath = path.resolve(__dirname, 'src/routes/*.vue'),
-				destFile = path.resolve(__dirname, 'run/sources.js')
+				destFile = path.resolve(__dirname, 'run/sources.js'),
 				sources = {};
 
 			for(var src of glob.sync(sourcesPath)) {

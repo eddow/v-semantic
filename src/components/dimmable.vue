@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Model, Prop} from 'vue-property-decorator'
 import Dimmer from './dimmer.vue'
 import Icon from './icon.vue'
 import Semantic from 'lib/classed'

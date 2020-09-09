@@ -6,5 +6,3 @@ dist
 package-lock.*
 *.lock
 semantic/*
-demo/run/*.js
-demo/run/*.js.map

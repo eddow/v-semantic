@@ -52,7 +52,7 @@
 </style>
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Component} from 'vue-property-decorator'
 
 @Component
 export default class Progress extends Vue {

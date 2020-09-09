@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Component, Prop, Watch} from 'vue-property-decorator'
 import {Ripper} from 'vue-ripper'
 import * as deep from 'lib/deep'
 import Table from './index.vue'

@@ -15,9 +15,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import column from './column.vue'
+import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
 import checkbox from '../checkbox.vue'
 import {Ripper} from 'vue-ripper'
 import table from './index.vue'

@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Component, Inject, Prop} from 'vue-property-decorator'
 import {Ripper} from 'vue-ripper'
 import {idSpace} from 'lib/utils'
 

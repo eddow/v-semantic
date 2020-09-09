@@ -5,8 +5,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Model, Watch} from 'vue-property-decorator'
 import Semantic, { VueSemantic } from 'lib/module'
 
 @Semantic('dimmer', {

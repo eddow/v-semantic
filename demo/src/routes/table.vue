@@ -41,7 +41,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Component} from 'vue-property-decorator'
 import {copy} from 'lib/deep'
 import mold3 from '../3clr/mold.vue'
 
