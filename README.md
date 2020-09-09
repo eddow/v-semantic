@@ -14,8 +14,8 @@ The css-classes specific to a component are set as boolean properties of the com
 <button primary>Click me!</button>
 <button class="primary">Click me!</button>
 ```
-
-There is a [live demo/preview](https://rawcdn.githack.com/eddow/v-semantic/master/demo/run/index.html#/)
+<!-- https://rawcdn.githack.com/eddow/v-semantic/master/demo/run/index.html#/ -->
+There is a [live demo/preview](https://www.gitcdn.xyz/cdn/eddow/v-semantic/78d011372985bf06320a48d55f317dc9f6839327/demo/run/index.html#/)
 
 ## Installation
 
