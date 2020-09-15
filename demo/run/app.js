@@ -61440,8 +61440,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
+var cssCache_1 = __webpack_require__(/*! lib/cssCache */ "../../src/lib/cssCache.ts");
 var firstThird = 55 / 3;
 var secondThird = 55 * 2 / 3;
+cssCache_1.backgroundCssCache(//To avoid the blinking the first time a color is used
+'clr3.plain', 'clr3.plain.red', 'clr3.plain.orange', 'clr3.plain.green', 'clr3.single', 'clr3.single.red', 'clr3.single.orange', 'clr3.single.green');
 var Mold = /** @class */ (function (_super) {
     __extends(Mold, _super);
     function Mold() {
@@ -81049,6 +81052,46 @@ function classed(type, classes, options) {
     return vue_property_decorator_1.Component(options);
 }
 exports.default = classed;
+
+
+/***/ }),
+
+/***/ "../../src/lib/cssCache.ts":
+/*!****************************************************!*\
+  !*** C:/dev/github/v-semantic/src/lib/cssCache.ts ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var cacheElement = null;
+function getElement() {
+    if (!cacheElement) {
+        cacheElement = document.createElement('div');
+        cacheElement.setAttribute('style', 'width:0; height:0; top:0; left:0; position:absolute;');
+        document.body.prepend(cacheElement);
+    }
+    return cacheElement;
+}
+function backgroundCssCache() {
+    var csss = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        csss[_i] = arguments[_i];
+    }
+    var cacheElement = getElement();
+    for (var _a = 0, csss_1 = csss; _a < csss_1.length; _a++) {
+        var cs = csss_1[_a];
+        var spec = cs.split(':');
+        console.assert(spec.length <= 2, 'Css specification for cache is "[tag:]class1.class2"');
+        var _b = spec.length === 1 ?
+            ['div', spec[0]] : spec, tagSpec = _b[0], cssSpec = _b[1], elm = document.createElement('tagSpec');
+        elm.setAttribute('class', cssSpec.replace(/\./g, ' '));
+        cacheElement.appendChild(elm);
+    }
+}
+exports.backgroundCssCache = backgroundCssCache;
 
 
 /***/ }),

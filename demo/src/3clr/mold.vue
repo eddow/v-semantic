@@ -47,9 +47,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
+import {backgroundCssCache} from 'lib/cssCache'
 
 const firstThird = 55/3;
 const secondThird = 55*2/3;
+
+backgroundCssCache(	//To avoid the blinking the first time a color is used
+	'clr3.plain', 'clr3.plain.red', 'clr3.plain.orange', 'clr3.plain.green',
+	'clr3.single', 'clr3.single.red', 'clr3.single.orange', 'clr3.single.green'
+);
 
 @Component
 export default class Mold extends Vue {
