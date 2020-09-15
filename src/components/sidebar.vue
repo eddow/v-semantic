@@ -5,9 +5,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic, { VueSemantic } from 'lib/module'
+import {Model, Watch} from 'vue-property-decorator'
+import Semantic, {VueSemantic} from 'lib/module'
 
 @Semantic('sidebar',
 {
@@ -30,10 +29,11 @@ export default class Sidebar extends VueSemantic {
 	@Watch('visible') setVisible(v: boolean) {
 		this.semantic(v?'show': 'hide');
 	}
-	created() {
-		if(this.visible) {	//If initialised with true `visible`
-			//this.$el;//add 'visible(? pushable)'
-		}
+	mounted() {
+		// Note: with this system, the transition of showing is displayed on page-
+		//	load if visible is true. Perhaps this should be avoided.
+		if(this.visible)
+			this.semantic('show');
 	}
 	configure(config) {
 		config.context = this.$el.parentElement;

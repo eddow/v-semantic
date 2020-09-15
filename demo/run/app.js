@@ -60517,10 +60517,11 @@ var Sidebar = /** @class */ (function (_super) {
     Sidebar.prototype.setVisible = function (v) {
         this.semantic(v ? 'show' : 'hide');
     };
-    Sidebar.prototype.created = function () {
-        if (this.visible) { //If initialised with true `visible`
-            //this.$el;//add 'visible(? pushable)'
-        }
+    Sidebar.prototype.mounted = function () {
+        // Note: with this system, the transition of showing is displayed on page-
+        //	load if visible is true. Perhaps this should be avoided.
+        if (this.visible)
+            this.semantic('show');
     };
     Sidebar.prototype.configure = function (config) {
         var _this = this;
@@ -61953,7 +61954,8 @@ var Sidebars = /** @class */ (function (_super) {
     __extends(Sidebars, _super);
     function Sidebars() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.shown = false; //TODO: it fails when initialised at true for now
+        _this.shown = false;
+        _this.uncheckable = true;
         return _this;
     }
     Sidebars = __decorate([
@@ -66757,7 +66759,6 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "pusher" },
         [
           _c("s-checkbox", {
             attrs: { label: "visible" },
@@ -66768,6 +66769,33 @@ var render = function() {
               },
               expression: "shown"
             }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _c("s-checkbox", {
+            attrs: { label: "uncheckable" },
+            model: {
+              value: _vm.uncheckable,
+              callback: function($$v) {
+                _vm.uncheckable = $$v
+              },
+              expression: "uncheckable"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _c("s-checkbox", {
+            attrs: { label: "checked", uncheckable: _vm.uncheckable }
           })
         ],
         1
@@ -81151,7 +81179,6 @@ function mixin(type, classes, inits, events) {
         };
     }
     function watcher(prop) {
-        //TODO: test property change
         return function (value) {
             this.semantic('setting', prop, value);
         };

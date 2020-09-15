@@ -11,8 +11,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Model, Prop, Watch} from 'vue-property-decorator'
 import Semantic, { VueSemantic } from 'lib/module'
 
 @Semantic('checkbox', {

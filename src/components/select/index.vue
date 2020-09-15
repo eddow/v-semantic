@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import {Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import Semantic, { VueSemantic } from 'lib/module'
+import Semantic, {VueSemantic} from 'lib/module'
 import {equals} from 'js-object-ext'
 
 //TODO: clearable

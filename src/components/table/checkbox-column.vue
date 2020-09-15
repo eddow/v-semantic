@@ -19,7 +19,7 @@ import {Component, Inject, Model, Prop, Watch} from 'vue-property-decorator'
 import checkbox from '../checkbox.vue'
 import {Ripper} from 'vue-ripper'
 import table from './index.vue'
-import { VueSemantic } from 'lib/module'
+import {VueSemantic} from 'lib/module'
 
 @Component({
 	components: {Ripper, checkbox},

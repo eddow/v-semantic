@@ -19,7 +19,6 @@ export function mixin(
 		};
 	}
 	function watcher(prop: string) {
-		//TODO: test property change
 		return function(this: VueSemantic, value: any) {
 			this.semantic('setting', prop, value);
 		};

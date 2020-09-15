@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Prop, Emit} from 'vue-property-decorator'
 import Semantic, {stringifyClass} from 'lib/classed'
 
 @Semantic('icon', {
