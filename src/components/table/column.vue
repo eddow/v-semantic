@@ -26,7 +26,7 @@
 import Vue from 'vue'
 import {Component, Prop, Watch} from 'vue-property-decorator'
 import {Ripper} from 'vue-ripper'
-import * as deep from 'lib/deep'
+import {get, set} from 'js-object-ext'
 import Table from './index.vue'
 import molded from '../data/molded'
 
@@ -55,11 +55,11 @@ export default class Column extends Vue {
 		return this.modeled.edition(row, this);
 	}
 	value(row) {
-		return deep.get(row, this.prop);
+		return get(row, this.prop);
 	}
 	scope
 	setValue(row, value) {
-		return deep.set(row, this.prop, value);
+		return set(row, this.prop, value);
 	}
 }
 </script>

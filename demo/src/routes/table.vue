@@ -42,7 +42,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
-import {copy} from 'lib/deep'
+import {copy} from 'js-object-ext'
 import mold3 from '../3clr/mold.vue'
 
 var rows = (new Array(20)).fill(null).map((x,i)=> ({

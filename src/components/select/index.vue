@@ -24,13 +24,9 @@
 </style>
 
 <script lang="ts">
-import Vue from 'vue'
-import {Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'
+import {Model, Prop, Watch, Emit} from 'vue-property-decorator'
 import Semantic, { VueSemantic } from 'lib/module'
-import {idSpace} from 'lib/utils'
-import {equals} from 'lib/deep'
-
-const genInputName = idSpace('slct');
+import {equals} from 'js-object-ext'
 
 //TODO: clearable
 //TODO: manage messages (ex errors, ...)

@@ -87,9 +87,9 @@
 /******/ ({
 
 /***/ "../../node_modules/ajv/lib/ajv.js":
-/*!*****************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/ajv.js ***!
-  \*****************************************************/
+/*!************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/ajv.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -602,9 +602,9 @@ function noop() {}
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/cache.js":
-/*!*******************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/cache.js ***!
-  \*******************************************************/
+/*!**************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/cache.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -640,9 +640,9 @@ Cache.prototype.clear = function Cache_clear() {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/async.js":
-/*!***************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/async.js ***!
-  \***************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/async.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -742,9 +742,9 @@ function compileAsync(schema, meta, callback) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/error_classes.js":
-/*!***********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/error_classes.js ***!
-  \***********************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/error_classes.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -788,9 +788,9 @@ function errorSubclass(Subclass) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/formats.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/formats.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/formats.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -949,9 +949,9 @@ function regex(str) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/index.js":
-/*!***************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/index.js ***!
-  \***************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/index.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1340,9 +1340,9 @@ function vars(arr, statement) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/resolve.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/resolve.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/resolve.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1622,9 +1622,9 @@ function resolveIds(schema) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/rules.js":
-/*!***************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/rules.js ***!
-  \***************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/rules.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1700,9 +1700,9 @@ module.exports = function rules() {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/schema_obj.js":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/schema_obj.js ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/schema_obj.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1721,9 +1721,9 @@ function SchemaObject(obj) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/ucs2length.js":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/ucs2length.js ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/ucs2length.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1753,9 +1753,9 @@ module.exports = function ucs2length(str) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/compile/util.js":
-/*!**************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/compile/util.js ***!
-  \**************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/compile/util.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2032,9 +2032,9 @@ function unescapeJsonPointer(str) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/data.js":
-/*!******************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/data.js ***!
-  \******************************************************/
+/*!*************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/data.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2093,9 +2093,9 @@ module.exports = function (metaSchema, keywordsJsonPointers) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/_limit.js":
-/*!**************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/_limit.js ***!
-  \**************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/_limit.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2260,9 +2260,9 @@ module.exports = function generate__limit(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/_limitItems.js":
-/*!*******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/_limitItems.js ***!
-  \*******************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/_limitItems.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2348,9 +2348,9 @@ module.exports = function generate__limitItems(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/_limitLength.js":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/_limitLength.js ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/_limitLength.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2441,9 +2441,9 @@ module.exports = function generate__limitLength(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/_limitProperties.js":
-/*!************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/_limitProperties.js ***!
-  \************************************************************************/
+/*!*******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/_limitProperties.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2529,9 +2529,9 @@ module.exports = function generate__limitProperties(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/allOf.js":
-/*!*************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/allOf.js ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/allOf.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2584,9 +2584,9 @@ module.exports = function generate_allOf(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/anyOf.js":
-/*!*************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/anyOf.js ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/anyOf.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2669,9 +2669,9 @@ module.exports = function generate_anyOf(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/comment.js":
-/*!***************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/comment.js ***!
-  \***************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/comment.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2695,9 +2695,9 @@ module.exports = function generate_comment(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/const.js":
-/*!*************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/const.js ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/const.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2762,9 +2762,9 @@ module.exports = function generate_const(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/contains.js":
-/*!****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/contains.js ***!
-  \****************************************************************/
+/*!***********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/contains.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2855,9 +2855,9 @@ module.exports = function generate_contains(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/custom.js":
-/*!**************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/custom.js ***!
-  \**************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/custom.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3093,9 +3093,9 @@ module.exports = function generate_custom(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/dependencies.js":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/dependencies.js ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/dependencies.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3272,9 +3272,9 @@ module.exports = function generate_dependencies(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/enum.js":
-/*!************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/enum.js ***!
-  \************************************************************/
+/*!*******************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/enum.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3349,9 +3349,9 @@ module.exports = function generate_enum(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/format.js":
-/*!**************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/format.js ***!
-  \**************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/format.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3510,9 +3510,9 @@ module.exports = function generate_format(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/if.js":
-/*!**********************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/if.js ***!
-  \**********************************************************/
+/*!*****************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/if.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3625,9 +3625,9 @@ module.exports = function generate_if(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/index.js":
-/*!*************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/index.js ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/index.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3670,9 +3670,9 @@ module.exports = {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/items.js":
-/*!*************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/items.js ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/items.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3822,9 +3822,9 @@ module.exports = function generate_items(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/multipleOf.js":
-/*!******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/multipleOf.js ***!
-  \******************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/multipleOf.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3910,9 +3910,9 @@ module.exports = function generate_multipleOf(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/not.js":
-/*!***********************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/not.js ***!
-  \***********************************************************/
+/*!******************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/not.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4005,9 +4005,9 @@ module.exports = function generate_not(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/oneOf.js":
-/*!*************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/oneOf.js ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/oneOf.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4089,9 +4089,9 @@ module.exports = function generate_oneOf(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/pattern.js":
-/*!***************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/pattern.js ***!
-  \***************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/pattern.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4175,9 +4175,9 @@ module.exports = function generate_pattern(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/properties.js":
-/*!******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/properties.js ***!
-  \******************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/properties.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4515,9 +4515,9 @@ module.exports = function generate_properties(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/propertyNames.js":
-/*!*********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/propertyNames.js ***!
-  \*********************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/propertyNames.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4608,9 +4608,9 @@ module.exports = function generate_propertyNames(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/ref.js":
-/*!***********************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/ref.js ***!
-  \***********************************************************/
+/*!******************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/ref.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4743,9 +4743,9 @@ module.exports = function generate_ref(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/required.js":
-/*!****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/required.js ***!
-  \****************************************************************/
+/*!***********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/required.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5023,9 +5023,9 @@ module.exports = function generate_required(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/uniqueItems.js":
-/*!*******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/uniqueItems.js ***!
-  \*******************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/uniqueItems.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5120,9 +5120,9 @@ module.exports = function generate_uniqueItems(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/dotjs/validate.js":
-/*!****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/dotjs/validate.js ***!
-  \****************************************************************/
+/*!***********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/dotjs/validate.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5577,9 +5577,9 @@ module.exports = function generate_validate(it, $keyword, $ruleType) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/keyword.js":
-/*!*********************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/keyword.js ***!
-  \*********************************************************/
+/*!****************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/keyword.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5724,9 +5724,9 @@ function removeKeyword(keyword) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/refs/data.json":
-/*!*************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/refs/data.json ***!
-  \*************************************************************/
+/*!********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/refs/data.json ***!
+  \********************************************************************/
 /*! exports provided: $schema, $id, description, type, required, properties, additionalProperties, default */
 /***/ (function(module) {
 
@@ -5735,9 +5735,9 @@ module.exports = {"$schema":"http://json-schema.org/draft-07/schema#","$id":"htt
 /***/ }),
 
 /***/ "../../node_modules/ajv/lib/refs/json-schema-draft-07.json":
-/*!*****************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/lib/refs/json-schema-draft-07.json ***!
-  \*****************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/lib/refs/json-schema-draft-07.json ***!
+  \************************************************************************************/
 /*! exports provided: $schema, $id, title, definitions, type, properties, default */
 /***/ (function(module) {
 
@@ -5746,9 +5746,9 @@ module.exports = {"$schema":"http://json-schema.org/draft-07/schema#","$id":"htt
 /***/ }),
 
 /***/ "../../node_modules/ajv/node_modules/fast-deep-equal/index.js":
-/*!********************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/node_modules/fast-deep-equal/index.js ***!
-  \********************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/node_modules/fast-deep-equal/index.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5813,9 +5813,9 @@ module.exports = function equal(a, b) {
 /***/ }),
 
 /***/ "../../node_modules/ajv/node_modules/json-schema-traverse/index.js":
-/*!*************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ajv/node_modules/json-schema-traverse/index.js ***!
-  \*************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ajv/node_modules/json-schema-traverse/index.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5914,9 +5914,9 @@ function escapeJsonPtr(str) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/addon/fold/foldcode.js":
-/*!************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/addon/fold/foldcode.js ***!
-  \************************************************************************/
+/*!*******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/addon/fold/foldcode.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6074,9 +6074,9 @@ function escapeJsonPtr(str) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/addon/fold/foldgutter.js":
-/*!**************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/addon/fold/foldgutter.js ***!
-  \**************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/addon/fold/foldgutter.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6228,9 +6228,9 @@ function escapeJsonPtr(str) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/addon/mode/multiplex.js":
-/*!*************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/addon/mode/multiplex.js ***!
-  \*************************************************************************/
+/*!********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/addon/mode/multiplex.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6367,9 +6367,9 @@ CodeMirror.multiplexingMode = function(outer /*, others */) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/addon/mode/overlay.js":
-/*!***********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/addon/mode/overlay.js ***!
-  \***********************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/addon/mode/overlay.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6465,9 +6465,9 @@ CodeMirror.overlayMode = function(base, overlay, combine) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/addon/mode/simple.js":
-/*!**********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/addon/mode/simple.js ***!
-  \**********************************************************************/
+/*!*****************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/addon/mode/simple.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6689,9 +6689,9 @@ CodeMirror.overlayMode = function(base, overlay, combine) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/addon/selection/selection-pointer.js":
-/*!**************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/addon/selection/selection-pointer.js ***!
-  \**************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/addon/selection/selection-pointer.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6795,9 +6795,9 @@ CodeMirror.overlayMode = function(base, overlay, combine) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/lib/codemirror.css":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/lib/codemirror.css ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/lib/codemirror.css ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6825,9 +6825,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/codemirror/lib/codemirror.js":
-/*!*******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/lib/codemirror.js ***!
-  \*******************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/lib/codemirror.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16533,9 +16533,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/coffeescript/coffeescript.js":
-/*!***********************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/coffeescript/coffeescript.js ***!
-  \***********************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/coffeescript/coffeescript.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16900,9 +16900,9 @@ CodeMirror.defineMIME("text/coffeescript", "coffeescript");
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/css/css.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/css/css.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/css/css.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17740,9 +17740,9 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/handlebars/handlebars.js":
-/*!*******************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/handlebars/handlebars.js ***!
-  \*******************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/handlebars/handlebars.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17814,9 +17814,9 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/htmlmixed/htmlmixed.js":
-/*!*****************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/htmlmixed/htmlmixed.js ***!
-  \*****************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/htmlmixed/htmlmixed.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17974,9 +17974,9 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/javascript/javascript.js":
-/*!*******************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/javascript/javascript.js ***!
-  \*******************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/javascript/javascript.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18881,9 +18881,9 @@ CodeMirror.defineMIME("application/typescript", { name: "javascript", typescript
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/meta.js":
-/*!**************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/meta.js ***!
-  \**************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/meta.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19106,9 +19106,9 @@ CodeMirror.defineMIME("application/typescript", { name: "javascript", typescript
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/pug/pug.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/pug/pug.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/pug/pug.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19705,9 +19705,9 @@ CodeMirror.defineMIME('text/x-jade', 'pug');
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/sass/sass.js":
-/*!*******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/sass/sass.js ***!
-  \*******************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/sass/sass.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20167,9 +20167,9 @@ CodeMirror.defineMIME("text/x-sass", "sass");
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/stylus/stylus.js":
-/*!***********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/stylus/stylus.js ***!
-  \***********************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/stylus/stylus.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20946,9 +20946,9 @@ CodeMirror.defineMIME("text/x-sass", "sass");
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/vue/vue.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/vue/vue.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/vue/vue.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21021,9 +21021,9 @@ CodeMirror.defineMIME("text/x-sass", "sass");
 /***/ }),
 
 /***/ "../../node_modules/codemirror/mode/xml/xml.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/mode/xml/xml.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/mode/xml/xml.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21431,9 +21431,9 @@ if (!CodeMirror.mimeModes.hasOwnProperty("text/html"))
 /***/ }),
 
 /***/ "../../node_modules/codemirror/theme/base16-dark.css":
-/*!***********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/codemirror/theme/base16-dark.css ***!
-  \***********************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/codemirror/theme/base16-dark.css ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21461,9 +21461,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/css-element-queries/src/ResizeSensor.js":
-/*!******************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-element-queries/src/ResizeSensor.js ***!
-  \******************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-element-queries/src/ResizeSensor.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21775,9 +21775,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/codemirror/lib/codemirror.css":
-/*!**************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/codemirror/lib/codemirror.css ***!
-  \**************************************************************************************************************/
+/*!****************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/codemirror/lib/codemirror.css ***!
+  \****************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21794,9 +21794,9 @@ exports.push([module.i, "/* BASICS */\n\n.CodeMirror {\n  /* Set height, width, 
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/codemirror/theme/base16-dark.css":
-/*!*****************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/codemirror/theme/base16-dark.css ***!
-  \*****************************************************************************************************************/
+/*!*******************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/codemirror/theme/base16-dark.css ***!
+  \*******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21813,9 +21813,9 @@ exports.push([module.i, "/*\n\n    Name:       Base16 Default Dark\n    Author: 
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/semantic-ui/dist/semantic.min.css":
-/*!******************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/semantic-ui/dist/semantic.min.css ***!
-  \******************************************************************************************************************/
+/*!********************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/semantic-ui/dist/semantic.min.css ***!
+  \********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21833,9 +21833,9 @@ exports.push([module.i, " /*\n * # Semantic UI - 2.4.2\n * https://github.com/Se
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/button.vue?vue&type=style&index=0&lang=css&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/button.vue?vue&type=style&index=0&lang=css& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/button.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21852,9 +21852,9 @@ exports.push([module.i, "\n.ui.button.vued > i.icons .icon:first-child {\r\n\tma
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/select/index.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/select/index.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/select/index.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21871,9 +21871,9 @@ exports.push([module.i, "\n.ui.dropdown.iconOnly > .dropdown.icon {\r\n  margin:
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/table/index.vue?vue&type=style&index=0&lang=css&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/table/index.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/table/index.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21890,9 +21890,9 @@ exports.push([module.i, "\ntable.scroll-body tbody.vued {\r\n\tdisplay: block;\r
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/tabs.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/tabs.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/tabs.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21909,9 +21909,9 @@ exports.push([module.i, "\n.vued.tabs.horizontal {\r\n\tdisplay: flex;\r\n\t-web
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=style&index=0&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=style&index=0&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21929,9 +21929,9 @@ exports.push([module.i, "\n.clr3 {\r\n\tdisplay: inline-block;\n}\n.clr3.plain {
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./app.vue?vue&type=style&index=0&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=style&index=0&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21948,9 +21948,9 @@ exports.push([module.i, "\n.screen {\r\n\twidth: 100vw;\r\n\theight: 100vh;\n}\n
 /***/ }),
 
 /***/ "../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./routes/progress.vue?vue&type=style&index=0&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/progress.vue?vue&type=style&index=0&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/progress.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21967,9 +21967,9 @@ exports.push([module.i, "\n.progress-test div.command {\r\n\twidth: 32px;\r\n\th
 /***/ }),
 
 /***/ "../../node_modules/css-loader/lib/css-base.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader/lib/css-base.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader/lib/css-base.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -22054,9 +22054,9 @@ function toComment(sourceMap) {
 /***/ }),
 
 /***/ "../../node_modules/css-loader/lib/url/escape.js":
-/*!*******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/css-loader/lib/url/escape.js ***!
-  \*******************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/css-loader/lib/url/escape.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -22081,9 +22081,9 @@ module.exports = function escape(url) {
 /***/ }),
 
 /***/ "../../node_modules/fast-json-stable-stringify/index.js":
-/*!**************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/fast-json-stable-stringify/index.js ***!
-  \**************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/fast-json-stable-stringify/index.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22152,9 +22152,9 @@ module.exports = function (data, opts) {
 /***/ }),
 
 /***/ "../../node_modules/jquery/dist/jquery.js":
-/*!************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/jquery/dist/jquery.js ***!
-  \************************************************************/
+/*!*******************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/jquery/dist/jquery.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32528,9 +32528,9 @@ return jQuery;
 /***/ }),
 
 /***/ "../../node_modules/jquery/dist/jquery.js-exposed":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/jquery/dist/jquery.js-exposed ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/jquery/dist/jquery.js-exposed ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32539,10 +32539,157 @@ return jQuery;
 
 /***/ }),
 
+/***/ "../../node_modules/js-object-ext/dist/index.js":
+/*!*************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/js-object-ext/dist/index.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./index.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./cuff.ts":
+/*!*****************!*\
+  !*** ./cuff.ts ***!
+  \*****************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.onGet = exports.follow = exports.cuff = exports.onSet = void 0;\r\n/**\r\n * Calls `callback` before setting the value each time the property `prop` of object `obj` is set.\r\n * If `callback` returns a value (not `undefined`), this value will be used instead of the given one.\r\n * @returns A function without `this` scope that sets the value of `obj[prop]` without calling `callback`\r\n */\r\nfunction onSet(obj, prop, callback) {\r\n    var _a;\r\n    var oldDescr = Object.getOwnPropertyDescriptor(obj, prop) || {\r\n        value: undefined,\r\n        writable: true,\r\n        enumerable: true\r\n    }, newDescr = Object.assign({ configurable: true }, oldDescr), internalValue = oldDescr.value;\r\n    if (!oldDescr.set) {\r\n        console.assert(!oldDescr.get && oldDescr.writable, \"Property \" + prop + \" is not writable\");\r\n        newDescr.get = function () { return internalValue; };\r\n        delete newDescr.writable;\r\n        delete newDescr.value;\r\n    }\r\n    var oldSet = Object.assign((_a = oldDescr.set) !== null && _a !== void 0 ? _a : (function (v) { return internalValue = v; }), { callback: callback });\r\n    newDescr.set = function (v) {\r\n        var compV = oldSet.callback.call(this, v, this, prop);\r\n        oldSet('undefined' === typeof compV ? v : compV);\r\n    };\r\n    Object.defineProperty(obj, prop, newDescr);\r\n    return oldSet;\r\n}\r\nexports.onSet = onSet;\r\n/**\r\n * Property `propA` of object `objA` is hand-cuffed with property `propB` of object `objB` - when one changes, both change\r\n */\r\nfunction cuff(objA, propA, objB, propB) {\r\n    var oldSetA = onSet(objA, propA), oldSetB = onSet(objB, propB, oldSetA);\r\n    oldSetA.callback = oldSetB;\r\n}\r\nexports.cuff = cuff;\r\n/**\r\n * \"Follower\"[Fr] property `propFr` of object `objFr` is set when \"followed\"[Fd] property `propFd` of object `objFd` is changed\r\n */\r\nfunction follow(objFr, propFr, objFd, propFd) {\r\n    onSet(objFd, propFd, function (v) { return objFr[propFr] = v; });\r\n}\r\nexports.follow = follow;\r\n/**\r\n * Calls `callback` after getting the value each time the property `prop` of object `obj` is retrieved.\r\n * If `callback` returns a defined value, this value is returned instead of the originally retrieved value.\r\n * @returns A function without `this` scope that sets the value of `obj[prop]` without calling `callback`\r\n */\r\nfunction onGet(obj, prop, callback) {\r\n    var _a;\r\n    var oldDescr = Object.getOwnPropertyDescriptor(obj, prop) || {\r\n        value: undefined,\r\n        writable: true,\r\n        enumerable: true\r\n    }, newDescr = Object.assign({ configurable: true }, oldDescr), internalValue = oldDescr.value;\r\n    if (!oldDescr.get) {\r\n        console.assert(!oldDescr.set, \"Inspecting property set for \" + prop + \" would make it readible\");\r\n        if (oldDescr.writable)\r\n            newDescr.set = function (v) { return internalValue = v; };\r\n        delete newDescr.writable;\r\n        delete newDescr.value;\r\n    }\r\n    var oldGet = Object.assign((_a = oldDescr.get) !== null && _a !== void 0 ? _a : (function () { return internalValue; }), { callback: callback });\r\n    newDescr.get = function () {\r\n        var v = oldGet();\r\n        if (!oldGet.callback)\r\n            return v;\r\n        return oldGet.callback.call(this, v, this, prop);\r\n    };\r\n    Object.defineProperty(obj, prop, newDescr);\r\n    return oldGet;\r\n}\r\nexports.onGet = onGet;\r\n\n\n//# sourceURL=webpack:///./cuff.ts?");
+
+/***/ }),
+
+/***/ "./deep.ts":
+/*!*****************!*\
+  !*** ./deep.ts ***!
+  \*****************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __spreadArrays = (this && this.__spreadArrays) || function () {\r\n    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;\r\n    for (var r = Array(s), k = 0, i = 0; i < il; i++)\r\n        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)\r\n            r[k] = a[j];\r\n    return r;\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.copy = exports.equals = void 0;\r\n/**\r\n * @module Deep\r\n */\r\n/**\r\n * Deeply compare `Objects` even if their references are different\r\n * @param {any} x\r\n * @param {any} y\r\n * @return Wheter `x` deeply equals `y`\r\n */\r\nfunction equals(x, y, onlyEnumerable) {\r\n    if (onlyEnumerable === void 0) { onlyEnumerable = true; }\r\n    return deepEquals(new Map(), x, y, onlyEnumerable);\r\n}\r\nexports.equals = equals;\r\nfunction deepEquals(begun, x, y, onlyEnumerable) {\r\n    if (x === y || (begun.has(x) && begun.get(x) === y))\r\n        return true;\r\n    if (!x || !y || 'object' !== typeof x || 'object' !== typeof y ||\r\n        x.constructor !== y.constructor ||\r\n        x instanceof Function ||\r\n        x instanceof RegExp ||\r\n        (Array.isArray(x) && x.length !== y.length))\r\n        return false;\r\n    if (x instanceof Date || y instanceof Date)\r\n        return x instanceof Date && y instanceof Date && x.valueOf() == y.valueOf();\r\n    var keyFunc = onlyEnumerable ? Object.keys : Object.getOwnPropertyNames;\r\n    var p = keyFunc(x);\r\n    begun.set(x, y);\r\n    return keyFunc(y).every(function (i) { return !!~p.indexOf(i); }) &&\r\n        p.every(function (i) { return deepEquals(begun, x[i], y[i], onlyEnumerable); });\r\n}\r\n/**\r\n * Deep copy `src` into `dst`.\r\n * Can be used for deep cloning\r\n */\r\nfunction copy(src, dst) {\r\n    return deepCopy(new Map(), src, dst);\r\n}\r\nexports.copy = copy;\r\nfunction deepCopy(begun, src, dst) {\r\n    if ('object' !== typeof src)\r\n        return src;\r\n    if (begun.has(src))\r\n        return begun.get(src);\r\n    if (src instanceof Array) {\r\n        if (!(dst instanceof Array))\r\n            dst = [];\r\n        begun.set(src, dst);\r\n        dst.splice.apply(dst, __spreadArrays([0, dst.length], src.map(function (x) { return deepCopy(begun, x); })));\r\n        return dst;\r\n    }\r\n    if (!src || !src.constructor)\r\n        return src;\r\n    if (!dst)\r\n        dst = Object.create(src.constructor.prototype);\r\n    begun.set(src, dst);\r\n    var _loop_1 = function (key) {\r\n        var pDescr = Object.getOwnPropertyDescriptor(src, key);\r\n        if (pDescr.get) {\r\n            var orgGet_1 = pDescr.get;\r\n            pDescr.get = function () {\r\n                return deepCopy(begun, orgGet_1.apply(src));\r\n            };\r\n        }\r\n        else if (!pDescr.get && !pDescr.set)\r\n            pDescr.value = deepCopy(begun, src[key], dst[key]);\r\n        Object.defineProperty(dst, key, pDescr);\r\n    };\r\n    for (var _i = 0, _a = Object.getOwnPropertyNames(src); _i < _a.length; _i++) {\r\n        var key = _a[_i];\r\n        _loop_1(key);\r\n    }\r\n    return dst;\r\n}\r\n\n\n//# sourceURL=webpack:///./deep.ts?");
+
+/***/ }),
+
+/***/ "./index.ts":
+/*!******************!*\
+  !*** ./index.ts ***!
+  \******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __exportStar = (this && this.__exportStar) || function(m, exports) {\r\n    for (var p in m) if (p !== \"default\" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n__exportStar(__webpack_require__(/*! ./cuff */ \"./cuff.ts\"), exports);\r\n__exportStar(__webpack_require__(/*! ./deep */ \"./deep.ts\"), exports);\r\n__exportStar(__webpack_require__(/*! ./path */ \"./path.ts\"), exports);\r\n\n\n//# sourceURL=webpack:///./index.ts?");
+
+/***/ }),
+
+/***/ "./path.ts":
+/*!*****************!*\
+  !*** ./path.ts ***!
+  \*****************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.get = exports.del = exports.set = exports.pathed = exports.InvalidPath = void 0;\r\n/**\r\n * @module Path\r\n */\r\n/**\r\n * Thrown when a path is not reachable - when the containing object does not exists.\r\n */\r\nvar InvalidPath = /** @class */ (function (_super) {\r\n    __extends(InvalidPath, _super);\r\n    function InvalidPath(path) {\r\n        var _this = _super.call(this, \"Invalid path: '\" + path + \"'\") || this;\r\n        // Set the prototype explicitly.\r\n        Object.setPrototypeOf(_this, InvalidPath.prototype);\r\n        return _this;\r\n    }\r\n    return InvalidPath;\r\n}(Error));\r\nexports.InvalidPath = InvalidPath;\r\n/**\r\n * Get the elements of a path like `a.b[1].x` -> [a, b, 1, x]\r\n * @throw InvalidPath\r\n */\r\nfunction pathed(path) {\r\n    var keys = [];\r\n    for (var _i = 0, _a = path.split('.'); _i < _a.length; _i++) {\r\n        var key = _a[_i];\r\n        var subs = /^(.*?)(?:\\[(.*)\\])?$/.exec(key);\r\n        keys.push(subs[1]);\r\n        if (subs[2])\r\n            keys.push.apply(keys, subs[2].split(']['));\r\n    }\r\n    return keys;\r\n}\r\nexports.pathed = pathed;\r\n/** @hidden */\r\nfunction recur(obj, path) {\r\n    var keys = pathed(path), lvalue = keys.pop();\r\n    for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {\r\n        var key = keys_1[_i];\r\n        if (!(obj = obj[key]))\r\n            throw new InvalidPath(path);\r\n    }\r\n    return { obj: obj, key: lvalue };\r\n}\r\n/**\r\n * Set a value of an object considering its path\r\n * @throw InvalidPath\r\n */\r\nfunction set(obj, path, value) {\r\n    var lv = recur(obj, path);\r\n    lv.obj[lv.key] = value;\r\n}\r\nexports.set = set;\r\n/**\r\n * Delete a value of an object considering its path\r\n * @throw InvalidPath\r\n */\r\nfunction del(obj, path) {\r\n    var lv = recur(obj, path);\r\n    delete lv.obj[lv.key];\r\n}\r\nexports.del = del;\r\n/**\r\n * Get a value of an object considering its path\r\n * @throw InvalidPath\r\n * @return `undefined` if the property is missing or the queried value\r\n */\r\nfunction get(obj, path) {\r\n    var lv = recur(obj, path);\r\n    return lv.obj[lv.key];\r\n}\r\nexports.get = get;\r\n\n\n//# sourceURL=webpack:///./path.ts?");
+
+/***/ })
+
+/******/ })));
+
+/***/ }),
+
 /***/ "../../node_modules/lodash.debounce/index.js":
-/*!***************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/lodash.debounce/index.js ***!
-  \***************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/lodash.debounce/index.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32929,9 +33076,9 @@ module.exports = debounce;
 /***/ }),
 
 /***/ "../../node_modules/process/browser.js":
-/*!*********************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/process/browser.js ***!
-  \*********************************************************/
+/*!****************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/process/browser.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -33124,9 +33271,9 @@ process.umask = function() { return 0; };
 /***/ }),
 
 /***/ "../../node_modules/reflect-metadata/Reflect.js":
-/*!******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/reflect-metadata/Reflect.js ***!
-  \******************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/reflect-metadata/Reflect.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34267,9 +34414,9 @@ var Reflect;
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/semantic.js":
-/*!*******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/semantic.js ***!
-  \*******************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/semantic.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -56793,9 +56940,9 @@ $.fn.visibility.settings = {
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/semantic.min.css":
-/*!************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/semantic.min.css ***!
-  \************************************************************************/
+/*!*******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/semantic.min.css ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56823,9 +56970,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.eot":
-/*!***************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.eot ***!
-  \***************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.eot ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56834,9 +56981,9 @@ module.exports = __webpack_require__.p + "public/fonts/brand-icons.eot";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.svg":
-/*!***************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.svg ***!
-  \***************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.svg ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56845,9 +56992,9 @@ module.exports = __webpack_require__.p + "public/fonts/brand-icons.svg";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.ttf":
-/*!***************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.ttf ***!
-  \***************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.ttf ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56856,9 +57003,9 @@ module.exports = __webpack_require__.p + "public/fonts/brand-icons.ttf";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.woff":
-/*!****************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.woff ***!
-  \****************************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.woff ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56867,9 +57014,9 @@ module.exports = __webpack_require__.p + "public/fonts/brand-icons.woff";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.woff2":
-/*!*****************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.woff2 ***!
-  \*****************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/brand-icons.woff2 ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56878,9 +57025,9 @@ module.exports = __webpack_require__.p + "public/fonts/brand-icons.woff2";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.eot":
-/*!*********************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.eot ***!
-  \*********************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.eot ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56889,9 +57036,9 @@ module.exports = __webpack_require__.p + "public/fonts/icons.eot";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.svg":
-/*!*********************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.svg ***!
-  \*********************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.svg ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56900,9 +57047,9 @@ module.exports = __webpack_require__.p + "public/fonts/icons.svg";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.ttf":
-/*!*********************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.ttf ***!
-  \*********************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.ttf ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56911,9 +57058,9 @@ module.exports = __webpack_require__.p + "public/fonts/icons.ttf";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.woff":
-/*!**********************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.woff ***!
-  \**********************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.woff ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56922,9 +57069,9 @@ module.exports = __webpack_require__.p + "public/fonts/icons.woff";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.woff2":
-/*!***********************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.woff2 ***!
-  \***********************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/icons.woff2 ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56933,9 +57080,9 @@ module.exports = __webpack_require__.p + "public/fonts/icons.woff2";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.eot":
-/*!*****************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.eot ***!
-  \*****************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.eot ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56944,9 +57091,9 @@ module.exports = __webpack_require__.p + "public/fonts/outline-icons.eot";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.svg":
-/*!*****************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.svg ***!
-  \*****************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.svg ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56955,9 +57102,9 @@ module.exports = __webpack_require__.p + "public/fonts/outline-icons.svg";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.ttf":
-/*!*****************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.ttf ***!
-  \*****************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.ttf ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56966,9 +57113,9 @@ module.exports = __webpack_require__.p + "public/fonts/outline-icons.ttf";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.woff":
-/*!******************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.woff ***!
-  \******************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.woff ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56977,9 +57124,9 @@ module.exports = __webpack_require__.p + "public/fonts/outline-icons.woff";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.woff2":
-/*!*******************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.woff2 ***!
-  \*******************************************************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/fonts/outline-icons.woff2 ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56988,9 +57135,9 @@ module.exports = __webpack_require__.p + "public/fonts/outline-icons.woff2";
 /***/ }),
 
 /***/ "../../node_modules/semantic-ui/dist/themes/default/assets/images/flags.png":
-/*!**********************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/images/flags.png ***!
-  \**********************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/semantic-ui/dist/themes/default/assets/images/flags.png ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56999,9 +57146,9 @@ module.exports = __webpack_require__.p + "9c74e172f87984c48ddf5c8108cabe67.png";
 /***/ }),
 
 /***/ "../../node_modules/setimmediate/setImmediate.js":
-/*!*******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/setimmediate/setImmediate.js ***!
-  \*******************************************************************/
+/*!**************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/setimmediate/setImmediate.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57197,9 +57344,9 @@ module.exports = __webpack_require__.p + "9c74e172f87984c48ddf5c8108cabe67.png";
 /***/ }),
 
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/button.vue?vue&type=style&index=0&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader!c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/button.vue?vue&type=style&index=0&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader!C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/button.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57227,9 +57374,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/select/index.vue?vue&type=style&index=0&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader!c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/select/index.vue?vue&type=style&index=0&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader!C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/select/index.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57257,9 +57404,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/table/index.vue?vue&type=style&index=0&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader!c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/table/index.vue?vue&type=style&index=0&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader!C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/table/index.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57287,9 +57434,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!../../src/components/tabs.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader!c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/tabs.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader!C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/tabs.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57317,9 +57464,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=style&index=0&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader!c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=style&index=0&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader!C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57347,9 +57494,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./app.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader!c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader!C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57377,9 +57524,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/style-loader/index.js!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/vue-loader/lib/index.js?!./routes/progress.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader!c:/dev/v-semantic/node_modules/css-loader!c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/progress.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader!C:/dev/github/v-semantic/node_modules/css-loader!C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/progress.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57407,9 +57554,9 @@ if(false) {}
 /***/ }),
 
 /***/ "../../node_modules/style-loader/lib/addStyles.js":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader/lib/addStyles.js ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader/lib/addStyles.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57816,9 +57963,9 @@ function updateLink (link, options, obj) {
 /***/ }),
 
 /***/ "../../node_modules/style-loader/lib/urls.js":
-/*!***************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/style-loader/lib/urls.js ***!
-  \***************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/style-loader/lib/urls.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -57916,9 +58063,9 @@ module.exports = function (css) {
 /***/ }),
 
 /***/ "../../node_modules/timers-browserify/main.js":
-/*!****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/timers-browserify/main.js ***!
-  \****************************************************************/
+/*!***********************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/timers-browserify/main.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57991,9 +58138,9 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ }),
 
 /***/ "../../node_modules/ts-json-schema-decorator/dist/ts-json-schema-decorator.js":
-/*!************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-json-schema-decorator/dist/ts-json-schema-decorator.js ***!
-  \************************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-json-schema-decorator/dist/ts-json-schema-decorator.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58551,9 +58698,9 @@ module.exports = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tsli
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/accordion.vue?vue&type=script&lang=ts&":
-/*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/accordion.vue?vue&type=script&lang=ts& ***!
-  \***************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/accordion.vue?vue&type=script&lang=ts& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58705,9 +58852,9 @@ exports.default = Accordion;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/breadcrumbs.vue?vue&type=script&lang=ts&":
-/*!*****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/breadcrumbs.vue?vue&type=script&lang=ts& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/breadcrumbs.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58781,9 +58928,9 @@ exports.default = Breadcrumb;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/button.vue?vue&type=script&lang=ts&":
-/*!************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/button.vue?vue&type=script&lang=ts& ***!
-  \************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/button.vue?vue&type=script&lang=ts& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58904,9 +59051,9 @@ exports.default = Button;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/checkbox.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/checkbox.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/checkbox.vue?vue&type=script&lang=ts& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59026,9 +59173,9 @@ exports.default = Checkbox;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/dimmable.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/dimmable.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/dimmable.vue?vue&type=script&lang=ts& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59114,9 +59261,9 @@ exports.default = Dimmable;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/dimmer.vue?vue&type=script&lang=ts&":
-/*!************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/dimmer.vue?vue&type=script&lang=ts& ***!
-  \************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/dimmer.vue?vue&type=script&lang=ts& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59195,9 +59342,9 @@ exports.default = Dimm;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/flag.vue?vue&type=script&lang=ts&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/flag.vue?vue&type=script&lang=ts& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/flag.vue?vue&type=script&lang=ts& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59248,9 +59395,9 @@ exports.default = Flag;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/form/field.vue?vue&type=script&lang=ts&":
-/*!****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/form/field.vue?vue&type=script&lang=ts& ***!
-  \****************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/form/field.vue?vue&type=script&lang=ts& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59349,9 +59496,9 @@ exports.default = Field;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/form/index.vue?vue&type=script&lang=ts&":
-/*!****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/form/index.vue?vue&type=script&lang=ts& ***!
-  \****************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/form/index.vue?vue&type=script&lang=ts& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59462,9 +59609,9 @@ exports.default = Form;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/icon.vue?vue&type=script&lang=ts&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/icon.vue?vue&type=script&lang=ts& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/icon.vue?vue&type=script&lang=ts& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59562,9 +59709,9 @@ exports.default = Icon;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/input.vue?vue&type=script&lang=ts&":
-/*!***********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/input.vue?vue&type=script&lang=ts& ***!
-  \***********************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/input.vue?vue&type=script&lang=ts& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59703,9 +59850,9 @@ exports.default = Input;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/modal.vue?vue&type=script&lang=ts&":
-/*!***********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/modal.vue?vue&type=script&lang=ts& ***!
-  \***********************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/modal.vue?vue&type=script&lang=ts& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59845,9 +59992,9 @@ exports.default = Modal;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/panel.vue?vue&type=script&lang=ts&":
-/*!***********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/panel.vue?vue&type=script&lang=ts& ***!
-  \***********************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/panel.vue?vue&type=script&lang=ts& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59926,9 +60073,9 @@ exports.default = Panel;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/progress.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/progress.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/progress.vue?vue&type=script&lang=ts& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60085,9 +60232,9 @@ exports.default = Progress;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/select/index.vue?vue&type=script&lang=ts&":
-/*!******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/select/index.vue?vue&type=script&lang=ts& ***!
-  \******************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/select/index.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60129,9 +60276,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var module_1 = __webpack_require__(/*! lib/module */ "../../src/lib/module.ts");
-var utils_1 = __webpack_require__(/*! lib/utils */ "../../src/lib/utils.ts");
-var deep_1 = __webpack_require__(/*! lib/deep */ "../../src/lib/deep.ts");
-var genInputName = utils_1.idSpace('slct');
+var js_object_ext_1 = __webpack_require__(/*! js-object-ext */ "../../node_modules/js-object-ext/dist/index.js");
 //TODO: clearable
 //TODO: manage messages (ex errors, ...)
 var Select = /** @class */ (function (_super) {
@@ -60153,7 +60298,7 @@ var Select = /** @class */ (function (_super) {
         configurable: true
     });
     Select.prototype.changeValues = function (options, oldv) {
-        if (!deep_1.equals(options, oldv))
+        if (!js_object_ext_1.equals(options, oldv))
             this.semantic('change values', this.mappedValues);
     };
     Select.prototype.mounted = function () {
@@ -60270,9 +60415,9 @@ exports.default = Select;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/select/option.vue?vue&type=script&lang=ts&":
-/*!*******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/select/option.vue?vue&type=script&lang=ts& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/select/option.vue?vue&type=script&lang=ts& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60331,9 +60476,9 @@ exports.default = Option;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/sidebar.vue?vue&type=script&lang=ts&":
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/sidebar.vue?vue&type=script&lang=ts& ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/sidebar.vue?vue&type=script&lang=ts& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60424,9 +60569,9 @@ exports.default = Sidebar;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/table/checkbox-column.vue?vue&type=script&lang=ts&":
-/*!***************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/table/checkbox-column.vue?vue&type=script&lang=ts& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/table/checkbox-column.vue?vue&type=script&lang=ts& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60572,9 +60717,9 @@ exports.default = CheckboxColumn;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/table/column.vue?vue&type=script&lang=ts&":
-/*!******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/table/column.vue?vue&type=script&lang=ts& ***!
-  \******************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/table/column.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60606,7 +60751,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var vue_ripper_1 = __webpack_require__(/*! vue-ripper */ "../../node_modules/vue-ripper/dist/vue-ripper.js");
-var deep = __webpack_require__(/*! lib/deep */ "../../src/lib/deep.ts");
+var js_object_ext_1 = __webpack_require__(/*! js-object-ext */ "../../node_modules/js-object-ext/dist/index.js");
 var index_vue_1 = __webpack_require__(/*! ./index.vue */ "../../src/components/table/index.vue");
 var molded_1 = __webpack_require__(/*! ../data/molded */ "../../src/components/data/molded.ts");
 var Column = /** @class */ (function (_super) {
@@ -60626,10 +60771,10 @@ var Column = /** @class */ (function (_super) {
         return this.modeled.edition(row, this);
     };
     Column.prototype.value = function (row) {
-        return deep.get(row, this.prop);
+        return js_object_ext_1.get(row, this.prop);
     };
     Column.prototype.setValue = function (row, value) {
-        return deep.set(row, this.prop, value);
+        return js_object_ext_1.set(row, this.prop, value);
     };
     __decorate([
         vue_property_decorator_1.Prop(),
@@ -60663,9 +60808,9 @@ exports.default = Column;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/table/index.vue?vue&type=script&lang=ts&":
-/*!*****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/table/index.vue?vue&type=script&lang=ts& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/table/index.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60881,9 +61026,9 @@ exports.default = Table;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/table/row-edit-column.vue?vue&type=script&lang=ts&":
-/*!***************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/table/row-edit-column.vue?vue&type=script&lang=ts& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/table/row-edit-column.vue?vue&type=script&lang=ts& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60975,7 +61120,7 @@ var RowEditColumn = /** @class */ (function (_super) {
     };
     RowEditColumn.prototype.editRow = function (row) {
         var _this = this;
-        var stateSave = {};
+        var stateSave = Object.create(row.constructor.prototype);
         this.cancelableAction('edit', [row, stateSave], function () {
             _this.setEditing(row, true);
             _this.editingRows.push(row);
@@ -61077,9 +61222,9 @@ exports.default = RowEditColumn;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!../../src/components/tabs.vue?vue&type=script&lang=ts&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!c:/dev/v-semantic/src/components/tabs.vue?vue&type=script&lang=ts& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!C:/dev/github/v-semantic/src/components/tabs.vue?vue&type=script&lang=ts& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61265,9 +61410,9 @@ exports.default = Tabs;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./3clr/mold.vue?vue&type=script&lang=ts&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./3clr/mold.vue?vue&type=script&lang=ts& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./3clr/mold.vue?vue&type=script&lang=ts& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61322,9 +61467,9 @@ exports.default = Mold;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./app.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./app.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./app.vue?vue&type=script&lang=ts& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61412,9 +61557,9 @@ exports.default = App;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/buttons.vue?vue&type=script&lang=ts&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./routes/buttons.vue?vue&type=script&lang=ts& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./routes/buttons.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61474,9 +61619,9 @@ exports.default = Buttons;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/form.vue?vue&type=script&lang=ts&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./routes/form.vue?vue&type=script&lang=ts& ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./routes/form.vue?vue&type=script&lang=ts& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61591,9 +61736,9 @@ exports.default = Form;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/inputs.vue?vue&type=script&lang=ts&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./routes/inputs.vue?vue&type=script&lang=ts& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./routes/inputs.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61643,9 +61788,9 @@ exports.default = Inputs;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/panels.vue?vue&type=script&lang=ts&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./routes/panels.vue?vue&type=script&lang=ts& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./routes/panels.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61691,9 +61836,9 @@ exports.default = Tabs;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/progress.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./routes/progress.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./routes/progress.vue?vue&type=script&lang=ts& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61771,9 +61916,9 @@ exports.default = Progress;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/sidebars.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./routes/sidebars.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./routes/sidebars.vue?vue&type=script&lang=ts& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61819,9 +61964,9 @@ exports.default = Sidebars;
 /***/ }),
 
 /***/ "../../node_modules/ts-loader/index.js?!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/index.js!./routes/table.vue?vue&type=script&lang=ts&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/ts-loader??ref--0!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/node_modules/source-map-loader!./routes/table.vue?vue&type=script&lang=ts& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/ts-loader??ref--0!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/node_modules/source-map-loader!./routes/table.vue?vue&type=script&lang=ts& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61849,7 +61994,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
-var deep_1 = __webpack_require__(/*! lib/deep */ "../../src/lib/deep.ts");
+var js_object_ext_1 = __webpack_require__(/*! js-object-ext */ "../../node_modules/js-object-ext/dist/index.js");
 var mold_vue_1 = __webpack_require__(/*! ../3clr/mold.vue */ "./3clr/mold.vue");
 var rows = (new Array(20)).fill(null).map(function (x, i) { return ({
     a: '' + i * 2,
@@ -61861,7 +62006,7 @@ var Table = /** @class */ (function (_super) {
     __extends(Table, _super);
     function Table() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.copy = deep_1.copy;
+        _this.copy = js_object_ext_1.copy;
         _this.my_row = null;
         _this.my_rows = rows;
         _this.my_selection = [];
@@ -61885,9 +62030,9 @@ exports.default = Table;
 /***/ }),
 
 /***/ "../../node_modules/tslib/tslib.es6.js":
-/*!*********************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/tslib/tslib.es6.js ***!
-  \*********************************************************/
+/*!****************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/tslib/tslib.es6.js ***!
+  \****************************************************************/
 /*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -62103,9 +62248,9 @@ function __importDefault(mod) {
 /***/ }),
 
 /***/ "../../node_modules/uri-js/dist/es5/uri.all.js":
-/*!*****************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/uri-js/dist/es5/uri.all.js ***!
-  \*****************************************************************/
+/*!************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/uri-js/dist/es5/uri.all.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63502,9 +63647,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ }),
 
 /***/ "../../node_modules/vue-class-component/dist/vue-class-component.common.js":
-/*!*********************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-class-component/dist/vue-class-component.common.js ***!
-  \*********************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-class-component/dist/vue-class-component.common.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63783,9 +63928,9 @@ exports.mixins = mixins;
 /***/ }),
 
 /***/ "../../node_modules/vue-codemirror/dist/vue-codemirror.js":
-/*!****************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-codemirror/dist/vue-codemirror.js ***!
-  \****************************************************************************/
+/*!***********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-codemirror/dist/vue-codemirror.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63794,9 +63939,9 @@ exports.mixins = mixins;
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/accordion.vue?vue&type=template&id=e28aad30&":
-/*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/accordion.vue?vue&type=template&id=e28aad30& ***!
-  \***************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/accordion.vue?vue&type=template&id=e28aad30& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63856,9 +64001,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/breadcrumbs.vue?vue&type=template&id=fb632220&":
-/*!*****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/breadcrumbs.vue?vue&type=template&id=fb632220& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/breadcrumbs.vue?vue&type=template&id=fb632220& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63903,9 +64048,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/button.vue?vue&type=template&id=eae7ef7c&":
-/*!************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/button.vue?vue&type=template&id=eae7ef7c& ***!
-  \************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/button.vue?vue&type=template&id=eae7ef7c& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63942,9 +64087,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/checkbox.vue?vue&type=template&id=8903635a&":
-/*!**************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/checkbox.vue?vue&type=template&id=8903635a& ***!
-  \**************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/checkbox.vue?vue&type=template&id=8903635a& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63979,9 +64124,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/dimmable.vue?vue&type=template&id=9fd30762&":
-/*!**************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/dimmable.vue?vue&type=template&id=9fd30762& ***!
-  \**************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/dimmable.vue?vue&type=template&id=9fd30762& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64061,9 +64206,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/dimmer.vue?vue&type=template&id=259dc562&":
-/*!************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/dimmer.vue?vue&type=template&id=259dc562& ***!
-  \************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/dimmer.vue?vue&type=template&id=259dc562& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64085,9 +64230,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/flag.vue?vue&type=template&id=326eb17c&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/flag.vue?vue&type=template&id=326eb17c& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/flag.vue?vue&type=template&id=326eb17c& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64109,9 +64254,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/form/field.vue?vue&type=template&id=51738e7f&":
-/*!****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/form/field.vue?vue&type=template&id=51738e7f& ***!
-  \****************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/form/field.vue?vue&type=template&id=51738e7f& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64247,9 +64392,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/form/index.vue?vue&type=template&id=542f2b52&":
-/*!****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/form/index.vue?vue&type=template&id=542f2b52& ***!
-  \****************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/form/index.vue?vue&type=template&id=542f2b52& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64318,9 +64463,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/icon.vue?vue&type=template&id=b37ebfee&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/icon.vue?vue&type=template&id=b37ebfee& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/icon.vue?vue&type=template&id=b37ebfee& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64354,9 +64499,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/input.vue?vue&type=template&id=45dba22c&":
-/*!***********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/input.vue?vue&type=template&id=45dba22c& ***!
-  \***********************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/input.vue?vue&type=template&id=45dba22c& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64478,9 +64623,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/modal.vue?vue&type=template&id=0eaeaf66&":
-/*!***********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/modal.vue?vue&type=template&id=0eaeaf66& ***!
-  \***********************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/modal.vue?vue&type=template&id=0eaeaf66& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64522,9 +64667,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/panel.vue?vue&type=template&id=1ef73424&":
-/*!***********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/panel.vue?vue&type=template&id=1ef73424& ***!
-  \***********************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/panel.vue?vue&type=template&id=1ef73424& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64572,9 +64717,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/progress.vue?vue&type=template&id=48caafbd&":
-/*!**************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/progress.vue?vue&type=template&id=48caafbd& ***!
-  \**************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/progress.vue?vue&type=template&id=48caafbd& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64614,9 +64759,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/select/index.vue?vue&type=template&id=6018a2e2&":
-/*!******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/select/index.vue?vue&type=template&id=6018a2e2& ***!
-  \******************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/select/index.vue?vue&type=template&id=6018a2e2& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64680,9 +64825,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/select/option.vue?vue&type=template&id=5678f108&":
-/*!*******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/select/option.vue?vue&type=template&id=5678f108& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/select/option.vue?vue&type=template&id=5678f108& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64741,9 +64886,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/sidebar.vue?vue&type=template&id=19f8877c&":
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/sidebar.vue?vue&type=template&id=19f8877c& ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/sidebar.vue?vue&type=template&id=19f8877c& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64765,9 +64910,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/table/checkbox-column.vue?vue&type=template&id=97a7fe02&":
-/*!***************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/table/checkbox-column.vue?vue&type=template&id=97a7fe02& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/table/checkbox-column.vue?vue&type=template&id=97a7fe02& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64853,9 +64998,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/table/column.vue?vue&type=template&id=782d5d72&":
-/*!******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/table/column.vue?vue&type=template&id=782d5d72& ***!
-  \******************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/table/column.vue?vue&type=template&id=782d5d72& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64961,9 +65106,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/table/index.vue?vue&type=template&id=6ed10cf1&":
-/*!*****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/table/index.vue?vue&type=template&id=6ed10cf1& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/table/index.vue?vue&type=template&id=6ed10cf1& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65092,9 +65237,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/table/row-edit-column.vue?vue&type=template&id=2b101265&":
-/*!***************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/table/row-edit-column.vue?vue&type=template&id=2b101265& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/table/row-edit-column.vue?vue&type=template&id=2b101265& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65231,9 +65376,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!../../src/components/tabs.vue?vue&type=template&id=c58ee6e4&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!c:/dev/v-semantic/src/components/tabs.vue?vue&type=template&id=c58ee6e4& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!C:/dev/github/v-semantic/src/components/tabs.vue?vue&type=template&id=c58ee6e4& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65337,9 +65482,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./3clr/mold.vue?vue&type=template&id=dc50e456&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=template&id=dc50e456& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./3clr/mold.vue?vue&type=template&id=dc50e456& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65394,9 +65539,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./app.vue?vue&type=template&id=381730fa&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=template&id=381730fa& ***!
-  \**************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./app.vue?vue&type=template&id=381730fa& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65499,9 +65644,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/buttons.vue?vue&type=template&id=17bdd8ca&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/buttons.vue?vue&type=template&id=17bdd8ca& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/buttons.vue?vue&type=template&id=17bdd8ca& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65707,9 +65852,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/form.vue?vue&type=template&id=0b1d386a&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/form.vue?vue&type=template&id=0b1d386a& ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/form.vue?vue&type=template&id=0b1d386a& ***!
+  \************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65958,9 +66103,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/inputs.vue?vue&type=template&id=8a5002a0&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/inputs.vue?vue&type=template&id=8a5002a0& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/inputs.vue?vue&type=template&id=8a5002a0& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66113,9 +66258,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/panels.vue?vue&type=template&id=94d8be94&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/panels.vue?vue&type=template&id=94d8be94& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/panels.vue?vue&type=template&id=94d8be94& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66389,9 +66534,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/progress.vue?vue&type=template&id=c1572598&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/progress.vue?vue&type=template&id=c1572598& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/progress.vue?vue&type=template&id=c1572598& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66575,9 +66720,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/sidebars.vue?vue&type=template&id=7f4dc69e&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/sidebars.vue?vue&type=template&id=7f4dc69e& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/sidebars.vue?vue&type=template&id=7f4dc69e& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66636,9 +66781,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./routes/table.vue?vue&type=template&id=73f67ed7&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!c:/dev/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/table.vue?vue&type=template&id=73f67ed7& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/dev/github/v-semantic/node_modules/vue-loader/lib??vue-loader-options!./routes/table.vue?vue&type=template&id=73f67ed7& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66780,9 +66925,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js":
-/*!************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \*******************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66887,9 +67032,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js":
-/*!*******************************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-property-decorator/lib/vue-property-decorator.js ***!
-  \*******************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-property-decorator/lib/vue-property-decorator.js ***!
+  \**************************************************************************************************/
 /*! exports provided: Component, Vue, Inject, Provide, Model, Prop, Watch, Emit */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -67027,9 +67172,9 @@ function Emit(event) {
 /***/ }),
 
 /***/ "../../node_modules/vue-resize-directive/dist/Vueresize.js":
-/*!*****************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-resize-directive/dist/Vueresize.js ***!
-  \*****************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-resize-directive/dist/Vueresize.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -67039,9 +67184,9 @@ function Emit(event) {
 /***/ }),
 
 /***/ "../../node_modules/vue-ripper/dist/vue-ripper.js":
-/*!********************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-ripper/dist/vue-ripper.js ***!
-  \********************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-ripper/dist/vue-ripper.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -67272,9 +67417,9 @@ module.exports = __webpack_require__(/*! ./index.ts */"./index.ts");
 /***/ }),
 
 /***/ "../../node_modules/vue-router/dist/vue-router.esm.js":
-/*!************************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue-router/dist/vue-router.esm.js ***!
-  \************************************************************************/
+/*!*******************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue-router/dist/vue-router.esm.js ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -69908,9 +70053,9 @@ if (inBrowser && window.Vue) {
 /***/ }),
 
 /***/ "../../node_modules/vue/dist/vue.runtime.esm.js":
-/*!******************************************************************!*\
-  !*** c:/dev/v-semantic/node_modules/vue/dist/vue.runtime.esm.js ***!
-  \******************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/dev/github/v-semantic/node_modules/vue/dist/vue.runtime.esm.js ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78385,9 +78530,9 @@ module.exports = g;
 /***/ }),
 
 /***/ "../../src/components.ts":
-/*!*******************************************!*\
-  !*** c:/dev/v-semantic/src/components.ts ***!
-  \*******************************************/
+/*!**************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components.ts ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78448,9 +78593,9 @@ exports.Dropdown = Dropdown;
 /***/ }),
 
 /***/ "../../src/components/accordion.vue":
-/*!******************************************************!*\
-  !*** c:/dev/v-semantic/src/components/accordion.vue ***!
-  \******************************************************/
+/*!*************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/accordion.vue ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78486,9 +78631,9 @@ component.options.__file = "src/components/accordion.vue"
 /***/ }),
 
 /***/ "../../src/components/accordion.vue?vue&type=script&lang=ts&":
-/*!*******************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/accordion.vue?vue&type=script&lang=ts& ***!
-  \*******************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/accordion.vue?vue&type=script&lang=ts& ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78502,9 +78647,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/accordion.vue?vue&type=template&id=e28aad30&":
-/*!*************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/accordion.vue?vue&type=template&id=e28aad30& ***!
-  \*************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/accordion.vue?vue&type=template&id=e28aad30& ***!
+  \********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78520,9 +78665,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/breadcrumbs.vue":
-/*!********************************************************!*\
-  !*** c:/dev/v-semantic/src/components/breadcrumbs.vue ***!
-  \********************************************************/
+/*!***************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/breadcrumbs.vue ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78558,9 +78703,9 @@ component.options.__file = "src/components/breadcrumbs.vue"
 /***/ }),
 
 /***/ "../../src/components/breadcrumbs.vue?vue&type=script&lang=ts&":
-/*!*********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/breadcrumbs.vue?vue&type=script&lang=ts& ***!
-  \*********************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/breadcrumbs.vue?vue&type=script&lang=ts& ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78574,9 +78719,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/breadcrumbs.vue?vue&type=template&id=fb632220&":
-/*!***************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/breadcrumbs.vue?vue&type=template&id=fb632220& ***!
-  \***************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/breadcrumbs.vue?vue&type=template&id=fb632220& ***!
+  \**********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78592,9 +78737,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/button.vue":
-/*!***************************************************!*\
-  !*** c:/dev/v-semantic/src/components/button.vue ***!
-  \***************************************************/
+/*!**********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/button.vue ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78632,9 +78777,9 @@ component.options.__file = "src/components/button.vue"
 /***/ }),
 
 /***/ "../../src/components/button.vue?vue&type=script&lang=ts&":
-/*!****************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/button.vue?vue&type=script&lang=ts& ***!
-  \****************************************************************************/
+/*!***********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/button.vue?vue&type=script&lang=ts& ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78648,9 +78793,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/button.vue?vue&type=style&index=0&lang=css&":
-/*!************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/button.vue?vue&type=style&index=0&lang=css& ***!
-  \************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/button.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78664,9 +78809,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/button.vue?vue&type=template&id=eae7ef7c&":
-/*!**********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/button.vue?vue&type=template&id=eae7ef7c& ***!
-  \**********************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/button.vue?vue&type=template&id=eae7ef7c& ***!
+  \*****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78682,9 +78827,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/checkbox.vue":
-/*!*****************************************************!*\
-  !*** c:/dev/v-semantic/src/components/checkbox.vue ***!
-  \*****************************************************/
+/*!************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/checkbox.vue ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78720,9 +78865,9 @@ component.options.__file = "src/components/checkbox.vue"
 /***/ }),
 
 /***/ "../../src/components/checkbox.vue?vue&type=script&lang=ts&":
-/*!******************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/checkbox.vue?vue&type=script&lang=ts& ***!
-  \******************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/checkbox.vue?vue&type=script&lang=ts& ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78736,9 +78881,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/checkbox.vue?vue&type=template&id=8903635a&":
-/*!************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/checkbox.vue?vue&type=template&id=8903635a& ***!
-  \************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/checkbox.vue?vue&type=template&id=8903635a& ***!
+  \*******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78754,9 +78899,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/data/holders.ts":
-/*!********************************************************!*\
-  !*** c:/dev/v-semantic/src/components/data/holders.ts ***!
-  \********************************************************/
+/*!***************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/data/holders.ts ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78794,9 +78939,9 @@ exports.FieldInput = {
 /***/ }),
 
 /***/ "../../src/components/data/modeled.ts":
-/*!********************************************************!*\
-  !*** c:/dev/v-semantic/src/components/data/modeled.ts ***!
-  \********************************************************/
+/*!***************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/data/modeled.ts ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78904,9 +79049,9 @@ exports.default = Modeled;
 /***/ }),
 
 /***/ "../../src/components/data/molded.ts":
-/*!*******************************************************!*\
-  !*** c:/dev/v-semantic/src/components/data/molded.ts ***!
-  \*******************************************************/
+/*!**************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/data/molded.ts ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78937,7 +79082,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
-var deep = __webpack_require__(/*! lib/deep */ "../../src/lib/deep.ts");
+var js_object_ext_1 = __webpack_require__(/*! js-object-ext */ "../../node_modules/js-object-ext/dist/index.js");
 var utils_1 = __webpack_require__(/*! lib/utils */ "../../src/lib/utils.ts");
 var render_1 = __webpack_require__(/*! lib/render */ "../../src/lib/render.ts");
 var scope_1 = __webpack_require__(/*! ./scope */ "../../src/components/data/scope.ts");
@@ -78970,9 +79115,9 @@ function molded(slotNames) {
         });
         Object.defineProperty(Property.prototype, "path", {
             get: function () {
-                var rv = deep.path(this.prop);
+                var rv = js_object_ext_1.pathed(this.prop);
                 console.assert(!!rv, 'Property path is defined');
-                return rv;
+                return rv.join('.');
             },
             enumerable: true,
             configurable: true
@@ -79138,9 +79283,9 @@ exports.default = molded;
 /***/ }),
 
 /***/ "../../src/components/data/scope.ts":
-/*!******************************************************!*\
-  !*** c:/dev/v-semantic/src/components/data/scope.ts ***!
-  \******************************************************/
+/*!*************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/data/scope.ts ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -79167,7 +79312,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
-var deep = __webpack_require__(/*! lib/deep */ "../../src/lib/deep.ts");
+var js_object_ext_1 = __webpack_require__(/*! js-object-ext */ "../../node_modules/js-object-ext/dist/index.js");
 var vue_property_decorator_1 = __webpack_require__(/*! vue-property-decorator */ "../../node_modules/vue-property-decorator/lib/vue-property-decorator.js");
 var emptyModel = Object.freeze({});
 var modelScoped = /** @class */ (function (_super) {
@@ -79224,7 +79369,7 @@ function propertyScope(property, model, errScope) {
                     delete this.inputError;
                 }
                 try {
-                    deep.set(model, this.path, this.moldInput(value));
+                    js_object_ext_1.set(model, this.path, this.moldInput(value));
                 }
                 catch (error) {
                     errScope.specific.push(this.inputError = {
@@ -79236,7 +79381,7 @@ function propertyScope(property, model, errScope) {
                 }
             },
             get: function () {
-                return this.moldOutput(deep.get(model, this.path));
+                return this.moldOutput(js_object_ext_1.get(model, this.path));
             }
         }
     });
@@ -79247,9 +79392,9 @@ exports.propertyScope = propertyScope;
 /***/ }),
 
 /***/ "../../src/components/dimmable.vue":
-/*!*****************************************************!*\
-  !*** c:/dev/v-semantic/src/components/dimmable.vue ***!
-  \*****************************************************/
+/*!************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/dimmable.vue ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79285,9 +79430,9 @@ component.options.__file = "src/components/dimmable.vue"
 /***/ }),
 
 /***/ "../../src/components/dimmable.vue?vue&type=script&lang=ts&":
-/*!******************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/dimmable.vue?vue&type=script&lang=ts& ***!
-  \******************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/dimmable.vue?vue&type=script&lang=ts& ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79301,9 +79446,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/dimmable.vue?vue&type=template&id=9fd30762&":
-/*!************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/dimmable.vue?vue&type=template&id=9fd30762& ***!
-  \************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/dimmable.vue?vue&type=template&id=9fd30762& ***!
+  \*******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79319,9 +79464,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/dimmer.vue":
-/*!***************************************************!*\
-  !*** c:/dev/v-semantic/src/components/dimmer.vue ***!
-  \***************************************************/
+/*!**********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/dimmer.vue ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79357,9 +79502,9 @@ component.options.__file = "src/components/dimmer.vue"
 /***/ }),
 
 /***/ "../../src/components/dimmer.vue?vue&type=script&lang=ts&":
-/*!****************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/dimmer.vue?vue&type=script&lang=ts& ***!
-  \****************************************************************************/
+/*!***********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/dimmer.vue?vue&type=script&lang=ts& ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79373,9 +79518,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/dimmer.vue?vue&type=template&id=259dc562&":
-/*!**********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/dimmer.vue?vue&type=template&id=259dc562& ***!
-  \**********************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/dimmer.vue?vue&type=template&id=259dc562& ***!
+  \*****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79391,9 +79536,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/flag.vue":
-/*!*************************************************!*\
-  !*** c:/dev/v-semantic/src/components/flag.vue ***!
-  \*************************************************/
+/*!********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/flag.vue ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79429,9 +79574,9 @@ component.options.__file = "src/components/flag.vue"
 /***/ }),
 
 /***/ "../../src/components/flag.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/flag.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/flag.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79445,9 +79590,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/flag.vue?vue&type=template&id=326eb17c&":
-/*!********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/flag.vue?vue&type=template&id=326eb17c& ***!
-  \********************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/flag.vue?vue&type=template&id=326eb17c& ***!
+  \***************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79463,9 +79608,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/form/field.vue":
-/*!*******************************************************!*\
-  !*** c:/dev/v-semantic/src/components/form/field.vue ***!
-  \*******************************************************/
+/*!**************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/form/field.vue ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79501,9 +79646,9 @@ component.options.__file = "src/components/form/field.vue"
 /***/ }),
 
 /***/ "../../src/components/form/field.vue?vue&type=script&lang=ts&":
-/*!********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/form/field.vue?vue&type=script&lang=ts& ***!
-  \********************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/form/field.vue?vue&type=script&lang=ts& ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79517,9 +79662,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/form/field.vue?vue&type=template&id=51738e7f&":
-/*!**************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/form/field.vue?vue&type=template&id=51738e7f& ***!
-  \**************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/form/field.vue?vue&type=template&id=51738e7f& ***!
+  \*********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79535,9 +79680,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/form/index.vue":
-/*!*******************************************************!*\
-  !*** c:/dev/v-semantic/src/components/form/index.vue ***!
-  \*******************************************************/
+/*!**************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/form/index.vue ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79573,9 +79718,9 @@ component.options.__file = "src/components/form/index.vue"
 /***/ }),
 
 /***/ "../../src/components/form/index.vue?vue&type=script&lang=ts&":
-/*!********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/form/index.vue?vue&type=script&lang=ts& ***!
-  \********************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/form/index.vue?vue&type=script&lang=ts& ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79589,9 +79734,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/form/index.vue?vue&type=template&id=542f2b52&":
-/*!**************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/form/index.vue?vue&type=template&id=542f2b52& ***!
-  \**************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/form/index.vue?vue&type=template&id=542f2b52& ***!
+  \*********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79607,9 +79752,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/icon.vue":
-/*!*************************************************!*\
-  !*** c:/dev/v-semantic/src/components/icon.vue ***!
-  \*************************************************/
+/*!********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/icon.vue ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79645,9 +79790,9 @@ component.options.__file = "src/components/icon.vue"
 /***/ }),
 
 /***/ "../../src/components/icon.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/icon.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/icon.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79661,9 +79806,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/icon.vue?vue&type=template&id=b37ebfee&":
-/*!********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/icon.vue?vue&type=template&id=b37ebfee& ***!
-  \********************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/icon.vue?vue&type=template&id=b37ebfee& ***!
+  \***************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79679,9 +79824,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/input.vue":
-/*!**************************************************!*\
-  !*** c:/dev/v-semantic/src/components/input.vue ***!
-  \**************************************************/
+/*!*********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/input.vue ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79717,9 +79862,9 @@ component.options.__file = "src/components/input.vue"
 /***/ }),
 
 /***/ "../../src/components/input.vue?vue&type=script&lang=ts&":
-/*!***************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/input.vue?vue&type=script&lang=ts& ***!
-  \***************************************************************************/
+/*!**********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/input.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79733,9 +79878,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/input.vue?vue&type=template&id=45dba22c&":
-/*!*********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/input.vue?vue&type=template&id=45dba22c& ***!
-  \*********************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/input.vue?vue&type=template&id=45dba22c& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79751,9 +79896,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/modal.vue":
-/*!**************************************************!*\
-  !*** c:/dev/v-semantic/src/components/modal.vue ***!
-  \**************************************************/
+/*!*********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/modal.vue ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79789,9 +79934,9 @@ component.options.__file = "src/components/modal.vue"
 /***/ }),
 
 /***/ "../../src/components/modal.vue?vue&type=script&lang=ts&":
-/*!***************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/modal.vue?vue&type=script&lang=ts& ***!
-  \***************************************************************************/
+/*!**********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/modal.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79805,9 +79950,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/modal.vue?vue&type=template&id=0eaeaf66&":
-/*!*********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/modal.vue?vue&type=template&id=0eaeaf66& ***!
-  \*********************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/modal.vue?vue&type=template&id=0eaeaf66& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79823,9 +79968,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/panel.vue":
-/*!**************************************************!*\
-  !*** c:/dev/v-semantic/src/components/panel.vue ***!
-  \**************************************************/
+/*!*********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/panel.vue ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79861,9 +80006,9 @@ component.options.__file = "src/components/panel.vue"
 /***/ }),
 
 /***/ "../../src/components/panel.vue?vue&type=script&lang=ts&":
-/*!***************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/panel.vue?vue&type=script&lang=ts& ***!
-  \***************************************************************************/
+/*!**********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/panel.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79877,9 +80022,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/panel.vue?vue&type=template&id=1ef73424&":
-/*!*********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/panel.vue?vue&type=template&id=1ef73424& ***!
-  \*********************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/panel.vue?vue&type=template&id=1ef73424& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79895,9 +80040,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/progress.vue":
-/*!*****************************************************!*\
-  !*** c:/dev/v-semantic/src/components/progress.vue ***!
-  \*****************************************************/
+/*!************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/progress.vue ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79933,9 +80078,9 @@ component.options.__file = "src/components/progress.vue"
 /***/ }),
 
 /***/ "../../src/components/progress.vue?vue&type=script&lang=ts&":
-/*!******************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/progress.vue?vue&type=script&lang=ts& ***!
-  \******************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/progress.vue?vue&type=script&lang=ts& ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79949,9 +80094,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/progress.vue?vue&type=template&id=48caafbd&":
-/*!************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/progress.vue?vue&type=template&id=48caafbd& ***!
-  \************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/progress.vue?vue&type=template&id=48caafbd& ***!
+  \*******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79967,9 +80112,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/select/index.vue":
-/*!*********************************************************!*\
-  !*** c:/dev/v-semantic/src/components/select/index.vue ***!
-  \*********************************************************/
+/*!****************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/select/index.vue ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80007,9 +80152,9 @@ component.options.__file = "src/components/select/index.vue"
 /***/ }),
 
 /***/ "../../src/components/select/index.vue?vue&type=script&lang=ts&":
-/*!**********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/select/index.vue?vue&type=script&lang=ts& ***!
-  \**********************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/select/index.vue?vue&type=script&lang=ts& ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80023,9 +80168,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/select/index.vue?vue&type=style&index=0&lang=css&":
-/*!******************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/select/index.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/select/index.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80039,9 +80184,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/select/index.vue?vue&type=template&id=6018a2e2&":
-/*!****************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/select/index.vue?vue&type=template&id=6018a2e2& ***!
-  \****************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/select/index.vue?vue&type=template&id=6018a2e2& ***!
+  \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80057,9 +80202,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/select/option.vue":
-/*!**********************************************************!*\
-  !*** c:/dev/v-semantic/src/components/select/option.vue ***!
-  \**********************************************************/
+/*!*****************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/select/option.vue ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80095,9 +80240,9 @@ component.options.__file = "src/components/select/option.vue"
 /***/ }),
 
 /***/ "../../src/components/select/option.vue?vue&type=script&lang=ts&":
-/*!***********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/select/option.vue?vue&type=script&lang=ts& ***!
-  \***********************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/select/option.vue?vue&type=script&lang=ts& ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80111,9 +80256,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/select/option.vue?vue&type=template&id=5678f108&":
-/*!*****************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/select/option.vue?vue&type=template&id=5678f108& ***!
-  \*****************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/select/option.vue?vue&type=template&id=5678f108& ***!
+  \************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80129,9 +80274,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/sidebar.vue":
-/*!****************************************************!*\
-  !*** c:/dev/v-semantic/src/components/sidebar.vue ***!
-  \****************************************************/
+/*!***********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/sidebar.vue ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80167,9 +80312,9 @@ component.options.__file = "src/components/sidebar.vue"
 /***/ }),
 
 /***/ "../../src/components/sidebar.vue?vue&type=script&lang=ts&":
-/*!*****************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/sidebar.vue?vue&type=script&lang=ts& ***!
-  \*****************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/sidebar.vue?vue&type=script&lang=ts& ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80183,9 +80328,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/sidebar.vue?vue&type=template&id=19f8877c&":
-/*!***********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/sidebar.vue?vue&type=template&id=19f8877c& ***!
-  \***********************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/sidebar.vue?vue&type=template&id=19f8877c& ***!
+  \******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80201,9 +80346,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/checkbox-column.vue":
-/*!******************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/checkbox-column.vue ***!
-  \******************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/checkbox-column.vue ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80239,9 +80384,9 @@ component.options.__file = "src/components/table/checkbox-column.vue"
 /***/ }),
 
 /***/ "../../src/components/table/checkbox-column.vue?vue&type=script&lang=ts&":
-/*!*******************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/checkbox-column.vue?vue&type=script&lang=ts& ***!
-  \*******************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/checkbox-column.vue?vue&type=script&lang=ts& ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80255,9 +80400,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/checkbox-column.vue?vue&type=template&id=97a7fe02&":
-/*!*************************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/checkbox-column.vue?vue&type=template&id=97a7fe02& ***!
-  \*************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/checkbox-column.vue?vue&type=template&id=97a7fe02& ***!
+  \********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80273,9 +80418,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/column.vue":
-/*!*********************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/column.vue ***!
-  \*********************************************************/
+/*!****************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/column.vue ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80311,9 +80456,9 @@ component.options.__file = "src/components/table/column.vue"
 /***/ }),
 
 /***/ "../../src/components/table/column.vue?vue&type=script&lang=ts&":
-/*!**********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/column.vue?vue&type=script&lang=ts& ***!
-  \**********************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/column.vue?vue&type=script&lang=ts& ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80327,9 +80472,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/column.vue?vue&type=template&id=782d5d72&":
-/*!****************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/column.vue?vue&type=template&id=782d5d72& ***!
-  \****************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/column.vue?vue&type=template&id=782d5d72& ***!
+  \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80345,9 +80490,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/index.vue":
-/*!********************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/index.vue ***!
-  \********************************************************/
+/*!***************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/index.vue ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80385,9 +80530,9 @@ component.options.__file = "src/components/table/index.vue"
 /***/ }),
 
 /***/ "../../src/components/table/index.vue?vue&type=script&lang=ts&":
-/*!*********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/index.vue?vue&type=script&lang=ts& ***!
-  \*********************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/index.vue?vue&type=script&lang=ts& ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80401,9 +80546,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/index.vue?vue&type=style&index=0&lang=css&":
-/*!*****************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/index.vue?vue&type=style&index=0&lang=css& ***!
-  \*****************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/index.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80417,9 +80562,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/index.vue?vue&type=template&id=6ed10cf1&":
-/*!***************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/index.vue?vue&type=template&id=6ed10cf1& ***!
-  \***************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/index.vue?vue&type=template&id=6ed10cf1& ***!
+  \**********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80435,9 +80580,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/row-edit-column.vue":
-/*!******************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/row-edit-column.vue ***!
-  \******************************************************************/
+/*!*************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/row-edit-column.vue ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80473,9 +80618,9 @@ component.options.__file = "src/components/table/row-edit-column.vue"
 /***/ }),
 
 /***/ "../../src/components/table/row-edit-column.vue?vue&type=script&lang=ts&":
-/*!*******************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/row-edit-column.vue?vue&type=script&lang=ts& ***!
-  \*******************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/row-edit-column.vue?vue&type=script&lang=ts& ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80489,9 +80634,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/table/row-edit-column.vue?vue&type=template&id=2b101265&":
-/*!*************************************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/table/row-edit-column.vue?vue&type=template&id=2b101265& ***!
-  \*************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/table/row-edit-column.vue?vue&type=template&id=2b101265& ***!
+  \********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80507,9 +80652,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/tabs.vue":
-/*!*************************************************!*\
-  !*** c:/dev/v-semantic/src/components/tabs.vue ***!
-  \*************************************************/
+/*!********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/tabs.vue ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80547,9 +80692,9 @@ component.options.__file = "src/components/tabs.vue"
 /***/ }),
 
 /***/ "../../src/components/tabs.vue?vue&type=script&lang=ts&":
-/*!**************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/tabs.vue?vue&type=script&lang=ts& ***!
-  \**************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/tabs.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80563,9 +80708,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/tabs.vue?vue&type=style&index=0&lang=css&":
-/*!**********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/tabs.vue?vue&type=style&index=0&lang=css& ***!
-  \**********************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/tabs.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80579,9 +80724,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/components/tabs.vue?vue&type=template&id=c58ee6e4&":
-/*!********************************************************************************!*\
-  !*** c:/dev/v-semantic/src/components/tabs.vue?vue&type=template&id=c58ee6e4& ***!
-  \********************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/components/tabs.vue?vue&type=template&id=c58ee6e4& ***!
+  \***************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80597,9 +80742,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../src/directives.ts":
-/*!*******************************************!*\
-  !*** c:/dev/v-semantic/src/directives.ts ***!
-  \*******************************************/
+/*!**************************************************!*\
+  !*** C:/dev/github/v-semantic/src/directives.ts ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -80617,9 +80762,9 @@ exports.DimmParts = dimm_parts_1.default;
 /***/ }),
 
 /***/ "../../src/directives/command.ts":
-/*!***************************************************!*\
-  !*** c:/dev/v-semantic/src/directives/command.ts ***!
-  \***************************************************/
+/*!**********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/directives/command.ts ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -80677,9 +80822,9 @@ exports.default = {
 /***/ }),
 
 /***/ "../../src/directives/dimm-parts.ts":
-/*!******************************************************!*\
-  !*** c:/dev/v-semantic/src/directives/dimm-parts.ts ***!
-  \******************************************************/
+/*!*************************************************************!*\
+  !*** C:/dev/github/v-semantic/src/directives/dimm-parts.ts ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -80722,9 +80867,9 @@ exports.default = default_1;
 /***/ }),
 
 /***/ "../../src/directives/loading.ts":
-/*!***************************************************!*\
-  !*** c:/dev/v-semantic/src/directives/loading.ts ***!
-  \***************************************************/
+/*!**********************************************************!*\
+  !*** C:/dev/github/v-semantic/src/directives/loading.ts ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -80757,9 +80902,9 @@ exports.default = {
 /***/ }),
 
 /***/ "../../src/index.ts":
-/*!**************************************!*\
-  !*** c:/dev/v-semantic/src/index.ts ***!
-  \**************************************/
+/*!*********************************************!*\
+  !*** C:/dev/github/v-semantic/src/index.ts ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -80796,9 +80941,9 @@ instead of
 /***/ }),
 
 /***/ "../../src/lib/classed.ts":
-/*!********************************************!*\
-  !*** c:/dev/v-semantic/src/lib/classed.ts ***!
-  \********************************************/
+/*!***************************************************!*\
+  !*** C:/dev/github/v-semantic/src/lib/classed.ts ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -80908,120 +81053,10 @@ exports.default = classed;
 
 /***/ }),
 
-/***/ "../../src/lib/deep.ts":
-/*!*****************************************!*\
-  !*** c:/dev/v-semantic/src/lib/deep.ts ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function path(name) {
-    if (!name)
-        return;
-    var keys = [];
-    for (var _i = 0, _a = name.split('.'); _i < _a.length; _i++) {
-        var key = _a[_i];
-        var subs = /^(.*?)(\[.*\])?$/.exec(key);
-        keys.push(subs[1]);
-        if (subs[2])
-            keys.push.apply(keys, subs[2].split(']['));
-    }
-    return keys.join('.');
-}
-exports.path = path;
-function recur(obj, path) {
-    if (!obj || !path)
-        return;
-    var keys = path.split('.'), lvalue;
-    lvalue = keys.pop();
-    for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
-        var key = keys_1[_i];
-        if (!(obj = obj[key]))
-            return;
-    }
-    return { obj: obj, key: lvalue };
-}
-function set(obj, path, value) {
-    var lv = recur(obj, path);
-    if (!lv)
-        return false;
-    if (undefined === value)
-        delete lv.obj[lv.key];
-    else
-        lv.obj[lv.key] = value;
-    return true;
-}
-exports.set = set;
-function get(obj, path) {
-    var lv = recur(obj, path);
-    return lv && lv.obj[lv.key];
-}
-exports.get = get;
-// https://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects/16788517#16788517
-function equals(x, y) {
-    if (x === null || x === undefined || y === null || y === undefined) {
-        return x === y;
-    }
-    // after this just checking type of one would be enough
-    if (x.constructor !== y.constructor) {
-        return false;
-    }
-    // if they are functions, they should exactly refer to same one (because of closures)
-    if (x instanceof Function) {
-        return x === y;
-    }
-    // if they are regexps, they should exactly refer to same one (it is hard to better equality check on current ES)
-    if (x instanceof RegExp) {
-        return x === y;
-    }
-    if (x === y || x.valueOf() === y.valueOf()) {
-        return true;
-    }
-    if (Array.isArray(x) && x.length !== y.length) {
-        return false;
-    }
-    // if they are dates, they must had equal valueOf
-    if (x instanceof Date) {
-        return false;
-    }
-    // if they are strictly equal, they both need to be object at least
-    if (!(x instanceof Object)) {
-        return false;
-    }
-    if (!(y instanceof Object)) {
-        return false;
-    }
-    // recursive object equality check
-    var p = Object.keys(x);
-    return Object.keys(y).every(function (i) { return p.indexOf(i) !== -1; }) &&
-        p.every(function (i) { return equals(x[i], y[i]); });
-}
-exports.equals = equals;
-//Can be used for deep cloning
-function copy(src, dst) {
-    if (src instanceof Array)
-        return [].concat(src).map(function (x) { return copy(x); });
-    if (!src || !src.constructor || Object !== src.constructor)
-        return src;
-    if (!dst || !dst.constructor || Object !== dst.constructor)
-        dst = {};
-    for (var key in src) {
-        dst[key] = copy(src[key], dst[key]);
-    }
-    return dst;
-}
-exports.copy = copy;
-
-
-/***/ }),
-
 /***/ "../../src/lib/module.ts":
-/*!*******************************************!*\
-  !*** c:/dev/v-semantic/src/lib/module.ts ***!
-  \*******************************************/
+/*!**************************************************!*\
+  !*** C:/dev/github/v-semantic/src/lib/module.ts ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81145,9 +81180,9 @@ exports.VueSemantic = VueSemantic;
 /***/ }),
 
 /***/ "../../src/lib/render.ts":
-/*!*******************************************!*\
-  !*** c:/dev/v-semantic/src/lib/render.ts ***!
-  \*******************************************/
+/*!**************************************************!*\
+  !*** C:/dev/github/v-semantic/src/lib/render.ts ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81195,9 +81230,9 @@ exports.updateWrap = updateWrap;
 /***/ }),
 
 /***/ "../../src/lib/string.ts":
-/*!*******************************************!*\
-  !*** c:/dev/v-semantic/src/lib/string.ts ***!
-  \*******************************************/
+/*!**************************************************!*\
+  !*** C:/dev/github/v-semantic/src/lib/string.ts ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81242,48 +81277,18 @@ exports.capitalizeEachWord = capitalizeEachWord;
 
 /***/ }),
 
-/***/ "../../src/lib/utils.js":
-/*!******************************************!*\
-  !*** c:/dev/v-semantic/src/lib/utils.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function compose(config, property, callback) {
-	if(!callback) return;
-	if(!config[property])
-		config[property] = callback;
-	else if(config[property].composed)
-		config[property].composed.push(callback);
-	else {
-		function composed() {
-			for(var cb of callee.composed)
-				cb.apply(this, arguments);
-		}
-		composed.composed = [config[property], callback];
-	}
-}
-
-module.exports = {compose};
-
-/***/ }),
-
 /***/ "../../src/lib/utils.ts":
-/*!******************************************!*\
-  !*** c:/dev/v-semantic/src/lib/utils.ts ***!
-  \******************************************/
+/*!*************************************************!*\
+  !*** C:/dev/github/v-semantic/src/lib/utils.ts ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__(/*! vue */ "../../node_modules/vue/dist/vue.runtime.esm.js");
 var string_1 = __webpack_require__(/*! lib/string */ "../../src/lib/string.ts");
-__export(__webpack_require__(/*! ./utils.js */ "../../src/lib/utils.js"));
 var base37 = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 //Little-Endian Base37
 function nextLEB37(s) {
@@ -81335,7 +81340,7 @@ Object.assign(vue_1.default.prototype, {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = {"buttons":"<template>\r\n\t<div>\r\n\t\t<div>\r\n\t\t\t<s-modal v-model=\"modal1\" closable header=\"\">\r\n\t\t\t\tBlah Blah\r\n\t\t\t\t<s-button v-command:cancel>Cancel</s-button>\r\n\t\t\t\t<s-button v-command:ok>Ok</s-button>\r\n\t\t\t</s-modal>\r\n\t\t\t<s-button @click=\"modal1(()=> loading='This is ok...')\">\r\n\t\t\t\tmodal\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"blurred = !blurred\">\r\n\t\t\t\t<s-icon icon=\"save\" v-slot:prepend />\r\n\t\t\t\tblurr\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"+plus+red dont\" @click=\"loading = !loading\">\r\n\t\t\t\tloading\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"loading = !loading && 'loading!'\">\r\n\t\t\t\t<s-icon icon=\"minus\" v-slot:append />\r\n\t\t\t\tloading text\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"test\" ref=\"button\">\r\n\t\t\t\t<s-icon icon=\"add circle\" />\r\n\t\t\t\t<div class=\"ui special popup\">\r\n\t\t\t\t\t<div class=\"header\">Custom Header</div>\r\n\t\t\t\t\t<div class=\"ui button\">Click Me</div>\r\n\t\t\t\t</div>\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"add square\" />\r\n\t\t</div>\r\n\r\n\t\t<div>\r\n\t\t\t<s-dimmable blurring v-model=\"blurred\" icon=\"heart\" message=\"Dimmed Message!\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</s-dimmable>\r\n\t\t\t<div v-loading.indeterminate=\"loading\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Buttons extends Vue {\r\n\tblurred: boolean = false\r\n\tloading: boolean = false\r\n\tmodal1 = null\r\n\ttest() {\r\n\t\tdebugger;\r\n\t\t/*$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\ttitle   : 'Popup Title',\r\n\t\t\t\tcontent : 'Hello I am a popup'\r\n\t\t\t});\r\n\t\t$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\tinline: true\r\n\t\t\t});*/\r\n\t}\r\n}\r\n</script>","form":"<template>\r\n\t<div class=\"ui segments\">\r\n\t\t<s-form :model=\"model\"\r\n\t\t\t:schema=\"schema\"\r\n\t\t\tdisplay-errors\r\n\t\t\tlabel-width=\"200px\"\r\n\t\t\tinline\r\n\t\t\tclass=\"ui segment\"\r\n\t\t>\r\n\t\t\t<mold3 />\r\n\t\t\t<s-data-mold select=\"bool\">\r\n\t\t\t\t<label v-slot:prepend=\"field\" :style=\"field.labelStyle\" />\r\n\t\t\t\t<s-checkbox v-slot:input=\"field\" :label=\"field.label\" v-model=\"field.value\" />\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-data-mold>\r\n\t\t\t\t<label v-slot:prepend=\"field\"\r\n\t\t\t\t\t\t:for=\"field.name\" class=\"ui label\" :style=\"field.labelStyle\">\r\n\t\t\t\t\t<h3>{{field.label}}</h3>\r\n\t\t\t\t</label>\r\n\t\t\t\t<s-input v-slot:input=\"field\" :name=\"field.name\" v-model=\"field.value\">\r\n\t\t\t\t\t<s-icon v-slot:prepend :icon=\"field.info || ''\" />\r\n\t\t\t\t</s-input>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-field inline prop=\"big\" label=\"Big\" type=\"bool\" />\r\n\t\t\t<s-field prop=\"firstName\" label=\"First name\" info=\"hand pointer\" />\r\n\t\t\t<s-field prop=\"lastName\" label=\"Last name\" info=\"signal\" />\r\n\t\t\t<s-field prop=\"deep.reason\" label=\"Deep reason\"\r\n\t\t\t\t:input=\"checkNumber\"\r\n\t\t\t\t:output=\"x=> ''+ x\"\r\n\t\t\t/>\r\n\t\t\t<s-field prop=\"deep.thinking\" label=\"Deep thinking\">\r\n\t\t\t\t<s-select v-slot;input=\"field\"\r\n\t\t\t\t\tv-model=\"field.value\"\r\n\t\t\t\t\t:options=\"['Too much'].concat(field.schema.enum)\" />\r\n\t\t\t</s-field>\r\n\t\t\t<s-field prop=\"light\" label=\"Light\" type=\"3clr\" />\r\n\t\t\t<s-field prop=\"light\" label=\"[repeated]\" type=\"3clr\" :edit=\"false\" />\r\n\t\t</s-form>\r\n\t\t<div class=\"ui segment\">\r\n\t\t\t<h1>Out of the form</h1>\r\n\t\t\t<div>\r\n\t\t\t\t<s-checkbox style=\"display: block;\" v-model=\"model.big\" label=\"model.big\" />\r\n\t\t\t\t<s-input style=\"display: block;\" v-model=\"model.firstName\" />\r\n\t\t\t\t<s-select v-model=\"model.light\" :options=\"['red', 'orange', 'green']\" />\r\n\t\t\t</div>\r\n\t\t\t{{model}}\r\n\t\t\t<s-button style=\"display: block;\" @click=\"reInit\">Re-init</s-button>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'\r\nimport { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'\r\nimport mold3 from '../3clr/mold.vue'\r\n\r\n@DataModel()\r\nclass Deep {\r\n\t@Property() reason: number\r\n\t@Enum('Yes', 'No') thinking: string\r\n}\r\n@DataModel()\r\nclass Person {\r\n\t@Property() big: boolean\r\n\t@MinLength() firstName: string\r\n\t@Property() lastName: string\r\n\t@Enum('red', 'orange', 'green') light: string\r\n\t@Property() deep: Deep\r\n}\r\n\r\n@Component({components:{mold3}})\r\nexport default class Form extends Vue {\r\n\tcreated() { this.reInit(); }\r\n\tcheckNumber(string) {\r\n\t\tvar rv = Number(string);\r\n\t\tif(isNaN(rv)) throw new Error('Bad number');\r\n\t\treturn rv;\r\n\t}\r\n\treInit() {\r\n\t\tthis.model = {\r\n\t\t\tfirstName: \"\",\r\n\t\t\tlastName: \"\",\r\n\t\t\tbig: false,\r\n\t\t\tlight: \"\",\r\n\t\t\tdeep: {\r\n\t\t\t\treason: 42,\r\n\t\t\t\tthinking: 'Yes'\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tmodel: Person = null\r\n\tschema = (<any>Person).schema\r\n}\r\n</script>","inputs":"<template>\r\n\t<div>\r\n\t\t<s-input>\r\n\t\t\t<s-icon v-slot:prepend circular link icon=\"search\" @click=\"testme\" />\r\n\t\t\t<s-select class=\"label\" v-slot:append v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t\t</s-select>\r\n\t\t</s-input>\r\n\t\t<div>\r\n\t\t\t<label>Drop down:</label>\r\n\t\t\t{{ddn}}\r\n\t\t</div>\r\n\t\t<s-select name=\"extSelect\" style=\"display: block;\" inline action=\"select\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t</s-select>\r\n\t\t<s-checkbox name=\"checkyes\" label=\"Yes!\" v-model=\"tchk\" />\r\n\t\t<div>\r\n\t\t\t<label>Checked:</label>\r\n\t\t\t{{tchk}}\r\n\t\t</div>\r\n\t\t<div>\r\n\t\t\t<s-input name=\"dimmedMinus\" inline v-dimm-parts:minus.inverted>\r\n\t\t\t\t<s-button v-slot:append class=\"input-dimmed\" icon=\"minus\" dimmed-part=\"minus\" />\r\n\t\t\t</s-input>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Inputs extends Vue {\r\n\tddn = ''\r\n\ttchk: boolean = true\r\n\ttestme() {\r\n\t\tconsole.log('icon click');\r\n\t}\r\n}\r\n</script>","panels":"<template>\r\n\t<div>\r\n\t\t<s-accordion v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-accordion>\r\n\t\t<s-tabs v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"bottom\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"left\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"right\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Tabs extends Vue {\r\n\tselected: string = null\r\n}\r\n</script>","progress":"<template>\r\n\t<div class=\"progress-test\">\r\n\t\tFake crumbs:\r\n\t\t<s-breadcrumbs :crumbs=\"crumbs\" />\r\n\t\t<s-progress :percent=\"percent\" v-model=\"status\" />\r\n\t\t<s-progress :value=\"value\" :total=\"total\" indicating ratio v-model=\"status\">\r\n\t\t\tindicating ratio\r\n\t\t</s-progress>\r\n\t\t<div class=\"ui inverted segment\">\r\n\t\t\t<s-progress :percent=\"percent\" inverted v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{percent}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left}% to go...\"\r\n\t\t\t\tsuccess-text=\"{percent}% done\"\r\n\t\t\t/>\r\n\t\t\t<s-progress inverted indicating :value=\"value\" :total=\"total\" ratio v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{value}/{total}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left} to go...\"\r\n\t\t\t\tsuccess-text=\"{value} done\"\r\n\t\t\t/>\r\n\t\t</div>\r\n\r\n\t\t<s-select v-model=\"status\" placeholder=\"status\">\r\n\t\t\t<s-option value=\"active\" />\r\n\t\t\t<s-option value=\"warning\" />\r\n\t\t\t<s-option value=\"success\" />\r\n\t\t\t<s-option value=\"error\" />\r\n\t\t</s-select>\r\n\t\t<div @mousedown=\"md\">\r\n\t\t\tClick here :\r\n\t\t\t<div class=\"command\" style=\"background: black;\" @mousemove=\"mm({offsetX: 0})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" :style=\"{background: 'grey', width: width+'px'}\" @mousemove=\"mm\">\r\n\t\t\t\t{{setValue}}/{{total}} -- {{setPercent}}%\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: green;\" @mousemove=\"mm({offsetX: width})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<style>\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n</style>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Progress extends Vue {\r\n\tcrumbs = [{\r\n\t\ttext: 'Panels',\r\n\t\tname: 'panels'\r\n\t}, {\r\n\t\ttext: 'Buttons',\r\n\t\tname: 'buttons'\r\n\t}, {\r\n\t\ttext: 'Form',\r\n\t\tname: 'form'\r\n\t}, {\r\n\t\ttext: 'Inputs',\r\n\t\tname: 'inputs'\r\n\t}, {\r\n\t\ttext: 'Progress',\r\n\t\tname: 'progress'\r\n\t}]\r\n\twidth = 400\r\n\tpercent = 0\r\n\tvalue = 0\r\n\ttotal = 23\r\n\tsetValue = 0\r\n\tsetPercent = 0\r\n\tstatus = null\r\n\tmounted() {\r\n\r\n\t}\r\n\tmm($event) {\r\n\t\tthis.setValue = Math.round($event.offsetX*this.total/this.width);\r\n\t\tthis.setPercent = Math.round($event.offsetX*100/this.width);\r\n\t}\r\n\tmd($event) {\r\n\t\tthis.percent = this.setPercent;\r\n\t\tthis.value = this.setValue;\r\n\t}\r\n}\r\n</script>","sidebars":"<template>\r\n\t<div>\r\n\t\t<s-sidebar direction=\"left\" v-model=\"shown\">\r\n\t\t\tLorem ipsum\r\n\t\t</s-sidebar>\r\n\t\t<div class=\"pusher\">\r\n\t\t\t<s-checkbox label=\"visible\" v-model=\"shown\" />\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Sidebars extends Vue {\r\n\tshown: boolean = false\t//TODO: it fails when initialised at true for now\r\n}\r\n</script>","table":"<template>\r\n\t<div>\r\n\t\t<s-table\r\n\t\t\tcelled\r\n\t\t\tselectable\r\n\t\t\tv-model=\"my_row\"\r\n\t\t\t:rows=\"my_rows\"\r\n\t\t\tvery-basic\r\n\t\t\t:body-height=\"500\"\r\n\t\t>\r\n\t\t\t<mold3 />\r\n\t\t\t<template v-slot:header>\r\n\t\t\t\t<div>\r\n\t\t\t\t\tIn-table header\r\n\t\t\t\t</div>\r\n\t\t\t</template>\r\n\t\t\t<s-checkbox-column v-model=\"my_selection\" />\r\n\t\t\t<s-column prop=\"a\" width=\"300\" header=\"a\" edit />\r\n\t\t\t<s-column header=\"A\">\r\n\t\t\t\t<template v-slot:cell=\"scope\">\r\n\t\t\t\t\ta{{scope.model.a}}-b{{scope.model.b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"b\">\r\n\t\t\t\t<template v-slot:header>\r\n\t\t\t\t\tB sum={{sum_b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"deep.reason\" header=\"Q?\" edit />\r\n\t\t\t<s-column prop=\"light\" header=\"\" edit type=\"3clr\" />\r\n\t\t\t<s-row-edit-column\r\n\t\t\t\t@edit=\"(row, state)=> copy(row, state)\"\r\n\t\t\t\t@cancel=\"(row, state)=> copy(state, row)\"\r\n\t\t\t/>\r\n\t\t</s-table>\r\n\t\t<div>\r\n\t\t\t<p><h3>current-row</h3> {{my_row}} </p>\r\n\t\t\t<p><h3>selection</h3> {{my_selection}} </p>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component, Inject, Model, Prop, Watch, Emit} from 'vue-property-decorator'\r\nimport {copy} from 'lib/deep'\r\nimport mold3 from '../3clr/mold.vue'\r\n\r\nvar rows = (new Array(20)).fill(null).map((x,i)=> ({\r\n\ta: ''+i*2,\r\n\tb:i*2+1,\r\n\tlight: '',\r\n\tdeep: {reason: 42}\r\n}));\r\n@Component({components:{mold3}})\r\nexport default class Table extends Vue {\r\n\tcopy = copy\r\n\tmy_row = null\r\n\tmy_rows = rows\r\n\tmy_selection = []\r\n\tget sum_b() {\r\n\t\treturn this.my_rows.reduce((acc, row)=> acc + row.b, 0);\r\n\t}\r\n}\r\n</script>"};
+module.exports = {"buttons":"<template>\r\n\t<div>\r\n\t\t<div>\r\n\t\t\t<s-modal v-model=\"modal1\" closable header=\"\">\r\n\t\t\t\tBlah Blah\r\n\t\t\t\t<s-button v-command:cancel>Cancel</s-button>\r\n\t\t\t\t<s-button v-command:ok>Ok</s-button>\r\n\t\t\t</s-modal>\r\n\t\t\t<s-button @click=\"modal1(()=> loading='This is ok...')\">\r\n\t\t\t\tmodal\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"blurred = !blurred\">\r\n\t\t\t\t<template v-slot:prepend><s-icon icon=\"save\" /></template>\r\n\t\t\t\tblurr\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"+plus+red dont\" @click=\"loading = !loading\">\r\n\t\t\t\tloading\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"loading = !loading && 'loading!'\">\r\n\t\t\t\t<template v-slot:append><s-icon icon=\"minus\" /></template>\r\n\t\t\t\tloading text\r\n\t\t\t</s-button>\r\n\t\t\t<s-button @click=\"test\" ref=\"button\">\r\n\t\t\t\t<s-icon icon=\"add circle\" />\r\n\t\t\t\t<div class=\"ui special popup\">\r\n\t\t\t\t\t<div class=\"header\">Custom Header</div>\r\n\t\t\t\t\t<div class=\"ui button\">Click Me</div>\r\n\t\t\t\t</div>\r\n\t\t\t</s-button>\r\n\t\t\t<s-button icon=\"add square\" />\r\n\t\t</div>\r\n\r\n\t\t<div>\r\n\t\t\t<s-dimmable blurring v-model=\"blurred\" icon=\"heart\" message=\"Dimmed Message!\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</s-dimmable>\r\n\t\t\t<div v-loading.indeterminate=\"loading\">\r\n\t\t\t\t<img class=\"ui medium image\" src=\"https://semantic-ui.com/images/wireframe/image.png\" />\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Buttons extends Vue {\r\n\tblurred: boolean = false\r\n\tloading: boolean = false\r\n\tmodal1 = null\r\n\ttest() {\r\n\t\tdebugger;\r\n\t\t/*$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\ttitle   : 'Popup Title',\r\n\t\t\t\tcontent : 'Hello I am a popup'\r\n\t\t\t});\r\n\t\t$(this.$refs.button)\r\n\t\t\t.popup({\r\n\t\t\t\tinline: true\r\n\t\t\t});*/\r\n\t}\r\n}\r\n</script>","form":"<template>\r\n\t<div class=\"ui segments\">\r\n\t\t<s-form :model=\"model\"\r\n\t\t\t:schema=\"schema\"\r\n\t\t\tdisplay-errors\r\n\t\t\tlabel-width=\"200px\"\r\n\t\t\tinline\r\n\t\t\tclass=\"ui segment\"\r\n\t\t>\r\n\t\t\t<mold3 />\r\n\t\t\t<s-data-mold select=\"bool\">\r\n\t\t\t\t<template v-slot:prepend=\"field\">\r\n\t\t\t\t\t<label :style=\"field.labelStyle\" />\r\n\t\t\t\t</template>\r\n\t\t\t\t<template v-slot:input=\"field\">\r\n\t\t\t\t\t<s-checkbox :label=\"field.label\" v-model=\"field.value\" />\r\n\t\t\t\t</template>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-data-mold>\r\n\t\t\t\t<template v-slot:prepend=\"field\">\r\n\t\t\t\t\t<label :for=\"field.name\" class=\"ui label\" :style=\"field.labelStyle\">\r\n\t\t\t\t\t\t<h3>{{field.label}}</h3>\r\n\t\t\t\t\t</label>\r\n\t\t\t\t</template>\r\n\t\t\t\t<template v-slot:input=\"field\">\r\n\t\t\t\t\t<s-input :name=\"field.name\" v-model=\"field.value\">\r\n\t\t\t\t\t\t<template v-slot:prepend>\r\n\t\t\t\t\t\t\t<s-icon :icon=\"field.info || ''\" />\r\n\t\t\t\t\t\t</template>\r\n\t\t\t\t\t</s-input>\r\n\t\t\t\t</template>\r\n\t\t\t</s-data-mold>\r\n\t\t\t<s-field inline prop=\"big\" label=\"Big\" type=\"bool\" />\r\n\t\t\t<s-field prop=\"firstName\" label=\"First name\" info=\"hand pointer\" />\r\n\t\t\t<s-field prop=\"lastName\" label=\"Last name\" info=\"signal\" />\r\n\t\t\t<s-field prop=\"deep.reason\" label=\"Deep reason\"\r\n\t\t\t\t:input=\"checkNumber\"\r\n\t\t\t\t:output=\"x=> ''+ x\"\r\n\t\t\t/>\r\n\t\t\t<s-field prop=\"deep.thinking\" label=\"Deep thinking\">\r\n\t\t\t\t<template v-slot:input=\"field\">\r\n\t\t\t\t\t<s-select v-model=\"field.value\"\r\n\t\t\t\t\t\t:options=\"['Too much'].concat(field.schema.enum)\" />\r\n\t\t\t\t</template>\r\n\t\t\t</s-field>\r\n\t\t\t<s-field prop=\"light\" label=\"Light\" type=\"3clr\" />\r\n\t\t\t<s-field prop=\"light\" label=\"[repeated]\" type=\"3clr\" :edit=\"false\" />\r\n\t\t</s-form>\r\n\t\t<div class=\"ui segment\">\r\n\t\t\t<h1>Out of the form</h1>\r\n\t\t\t<div>\r\n\t\t\t\t<s-checkbox style=\"display: block;\" v-model=\"model.big\" label=\"model.big\" />\r\n\t\t\t\t<s-input style=\"display: block;\" v-model=\"model.firstName\" />\r\n\t\t\t\t<s-select v-model=\"model.light\" :options=\"['red', 'orange', 'green']\" />\r\n\t\t\t</div>\r\n\t\t\t{{model}}\r\n\t\t\t<s-button style=\"display: block;\" @click=\"reInit\">Re-init</s-button>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport { Component, Inject, Model, Prop, Watch, Emit } from 'vue-property-decorator'\r\nimport { Model as DataModel, Property, Integer, Enum, MinLength } from'ts-json-schema-decorator'\r\nimport mold3 from '../3clr/mold.vue'\r\n\r\n@DataModel()\r\nclass Deep {\r\n\t@Property() reason: number\r\n\t@Enum('Yes', 'No') thinking: string\r\n}\r\n@DataModel()\r\nclass Person {\r\n\t@Property() big: boolean\r\n\t@MinLength() firstName: string\r\n\t@Property() lastName: string\r\n\t@Enum('red', 'orange', 'green') light: string\r\n\t@Property() deep: Deep\r\n}\r\n\r\n@Component({components:{mold3}})\r\nexport default class Form extends Vue {\r\n\tcreated() { this.reInit(); }\r\n\tcheckNumber(string) {\r\n\t\tvar rv = Number(string);\r\n\t\tif(isNaN(rv)) throw new Error('Bad number');\r\n\t\treturn rv;\r\n\t}\r\n\treInit() {\r\n\t\tthis.model = {\r\n\t\t\tfirstName: \"\",\r\n\t\t\tlastName: \"\",\r\n\t\t\tbig: false,\r\n\t\t\tlight: \"\",\r\n\t\t\tdeep: {\r\n\t\t\t\treason: 42,\r\n\t\t\t\tthinking: 'Yes'\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tmodel: Person = null\r\n\tschema = (<any>Person).schema\r\n}\r\n</script>","inputs":"<template>\r\n\t<div>\r\n\t\t<s-input>\r\n\t\t\t<template v-slot:prepend><s-icon circular link icon=\"search\" @click=\"testme\" /></template>\r\n\t\t\t<template v-slot:append>\r\n\t\t\t\t<s-select class=\"label\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t\t\t</s-select>\r\n\t\t\t</template>\r\n\t\t</s-input>\r\n\t\t<div>\r\n\t\t\t<label>Drop down:</label>\r\n\t\t\t{{ddn}}\r\n\t\t</div>\r\n\t\t<s-select name=\"extSelect\" style=\"display: block;\" inline action=\"select\" v-model=\"ddn\" text=\"Gender\" on=\"hover\">\r\n\t\t\t<s-option value=\"M\">Male</s-option>\r\n\t\t\t<s-option value=\"F\">Female</s-option>\r\n\t\t</s-select>\r\n\t\t<s-checkbox name=\"checkyes\" label=\"Yes!\" v-model=\"tchk\" />\r\n\t\t<div>\r\n\t\t\t<label>Checked:</label>\r\n\t\t\t{{tchk}}\r\n\t\t</div>\r\n\t\t<div>\r\n\t\t\t<s-input name=\"dimmedMinus\" inline v-dimm-parts:minus.inverted>\r\n\t\t\t\t<template v-slot:append><s-button class=\"input-dimmed\" icon=\"minus\" dimmed-part=\"minus\" /></template>\r\n\t\t\t</s-input>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Inputs extends Vue {\r\n\tddn = ''\r\n\ttchk: boolean = true\r\n\ttestme() {\r\n\t\tconsole.log('icon click');\r\n\t}\r\n}\r\n</script>","panels":"<template>\r\n\t<div>\r\n\t\t<s-accordion v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-accordion>\r\n\t\t<s-tabs v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"bottom\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"left\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t\t<s-tabs position=\"right\" v-model=\"selected\">\r\n\t\t\t<s-panel title=\"What is a dog?\" name=\"whatIs\">\r\n\t\t\t\t<p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"What kinds of dogs are there?\" name=\"whatAre\">\r\n\t\t\t\t<p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>\r\n\t\t\t</s-panel>\r\n\t\t\t<s-panel title=\"And...\" name=\"and\">\r\n\t\t\t\t<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\t\t\t</s-panel>\r\n\t\t</s-tabs>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Tabs extends Vue {\r\n\tselected: string = null\r\n}\r\n</script>","progress":"<template>\r\n\t<div class=\"progress-test\">\r\n\t\tFake crumbs:\r\n\t\t<s-breadcrumbs :crumbs=\"crumbs\" />\r\n\t\t<s-progress :percent=\"percent\" v-model=\"status\" />\r\n\t\t<s-progress :value=\"value\" :total=\"total\" indicating ratio v-model=\"status\">\r\n\t\t\tindicating ratio\r\n\t\t</s-progress>\r\n\t\t<div class=\"ui inverted segment\">\r\n\t\t\t<s-progress :percent=\"percent\" inverted v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{percent}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left}% to go...\"\r\n\t\t\t\tsuccess-text=\"{percent}% done\"\r\n\t\t\t/>\r\n\t\t\t<s-progress inverted indicating :value=\"value\" :total=\"total\" ratio v-model=\"status\"\r\n\t\t\t\tprogress-text=\"!{value}/{total}!\"\r\n\t\t\t\terror-text=\"Error!\"\r\n\t\t\t\twarning-text=\"Warning!\"\r\n\t\t\t\tactive-text=\"{left} to go...\"\r\n\t\t\t\tsuccess-text=\"{value} done\"\r\n\t\t\t/>\r\n\t\t</div>\r\n\r\n\t\t<s-select v-model=\"status\" placeholder=\"status\">\r\n\t\t\t<s-option value=\"active\" />\r\n\t\t\t<s-option value=\"warning\" />\r\n\t\t\t<s-option value=\"success\" />\r\n\t\t\t<s-option value=\"error\" />\r\n\t\t</s-select>\r\n\t\t<div @mousedown=\"md\">\r\n\t\t\tClick here :\r\n\t\t\t<div class=\"command\" style=\"background: black;\" @mousemove=\"mm({offsetX: 0})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" :style=\"{background: 'grey', width: width+'px'}\" @mousemove=\"mm\">\r\n\t\t\t\t{{setValue}}/{{total}} -- {{setPercent}}%\r\n\t\t\t</div>\r\n\t\t\t<div class=\"command\" style=\"background: green;\" @mousemove=\"mm({offsetX: width})\">\r\n\t\t\t\t&nbsp;\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<style>\r\n.progress-test div.command {\r\n\twidth: 32px;\r\n\theight: 32px;\r\n\tdisplay: inline-block;\r\n}\r\n</style>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Progress extends Vue {\r\n\tcrumbs = [{\r\n\t\ttext: 'Panels',\r\n\t\tname: 'panels'\r\n\t}, {\r\n\t\ttext: 'Buttons',\r\n\t\tname: 'buttons'\r\n\t}, {\r\n\t\ttext: 'Form',\r\n\t\tname: 'form'\r\n\t}, {\r\n\t\ttext: 'Inputs',\r\n\t\tname: 'inputs'\r\n\t}, {\r\n\t\ttext: 'Progress',\r\n\t\tname: 'progress'\r\n\t}]\r\n\twidth = 400\r\n\tpercent = 0\r\n\tvalue = 0\r\n\ttotal = 23\r\n\tsetValue = 0\r\n\tsetPercent = 0\r\n\tstatus = null\r\n\tmounted() {\r\n\r\n\t}\r\n\tmm($event) {\r\n\t\tthis.setValue = Math.round($event.offsetX*this.total/this.width);\r\n\t\tthis.setPercent = Math.round($event.offsetX*100/this.width);\r\n\t}\r\n\tmd($event) {\r\n\t\tthis.percent = this.setPercent;\r\n\t\tthis.value = this.setValue;\r\n\t}\r\n}\r\n</script>","sidebars":"<template>\r\n\t<div>\r\n\t\t<s-sidebar direction=\"left\" v-model=\"shown\">\r\n\t\t\tLorem ipsum\r\n\t\t</s-sidebar>\r\n\t\t<div class=\"pusher\">\r\n\t\t\t<s-checkbox label=\"visible\" v-model=\"shown\" />\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component} from 'vue-property-decorator'\r\n\r\n@Component\r\nexport default class Sidebars extends Vue {\r\n\tshown: boolean = false\t//TODO: it fails when initialised at true for now\r\n}\r\n</script>","table":"<template>\r\n\t<div>\r\n\t\t<s-table\r\n\t\t\tcelled\r\n\t\t\tselectable\r\n\t\t\tv-model=\"my_row\"\r\n\t\t\t:rows=\"my_rows\"\r\n\t\t\tvery-basic\r\n\t\t\t:body-height=\"500\"\r\n\t\t>\r\n\t\t\t<mold3 />\r\n\t\t\t<template v-slot:header>\r\n\t\t\t\t<div>\r\n\t\t\t\t\tIn-table header\r\n\t\t\t\t</div>\r\n\t\t\t</template>\r\n\t\t\t<s-checkbox-column v-model=\"my_selection\" />\r\n\t\t\t<s-column prop=\"a\" width=\"300\" header=\"a\" edit />\r\n\t\t\t<s-column header=\"A\">\r\n\t\t\t\t<template v-slot:cell=\"scope\">\r\n\t\t\t\t\ta{{scope.model.a}}-b{{scope.model.b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"b\">\r\n\t\t\t\t<template v-slot:header>\r\n\t\t\t\t\tB sum={{sum_b}}\r\n\t\t\t\t</template>\r\n\t\t\t</s-column>\r\n\t\t\t<s-column prop=\"deep.reason\" header=\"Q?\" edit />\r\n\t\t\t<s-column prop=\"light\" header=\"\" edit type=\"3clr\" />\r\n\t\t\t<s-row-edit-column\r\n\t\t\t\t@edit=\"(row, state)=> copy(row, state)\"\r\n\t\t\t\t@cancel=\"(row, state)=> copy(state, row)\"\r\n\t\t\t/>\r\n\t\t</s-table>\r\n\t\t<div>\r\n\t\t\t<p><h3>current-row</h3> {{my_row}} </p>\r\n\t\t\t<p><h3>selection</h3> {{my_selection}} </p>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n<script lang=\"ts\">\r\nimport Vue from 'vue'\r\nimport {Component} from 'vue-property-decorator'\r\nimport {copy} from 'js-object-ext'\r\nimport mold3 from '../3clr/mold.vue'\r\n\r\nvar rows = (new Array(20)).fill(null).map((x,i)=> ({\r\n\ta: ''+i*2,\r\n\tb:i*2+1,\r\n\tlight: '',\r\n\tdeep: {reason: 42}\r\n}));\r\n@Component({components:{mold3}})\r\nexport default class Table extends Vue {\r\n\tcopy = copy\r\n\tmy_row = null\r\n\tmy_rows = rows\r\n\tmy_selection = []\r\n\tget sum_b() {\r\n\t\treturn this.my_rows.reduce((acc, row)=> acc + row.b, 0);\r\n\t}\r\n}\r\n</script>"};
 
 /***/ }),
 

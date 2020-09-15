@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import * as deep from 'lib/deep'
+import {get, set} from 'js-object-ext'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
 
 const emptyModel = Object.freeze({});
@@ -55,7 +55,7 @@ export function propertyScope<T extends Vue>(property: T, model, errScope): T {
 					delete this.inputError;
 				}
 				try {
-					deep.set(model, this.path, this.moldInput(value));
+					set(model, this.path, this.moldInput(value));
 				} catch(error) {
 					errScope.specific.push(this.inputError = {
 						message: error.message,
@@ -66,7 +66,7 @@ export function propertyScope<T extends Vue>(property: T, model, errScope): T {
 				}
 			},
 			get: function() {
-				return this.moldOutput(deep.get(model, this.path));
+				return this.moldOutput(get(model, this.path));
 			}
 		}
 	});

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import * as deep from 'lib/deep'
+import {pathed} from 'js-object-ext'
 import {idSpace} from 'lib/utils'
 import {renderWrap} from 'lib/render'
 import {modelScoped, propertyScope} from './scope'
@@ -28,9 +28,9 @@ export default function molded(slotNames) {
 		get moldOutput() { return this.moldProp('output') || (x=>x); }
 
 		get path(): string {
-			var rv = deep.path(this.prop);
+			var rv = pathed(this.prop);
 			console.assert(!!rv, 'Property path is defined');
-			return <string>rv;
+			return rv.join('.');
 		}
 		gendName = null;
 		get name() {

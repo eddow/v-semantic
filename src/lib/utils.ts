@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import {dasherize} from 'lib/string'
-export * from './utils.js'
 
 var base37 = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 //Little-Endian Base37

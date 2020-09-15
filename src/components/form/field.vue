@@ -31,9 +31,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Inject, Provide, Model, Prop, Watch, Emit} from 'vue-property-decorator'
-import {idSpace} from 'lib/utils'
-import * as deep from 'lib/deep'
+import {Component, Provide, Prop, Watch} from 'vue-property-decorator'
 import molded from '../data/molded'
 
 @Component({mixins: [molded(['append', 'prepend', 'field', 'input', 'field-input', 'display', 'field-display'])]})
